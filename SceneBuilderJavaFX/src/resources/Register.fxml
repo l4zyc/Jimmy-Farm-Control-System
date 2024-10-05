@@ -3,18 +3,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="resources.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="517.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
    <top>
-      <Label text="Sign Up" BorderPane.alignment="BOTTOM_CENTER">
+      <Label prefHeight="44.0" prefWidth="124.0" text="Sign Up" BorderPane.alignment="BOTTOM_CENTER">
          <font>
-            <Font name="System Bold" size="27.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
          <BorderPane.margin>
             <Insets top="50.0" />
@@ -32,12 +34,18 @@
           <RowConstraints maxHeight="22.30438232421875" minHeight="0.0" prefHeight="5.63055419921875" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="178.0" text="Create Account" GridPane.halignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#registerUser" prefHeight="33.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" text="Create Account" GridPane.halignment="CENTER">
                <font>
-                  <Font size="17.0" />
+                  <Font name="System Bold" size="17.0" />
                </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </Button>
-            <Label onMouseEntered="#loginLabel" onMouseExited="#exitloginLabel" prefHeight="23.0" prefWidth="223.0" text="Already have an account ? Log In" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="existLbl" onMouseEntered="#loginLabel" onMouseExited="#exitLoginLabel" prefHeight="23.0" prefWidth="223.0" text="Already have an account ? Login" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -55,10 +63,10 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.3905334472656" minWidth="10.0" prefWidth="290.78277587890625" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="371.6079406738281" minHeight="6.152870178222656" prefHeight="44.34779357910156" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="249.84712982177734" minHeight="0.0" prefHeight="47.15220642089844" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="367.67213439941406" minHeight="0.0" prefHeight="59.043426513671875" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="360.5852966308594" minHeight="10.0" prefHeight="50.956573486328125" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="371.6079406738281" minHeight="6.152870178222656" prefHeight="60.65773010253906" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="249.84712982177734" minHeight="0.0" prefHeight="64.34226989746094" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="367.67213439941406" minHeight="0.0" prefHeight="58.852783203125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="360.5852966308594" minHeight="10.0" prefHeight="66.147216796875" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Name" GridPane.halignment="LEFT">
@@ -81,13 +89,13 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField maxWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-            <TextField maxWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField maxWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField maxWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="nameField" maxWidth="237.0" prefHeight="26.0" prefWidth="237.0" style="-fx-background-color: lightgray; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+            <TextField fx:id="usernameField" maxWidth="237.0" prefHeight="26.0" prefWidth="237.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField fx:id="passwdField" maxWidth="237.0" prefWidth="237.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="confPasswdField" maxWidth="237.0" prefWidth="237.0" style="-fx-background-color: lightgray;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <padding>
-            <Insets left="100.0" />
+            <Insets left="50.0" right="50.0" />
          </padding>
       </GridPane>
    </left>
