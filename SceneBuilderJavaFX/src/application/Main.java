@@ -1,10 +1,17 @@
 package application;
 	
+import java.util.Optional;
+
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import resources.Login;
 
 public class Main extends Application {
@@ -21,6 +28,21 @@ public class Main extends Application {
 			stage.setTitle("Jimmy Farm Control System");
 			stage.show();
 			stage.setResizable(false);
+			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				
+				@Override
+				public void handle(WindowEvent event) {
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setContentText("Do you want to Quit ?");
+					alert.setTitle("Exit");
+					
+					Optional<ButtonType> close = alert.showAndWait();
+					
+					if(close.get().equals(ButtonType.CANCEL)) {
+						event.consume();
+					}
+				}
+			});
 			
 			new Login();
 			
