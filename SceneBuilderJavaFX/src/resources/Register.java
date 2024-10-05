@@ -1,7 +1,5 @@
 package resources;
 
-import java.io.IOException;
-
 import application.Main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
