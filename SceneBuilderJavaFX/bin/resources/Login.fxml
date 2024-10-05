@@ -67,7 +67,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Label fx:id="accountSign" contentDisplay="CENTER" onMouseEntered="#noAccount" onMouseExited="#exitNoAccount" text="Don't have an account? Sign Up" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="accountSign" contentDisplay="CENTER" onMouseClicked="#createAccount" onMouseEntered="#noAccount" onMouseExited="#exitNoAccount" text="Don't have an account? Sign Up" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font></Label>

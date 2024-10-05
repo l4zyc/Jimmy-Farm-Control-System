@@ -24,6 +24,12 @@ public class Controller {
 		accountSign.setUnderline(false);
 	}
 	
+	public void createAccount() {
+		Stage window = (Stage) accountSign.getScene().getWindow();
+		window.close();
+		new Register();
+	}
+	
 	public void clickLoginBtn() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setContentText("Log in!");
