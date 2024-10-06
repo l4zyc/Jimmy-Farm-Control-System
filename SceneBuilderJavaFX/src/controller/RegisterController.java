@@ -4,9 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import model.User;
+import resources.Login;
 import resources.Validation;
 
 public class RegisterController {
@@ -18,13 +21,29 @@ public class RegisterController {
 	private TextField nameField, usernameField;
 	@FXML
 	private PasswordField passwdField, confPasswdField;
+	@FXML
+	private Button createAccBtn;
 	
 	public void loginLabel() {
 		existLbl.setUnderline(true);
 	}
 	
+	public void onClickLabelLogin() {
+		Stage stage = (Stage) existLbl.getScene().getWindow();
+		stage.close();
+		new Login();
+	}
+	
 	public void exitLoginLabel() {
 		existLbl.setUnderline(false);
+	}
+	
+	public void onCreateBtnPressed() {
+		createAccBtn.setStyle("");
+	}
+	
+	public void onCreateBtnReleased() {
+		createAccBtn.setStyle("");
 	}
 	
 	public void registerUser() {
@@ -53,7 +72,6 @@ public class RegisterController {
 			alert.showAndWait();
 			return;
 		}
-		
 		
 	}
 

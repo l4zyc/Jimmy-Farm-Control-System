@@ -34,9 +34,9 @@
           <RowConstraints maxHeight="22.30438232421875" minHeight="0.0" prefHeight="5.63055419921875" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#registerUser" prefHeight="33.0" prefWidth="213.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" text="Create Account" GridPane.halignment="CENTER">
+            <Button fx:id="createAccBtn" mnemonicParsing="false" onAction="#registerUser" prefHeight="37.0" prefWidth="210.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" text="Create Account" GridPane.halignment="CENTER">
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                <effect>
                   <Blend />
@@ -45,7 +45,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Label fx:id="existLbl" onMouseEntered="#loginLabel" onMouseExited="#exitLoginLabel" prefHeight="23.0" prefWidth="223.0" text="Already have an account ? Login" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="existLbl" onMouseClicked="#onClickLabelLogin" onMouseEntered="#loginLabel" onMouseExited="#exitLoginLabel" prefHeight="23.0" prefWidth="223.0" text="Already have an account ? Login" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
