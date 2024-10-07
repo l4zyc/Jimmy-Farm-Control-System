@@ -14,8 +14,8 @@ public class Connect {
 	private final String HOST = "localhost:3370";
 	private final String CONNECTION = String.format("jdbc:mysql://%s/%s", HOST, DATABASE);
 	
-	private ResultSet rs;
-	private ResultSetMetaData rsm;
+	public ResultSet rs;
+	public ResultSetMetaData rsm;
 	
 	private Connection con;
 	private Statement st;

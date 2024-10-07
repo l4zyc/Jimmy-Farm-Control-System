@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Login {
 
@@ -29,6 +30,7 @@ public class Login {
 			stage.initOwner(Main.currStage);
 			stage.setScene(scene);
 			stage.setResizable(false);
+			stage.initStyle(StageStyle.UNDECORATED);
 
 			stage.show();
 		} catch (IOException e) {

@@ -21,9 +21,9 @@ public class Main extends Application {
 	public void start(Stage stage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-			Scene scene = new Scene(root, 1200, 600);
+			Scene scene = new Scene(root, 2000, 2000);
 			currStage = stage;
-	
+	 
 			stage.setScene(scene);
 			stage.setTitle("Jimmy Farm Control System");
 			stage.show();

@@ -1,26 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="2000.0" maxWidth="2000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" style="-fx-opacity: 5;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <top>
-            <MenuBar BorderPane.alignment="CENTER">
-               <menus>
-                  <Menu mnemonicParsing="false" style="text-fill: bold;" text="Action">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Home" />
-                        <MenuItem mnemonicParsing="false" text="Log Out" />
-                    </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-         </top>
+      <BorderPane prefHeight="647.0" prefWidth="1291.0" BorderPane.alignment="CENTER">
+         <left>
+            <GridPane prefHeight="573.0" prefWidth="285.0" style="-fx-border-width: 0 2 0 0; -fx-border-color: black;" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="252.64939880371094" minHeight="10.0" prefHeight="95.63604736328125" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="356.68282318115234" minHeight="10.0" prefHeight="286.36395263671875" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <BorderPane prefHeight="331.0" prefWidth="283.0" style="-fx-border-color: black; -fx-border-width: 0 0 2 0;">
+                     <bottom>
+                        <Label prefHeight="88.0" prefWidth="213.0" text="Jimmy Farm Control System" wrapText="true" BorderPane.alignment="TOP_LEFT">
+                           <font>
+                              <Font name="Arial Bold" size="25.0" />
+                           </font>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </bottom>
+                     <center>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </GridPane>
+         </left>
+         <center>
+            <VBox alignment="CENTER" prefHeight="562.0" prefWidth="824.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="17.0" prefWidth="240.0" text="Catatan Harian">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TableView maxWidth="800.0" prefHeight="455.0" prefWidth="838.0">
+                    <columns>
+                      <TableColumn prefWidth="89.48760986328125" text="Lokasi" />
+                      <TableColumn prefWidth="89.51239013671875" text="Kode Kandang" />
+                        <TableColumn prefWidth="103.9752197265625" text="Tanggal Masuk" />
+                        <TableColumn prefWidth="114.9959716796875" text="Keterangan Jenis" />
+                        <TableColumn prefWidth="140.5816650390625" text="Jumlah Awal Jantan" />
+                        <TableColumn prefWidth="147.9183349609375" text="Jumlah Awal Betina" />
+                        <TableColumn prefWidth="113.25701904296875" text="Komentar" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </center>
       </BorderPane>
    </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" style="text-fill: bold;" text="Action">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Home" />
+                  <MenuItem mnemonicParsing="false" text="Log Out" />
+              </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
 </BorderPane>

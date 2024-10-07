@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import model.User;
 import resources.Login;
 import resources.Validation;
+import util.createPage;
 
 public class RegisterController {
 
@@ -31,7 +32,7 @@ public class RegisterController {
 	public void onClickLabelLogin() {
 		Stage stage = (Stage) existLbl.getScene().getWindow();
 		stage.close();
-		new Login();
+		createPage.loginpage();
 	}
 	
 	public void exitLoginLabel() {
@@ -73,6 +74,14 @@ public class RegisterController {
 			return;
 		}
 		
+		alert.setAlertType(AlertType.INFORMATION);
+		alert.setContentText("Account created");
+		alert.showAndWait();
+		
+		Stage stage = (Stage) existLbl.getScene().getWindow();
+		stage.close();
+		
+		createPage.loginpage();
 	}
 
 }
