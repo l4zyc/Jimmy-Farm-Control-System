@@ -44,6 +44,7 @@ public class RegisterController {
 	
 	public void onMouseEnteredButton() {
 		DropShadow shadow = new DropShadow();
+		shadow.setRadius(20);
         shadow.setOffsetX(5);
         shadow.setOffsetY(5);
         shadow.setColor(Color.GRAY);
