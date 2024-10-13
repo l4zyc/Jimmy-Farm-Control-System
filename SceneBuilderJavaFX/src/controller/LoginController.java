@@ -39,8 +39,6 @@ public class LoginController {
 		String username = usernameField.getText();
 		String password = passwordField.getText();
 		
-		
-		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setContentText("Log in!");
 		alert.showAndWait();
