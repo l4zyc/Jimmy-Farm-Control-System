@@ -4,11 +4,35 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class User {
+	private String ID;
 	private String name;
 	private String username;
 	private String password;
 	private String confPasswd;
 	
+	public User(String ID, String name, String username, String password, String confPasswd) {
+		super();
+		this.ID = ID;
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.confPasswd = confPasswd;
+	}
+	
+	
+	
+	public String getID() {
+		return ID;
+	}
+
+
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
+
+
 	public String getName() {
 		return name;
 	}

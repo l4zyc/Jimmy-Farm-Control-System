@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Register {
 	
@@ -24,6 +25,7 @@ public class Register {
 			
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(Main.currStage);
+			stage.initStyle(StageStyle.UNDECORATED);
 			stage.setResizable(false);
 			stage.setScene(scene);
 			stage.show();

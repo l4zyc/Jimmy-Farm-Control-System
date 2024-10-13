@@ -44,8 +44,8 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField maxWidth="200.0" GridPane.columnIndex="1" />
-            <PasswordField maxWidth="200.0" prefHeight="26.0" prefWidth="177.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="usernameField" maxWidth="200.0" GridPane.columnIndex="1" />
+            <PasswordField fx:id="passwordField" maxWidth="200.0" prefHeight="26.0" prefWidth="177.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <padding>
             <Insets top="30.0" />

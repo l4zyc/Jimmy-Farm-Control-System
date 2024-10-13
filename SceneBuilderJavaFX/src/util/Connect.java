@@ -10,8 +10,8 @@ import java.sql.Statement;
 public class Connect {
 	private final String USERNAME = "root";
 	private final String PASSWORD = "";
-	private final String DATABASE = "User";
-	private final String HOST = "localhost:3370";
+	private final String DATABASE = "JimmyFarmControlSystemDB";
+	private final String HOST = "localhost:3307";
 	private final String CONNECTION = String.format("jdbc:mysql://%s/%s", HOST, DATABASE);
 	
 	public ResultSet rs;
@@ -46,6 +46,14 @@ public class Connect {
 		}
 		
 		return rs;
+	}
+	
+	public void execUpdate(String query) {
+		try {
+			st.executeUpdate(query);
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
 	}
 	
 	

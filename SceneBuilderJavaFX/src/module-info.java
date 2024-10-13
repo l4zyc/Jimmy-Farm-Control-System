@@ -12,4 +12,6 @@ module mymodule {
 	
 	exports resources to javafx.fxml;
 	exports controller to javafx.fxml, resources;
+	
+	exports model to controller, resources, util;
 }

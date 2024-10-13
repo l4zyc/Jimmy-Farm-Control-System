@@ -12,6 +12,7 @@ import model.User;
 import resources.Login;
 import resources.Validation;
 import util.createPage;
+import util.execQuery;
 
 public class RegisterController {
 
@@ -52,7 +53,7 @@ public class RegisterController {
 		String username = usernameField.getText();
 		String password = passwdField.getText();
 		String confirm = confPasswdField.getText();
-		User user = new User();
+		User user = new User("", "", "", "", "");
 		
 		Alert alert = new Alert(AlertType.ERROR);
 		
@@ -73,6 +74,16 @@ public class RegisterController {
 			alert.showAndWait();
 			return;
 		}
+		
+		String ID = execQuery.getNewID();
+		
+		user.setID(ID);
+		user.setName(name);
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setConfPasswd(confirm);
+		
+		execQuery.insertValue(user);
 		
 		alert.setAlertType(AlertType.INFORMATION);
 		alert.setContentText("Account created");
