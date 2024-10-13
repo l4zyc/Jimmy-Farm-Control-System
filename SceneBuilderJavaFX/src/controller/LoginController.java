@@ -58,4 +58,15 @@ public class LoginController {
 		
 		return false;
 	}
+	
+	public boolean userAlreadyExist(ObservableList<User> users, String username) {
+		
+		for(int i = 0; i < users.size(); i++) {
+			if(username.equals(users.get(i).getUsername())) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
 }
