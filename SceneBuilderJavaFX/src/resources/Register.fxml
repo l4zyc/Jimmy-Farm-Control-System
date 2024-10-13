@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="517.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="517.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterController">
    <top>
-      <Label prefHeight="44.0" prefWidth="124.0" text="Sign Up" BorderPane.alignment="BOTTOM_CENTER">
+      <Label prefHeight="54.0" prefWidth="136.0" text="Sign Up" BorderPane.alignment="BOTTOM_CENTER">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -34,7 +34,7 @@
           <RowConstraints maxHeight="22.30438232421875" minHeight="0.0" prefHeight="5.63055419921875" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="createAccBtn" mnemonicParsing="false" onAction="#registerUser" prefHeight="37.0" prefWidth="210.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" text="Create Account" GridPane.halignment="CENTER">
+            <Button fx:id="createAccBtn" mnemonicParsing="false" onAction="#registerUser" onMouseEntered="#onMouseEnteredButton" onMouseExited="#onMouseExitedButton" prefHeight="37.0" prefWidth="210.0" style="-fx-border-color: black; -fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" text="Create Account" GridPane.halignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Label fx:id="existLbl" onMouseClicked="#onClickLabelLogin" onMouseEntered="#loginLabel" onMouseExited="#exitLoginLabel" prefHeight="23.0" prefWidth="223.0" text="Already have an account ? Login" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Label fx:id="existLbl" onMouseClicked="#onClickLabelLogin" onMouseEntered="#loginLabel" onMouseExited="#exitLoginLabel" prefHeight="26.0" prefWidth="235.0" text="Already have an account ? Login" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -84,7 +84,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="140.0" text="Confirm Password" wrapText="true" GridPane.rowIndex="3">
+            <Label alignment="TOP_LEFT" prefHeight="27.0" prefWidth="145.0" text="Confirm Password" wrapText="true" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>

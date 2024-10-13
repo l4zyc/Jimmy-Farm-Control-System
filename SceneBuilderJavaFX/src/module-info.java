@@ -1,4 +1,4 @@
-module mymodule {
+module SceneBuilderJavaFX {
 	requires javafx.controls;
 	requires javafx.graphics;
 	requires javafx.fxml;
