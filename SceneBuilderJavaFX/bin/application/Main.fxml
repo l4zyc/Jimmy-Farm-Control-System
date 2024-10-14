@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="2000.0" maxWidth="2000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="846.0" prefWidth="1640.0" style="-fx-opacity: 5;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="2000.0" maxWidth="2000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1490.0" style="-fx-opacity: 5;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="647.0" prefWidth="1291.0" BorderPane.alignment="CENTER">
          <left>
@@ -52,7 +52,7 @@
          <center>
             <VBox alignment="CENTER" prefHeight="674.0" prefWidth="979.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="17.0" prefWidth="240.0" text="Catatan Harian">
+                  <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="54.0" prefWidth="259.0" text="Catatan Harian">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
