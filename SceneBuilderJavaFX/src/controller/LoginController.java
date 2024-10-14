@@ -17,10 +17,8 @@ import util.reusableMethod;
 
 public class LoginController {
 
-	@FXML
-	private Button loginBtn;
-	@FXML
-	private Label accountSign;
+	@FXML private Button loginBtn;
+	@FXML private Label accountSign;
 	
 	@FXML private TextField usernameField;
 	@FXML private TextField passwordField;
@@ -50,9 +48,7 @@ public class LoginController {
 			return;
 		}
 		
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setContentText("Log in!");
-		alert.showAndWait();
+		reusableMethod.showAlert(AlertType.INFORMATION, "Log in", "Access Granted!");
 		
 		Stage window = (Stage) loginBtn.getScene().getWindow();
 		window.close();

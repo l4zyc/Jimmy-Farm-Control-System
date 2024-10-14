@@ -2,9 +2,6 @@ package util;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import model.User;
 
 public interface execQuery {
