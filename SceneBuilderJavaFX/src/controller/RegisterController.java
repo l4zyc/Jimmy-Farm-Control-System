@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -93,6 +95,17 @@ public class RegisterController {
 		stage.close();
 		
 		createPage.loginpage();
+	}
+	
+	public boolean userAlreadyExist(ArrayList<User> users, String username) {
+		
+		for(int i = 0; i < users.size(); i++) {
+			if(username.equals(users.get(i).getUsername())) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 }

@@ -1,6 +1,7 @@
 package util;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,10 +44,10 @@ public interface execQuery {
 		return lastID;
 	}
 	
-	public static ObservableList<User> getData() {
+	public static ArrayList<User> getData() {
 		connect.rs = connect.execQuery("SELECT * FROM MsUser");
 		
-		ObservableList<User> user_list = FXCollections.observableArrayList(); 
+		ArrayList<User> user_list = new ArrayList<User>();
 		
 		try {
 			while(connect.rs.next()) {

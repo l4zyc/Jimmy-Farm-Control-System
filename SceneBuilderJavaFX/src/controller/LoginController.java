@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,6 +12,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.User;
 import resources.Register;
+import util.execQuery;
+import util.reusableMethod;
 
 public class LoginController {
 
@@ -39,7 +43,12 @@ public class LoginController {
 		String username = usernameField.getText();
 		String password = passwordField.getText();
 		
+		boolean listCheck = checkList(execQuery.getData(), username, password);
 		
+		if(!listCheck) {
+			reusableMethod.showAlert(AlertType.ERROR, "Error", "Invalid Username or Password");
+			return;
+		}
 		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setContentText("Log in!");
@@ -49,7 +58,7 @@ public class LoginController {
 		window.close();
 	}
 	
-	public boolean checkList(ObservableList<User> users, String username, String password) {
+	public boolean checkList(ArrayList<User> users, String username, String password) {
 		for (User user : users) {
 			if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
 				return true;
@@ -57,16 +66,5 @@ public class LoginController {
 		}
 		
 		return false;
-	}
-	
-	public boolean userAlreadyExist(ObservableList<User> users, String username) {
-		
-		for(int i = 0; i < users.size(); i++) {
-			if(username.equals(users.get(i).getUsername())) {
-				return false;
-			}
-		}
-		
-		return true;
 	}
 }
