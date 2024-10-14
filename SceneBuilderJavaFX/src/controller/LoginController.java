@@ -40,21 +40,13 @@ public class LoginController {
 	public void clickLoginBtn() {
 		String username = usernameField.getText();
 		String password = passwordField.getText();
-		
-<<<<<<< HEAD
+	
 		boolean listCheck = checkList(execQuery.getData(), username, password);
 		
 		if(!listCheck) {
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Invalid Username or Password");
 			return;
 		}
-		
-		reusableMethod.showAlert(AlertType.INFORMATION, "Log in", "Access Granted!");
-=======
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setContentText("Log in!");
-		alert.showAndWait();
->>>>>>> branch 'master' of https://github.com/l4zyc/Jimmy-Farm-Control-System.git
 		
 		Stage window = (Stage) loginBtn.getScene().getWindow();
 		window.close();
