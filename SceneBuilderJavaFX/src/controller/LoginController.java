@@ -48,6 +48,7 @@ public class LoginController {
 			return;
 		}
 		
+		reusableMethod.showAlert(AlertType.INFORMATION, "Logged in", "Access Granted!");
 		Stage window = (Stage) loginBtn.getScene().getWindow();
 		window.close();
 	}
