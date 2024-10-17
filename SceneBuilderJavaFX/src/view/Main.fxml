@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="2000.0" maxWidth="2000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1490.0" style="-fx-opacity: 5;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="2000.0" maxWidth="2000.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="1490.0" style="-fx-opacity: 5;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <center>
       <BorderPane prefHeight="647.0" prefWidth="1291.0" BorderPane.alignment="CENTER">
          <left>
@@ -73,7 +73,7 @@
                   </TableView>
                   <HBox alignment="BOTTOM_RIGHT" prefHeight="87.0" prefWidth="1355.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="139.0" text="Input Data">
+                        <Button fx:id="inputDataBtn" mnemonicParsing="false" onAction="#onClickInputDataBtn" prefHeight="45.0" prefWidth="139.0" text="Input Data">
                            <HBox.margin>
                               <Insets right="120.0" />
                            </HBox.margin>
@@ -94,7 +94,7 @@
             <Menu mnemonicParsing="false" style="text-fill: bold;" text="Action">
               <items>
                 <MenuItem mnemonicParsing="false" text="Home" />
-                  <MenuItem mnemonicParsing="false" text="Log Out" />
+                  <MenuItem mnemonicParsing="false" onAction="#onLogOut" text="Log Out" />
               </items>
             </Menu>
          </menus>

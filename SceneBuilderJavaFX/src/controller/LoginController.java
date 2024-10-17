@@ -2,12 +2,13 @@ package controller;
 
 import java.util.ArrayList;
 
-import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.User;
@@ -19,7 +20,7 @@ public class LoginController {
 
 	@FXML private Button loginBtn;
 	@FXML private Label accountSign;
-	
+
 	@FXML private TextField usernameField;
 	@FXML private TextField passwordField;
 	
@@ -61,5 +62,38 @@ public class LoginController {
 		}
 		
 		return false;
+	}
+	
+	public void passwordKeyCode() {
+		passwordField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				// TODO Auto-generated method stub
+				if(event.getCode().equals(KeyCode.ENTER)) {
+					clickLoginBtn();
+				} else if(event.getCode().equals(KeyCode.UP)) {
+ 					usernameField.requestFocus();
+				}
+			}
+		});
+	}
+	
+	public void usernameKeyCode() {
+		usernameField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode().equals(KeyCode.ENTER)) {
+					
+					if(usernameField.getText().isEmpty()) {
+						return;
+					}
+					
+					passwordField.requestFocus();
+				} 
+			}
+			
+		});
 	}
 }

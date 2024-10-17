@@ -20,7 +20,7 @@ public class Register {
 	public void start() {
 		try {
 			stage = new Stage();
-			Parent register = FXMLLoader.load(getClass().getResource("Register.FXML"));
+			Parent register = FXMLLoader.load(getClass().getResource("/view/Register.FXML"));
 			scene = new Scene(register);
 			
 			stage.initModality(Modality.WINDOW_MODAL);

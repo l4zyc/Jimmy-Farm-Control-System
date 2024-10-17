@@ -1,4 +1,4 @@
-package resources;
+package util;
 
 public class Validation {
 	public static boolean isAlphanumeric(String string) {

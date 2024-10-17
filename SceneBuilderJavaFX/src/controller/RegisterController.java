@@ -13,7 +13,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
 import model.User;
-import resources.Validation;
+import util.Validation;
 import util.createPage;
 import util.execQuery;
 

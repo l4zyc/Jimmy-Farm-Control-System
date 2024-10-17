@@ -23,7 +23,7 @@ public class Login {
 	public void start() {
 		try {
 			stage = new Stage();
-			Parent login = FXMLLoader.load(getClass().getResource("/resources/Login.FXML"));
+			Parent login = FXMLLoader.load(getClass().getResource("/view/Login.FXML"));
 			scene = new Scene(login);
 			
 			stage.initModality(Modality.WINDOW_MODAL);
