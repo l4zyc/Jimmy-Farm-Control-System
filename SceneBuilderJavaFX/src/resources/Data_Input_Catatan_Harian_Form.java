@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Data_Input_Catatan_Harian_Form {
 	
@@ -25,6 +26,7 @@ public class Data_Input_Catatan_Harian_Form {
 			
 			stage.initOwner(Main.currStage);
 			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initStyle(StageStyle.UNDECORATED);
 			stage.setTitle("Input Data Catatan Harian");
 			stage.setScene(scene);
 			stage.show();

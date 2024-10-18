@@ -1,5 +1,6 @@
-/controller/
-/resources/
-/view/
 /application/
+/controller/
+/model/
+/module-info.class
+/resources/
 /util/
