@@ -1,12 +1,12 @@
 package util;
 
 import resources.Data_Input_Catatan_Harian_Form;
-import resources.Login;
+import resources.LoginView;
 import resources.Register;
 
 public interface createPage {
 	public static void loginpage() {
-		new Login();
+		new LoginView();
 	}
 	
 	public static void registerPage() {
