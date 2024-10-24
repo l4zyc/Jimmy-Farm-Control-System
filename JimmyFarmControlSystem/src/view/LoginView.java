@@ -13,8 +13,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
-public class LoginView {
+public class LoginView extends ViewTemplate{
 
 	BorderPane bp = new BorderPane(); 
 	GridPane form = new GridPane();
@@ -26,7 +27,22 @@ public class LoginView {
 	Button signIn;
 	HBox signUpContainer;
 	
+	private Stage stage;
+	
 	public LoginView() {
+		init();
+		arrangeComponent();
+		
+		stage = new Stage();
+		stage.setScene(scene);
+		stage.setTitle("Login");
+		stage.show();
+		
+		new LoginController(this);
+	}
+	
+	@Override
+	public void init() {
 		loginLbl = new Label("Login"); 
 		usernameLbl = new Label("UserName");
 		passwordLbl = new Label("Password");  
@@ -53,7 +69,10 @@ public class LoginView {
 		signUpContainer = new HBox();
 		signUpContainer.getChildren().addAll(signUpLbl, ALbl);
 		
-		
+	}
+
+	@Override
+	public void arrangeComponent() {
 		form.setVgap(5); 
 		form.setHgap(2);
 		
@@ -71,11 +90,8 @@ public class LoginView {
 		bp.setPadding(new Insets(290));
 		
 		GridPane.setHalignment(loginLbl, HPos.CENTER);
-		
-		
+
 		form.setAlignment(Pos.CENTER);
-		
-		new LoginController(this);
 	}
 
 	public BorderPane getBp() {
