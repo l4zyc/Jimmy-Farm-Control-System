@@ -42,7 +42,8 @@ public class LoginView extends ViewTemplate{
 	}
 	
 	@Override
-	public void init() {
+	public void init() { 
+		//bagian username dan password
 		loginLbl = new Label("Login"); 
 		usernameLbl = new Label("UserName");
 		passwordLbl = new Label("Password");  
@@ -75,12 +76,16 @@ public class LoginView extends ViewTemplate{
 	public void arrangeComponent() {
 		form.setVgap(5); 
 		form.setHgap(2);
-		
+		//bagian username, password
 		form.add(usernameLbl, 0, 1);  
 		form.add(usernameTF, 1, 1);
 		form.add(passwordLbl, 0, 2); 
 		form.add(passwdPF, 1, 2); 
-		form.add(signIn, 1, 3);
+		
+		//button sign in
+		form.add(signIn, 1, 3); 
+		
+		//bagian mau ke halaman sign up
 		form.add(signUpContainer, 1, 4);
 		
 		bp.setTop(loginLbl);

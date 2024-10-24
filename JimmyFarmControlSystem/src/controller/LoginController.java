@@ -47,6 +47,7 @@ public class LoginController {
 		
 		Stage window = (Stage) view.getSignIn().getScene().getWindow();
 		window.close();
+		
 	}
 	
 	public boolean checkList(ArrayList<User> users, String username, String password) {

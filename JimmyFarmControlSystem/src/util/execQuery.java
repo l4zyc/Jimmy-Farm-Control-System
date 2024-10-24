@@ -7,7 +7,7 @@ import model.User;
 public interface execQuery {
 	public static final Connect connect = Connect.getInstance();
 	
-	public static void insertValue(User user) {
+	public static void insertUser(User user) {
 		String query = String.format("INSERT INTO MsUser (UserID, Name, Username, passwd) VALUES ('%s', '%s', '%s', '%s')"
 				, user.getID(), user.getName(), user.getUsername(), user.getPassword());
 		
