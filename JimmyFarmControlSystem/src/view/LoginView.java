@@ -1,6 +1,7 @@
 package view;
 
 import controller.LoginController;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,20 +13,28 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class LoginView extends ViewTemplate{
 
 	BorderPane bp = new BorderPane(); 
 	GridPane form = new GridPane();
+	
+	Double width = Screen.getPrimary().getBounds().getWidth();
+	Double height = Screen.getPrimary().getBounds().getHeight(); 
 
-	Scene scene = new Scene(bp, 300, 300);
+	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 	Label loginLbl, usernameLbl, passwordLbl, signUpLbl, ALbl;
 	TextField usernameTF;
 	PasswordField passwdPF;
 	Button signIn;
-	HBox signUpContainer;
+	VBox signUpContainer; HBox noAccountLblContainer;
 	
 	private Stage stage;
 	
@@ -34,9 +43,21 @@ public class LoginView extends ViewTemplate{
 		arrangeComponent();
 		
 		stage = new Stage();
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.initOwner(MainPageView.mainStage);
 		stage.setScene(scene);
 		stage.setTitle("Login");
+		stage.setFullScreen(false);
 		stage.show();
+		
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				// TODO Auto-generated method stub
+				event.consume();
+			}
+		});
 		
 		new LoginController(this);
 	}
@@ -45,7 +66,7 @@ public class LoginView extends ViewTemplate{
 	public void init() { 
 		//bagian username dan password
 		loginLbl = new Label("Login"); 
-		usernameLbl = new Label("UserName");
+		usernameLbl = new Label("Username");
 		passwordLbl = new Label("Password");  
 		loginLbl.setStyle("-fx-font-size: 36px;-fx-font-weight: bold;");
 		loginLbl.setFont(Font.font("Inter", 36));
@@ -67,32 +88,34 @@ public class LoginView extends ViewTemplate{
 		ALbl.setStyle("-fx-font-weight: bold;");  
 		signUpLbl.setFont(Font.font("Inter", 10)); 
 		ALbl.setFont(Font.font("Inter", 10));
-		signUpContainer = new HBox();
-		signUpContainer.getChildren().addAll(signUpLbl, ALbl);
-		
+		signUpContainer = new VBox();
+		noAccountLblContainer = new HBox();
+		noAccountLblContainer.getChildren().addAll(signUpLbl, ALbl);
+		signUpContainer.getChildren().addAll(signIn, noAccountLblContainer);
 	}
 
 	@Override
 	public void arrangeComponent() {
 		form.setVgap(5); 
-		form.setHgap(2);
+		form.setHgap(5);
 		//bagian username, password
-		form.add(usernameLbl, 0, 1);  
-		form.add(usernameTF, 1, 1);
-		form.add(passwordLbl, 0, 2); 
-		form.add(passwdPF, 1, 2); 
-		
-		//button sign in
-		form.add(signIn, 1, 3); 
-		
-		//bagian mau ke halaman sign up
-		form.add(signUpContainer, 1, 4);
+		form.add(usernameLbl, 0, 0);  
+		form.add(usernameTF, 1, 0);
+		form.add(passwordLbl, 0, 1); 
+		form.add(passwdPF, 1, 1); 
+	
 		
 		bp.setTop(loginLbl);
 		bp.setCenter(form);
+		bp.setBottom(signUpContainer);
+		
+		signUpContainer.setAlignment(Pos.CENTER);
+		noAccountLblContainer.setAlignment(Pos.CENTER);
 		BorderPane.setAlignment(loginLbl, Pos.CENTER);
 		
-		bp.setPadding(new Insets(290));
+		bp.setPadding(new Insets(100));
+		
+		signUpContainer.setSpacing(10);
 		
 		GridPane.setHalignment(loginLbl, HPos.CENTER);
 
@@ -187,11 +210,11 @@ public class LoginView extends ViewTemplate{
 		this.signIn = signIn;
 	}
 
-	public HBox getSignUpContainer() {
+	public VBox getSignUpContainer() {
 		return signUpContainer;
 	}
 
-	public void setSignUpContainer(HBox signUpContainer) {
+	public void setSignUpContainer(VBox signUpContainer) {
 		this.signUpContainer = signUpContainer;
 	}
 	
