@@ -11,13 +11,14 @@ import main.Main;
 import model.User;
 import util.execQuery;
 import util.reusableMethod;
+import view.LoginView;
 
 public class LoginController {
 	
-	private Main view;
+	private LoginView view;
 	
-	public LoginController(Main view) {
-		this.view = view;
+	public LoginController(LoginView loginView) {
+		this.view = loginView;
 		setOnActionEvent();
 	}
 	

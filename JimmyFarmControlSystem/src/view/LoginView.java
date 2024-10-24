@@ -1,24 +1,20 @@
-package main;
+package view;
 
 import controller.LoginController;
-import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import javafx.scene.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField; 
 
-public class Main extends Application{
+public class LoginView {
 
 	BorderPane bp = new BorderPane(); 
 	GridPane form = new GridPane();
@@ -30,8 +26,7 @@ public class Main extends Application{
 	Button signIn;
 	HBox signUpContainer;
 	
-	public void login() { 
-		//Bagian input data UserName and Password
+	public LoginView() {
 		loginLbl = new Label("Login"); 
 		usernameLbl = new Label("UserName");
 		passwordLbl = new Label("Password");  
@@ -82,21 +77,102 @@ public class Main extends Application{
 		
 		new LoginController(this);
 	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		launch(args);
+
+	public BorderPane getBp() {
+		return bp;
 	}
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub 
-		primaryStage.setTitle("Login"); 
-		primaryStage.setScene(scene); 
-		primaryStage.show(); 
-		login();
+	public void setBp(BorderPane bp) {
+		this.bp = bp;
 	}
-	
+
+	public GridPane getForm() {
+		return form;
+	}
+
+	public void setForm(GridPane form) {
+		this.form = form;
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+	public Label getLoginLbl() {
+		return loginLbl;
+	}
+
+	public void setLoginLbl(Label loginLbl) {
+		this.loginLbl = loginLbl;
+	}
+
+	public Label getUsernameLbl() {
+		return usernameLbl;
+	}
+
+	public void setUsernameLbl(Label usernameLbl) {
+		this.usernameLbl = usernameLbl;
+	}
+
+	public Label getPasswordLbl() {
+		return passwordLbl;
+	}
+
+	public void setPasswordLbl(Label passwordLbl) {
+		this.passwordLbl = passwordLbl;
+	}
+
+	public Label getSignUpLbl() {
+		return signUpLbl;
+	}
+
+	public void setSignUpLbl(Label signUpLbl) {
+		this.signUpLbl = signUpLbl;
+	}
+
+	public Label getALbl() {
+		return ALbl;
+	}
+
+	public void setALbl(Label aLbl) {
+		ALbl = aLbl;
+	}
+
+	public TextField getUsernameTF() {
+		return usernameTF;
+	}
+
+	public void setUsernameTF(TextField usernameTF) {
+		this.usernameTF = usernameTF;
+	}
+
+	public PasswordField getPasswdPF() {
+		return passwdPF;
+	}
+
+	public void setPasswdPF(PasswordField passwdPF) {
+		this.passwdPF = passwdPF;
+	}
+
+	public Button getSignIn() {
+		return signIn;
+	}
+
+	public void setSignIn(Button signIn) {
+		this.signIn = signIn;
+	}
+
+	public HBox getSignUpContainer() {
+		return signUpContainer;
+	}
+
+	public void setSignUpContainer(HBox signUpContainer) {
+		this.signUpContainer = signUpContainer;
+	}
 	
 	
 
