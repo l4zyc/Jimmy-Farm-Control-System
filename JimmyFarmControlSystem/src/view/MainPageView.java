@@ -75,6 +75,8 @@ public class MainPageView extends ViewTemplate{
 		, JumlahAwalJantanTC, JumlahAwalBetinaTC,KomentarTC);
 		
 		mainLayout.setCenter(LokasiTV);
+		
+		
 	}
 	
 	
