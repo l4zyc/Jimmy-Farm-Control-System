@@ -73,6 +73,8 @@ public class MainPageView extends ViewTemplate{
 		
 		LokasiTV.getColumns().addAll(LokasiTC, KodeKandangTC, TanggalMasukTC, KeteranganJenisTC
 		, JumlahAwalJantanTC, JumlahAwalBetinaTC,KomentarTC);
+		
+		mainLayout.setCenter(LokasiTV);
 	}
 	
 	
