@@ -9,4 +9,5 @@ module JimmyFarmControlSystem {
 	requires javafx.controls;
 	requires java.sql;
 	exports main;
+	opens main to java.sql;
 }

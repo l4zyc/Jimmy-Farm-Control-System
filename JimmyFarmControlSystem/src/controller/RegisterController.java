@@ -6,11 +6,13 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Main;
 import model.User;
 import util.execQuery;
 import util.reusableMethod;
+import view.LoginView;
 import view.RegisterView;
 
 public class RegisterController {
@@ -19,6 +21,8 @@ public class RegisterController {
 	public RegisterController(RegisterView view) {
 		this.view = view;
 		setOnActionEvent();
+		setOnMouseClicked(); 
+		signUPBtnClicked();
 	}
 	
 	//Digunakan sebagai fuction untuk menampung data
@@ -62,6 +66,34 @@ public class RegisterController {
 		
 		execQuery.insertUser(new User(userID, name, username, password,confirmpassword));
 	} 
+	
+	public void setOnMouseClicked() { 
+		view.getLogin().setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Stage window = (Stage) view.getLogin().getScene().getWindow();
+				window.close();
+				new LoginView();
+			} 
+			
+		});
+	}
+	
+	public void signUPBtnClicked() { 
+		view.getSignUpbtn().setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Stage window = (Stage) view.getSignUpbtn().getScene().getWindow(); 
+				window.close(); 
+				new LoginView(); 
+			} 
+			
+		});
+	}
 	
 	//validasi nama harus unik
 	public boolean isNameUnique(String name) {
