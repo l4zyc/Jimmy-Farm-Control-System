@@ -6,12 +6,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Main;
 import model.User;
 import util.execQuery;
 import util.reusableMethod;
 import view.LoginView;
+import view.RegisterView;
 
 public class LoginController {
 	
@@ -20,6 +22,7 @@ public class LoginController {
 	public LoginController(LoginView loginView) {
 		this.view = loginView;
 		setOnActionEvent();
+		setOnMouseClicked();
 	}
 	
 	public void setOnActionEvent() {
@@ -28,6 +31,19 @@ public class LoginController {
 			@Override
 			public void handle(ActionEvent event) {
 				clickLoginBtn();
+			}
+		});
+	}
+	
+	public void setOnMouseClicked() {
+		view.getSignUpContainer().setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Stage window = (Stage) view.getSignUpContainer().getScene().getWindow();
+				window.close();
+				new RegisterView();
 			}
 		});
 	}

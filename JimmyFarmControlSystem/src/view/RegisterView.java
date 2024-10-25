@@ -42,7 +42,7 @@ public class RegisterView extends ViewTemplate{
 		
 		stage = new Stage();
 		stage.setScene(scene);
-		stage.setTitle("Login");
+		stage.setTitle("Register");
 		stage.show(); 
 		
 		new RegisterController(this);
@@ -53,7 +53,7 @@ public class RegisterView extends ViewTemplate{
 		// TODO Auto-generated method stub
 		
 				//Name and Username 
-				RegisterLbl = new Label("Sign UP");
+				RegisterLbl = new Label("Sign Up");
 				nameLbl = new Label("Name");
 				usernameLbl = new Label("Username"); 
 				nameTF = new TextField(); 
