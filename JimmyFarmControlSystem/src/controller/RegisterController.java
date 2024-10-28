@@ -44,23 +44,31 @@ public class RegisterController {
 		String confirmpassword = view.getConfirmpasswordPF().getText();
 		String userID = execQuery.getNewID();
 
-		if(name.isEmpty()) {
+		if(name.isEmpty()) { //validasi  name tersebut empty
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Name");
 			return;
-		}else if(isNameUnique(name)) { 
+		}else if(isNameUnique(name)) { //validasi name harus unique
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Name Exist");
 			return;
 		}
 	
-		if(username.isEmpty()) {
+		if(username.isEmpty()) { //validasi username tersebut empty
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input userName");
 			return;
-		}else if(isUserNameUnique(username)) { 
+		}else if(isUserNameUnique(username)) { //validasi username harus unique
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "User name Exist");
 			return;
 		}
 		
-		if(!confirmpassword.equals(password)) { 
+		if(password.isEmpty()) { //validasi password tersebut empty
+			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input password");
+			return;
+		}
+		
+		if(confirmpassword.isEmpty()) {// validasi harus memasukan confirm password
+			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input confirm password");
+			return;
+		}else if(!confirmpassword.equals(password)) { //validasi memasukan password sama dengan confirm password
 			return;
 		} 
 		

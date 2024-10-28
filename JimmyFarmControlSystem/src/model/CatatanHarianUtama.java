@@ -38,13 +38,13 @@ public class CatatanHarianUtama {
 	public void setKeteranganJenis(String keteranganJenis) {
 		KeteranganJenis = keteranganJenis;
 	}
-	public String getJumlahAwalJantan() {
-		return JumlahAwalBetina;
+	public Integer getJumlahAwalJantan() {
+		return JumlahAwalJantan;
 	}
 	public void setJumlahAwalJantan(Integer jumlahAwalJantan) {
 		JumlahAwalJantan = jumlahAwalJantan;
 	}
-	public String getJumlahAwalBetina() {
+	public Integer getJumlahAwalBetina() {
 		return JumlahAwalBetina;
 	}
 	public void setJumlahAwalBetina(Integer jumlahAwalBetina) {
