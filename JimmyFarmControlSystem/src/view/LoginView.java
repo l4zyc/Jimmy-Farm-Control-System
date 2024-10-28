@@ -83,7 +83,7 @@ public class LoginView extends ViewTemplate{
 		signIn.setMinWidth(150);
 		
 		//Bagian sign up
-		signUpLbl = new Label("Don't have an account? "); 
+		signUpLbl = new Label("Don't have an account?"); 
 		ALbl = new Label("Sign Up");
 		ALbl.setStyle("-fx-font-weight: bold;");  
 		signUpLbl.setFont(Font.font("Inter", 10)); 

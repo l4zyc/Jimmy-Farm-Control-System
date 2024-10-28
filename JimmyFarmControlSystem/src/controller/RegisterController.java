@@ -69,10 +69,17 @@ public class RegisterController {
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input confirm password");
 			return;
 		}else if(!confirmpassword.equals(password)) { //validasi memasukan password sama dengan confirm password
+			reusableMethod.showAlert(AlertType.INFORMATION, "Error", "Input the same password");
 			return;
-		} 
+		}
 		
 		execQuery.insertUser(new User(userID, name, username, password,confirmpassword));
+		view.getNameTF().setText(null);
+		view.getUsernameTF().setText(null);
+		view.getPasswordPF().setText(null);
+		view.getConfirmpasswordPF().setText(null);
+		
+		new LoginView();
 	} 
 	
 	public void setOnMouseClicked() { 

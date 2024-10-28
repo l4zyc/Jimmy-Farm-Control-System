@@ -8,13 +8,17 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.CatatanHarianUtama;
 public class MainPageView extends ViewTemplate{
 	
 	private Scene scene;
 	public static Stage mainStage;
-	private BorderPane mainLayout;
+	private BorderPane mainLayout; 
+	private GridPane GP1, GP2;
 
 	public MainPageView(Stage stage) {
 		init();
@@ -36,10 +40,20 @@ public class MainPageView extends ViewTemplate{
 	TableView<CatatanHarianUtama> LokasiTV, KodeKandangTV, TanggalMasukTV, KeteranganJenisTV, JumlahAwalJantanTV, JumlahAwalBetinaTV, KomentarTV;
 	TableColumn<CatatanHarianUtama, String> LokasiTC, KodeKandangTC, KeteranganJenisTC, KomentarTC;
 	TableColumn<CatatanHarianUtama, Date> TanggalMasukTC;
-	TableColumn<CatatanHarianUtama, Integer> JumlahAwalJantanTC, JumlahAwalBetinaTC;
+	TableColumn<CatatanHarianUtama, Integer> JumlahAwalJantanTC, JumlahAwalBetinaTC; 
+	Button Update, Delete, InputData; //button
+	MenuBar Home;  //menubar
+	MenuItem home, LogOut; //isi menu bar 
+	Menu action;//Buat action menu bar 
+	
+	//Daftar tabel samping
+	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl; 
+	HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier;
 	@Override
 	public void init() {
 		mainLayout = new BorderPane();
+		GP1 = new GridPane(); 
+		GP2 = new GridPane();
 		scene = new Scene(mainLayout); 
 		
 		//column Lokasi
@@ -76,6 +90,46 @@ public class MainPageView extends ViewTemplate{
 		
 		mainLayout.setCenter(LokasiTV);
 		
+		//Bagian button update 
+		Update = new Button("Update"); 
+		Update.setFont(Font.font("Inter", 20)); 
+		Update.setMinWidth(50); 
+		
+		//Bagian button Delete 
+		Delete = new Button("Delete"); 
+		Delete.setFont(Font.font("Inter", 20)); 
+		Delete.setMinWidth(50); 
+		
+		//Bagian button Input Data 
+		InputData = new Button("Input Data"); 
+		InputData.setFont(Font.font("Inter", 20));
+		InputData.setMinWidth(50);
+		
+		//Bagian Menubar
+		Home = new MenuBar();  
+		action = new Menu("Action"); 
+		home = new MenuItem("Home"); 
+		LogOut = new MenuItem("Log Out"); 
+		
+		//Bagian Daftar Tabel
+		DaftarTabel = new Label("Daftar Tabel");  
+		CatatanHarian = new HBox(); //Bagian Catatan Harian 
+		CatatanHarianLbl2 = new Label("Catatan Harian");
+		CatatanHarian.getChildren().addAll(CatatanHarianLbl2);  
+		MasterPakan = new HBox(); //Bagian Master Pakan 
+		MasterPakanLbl = new Label("Master Pakan");
+		MasterPakan.getChildren().addAll(MasterPakanLbl);  
+		MasterObat = new HBox(); //Bagian Master Obat
+		MasterObatLbl = new Label("Master Obat");
+		MasterObat.getChildren().addAll(MasterObatLbl);  
+		MasterSupplier = new HBox(); 
+		MasterSupplierLbl = new Label("Master Supplier"); 
+		MasterSupplier.getChildren().addAll(MasterSupplierLbl);
+		
+		
+		mainLayout.setTop(Home); 
+		mainLayout.setBottom(GP1);
+		mainLayout.setLeft(GP2);
 		
 	}
 	
@@ -84,6 +138,23 @@ public class MainPageView extends ViewTemplate{
 	@Override
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
+		Home.getMenus().add(action);
+		action.getItems().addAll(home, LogOut); 
+		
+		GP1.setVgap(5); 
+		GP1.setHgap(5); 
+		
+		GP2.setVgap(5); 
+		GP2.setHgap(5);
+		GP2.add(Update, 1, 10); 
+		GP2.add(Delete, 2, 10); 
+		GP2.add(InputData, 10, 10);  
+		GP2.add(DaftarTabel, 1, 1); 
+		GP2.add(CatatanHarian, 1, 2); 
+		GP2.add(MasterPakan, 1, 3); 
+		GP2.add(MasterObat, 1, 4); 
+		GP2.add(MasterSupplier, 1, 5);
+		
 		
 	}
 

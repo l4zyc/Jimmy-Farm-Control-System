@@ -2,16 +2,20 @@ package util;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javafx.scene.control.Alert.AlertType;
 import model.User;
 
 public interface execQuery {
-	public static final Connect connect = Connect.getInstance();
+	public final Connect connect = Connect.getInstance();
+	
 	
 	public static void insertUser(User user) {
 		String query = String.format("INSERT INTO MsUser (UserID, Name, Username, passwd) VALUES ('%s', '%s', '%s', '%s')"
 				, user.getID(), user.getName(), user.getUsername(), user.getPassword());
 		
 		connect.execUpdate(query);
+		reusableMethod.showAlert(AlertType.INFORMATION, "User","User Created!");
 	}
 	
 	
