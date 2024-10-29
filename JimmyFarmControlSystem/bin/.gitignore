@@ -1,7 +1,1 @@
-<<<<<<< HEAD
-/controller/
-=======
-/model/
->>>>>>> branch 'Alt' of https://github.com/l4zyc/Jimmy-Farm-Control-System.git
-/util/
-/view/
+/module-info.class

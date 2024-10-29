@@ -2,6 +2,7 @@ package view;
 
 import java.sql.Date;
 
+import controller.MainPageInputDataController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -27,7 +28,7 @@ public class MainPageInputDataView extends ViewTemplate{
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
-	Label LokasiLbl, KodeKandangLbl, TanggalMasukLbl, JumlahAwalJantanLbl, JumlahAwalBetinaLbl, KomentarLbl;
+	Label LokasiLbl, KodeKandangLbl, KeteranganJenisLbl, TanggalMasukLbl, JumlahAwalJantanLbl, JumlahAwalBetinaLbl, KomentarLbl;
 	TextField Lokasi, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar;
 	DatePicker TanggalMasuk; 
 	Button Save;
@@ -37,6 +38,9 @@ public class MainPageInputDataView extends ViewTemplate{
 	public MainPageInputDataView() { 
 		init(); 
 		arrangeComponent(); 
+		stage = new Stage();
+		
+		new MainPageInputDataController(this);
 		
 		stage.setScene(scene);
 		stage.show(); 
@@ -53,7 +57,10 @@ public class MainPageInputDataView extends ViewTemplate{
 		KodeKandang = new TextField();  
 		//Tanggal Masuk
 		TanggalMasukLbl = new Label("Tanggal Masuk*"); 
-		TanggalMasuk = new DatePicker();  
+		TanggalMasuk = new DatePicker();   
+		//Keterangan Jenis
+		KeteranganJenisLbl = new Label("Keterangan Jenis");
+		KeteranganJenis = new TextField();
 		//Jumlah Awal Jantan
 		JumlahAwalJantanLbl = new Label("Jumlah Awal Jantan*"); 
 		JumlahAwalJantan = new TextField();  
@@ -80,14 +87,16 @@ public class MainPageInputDataView extends ViewTemplate{
 		form1.add(Lokasi, 2, 0);
 		form1.add(KodeKandangLbl, 1, 1); 
 		form1.add(KodeKandang, 2, 1); 
-		form1.add(TanggalMasukLbl, 1, 1);
-		form1.add(TanggalMasuk, 2, 1); 
-		form1.add(JumlahAwalJantanLbl, 1, 3); 
-		form1.add(JumlahAwalJantan, 2, 3); 
-		form1.add(JumlahAwalBetinaLbl, 1, 4); 
-		form1.add(JumlahAwalBetina, 2, 4); 
-		form1.add(KomentarLbl, 1, 5); 
-		form1.add(Komentar, 2, 5); 
+		form1.add(TanggalMasukLbl, 1, 2);
+		form1.add(TanggalMasuk, 2, 2);  
+		form1.add(KeteranganJenisLbl, 1, 3); 
+		form1.add(KeteranganJenis, 2, 3);
+		form1.add(JumlahAwalJantanLbl, 1, 4); 
+		form1.add(JumlahAwalJantan, 2, 4); 
+		form1.add(JumlahAwalBetinaLbl, 1, 5); 
+		form1.add(JumlahAwalBetina, 2, 5); 
+		form1.add(KomentarLbl, 1, 6); 
+		form1.add(Komentar, 2, 6); 
 		
 		bp.setBottom(Save); 
 		bp.setCenter(form1);

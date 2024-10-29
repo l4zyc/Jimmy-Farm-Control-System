@@ -2,8 +2,10 @@ package util;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.sql.Date;
 
 import javafx.scene.control.Alert.AlertType;
+import model.CatatanHarianUtama;
 import model.User;
 
 public interface execQuery {
@@ -44,6 +46,7 @@ public interface execQuery {
 		
 		return lastID;
 	}
+
 	
 	public static ArrayList<User> getData() {
 		connect.rs = connect.execQuery("SELECT * FROM MsUser");
@@ -65,5 +68,31 @@ public interface execQuery {
 		}
 		
 		return user_list;
+	}
+	
+	public static ArrayList<CatatanHarianUtama> getCatatanHarian() {
+		connect.rs = connect.execQuery("SELECT * FROM catatanharianutama");
+		
+		ArrayList<CatatanHarianUtama> listCatatan = new ArrayList<CatatanHarianUtama>();
+		
+		try {
+			while(connect.rs.next()) {
+				String kodeKandang = connect.rs.getString("KODE_KANDANG");
+				String Lokasi = connect.rs.getString("LOKASI"); 
+				String KeteranganJenis = connect.rs.getString("KETERANGAN_JENIS");
+				Date TanggalMasuk = connect.rs.getDate("TANGGAL_MASUK");
+				Integer jumlahAwalJantan = connect.rs.getInt("JUMLAH_AWAL_JANTAN"); 
+				Integer jumlajAwalBetina = connect.rs.getInt("JUMLAH_AWAL_BETINA");
+				String Komentar = connect.rs.getString("KOMENTAR");
+				
+				listCatatan.add(new CatatanHarianUtama(kodeKandang, Lokasi, TanggalMasuk, KeteranganJenis, jumlahAwalJantan,
+						jumlajAwalBetina, Komentar));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listCatatan;
 	}
 }

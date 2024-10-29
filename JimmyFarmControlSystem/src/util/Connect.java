@@ -7,6 +7,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import model.CatatanHarianUtama;
+
 public class Connect {
 	private final String USERNAME = "root";
 	private final String PASSWORD = "";
@@ -55,6 +57,7 @@ public class Connect {
 			System.out.println(e);
 		}
 	}
+	
 	
 	
 }

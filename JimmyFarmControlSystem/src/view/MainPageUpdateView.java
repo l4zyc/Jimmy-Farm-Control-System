@@ -30,6 +30,7 @@ public class MainPageUpdateView extends ViewTemplate{
 	public MainPageUpdateView() { 
 		init(); 
 		arrangeComponent(); 
+		stage = new Stage();
 		
 		stage.setScene(scene);
 		stage.show(); 
@@ -72,8 +73,8 @@ public class MainPageUpdateView extends ViewTemplate{
 		form1.add(Lokasi, 2, 0);
 		form1.add(KodeKandangLbl, 1, 1); 
 		form1.add(KodeKandang, 2, 1); 
-		form1.add(TanggalMasukLbl, 1, 1);
-		form1.add(TanggalMasuk, 2, 1); 
+		form1.add(TanggalMasukLbl, 1, 2);
+		form1.add(TanggalMasuk, 2, 2); 
 		form1.add(JumlahAwalJantanLbl, 1, 3); 
 		form1.add(JumlahAwalJantan, 2, 3); 
 		form1.add(JumlahAwalBetinaLbl, 1, 4); 
