@@ -25,9 +25,6 @@ public class LoginView extends ViewTemplate{
 
 	BorderPane bp = new BorderPane(); 
 	GridPane form = new GridPane();
-	
-	Double width = Screen.getPrimary().getBounds().getWidth();
-	Double height = Screen.getPrimary().getBounds().getHeight(); 
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 	Label loginLbl, usernameLbl, passwordLbl, signUpLbl, ALbl;
@@ -48,6 +45,7 @@ public class LoginView extends ViewTemplate{
 		stage.setScene(scene);
 		stage.setTitle("Login");
 		stage.setFullScreen(false);
+		stage.initStyle(StageStyle.UNIFIED);
 		stage.show();
 		
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -97,7 +95,7 @@ public class LoginView extends ViewTemplate{
 	@Override
 	public void arrangeComponent() {
 		form.setVgap(5); 
-		form.setHgap(5);
+		form.setHgap(20);
 		//bagian username, password
 		form.add(usernameLbl, 0, 0);  
 		form.add(usernameTF, 1, 0);

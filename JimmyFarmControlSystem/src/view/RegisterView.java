@@ -14,7 +14,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -23,7 +25,9 @@ public class RegisterView extends ViewTemplate{
 	BorderPane bp = new BorderPane(); 
 	GridPane form = new GridPane();
 	Stage stage;
-	Scene scene = new Scene(bp, 400, 400);
+	Scene scene;
+	VBox BottomContainer;
+	Label RegisterLbl, nameLbl, usernameLbl, passwordLbl, confirmpasswordLbl, loginpageLbl, ALbl;
 	
 	//Lbl = Label 
 	//TF = TextField 
@@ -43,6 +47,9 @@ public class RegisterView extends ViewTemplate{
 		stage = new Stage();
 		stage.setScene(scene);
 		stage.setTitle("Register");
+		stage.setResizable(false);
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.initOwner(MainPageView.mainStage);
 		stage.show(); 
 		
 		new RegisterController(this);
@@ -51,17 +58,22 @@ public class RegisterView extends ViewTemplate{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+				scene = new Scene(bp, width * 0.65, height * 0.65);
 				//Name and Username 
 				RegisterLbl = new Label("Sign Up");
+				RegisterLbl.setFont(new Font(35));
 				nameLbl = new Label("Name");
+				nameLbl.setFont(new Font(15));
 				usernameLbl = new Label("Username"); 
+				usernameLbl.setFont(new Font(15));
 				nameTF = new TextField(); 
 				usernameTF = new TextField();  
 				
 				//Password and Confirm passowrd
 				passwordLbl = new Label("Password"); 
+				passwordLbl.setFont(new Font(15));
 				confirmpasswordLbl = new Label("Confirm Password");
+				confirmpasswordLbl.setFont(new Font(15));
 				passwordPF = new PasswordField(); 
 				confirmpasswordPF = new PasswordField();
 				
@@ -74,40 +86,48 @@ public class RegisterView extends ViewTemplate{
 				loginpageLbl = new Label("Already have an account? ");  
 				ALbl = new Label("Login"); 
 				ALbl.setStyle("-fx-font-weight: bold;");
-				loginpageLbl.setFont(Font.font("Inter", 10)); 
-				ALbl.setFont(Font.font("Inter", 10));  
+				loginpageLbl.setFont(Font.font("Inter", 15)); 
+				ALbl.setFont(Font.font("Inter", 15));  
 				Login = new HBox(); 
-				Login.getChildren().addAll(loginpageLbl, ALbl);
+				
+				BottomContainer = new VBox();
 	}
 
 	@Override
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
-		form.setVgap(5); 
-		form.setHgap(2);
-		form.add(RegisterLbl, 1, 0);
-		form.add(nameLbl, 0, 1);  
-		form.add(nameTF, 1, 1); 
-		form.add(usernameLbl, 0, 2);  
-		form.add(usernameTF, 1, 2);
-		form.add(passwordLbl, 0, 3); 
-		form.add(passwordPF, 1, 3);  
-		form.add(confirmpasswordLbl, 0, 4); 
-		form.add(confirmpasswordPF, 1, 4); 
-		form.add(signUpbtn, 1, 5);
-		form.add(Login, 1, 6);
+		form.setVgap(20); 
+		form.setHgap(20);
 		
-		bp.setTop(loginpageLbl);
-		bp.setCenter(form);
-		BorderPane.setAlignment(loginpageLbl, Pos.CENTER);
+		form.add(nameLbl, 0, 0);
+		form.add(nameTF, 1, 0);
 		
-		bp.setPadding(new Insets(290));
-		
-		GridPane.setHalignment(loginpageLbl, HPos.CENTER);
+		form.add(usernameLbl, 0, 1);
+		form.add(usernameTF, 1, 1);
 
+		form.add(passwordLbl, 0, 2);
+		form.add(passwordPF, 1, 2);
+	
+		form.add(confirmpasswordLbl, 0, 3);
+		form.add(confirmpasswordPF, 1, 3);
+		
+		Login.getChildren().addAll(loginpageLbl, ALbl);
+		
+		BottomContainer.getChildren().add(signUpbtn);
+		BottomContainer.getChildren().add(Login);
+		
+		bp.setTop(RegisterLbl);
+		bp.setCenter(form);
+		bp.setBottom(BottomContainer);
+		
+		bp.setPadding(new Insets(120));
+		BorderPane.setAlignment(RegisterLbl, Pos.CENTER);
 		form.setAlignment(Pos.CENTER);
+		BottomContainer.setAlignment(Pos.CENTER);
+		BottomContainer.setSpacing(10);
+		Login.setAlignment(Pos.CENTER);
 	}
-	Label RegisterLbl, nameLbl, usernameLbl, passwordLbl, confirmpasswordLbl, loginpageLbl, ALbl;
+
 	public BorderPane getBp() {
 		return bp;
 	}

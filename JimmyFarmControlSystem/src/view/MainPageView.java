@@ -19,8 +19,9 @@ public class MainPageView extends ViewTemplate{
 	
 	private Scene scene;
 	public static Stage mainStage;
-	private BorderPane mainLayout; 
-	private GridPane GP1, GP2;
+	private BorderPane mainLayout, TableLayout; 
+	
+	private GridPane sideBar, sideBarTop, sideBarBottom;
 
 	public MainPageView(Stage stage) {
 		init();
@@ -28,6 +29,8 @@ public class MainPageView extends ViewTemplate{
 		this.mainStage = stage;
 		
 		stage.setScene(scene);
+		stage.setWidth(stage.getMaxWidth());
+		stage.setHeight(stage.getMaxHeight());
 		stage.setTitle("Jimmy Farm Control System");
 		stage.show();
 
@@ -55,8 +58,9 @@ public class MainPageView extends ViewTemplate{
 	@Override
 	public void init() {
 		mainLayout = new BorderPane();
-		GP1 = new GridPane(); 
-		GP2 = new GridPane();
+		sideBar = new GridPane();
+		sideBarTop = new GridPane(); 
+		sideBarBottom = new GridPane();
 		scene = new Scene(mainLayout); 
 		
 		//column Lokasi
@@ -132,12 +136,9 @@ public class MainPageView extends ViewTemplate{
 		MasterSupplier.getChildren().addAll(MasterSupplierLbl);
 		
 		mainLayout.setTop(Home); 
-		mainLayout.setBottom(GP1);
-		mainLayout.setLeft(GP2);
+		mainLayout.setLeft(sideBar);
 		
 	}
-	
-	
 
 	@Override
 	public void arrangeComponent() {
@@ -145,19 +146,9 @@ public class MainPageView extends ViewTemplate{
 		Home.getMenus().add(action);
 		action.getItems().addAll(home, LogOut); 
 		
-		GP1.setVgap(5); 
-		GP1.setHgap(5); 
+		sideBar.add(sideBarTop, 0, 0);
+		sideBar.add(sideBarBottom, 0, 1);
 		
-		GP2.setVgap(5); 
-		GP2.setHgap(5);
-		GP2.add(Update, 1, 10); 
-		GP2.add(Delete, 2, 10); 
-		GP2.add(InputData, 10, 10);  
-		GP2.add(DaftarTabel, 1, 1); 
-		GP2.add(CatatanHarian, 1, 2); 
-		GP2.add(MasterPakan, 1, 3); 
-		GP2.add(MasterObat, 1, 4); 
-		GP2.add(MasterSupplier, 1, 5);
 		
 	}
 
