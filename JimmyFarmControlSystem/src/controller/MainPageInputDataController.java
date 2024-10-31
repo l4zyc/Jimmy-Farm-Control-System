@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import main.Main;
 import model.CatatanHarianUtama;
 import util.Connect;
-import util.execQuery;
+import util.Data;
 import util.reusableMethod;
 import view.MainPageInputDataView;
 import java.sql.Date;
@@ -20,6 +20,7 @@ public class MainPageInputDataController {
 	
 	private MainPageInputDataView view; 
 	private Connect connect = Connect.getInstance();
+	private Data data = new Data();
 	
 	public MainPageInputDataController(MainPageInputDataView mainpageinputdataview) { 
 		this.view = mainpageinputdataview; 

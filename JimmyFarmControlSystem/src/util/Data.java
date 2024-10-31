@@ -8,11 +8,10 @@ import javafx.scene.control.Alert.AlertType;
 import model.CatatanHarianUtama;
 import model.User;
 
-public interface execQuery {
+public class Data {
 	public final Connect connect = Connect.getInstance();
 	
-	
-	public static void insertUser(User user) {
+	public void insertUser(User user) {
 		String query = String.format("INSERT INTO MsUser (UserID, Name, Username, passwd) VALUES ('%s', '%s', '%s', '%s')"
 				, user.getID(), user.getName(), user.getUsername(), user.getPassword());
 		
@@ -21,7 +20,7 @@ public interface execQuery {
 	}
 	
 	
-	public static String getNewID() {
+	public String getNewUserID() {
 		String query = "SELECT UserID from MsUser "
 				+ "ORDER BY UserID "
 				+ "DESC LIMIT 1";
@@ -48,7 +47,7 @@ public interface execQuery {
 	}
 
 	
-	public static ArrayList<User> getData() {
+	public ArrayList<User> getData() {
 		connect.rs = connect.execQuery("SELECT * FROM MsUser");
 		
 		ArrayList<User> user_list = new ArrayList<User>();
@@ -70,7 +69,7 @@ public interface execQuery {
 		return user_list;
 	}
 	
-	public static ArrayList<CatatanHarianUtama> getCatatanHarian() {
+	public ArrayList<CatatanHarianUtama> getCatatanHarian() {
 		connect.rs = connect.execQuery("SELECT * FROM catatanharianutama");
 		
 		ArrayList<CatatanHarianUtama> listCatatan = new ArrayList<CatatanHarianUtama>();

@@ -14,12 +14,13 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.CatatanHarianUtama;
-import util.execQuery;
+import util.Data;
 public class MainPageView extends ViewTemplate{
 	
 	private Scene scene;
 	public static Stage mainStage;
 	private BorderPane mainLayout, TableLayout; 
+	private Data data = new Data();
 	
 	private GridPane sideBar, sideBarTop, sideBarBottom;
 
@@ -95,7 +96,7 @@ public class MainPageView extends ViewTemplate{
 		LokasiTV.getColumns().addAll(LokasiTC, KodeKandangTC, TanggalMasukTC, KeteranganJenisTC
 		, JumlahAwalJantanTC, JumlahAwalBetinaTC,KomentarTC);
 		
-		LokasiTV.getItems().addAll(execQuery.getCatatanHarian());
+		LokasiTV.getItems().addAll(data.getCatatanHarian());
 		
 		mainLayout.setCenter(LokasiTV);
 		

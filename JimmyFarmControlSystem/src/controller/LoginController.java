@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Main;
 import model.User;
+import util.Data;
 import util.execQuery;
 import util.reusableMethod;
 import view.LoginView;
@@ -18,6 +19,7 @@ import view.RegisterView;
 public class LoginController {
 	
 	private LoginView view;
+	private Data data = new Data();
 	
 	public LoginController(LoginView loginView) {
 		this.view = loginView;
@@ -52,7 +54,7 @@ public class LoginController {
 		String username = view.getUsernameTF().getText();
 		String password = view.getPasswdPF().getText();
 
-		boolean listCheck = checkList(execQuery.getData(), username, password);
+		boolean listCheck = checkList(data.getData(), username, password);
 		
 		if(!listCheck) {
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Invalid Username or Password");

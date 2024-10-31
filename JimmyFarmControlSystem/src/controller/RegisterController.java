@@ -10,13 +10,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Main;
 import model.User;
-import util.execQuery;
+import util.Data;
 import util.reusableMethod;
 import view.LoginView;
 import view.RegisterView;
 
 public class RegisterController {
 	private RegisterView view;
+	private Data data = new Data();
 	
 	public RegisterController(RegisterView view) {
 		this.view = view;
@@ -42,7 +43,7 @@ public class RegisterController {
 		String username = view.getUsernameTF().getText();
 		String password = view.getPasswordPF().getText();
 		String confirmpassword = view.getConfirmpasswordPF().getText();
-		String userID = execQuery.getNewID();
+		String userID = data.getNewUserID();
 
 		if(name.isEmpty()) { //validasi  name tersebut empty
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Name");
@@ -73,7 +74,7 @@ public class RegisterController {
 			return;
 		}
 		
-		execQuery.insertUser(new User(userID, name, username, password,confirmpassword));
+		data.insertUser(new User(userID, name, username, password,confirmpassword));
 		view.getNameTF().setText(null);
 		view.getUsernameTF().setText(null);
 		view.getPasswordPF().setText(null);
@@ -112,7 +113,7 @@ public class RegisterController {
 	
 	//validasi nama harus unik
 	public boolean isNameUnique(String name) {
-		ArrayList<User> users = execQuery.getData();
+		ArrayList<User> users = data.getData();
 		
 		for (User user : users) {
 			if(user.getName().equals(name)) { 
@@ -124,7 +125,7 @@ public class RegisterController {
 	
 	//validasi username harus unik
 	public boolean isUserNameUnique(String username) { 
-		ArrayList<User> users = execQuery.getData(); 
+		ArrayList<User> users = data.getData(); 
 		
 		for (User user : users) { 
 			if(user.getUsername().equals(username)) { 
