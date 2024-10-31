@@ -6,7 +6,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.inpuWt.MouseEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Main;
 import model.CatatanHarianUtama;

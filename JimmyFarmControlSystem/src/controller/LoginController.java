@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import main.Main;
 import model.User;
 import util.Data;
-import util.execQuery;
 import util.reusableMethod;
 import view.LoginView;
 import view.RegisterView;
