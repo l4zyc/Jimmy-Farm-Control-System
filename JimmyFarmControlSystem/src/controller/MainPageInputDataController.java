@@ -42,7 +42,7 @@ public class MainPageInputDataController {
 				Integer JumlahAwalJantan = Integer.parseInt(view.getJumlahAwalJantan().getText()); 
 				String Komentar = view.getKomentar().getText();
 				
-				CatatanHarianUtama chu = new CatatanHarianUtama(Lokasi, KodeKandang, date, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar);
+				CatatanHarianUtama chu = new CatatanHarianUtama(KodeKandang, Lokasi, date, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar);
 				
 				insertCatatanHarianUtama(chu);
 				

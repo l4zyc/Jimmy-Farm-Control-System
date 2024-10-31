@@ -139,11 +139,19 @@ public class MainPageView extends ViewTemplate{
 		
 		LokasiTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 		KodeKandangTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		JumlahAwalBetinaTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.10));
-		JumlahAwalJantanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.10));
+		JumlahAwalBetinaTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.12));
+		JumlahAwalJantanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.12));
 		KeteranganJenisTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 		KomentarTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 		TanggalMasukTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
+		
+		LokasiTC.setStyle("-fx-alignment: CENTER;");
+		KodeKandangTC.setStyle("-fx-alignment: CENTER;");
+		JumlahAwalBetinaTC.setStyle("-fx-alignment: CENTER;");
+		JumlahAwalJantanTC.setStyle("-fx-alignment: CENTER;");
+		KeteranganJenisTC.setStyle("-fx-alignment: CENTER;");
+		KomentarTC.setStyle("-fx-alignment: CENTER;");
+		TanggalMasukTC.setStyle("-fx-alignment: CENTER;");
 		
 		mainLayout.setTop(mb); 
 		mainLayout.setCenter(TableLayout);

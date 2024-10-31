@@ -39,6 +39,7 @@ public class MainPageInputDataView extends ViewTemplate{
 		init(); 
 		arrangeComponent(); 
 		stage = new Stage();
+		stage.setTitle("Input Catatan Harian");
 		
 		new MainPageInputDataController(this);
 		

@@ -1,5 +1,8 @@
 package view;
 
+import controller.MainPageUpdateController;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -27,16 +30,21 @@ public class MainPageUpdateView extends ViewTemplate{
 	Button Save;
 	
 	private CatatanHarianUtama catatan;
+	private MainPageView view;
 	private Stage stage;
 
-	public MainPageUpdateView(CatatanHarianUtama catatan) { 
+	public MainPageUpdateView(MainPageView view, CatatanHarianUtama catatan) { 
 		this.catatan = catatan;
+		this.view = view;
 		init(); 
 		arrangeComponent(); 
 		stage = new Stage();
+		stage.setTitle("Update Catatan Harian");
 		
 		stage.setScene(scene);
 		stage.show(); 
+		
+		new MainPageUpdateController(this);
 	}
 	
 	@Override
@@ -87,9 +95,14 @@ public class MainPageUpdateView extends ViewTemplate{
 		form1.add(JumlahAwalBetina, 2, 4); 
 		form1.add(KomentarLbl, 1, 5); 
 		form1.add(Komentar, 2, 5); 
+		form1.setAlignment(Pos.CENTER);
 		
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
+		BorderPane.setAlignment(Save, Pos.CENTER);
+		
+		bp.setPadding(new Insets(50));
+	
 	} 
 	public BorderPane getBp() {
 		return bp;
@@ -251,6 +264,14 @@ public class MainPageUpdateView extends ViewTemplate{
 		this.stage = stage;
 	}
 
+	public MainPageView getView() {
+		return view;
+	}
 
+	public void setView(MainPageView view) {
+		this.view = view;
+	}
+
+	
 	
 }

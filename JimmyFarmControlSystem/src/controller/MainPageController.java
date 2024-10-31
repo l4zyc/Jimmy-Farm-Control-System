@@ -45,7 +45,7 @@ public class MainPageController {
 			@Override
 			public void handle(ActionEvent event) {
 				if (catatan != null) {
-				    new MainPageUpdateView(catatan);
+				    new MainPageUpdateView(view, catatan);
 				} else {
 				    System.out.println("No item selected.");
 				}

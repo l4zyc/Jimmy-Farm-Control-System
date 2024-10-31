@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert.AlertType;
 import model.CatatanHarianUtama;
 import model.User;
@@ -69,10 +71,10 @@ public class Data {
 		return user_list;
 	}
 	
-	public ArrayList<CatatanHarianUtama> getCatatanHarian() {
+	public ObservableList<CatatanHarianUtama> getCatatanHarian() {
 		connect.rs = connect.execQuery("SELECT * FROM catatanharianutama");
 		
-		ArrayList<CatatanHarianUtama> listCatatan = new ArrayList<CatatanHarianUtama>();
+		ObservableList<CatatanHarianUtama> listCatatan = FXCollections.observableArrayList();
 		
 		try {
 			while(connect.rs.next()) {
@@ -84,7 +86,7 @@ public class Data {
 				Integer jumlajAwalBetina = connect.rs.getInt("JUMLAH_AWAL_BETINA");
 				String Komentar = connect.rs.getString("KOMENTAR");
 				
-				listCatatan.add(new CatatanHarianUtama(kodeKandang, Lokasi, TanggalMasuk, KeteranganJenis, jumlahAwalJantan,
+				listCatatan.add(new CatatanHarianUtama(Lokasi, kodeKandang, TanggalMasuk, KeteranganJenis, jumlahAwalJantan,
 						jumlajAwalBetina, Komentar));
 			}
 		} catch (Exception e) {
@@ -93,5 +95,21 @@ public class Data {
 		}
 		
 		return listCatatan;
+	}
+	
+	public void updateCatatanHarianData(CatatanHarianUtama catatan) {
+		
+		String query = String.format("UPDATE catatanharianutama "
+                + "SET KODE_KANDANG = '%s', LOKASI = '%s', "
+                + "KETERANGAN_JENIS = '%s', TANGGAL_MASUK = '%s', "
+                + "JUMLAH_AWAL_JANTAN = %d, JUMLAH_AWAL_BETINA = %d, "
+                + "KOMENTAR = '%s' "
+                + "WHERE KODE_KANDANG = '%s'",
+                catatan.getKodeKandang(), catatan.getLokasi(),
+                catatan.getKeteranganJenis(), catatan.getTanggalMasuk(),
+                catatan.getJumlahAwalJantan(), catatan.getJumlahAwalBetina(),
+                catatan.getKomentar(), catatan.getKodeKandang()
+		);
+		connect.execUpdate(query);
 	}
 }
