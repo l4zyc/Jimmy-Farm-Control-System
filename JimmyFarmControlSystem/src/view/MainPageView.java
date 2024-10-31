@@ -48,8 +48,8 @@ public class MainPageView extends ViewTemplate{
 	TableColumn<CatatanHarianUtama, Date> TanggalMasukTC;
 	TableColumn<CatatanHarianUtama, Integer> JumlahAwalJantanTC, JumlahAwalBetinaTC; 
 	Button Update, Delete, InputData; //button
-	MenuBar Home;  //menubar
-	MenuItem home, LogOut; //isi menu bar 
+	MenuBar mb;  //menubar
+	MenuItem Home, LogOut; //isi menu bar 
 	Menu action;//Buat action menu bar 
 	
 	//Daftar tabel samping
@@ -115,9 +115,9 @@ public class MainPageView extends ViewTemplate{
 		InputData.setMinWidth(50);
 		
 		//Bagian Menubar
-		Home = new MenuBar();  
+		mb = new MenuBar();  
 		action = new Menu("Action"); 
-		home = new MenuItem("Home"); 
+		Home = new MenuItem("Home"); 
 		LogOut = new MenuItem("Log Out"); 
 		
 		//Bagian Daftar Tabel
@@ -135,7 +135,7 @@ public class MainPageView extends ViewTemplate{
 		MasterSupplierLbl = new Label("Master Supplier"); 
 		MasterSupplier.getChildren().addAll(MasterSupplierLbl);
 		
-		mainLayout.setTop(Home); 
+		mainLayout.setTop(mb); 
 		mainLayout.setLeft(sideBar);
 		
 	}
@@ -143,8 +143,8 @@ public class MainPageView extends ViewTemplate{
 	@Override
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
-		Home.getMenus().add(action);
-		action.getItems().addAll(home, LogOut); 
+		mb.getMenus().add(action);
+		action.getItems().addAll(Home, LogOut); 
 		
 		sideBar.add(sideBarTop, 0, 0);
 		sideBar.add(sideBarBottom, 0, 1);
@@ -152,444 +152,318 @@ public class MainPageView extends ViewTemplate{
 		
 	}
 
-
-
 	public Scene getScene() {
 		return scene;
 	}
-
-
-
-	public static Stage getMainStage() {
-		return mainStage;
-	}
-
-
-
-	public BorderPane getMainLayout() {
-		return mainLayout;
-	}
-
-
-
-	public GridPane getGP1() {
-		return GP1;
-	}
-
-
-
-	public GridPane getGP2() {
-		return GP2;
-	}
-
-
-
-	public Label getCatatanHarianLbl() {
-		return CatatanHarianLbl;
-	}
-
-
-
-	public Label getJFCS() {
-		return JFCS;
-	}
-
-
-
-	public TableView<CatatanHarianUtama> getLokasiTV() {
-		return LokasiTV;
-	}
-
-
-
-	public TableView<CatatanHarianUtama> getKodeKandangTV() {
-		return KodeKandangTV;
-	}
-
-
-
-	public TableView<CatatanHarianUtama> getTanggalMasukTV() {
-		return TanggalMasukTV;
-	}
-
-
-
-	public TableView<CatatanHarianUtama> getKeteranganJenisTV() {
-		return KeteranganJenisTV;
-	}
-
-
-
-	public TableView<CatatanHarianUtama> getJumlahAwalJantanTV() {
-		return JumlahAwalJantanTV;
-	}
-
-
-
-	public TableView<CatatanHarianUtama> getJumlahAwalBetinaTV() {
-		return JumlahAwalBetinaTV;
-	}
-
-
-
-	public TableView<CatatanHarianUtama> getKomentarTV() {
-		return KomentarTV;
-	}
-
-
-
-	public TableColumn<CatatanHarianUtama, String> getLokasiTC() {
-		return LokasiTC;
-	}
-
-
-
-	public TableColumn<CatatanHarianUtama, String> getKodeKandangTC() {
-		return KodeKandangTC;
-	}
-
-
-
-	public TableColumn<CatatanHarianUtama, String> getKeteranganJenisTC() {
-		return KeteranganJenisTC;
-	}
-
-
-
-	public TableColumn<CatatanHarianUtama, String> getKomentarTC() {
-		return KomentarTC;
-	}
-
-
-
-	public TableColumn<CatatanHarianUtama, Date> getTanggalMasukTC() {
-		return TanggalMasukTC;
-	}
-
-
-
-	public TableColumn<CatatanHarianUtama, Integer> getJumlahAwalJantanTC() {
-		return JumlahAwalJantanTC;
-	}
-
-
-
-	public TableColumn<CatatanHarianUtama, Integer> getJumlahAwalBetinaTC() {
-		return JumlahAwalBetinaTC;
-	}
-
-
-
-	public Button getUpdate() {
-		return Update;
-	}
-
-
-
-	public Button getDelete() {
-		return Delete;
-	}
-
-
-
-	public Button getInputData() {
-		return InputData;
-	}
-
-
-
-	public MenuBar getHome() {
-		return Home;
-	}
-
-
-
-
-
-	public MenuItem getLogOut() {
-		return LogOut;
-	}
-
-
-
-	public Menu getAction() {
-		return action;
-	}
-
-
-
-	public Label getDaftarTabel() {
-		return DaftarTabel;
-	}
-
-
-
-	public Label getCatatanHarianLbl2() {
-		return CatatanHarianLbl2;
-	}
-
-
-
-	public Label getMasterPakanLbl() {
-		return MasterPakanLbl;
-	}
-
-
-
-	public Label getMasterObatLbl() {
-		return MasterObatLbl;
-	}
-
-
-
-	public Label getMasterSupplierLbl() {
-		return MasterSupplierLbl;
-	}
-
-
-
-	public HBox getCatatanHarian() {
-		return CatatanHarian;
-	}
-
-
-
-	public HBox getMasterPakan() {
-		return MasterPakan;
-	}
-
-
-
-	public HBox getMasterObat() {
-		return MasterObat;
-	}
-
-
-
-	public HBox getMasterSupplier() {
-		return MasterSupplier;
-	}
-
-
 
 	public void setScene(Scene scene) {
 		this.scene = scene;
 	}
 
-
+	public static Stage getMainStage() {
+		return mainStage;
+	}
 
 	public static void setMainStage(Stage mainStage) {
 		MainPageView.mainStage = mainStage;
 	}
 
-
+	public BorderPane getMainLayout() {
+		return mainLayout;
+	}
 
 	public void setMainLayout(BorderPane mainLayout) {
 		this.mainLayout = mainLayout;
 	}
 
-
-
-	public void setGP1(GridPane gP1) {
-		GP1 = gP1;
+	public BorderPane getTableLayout() {
+		return TableLayout;
 	}
 
-
-
-	public void setGP2(GridPane gP2) {
-		GP2 = gP2;
+	public void setTableLayout(BorderPane tableLayout) {
+		TableLayout = tableLayout;
 	}
 
+	public GridPane getSideBar() {
+		return sideBar;
+	}
 
+	public void setSideBar(GridPane sideBar) {
+		this.sideBar = sideBar;
+	}
+
+	public GridPane getSideBarTop() {
+		return sideBarTop;
+	}
+
+	public void setSideBarTop(GridPane sideBarTop) {
+		this.sideBarTop = sideBarTop;
+	}
+
+	public GridPane getSideBarBottom() {
+		return sideBarBottom;
+	}
+
+	public void setSideBarBottom(GridPane sideBarBottom) {
+		this.sideBarBottom = sideBarBottom;
+	}
+
+	public Label getCatatanHarianLbl() {
+		return CatatanHarianLbl;
+	}
 
 	public void setCatatanHarianLbl(Label catatanHarianLbl) {
 		CatatanHarianLbl = catatanHarianLbl;
 	}
 
-
+	public Label getJFCS() {
+		return JFCS;
+	}
 
 	public void setJFCS(Label jFCS) {
 		JFCS = jFCS;
 	}
 
-
+	public TableView<CatatanHarianUtama> getLokasiTV() {
+		return LokasiTV;
+	}
 
 	public void setLokasiTV(TableView<CatatanHarianUtama> lokasiTV) {
 		LokasiTV = lokasiTV;
 	}
 
-
+	public TableView<CatatanHarianUtama> getKodeKandangTV() {
+		return KodeKandangTV;
+	}
 
 	public void setKodeKandangTV(TableView<CatatanHarianUtama> kodeKandangTV) {
 		KodeKandangTV = kodeKandangTV;
 	}
 
-
+	public TableView<CatatanHarianUtama> getTanggalMasukTV() {
+		return TanggalMasukTV;
+	}
 
 	public void setTanggalMasukTV(TableView<CatatanHarianUtama> tanggalMasukTV) {
 		TanggalMasukTV = tanggalMasukTV;
 	}
 
-
+	public TableView<CatatanHarianUtama> getKeteranganJenisTV() {
+		return KeteranganJenisTV;
+	}
 
 	public void setKeteranganJenisTV(TableView<CatatanHarianUtama> keteranganJenisTV) {
 		KeteranganJenisTV = keteranganJenisTV;
 	}
 
-
+	public TableView<CatatanHarianUtama> getJumlahAwalJantanTV() {
+		return JumlahAwalJantanTV;
+	}
 
 	public void setJumlahAwalJantanTV(TableView<CatatanHarianUtama> jumlahAwalJantanTV) {
 		JumlahAwalJantanTV = jumlahAwalJantanTV;
 	}
 
-
+	public TableView<CatatanHarianUtama> getJumlahAwalBetinaTV() {
+		return JumlahAwalBetinaTV;
+	}
 
 	public void setJumlahAwalBetinaTV(TableView<CatatanHarianUtama> jumlahAwalBetinaTV) {
 		JumlahAwalBetinaTV = jumlahAwalBetinaTV;
 	}
 
-
+	public TableView<CatatanHarianUtama> getKomentarTV() {
+		return KomentarTV;
+	}
 
 	public void setKomentarTV(TableView<CatatanHarianUtama> komentarTV) {
 		KomentarTV = komentarTV;
 	}
 
-
+	public TableColumn<CatatanHarianUtama, String> getLokasiTC() {
+		return LokasiTC;
+	}
 
 	public void setLokasiTC(TableColumn<CatatanHarianUtama, String> lokasiTC) {
 		LokasiTC = lokasiTC;
 	}
 
-
+	public TableColumn<CatatanHarianUtama, String> getKodeKandangTC() {
+		return KodeKandangTC;
+	}
 
 	public void setKodeKandangTC(TableColumn<CatatanHarianUtama, String> kodeKandangTC) {
 		KodeKandangTC = kodeKandangTC;
 	}
 
-
+	public TableColumn<CatatanHarianUtama, String> getKeteranganJenisTC() {
+		return KeteranganJenisTC;
+	}
 
 	public void setKeteranganJenisTC(TableColumn<CatatanHarianUtama, String> keteranganJenisTC) {
 		KeteranganJenisTC = keteranganJenisTC;
 	}
 
-
+	public TableColumn<CatatanHarianUtama, String> getKomentarTC() {
+		return KomentarTC;
+	}
 
 	public void setKomentarTC(TableColumn<CatatanHarianUtama, String> komentarTC) {
 		KomentarTC = komentarTC;
 	}
 
-
+	public TableColumn<CatatanHarianUtama, Date> getTanggalMasukTC() {
+		return TanggalMasukTC;
+	}
 
 	public void setTanggalMasukTC(TableColumn<CatatanHarianUtama, Date> tanggalMasukTC) {
 		TanggalMasukTC = tanggalMasukTC;
 	}
 
-
+	public TableColumn<CatatanHarianUtama, Integer> getJumlahAwalJantanTC() {
+		return JumlahAwalJantanTC;
+	}
 
 	public void setJumlahAwalJantanTC(TableColumn<CatatanHarianUtama, Integer> jumlahAwalJantanTC) {
 		JumlahAwalJantanTC = jumlahAwalJantanTC;
 	}
 
-
+	public TableColumn<CatatanHarianUtama, Integer> getJumlahAwalBetinaTC() {
+		return JumlahAwalBetinaTC;
+	}
 
 	public void setJumlahAwalBetinaTC(TableColumn<CatatanHarianUtama, Integer> jumlahAwalBetinaTC) {
 		JumlahAwalBetinaTC = jumlahAwalBetinaTC;
 	}
 
-
+	public Button getUpdate() {
+		return Update;
+	}
 
 	public void setUpdate(Button update) {
 		Update = update;
 	}
 
-
+	public Button getDelete() {
+		return Delete;
+	}
 
 	public void setDelete(Button delete) {
 		Delete = delete;
 	}
 
-
+	public Button getInputData() {
+		return InputData;
+	}
 
 	public void setInputData(Button inputData) {
 		InputData = inputData;
 	}
 
+	public MenuBar getMb() {
+		return mb;
+	}
 
+	public void setMb(MenuBar mb) {
+		this.mb = mb;
+	}
 
-	public void setHome(MenuBar home) {
+	public MenuItem getHome() {
+		return Home;
+	}
+
+	public void setHome(MenuItem home) {
 		Home = home;
 	}
 
-
-
-	public void setHome(MenuItem home) {
-		this.home = home;
+	public MenuItem getLogOut() {
+		return LogOut;
 	}
-
-
 
 	public void setLogOut(MenuItem logOut) {
 		LogOut = logOut;
 	}
 
-
+	public Menu getAction() {
+		return action;
+	}
 
 	public void setAction(Menu action) {
 		this.action = action;
 	}
 
-
+	public Label getDaftarTabel() {
+		return DaftarTabel;
+	}
 
 	public void setDaftarTabel(Label daftarTabel) {
 		DaftarTabel = daftarTabel;
 	}
 
-
+	public Label getCatatanHarianLbl2() {
+		return CatatanHarianLbl2;
+	}
 
 	public void setCatatanHarianLbl2(Label catatanHarianLbl2) {
 		CatatanHarianLbl2 = catatanHarianLbl2;
 	}
 
-
+	public Label getMasterPakanLbl() {
+		return MasterPakanLbl;
+	}
 
 	public void setMasterPakanLbl(Label masterPakanLbl) {
 		MasterPakanLbl = masterPakanLbl;
 	}
 
-
+	public Label getMasterObatLbl() {
+		return MasterObatLbl;
+	}
 
 	public void setMasterObatLbl(Label masterObatLbl) {
 		MasterObatLbl = masterObatLbl;
 	}
 
-
+	public Label getMasterSupplierLbl() {
+		return MasterSupplierLbl;
+	}
 
 	public void setMasterSupplierLbl(Label masterSupplierLbl) {
 		MasterSupplierLbl = masterSupplierLbl;
 	}
 
-
+	public HBox getCatatanHarian() {
+		return CatatanHarian;
+	}
 
 	public void setCatatanHarian(HBox catatanHarian) {
 		CatatanHarian = catatanHarian;
 	}
 
-
+	public HBox getMasterPakan() {
+		return MasterPakan;
+	}
 
 	public void setMasterPakan(HBox masterPakan) {
 		MasterPakan = masterPakan;
 	}
 
-
+	public HBox getMasterObat() {
+		return MasterObat;
+	}
 
 	public void setMasterObat(HBox masterObat) {
 		MasterObat = masterObat;
 	}
 
-
+	public HBox getMasterSupplier() {
+		return MasterSupplier;
+	}
 
 	public void setMasterSupplier(HBox masterSupplier) {
 		MasterSupplier = masterSupplier;
 	}
+	
+	
 	
 }
