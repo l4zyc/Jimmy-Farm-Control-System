@@ -40,12 +40,11 @@ public class LoginView extends ViewTemplate{
 		arrangeComponent();
 		
 		stage = new Stage();
+		stage.setScene(scene);
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.initOwner(MainPageView.mainStage);
-		stage.setScene(scene);
 		stage.setTitle("Login");
 		stage.setFullScreen(false);
-		stage.initStyle(StageStyle.UNIFIED);
 		stage.show();
 		
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

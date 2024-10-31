@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import view.LoginView;
 import view.MainPageView;
 import javafx.scene.*;
 import javafx.scene.control.Button;
@@ -29,7 +30,7 @@ public class Main extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub 
-		new MainPageView(stage);
+		new MainPageView();
 	}
 	
 	

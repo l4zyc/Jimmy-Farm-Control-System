@@ -24,18 +24,17 @@ public class MainPageView extends ViewTemplate{
 	
 	private GridPane sideBar, sideBarTop, sideBarBottom;
 
-	public MainPageView(Stage stage) {
+	public MainPageView() {
 		init();
 		arrangeComponent();
-		this.mainStage = stage;
+		mainStage = new Stage();
 		
-		stage.setScene(scene);
-		stage.setWidth(stage.getMaxWidth());
-		stage.setHeight(stage.getMaxHeight());
-		stage.setTitle("Jimmy Farm Control System");
-		stage.show();
+		mainStage.setMaximized(true);
+		mainStage.setResizable(false);
+		mainStage.setScene(scene);
+		mainStage.setTitle("Jimmy Farm Control System");
+		mainStage.show();
 
-		// Show the LoginView on top of the main page
 		new LoginView();
 		new MainPageController(this);
 	}
@@ -44,7 +43,7 @@ public class MainPageView extends ViewTemplate{
 	//JFCSLbl = Jimmy Farm Control System
 	
 	Label CatatanHarianLbl, JFCS; 
-	TableView<CatatanHarianUtama> LokasiTV, KodeKandangTV, TanggalMasukTV, KeteranganJenisTV, JumlahAwalJantanTV, JumlahAwalBetinaTV, KomentarTV;
+	TableView<CatatanHarianUtama> Table;
 	TableColumn<CatatanHarianUtama, String> LokasiTC, KodeKandangTC, KeteranganJenisTC, KomentarTC;
 	TableColumn<CatatanHarianUtama, Date> TanggalMasukTC;
 	TableColumn<CatatanHarianUtama, Integer> JumlahAwalJantanTC, JumlahAwalBetinaTC; 
@@ -55,17 +54,18 @@ public class MainPageView extends ViewTemplate{
 	
 	//Daftar tabel samping
 	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl; 
-	HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier;
+	HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, ButtonContainer;
 	@Override
 	public void init() {
 		mainLayout = new BorderPane();
 		sideBar = new GridPane();
 		sideBarTop = new GridPane(); 
 		sideBarBottom = new GridPane();
+		TableLayout = new BorderPane();
 		scene = new Scene(mainLayout); 
 		
 		//column Lokasi
-		LokasiTV = new TableView<CatatanHarianUtama>();
+		Table = new TableView<CatatanHarianUtama>();
 		LokasiTC = new TableColumn<CatatanHarianUtama, String>("Lokasi");
 		LokasiTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, String>("Lokasi"));
 		
@@ -93,12 +93,10 @@ public class MainPageView extends ViewTemplate{
 		KomentarTC = new TableColumn<CatatanHarianUtama, String>("Komentar"); 
 		KomentarTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, String>("Komentar"));
 		
-		LokasiTV.getColumns().addAll(LokasiTC, KodeKandangTC, TanggalMasukTC, KeteranganJenisTC
+		Table.getColumns().addAll(LokasiTC, KodeKandangTC, TanggalMasukTC, KeteranganJenisTC
 		, JumlahAwalJantanTC, JumlahAwalBetinaTC,KomentarTC);
 		
-		LokasiTV.getItems().addAll(data.getCatatanHarian());
-		
-		mainLayout.setCenter(LokasiTV);
+		Table.getItems().addAll(data.getCatatanHarian());
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
@@ -121,6 +119,8 @@ public class MainPageView extends ViewTemplate{
 		Home = new MenuItem("Home"); 
 		LogOut = new MenuItem("Log Out"); 
 		
+		ButtonContainer = new HBox();
+		
 		//Bagian Daftar Tabel
 		DaftarTabel = new Label("Daftar Tabel");  
 		CatatanHarian = new HBox(); //Bagian Catatan Harian 
@@ -136,9 +136,11 @@ public class MainPageView extends ViewTemplate{
 		MasterSupplierLbl = new Label("Master Supplier"); 
 		MasterSupplier.getChildren().addAll(MasterSupplierLbl);
 		
-		mainLayout.setTop(mb); 
-		mainLayout.setLeft(sideBar);
+		JFCS = new Label("Jimmy Farm Control System");
 		
+		mainLayout.setTop(mb); 
+		mainLayout.setCenter(TableLayout);
+		mainLayout.setLeft(sideBar);
 	}
 
 	@Override
@@ -147,10 +149,29 @@ public class MainPageView extends ViewTemplate{
 		mb.getMenus().add(action);
 		action.getItems().addAll(Home, LogOut); 
 		
+		HBox leftBtnContainer = new HBox();
+		leftBtnContainer.getChildren().addAll(InputData, Update);
+		
+		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
+	
+		TableLayout.setTop(CatatanHarian);
+		TableLayout.setCenter(Table);
+		TableLayout.setBottom(ButtonContainer);
+		
 		sideBar.add(sideBarTop, 0, 0);
 		sideBar.add(sideBarBottom, 0, 1);
+		sideBar.setVgap(10);
 		
 		
+		sideBarTop.add(JFCS, 0, 1);
+		
+		sideBarBottom.add(DaftarTabel, 0, 0);		
+		sideBarBottom.add(CatatanHarian, 0, 1);		
+		sideBarBottom.add(MasterPakan, 0, 2);		
+		sideBarBottom.add(MasterObat, 0, 3);		
+		sideBarBottom.add(MasterSupplier, 0, 4);
+		
+		sideBarBottom.setVgap(10);
 	}
 
 	public Scene getScene() {
@@ -225,60 +246,12 @@ public class MainPageView extends ViewTemplate{
 		JFCS = jFCS;
 	}
 
-	public TableView<CatatanHarianUtama> getLokasiTV() {
-		return LokasiTV;
+	public TableView<CatatanHarianUtama> getTable() {
+		return Table;
 	}
 
-	public void setLokasiTV(TableView<CatatanHarianUtama> lokasiTV) {
-		LokasiTV = lokasiTV;
-	}
-
-	public TableView<CatatanHarianUtama> getKodeKandangTV() {
-		return KodeKandangTV;
-	}
-
-	public void setKodeKandangTV(TableView<CatatanHarianUtama> kodeKandangTV) {
-		KodeKandangTV = kodeKandangTV;
-	}
-
-	public TableView<CatatanHarianUtama> getTanggalMasukTV() {
-		return TanggalMasukTV;
-	}
-
-	public void setTanggalMasukTV(TableView<CatatanHarianUtama> tanggalMasukTV) {
-		TanggalMasukTV = tanggalMasukTV;
-	}
-
-	public TableView<CatatanHarianUtama> getKeteranganJenisTV() {
-		return KeteranganJenisTV;
-	}
-
-	public void setKeteranganJenisTV(TableView<CatatanHarianUtama> keteranganJenisTV) {
-		KeteranganJenisTV = keteranganJenisTV;
-	}
-
-	public TableView<CatatanHarianUtama> getJumlahAwalJantanTV() {
-		return JumlahAwalJantanTV;
-	}
-
-	public void setJumlahAwalJantanTV(TableView<CatatanHarianUtama> jumlahAwalJantanTV) {
-		JumlahAwalJantanTV = jumlahAwalJantanTV;
-	}
-
-	public TableView<CatatanHarianUtama> getJumlahAwalBetinaTV() {
-		return JumlahAwalBetinaTV;
-	}
-
-	public void setJumlahAwalBetinaTV(TableView<CatatanHarianUtama> jumlahAwalBetinaTV) {
-		JumlahAwalBetinaTV = jumlahAwalBetinaTV;
-	}
-
-	public TableView<CatatanHarianUtama> getKomentarTV() {
-		return KomentarTV;
-	}
-
-	public void setKomentarTV(TableView<CatatanHarianUtama> komentarTV) {
-		KomentarTV = komentarTV;
+	public void setTable(TableView<CatatanHarianUtama> Table) {
+		this.Table = Table;
 	}
 
 	public TableColumn<CatatanHarianUtama, String> getLokasiTC() {
