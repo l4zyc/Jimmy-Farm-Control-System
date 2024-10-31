@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.CatatanHarianUtama;
 
 public class MainPageUpdateView extends ViewTemplate{
 	BorderPane bp = new BorderPane(); 
@@ -25,9 +26,11 @@ public class MainPageUpdateView extends ViewTemplate{
 	DatePicker TanggalMasuk; 
 	Button Save;
 	
+	private CatatanHarianUtama catatan;
 	private Stage stage;
 
-	public MainPageUpdateView() { 
+	public MainPageUpdateView(CatatanHarianUtama catatan) { 
+		this.catatan = catatan;
 		init(); 
 		arrangeComponent(); 
 		stage = new Stage();
@@ -38,32 +41,35 @@ public class MainPageUpdateView extends ViewTemplate{
 	
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		//Lokasi
-				LokasiLbl = new Label("Lokasi*"); 
-				Lokasi = new TextField();  
-				//Kode Kandang
-				KodeKandangLbl = new Label("Kode Kandang*"); 
-				KodeKandang = new TextField();  
-				//Tanggal Masuk
-				TanggalMasukLbl = new Label("Tanggal Masuk*"); 
-				TanggalMasuk = new DatePicker();  
-				//Jumlah Awal Jantan
-				JumlahAwalJantanLbl = new Label("Jumlah Awal Jantan*"); 
-				JumlahAwalJantan = new TextField();  
-				//Jumlah Awal Betina
-				JumlahAwalBetinaLbl = new Label("Jumlah Awal Betina*"); 
-				JumlahAwalBetina = new TextField();  
-				//Komentar
-				KomentarLbl = new Label("Komentar");
-				Komentar = new TextField();
-				
-				//Button Save
-				Save = new Button("Save"); 
-				Save.setFont(Font.font("Inter", 20));
-				Save.setMinWidth(150);
-	}
+	    // Initialize fields and labels
+	    LokasiLbl = new Label("Lokasi*"); 
+	    Lokasi = new TextField();  
+	    Lokasi.setText(catatan.getLokasi());
 
+	    KodeKandangLbl = new Label("Kode Kandang*"); 
+	    KodeKandang = new TextField();  
+	    KodeKandang.setText(catatan.getKodeKandang());
+
+	    TanggalMasukLbl = new Label("Tanggal Masuk*"); 
+	    TanggalMasuk = new DatePicker(catatan.getTanggalMasuk().toLocalDate()); 
+
+	    JumlahAwalJantanLbl = new Label("Jumlah Awal Jantan*"); 
+	    JumlahAwalJantan = new TextField();  
+	    JumlahAwalJantan.setText(String.valueOf(catatan.getJumlahAwalJantan()));
+
+	    JumlahAwalBetinaLbl = new Label("Jumlah Awal Betina*"); 
+	    JumlahAwalBetina = new TextField();  
+	    JumlahAwalBetina.setText(String.valueOf(catatan.getJumlahAwalBetina()));
+
+	    KomentarLbl = new Label("Komentar");
+	    Komentar = new TextField();
+	    Komentar.setText(catatan.getKomentar());
+
+	    // Initialize Save button
+	    Save = new Button("Save"); 
+	    Save.setFont(Font.font("Inter", 20));
+	    Save.setMinWidth(150);
+	}
 	@Override
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub

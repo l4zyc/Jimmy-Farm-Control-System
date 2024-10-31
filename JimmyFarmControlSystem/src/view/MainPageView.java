@@ -35,7 +35,6 @@ public class MainPageView extends ViewTemplate{
 		mainStage.setTitle("Jimmy Farm Control System");
 		mainStage.show();
 
-		new LoginView();
 		new MainPageController(this);
 	}
 	
