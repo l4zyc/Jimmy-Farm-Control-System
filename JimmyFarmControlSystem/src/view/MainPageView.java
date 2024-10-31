@@ -138,6 +138,14 @@ public class MainPageView extends ViewTemplate{
 		
 		JFCS = new Label("Jimmy Farm Control System");
 		
+		LokasiTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
+		KodeKandangTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
+		JumlahAwalBetinaTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.10));
+		JumlahAwalJantanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.10));
+		KeteranganJenisTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
+		KomentarTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
+		TanggalMasukTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
+		
 		mainLayout.setTop(mb); 
 		mainLayout.setCenter(TableLayout);
 		mainLayout.setLeft(sideBar);
@@ -154,7 +162,7 @@ public class MainPageView extends ViewTemplate{
 		
 		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
 	
-		TableLayout.setTop(CatatanHarian);
+		TableLayout.setTop(new Label("Catatan Harian"));
 		TableLayout.setCenter(Table);
 		TableLayout.setBottom(ButtonContainer);
 		

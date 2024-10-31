@@ -45,6 +45,17 @@ public class MainPageInputDataController {
 				CatatanHarianUtama chu = new CatatanHarianUtama(Lokasi, KodeKandang, date, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar);
 				
 				insertCatatanHarianUtama(chu);
+				
+				view.getKodeKandang().setText("");
+				view.getLokasi().setText("");
+				view.getKeteranganJenis().setText("");
+				view.getTanggalMasuk().setValue(null);
+				view.getJumlahAwalBetina().setText("");
+				view.getJumlahAwalJantan().setText("");
+				view.getKomentar().setText("");
+				
+				Stage stage = (Stage) view.getBp().getScene().getWindow();
+				stage.close();
 			} 
 			
 		});

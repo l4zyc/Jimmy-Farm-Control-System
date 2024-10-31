@@ -32,8 +32,6 @@ public class MainPageController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getUpdate().getScene().getWindow();
-				window.close();
 				new MainPageUpdateView();
 			}
 		});
@@ -45,8 +43,6 @@ public class MainPageController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getInputData().getScene().getWindow(); 
-				window.close(); 
 				new MainPageInputDataView();
 			} 
 			
