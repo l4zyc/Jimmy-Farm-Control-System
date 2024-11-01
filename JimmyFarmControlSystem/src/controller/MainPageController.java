@@ -53,6 +53,17 @@ public class MainPageController {
 		});
 	} 
 	
+	public void setOnActionEventDelete() {
+		view.getDelete().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
 	// Open input data view
 	public void setOnActionEventInputData() { 
 		view.getInputData().setOnAction(new EventHandler<ActionEvent>() {

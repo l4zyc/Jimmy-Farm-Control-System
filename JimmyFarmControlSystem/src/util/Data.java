@@ -112,4 +112,10 @@ public class Data {
 		);
 		connect.execUpdate(query);
 	}
+	
+	public void deleteCatatanHarianData(CatatanHarianUtama catatan) {
+		String query = String.format("DELETE FROM catatanharianutama"
+				+ " WHERE KODE_KANDANG  = '%s'", catatan.getKodeKandang());
+		connect.execQuery(query);
+	}
 }

@@ -3,7 +3,7 @@ package model;
 import java.sql.*;
 
 public class CatatanHarianUtama {
-	public CatatanHarianUtama(String lokasi, String kodeKandang, Date tanggalMasuk, String keteranganJenis,
+	public CatatanHarianUtama(String kodeKandang, String lokasi, Date tanggalMasuk, String keteranganJenis,
 			Integer jumlahAwalJantan, Integer jumlahAwalBetina, String komentar) {
 		super();
 		Lokasi = lokasi;
