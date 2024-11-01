@@ -39,7 +39,7 @@ public class User {
 	public boolean setName(String name) {
 		if(name.length() < 5) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setContentText("name field is less than 5");
+			alert.setContentText("Name field is less than 5");
 			alert.showAndWait();
 			return false;
 		}
@@ -53,7 +53,7 @@ public class User {
 	public boolean setUsername(String username) {
 		if(username.length() < 5) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setContentText("username field is less than 5");
+			alert.setContentText("Username field is less than 5");
 			alert.showAndWait();
 			return false;
 		}
