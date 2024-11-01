@@ -30,7 +30,6 @@ public class MainPageView extends ViewTemplate{
 		mainStage = new Stage();
 		
 		mainStage.setMaximized(true);
-		mainStage.setResizable(false);
 		mainStage.setScene(scene);
 		mainStage.setTitle("Jimmy Farm Control System");
 		mainStage.show();

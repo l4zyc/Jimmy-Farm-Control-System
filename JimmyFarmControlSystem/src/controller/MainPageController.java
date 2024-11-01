@@ -58,7 +58,7 @@ public class MainPageController {
 		view.getInputData().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				new MainPageInputDataView();
+				new MainPageInputDataView(view);
 			} 
 		}); 
 	} 

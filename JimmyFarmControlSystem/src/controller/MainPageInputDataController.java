@@ -2,8 +2,11 @@ package controller;
 import java.util.ArrayList;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -27,7 +30,7 @@ public class MainPageInputDataController {
 		SetOnActionSave();
 	} 
 	
-	public void SetOnActionSave() { 
+	protected void SetOnActionSave() { 
 		view.getSave().setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -54,6 +57,8 @@ public class MainPageInputDataController {
 				view.getJumlahAwalJantan().setText("");
 				view.getKomentar().setText("");
 				
+				refreshTable(view.getView().getTable());
+				
 				Stage stage = (Stage) view.getBp().getScene().getWindow();
 				stage.close();
 			} 
@@ -61,7 +66,7 @@ public class MainPageInputDataController {
 		});
 	} 
 	
-	public void insertCatatanHarianUtama(CatatanHarianUtama catatanharianutama) {
+	protected void insertCatatanHarianUtama(CatatanHarianUtama catatanharianutama) {
 	    String query = String.format("INSERT INTO CatatanHarianUtama VALUES ('%s', '%s', '%s', '%s', '%d', '%d', '%s')",
 	            catatanharianutama.getKodeKandang(), catatanharianutama.getLokasi(), catatanharianutama.getKeteranganJenis(), 
 	            catatanharianutama.getTanggalMasuk().toString(), catatanharianutama.getJumlahAwalJantan(), 
@@ -70,4 +75,8 @@ public class MainPageInputDataController {
 		reusableMethod.showAlert(AlertType.INFORMATION, "CatatanHarianUtama", "CatatanHarianUtama Added Succesfully!");
 	}
 	
+	public void refreshTable(TableView<CatatanHarianUtama> catatan) {
+		catatan.getItems().clear();
+		catatan.setItems(data.getCatatanHarian());
+	}
 }

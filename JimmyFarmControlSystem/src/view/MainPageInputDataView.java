@@ -33,9 +33,11 @@ public class MainPageInputDataView extends ViewTemplate{
 	DatePicker TanggalMasuk; 
 	Button Save;
 	
+	private MainPageView view;
 	private Stage stage;
 
-	public MainPageInputDataView() { 
+	public MainPageInputDataView(MainPageView view) { 
+		this.view = view;
 		init(); 
 		arrangeComponent(); 
 		stage = new Stage();
@@ -76,7 +78,6 @@ public class MainPageInputDataView extends ViewTemplate{
 		Save = new Button("Save"); 
 		Save.setFont(Font.font("Inter", 20));
 		Save.setMinWidth(150); 
-		
 	}
 
 	@Override
@@ -103,6 +104,22 @@ public class MainPageInputDataView extends ViewTemplate{
 		bp.setCenter(form1);
 	}
 	
+	public Label getKeteranganJenisLbl() {
+		return KeteranganJenisLbl;
+	}
+
+	public void setKeteranganJenisLbl(Label keteranganJenisLbl) {
+		KeteranganJenisLbl = keteranganJenisLbl;
+	}
+
+	public MainPageView getView() {
+		return view;
+	}
+
+	public void setView(MainPageView view) {
+		this.view = view;
+	}
+
 	public BorderPane getBp() {
 		return bp;
 	}

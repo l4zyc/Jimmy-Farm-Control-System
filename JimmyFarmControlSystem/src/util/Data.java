@@ -86,7 +86,7 @@ public class Data {
 				Integer jumlajAwalBetina = connect.rs.getInt("JUMLAH_AWAL_BETINA");
 				String Komentar = connect.rs.getString("KOMENTAR");
 				
-				listCatatan.add(new CatatanHarianUtama(Lokasi, kodeKandang, TanggalMasuk, KeteranganJenis, jumlahAwalJantan,
+				listCatatan.add(new CatatanHarianUtama(kodeKandang, Lokasi, TanggalMasuk, KeteranganJenis, jumlahAwalJantan,
 						jumlajAwalBetina, Komentar));
 			}
 		} catch (Exception e) {
