@@ -1,17 +1,21 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableSelectionModel;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Main;
 import model.CatatanHarianUtama;
+import util.Data;
 import util.reusableMethod;
 import view.MainPageInputDataView;
 import view.MainPageUpdateView;
@@ -21,11 +25,13 @@ public class MainPageController {
 	
 	private MainPageView view; 
 	private CatatanHarianUtama catatan;  // Selected item
+	private Data data = new Data();
 	
 	public MainPageController(MainPageView mainpageview) { 
 		this.view = mainpageview; 
 		setOnActionEventUpdate();
 		setOnActionEventInputData();
+		setOnActionEventDelete();
 		setOnMouseClicked();
 	}
 	
@@ -35,7 +41,6 @@ public class MainPageController {
 	        TableSelectionModel<CatatanHarianUtama> selectionModel = view.getTable().getSelectionModel();
 	        selectionModel.setSelectionMode(SelectionMode.SINGLE);
 	        catatan = selectionModel.getSelectedItem();
-	        System.out.println("Selected item: " + (catatan != null ? catatan.getLokasi() : "null"));
 	    });
 	}
 
@@ -59,7 +64,14 @@ public class MainPageController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				Optional op = alert.showAndWait();
 				
+				if(op.get().equals(ButtonType.OK)) {
+					data.deleteCatatanHarianData(catatan);
+					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
+					reusableMethod.refreshTable(view.getTable());
+				}
 			}
 		});
 	}
