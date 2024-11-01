@@ -35,6 +35,7 @@ public class MainPageView extends ViewTemplate{
 		mainStage.show();
 
 		new MainPageController(this);
+		new LoginView();
 	}
 	
 	//CatatanHarianLbl = judul yang diatas tabel 
