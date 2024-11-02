@@ -171,9 +171,9 @@ public class MainPageView extends ViewTemplate{
 		
 		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
 		
-		Label titleLbl = new Label("Catatan Harian");
+		CatatanHarianLbl = new Label("Catatan Harian");
 	
-		TableLayout.setTop(titleLbl);
+		TableLayout.setTop(CatatanHarianLbl);
 		TableLayout.setCenter(Table);
 		TableLayout.setBottom(ButtonContainer);
 		
@@ -182,8 +182,8 @@ public class MainPageView extends ViewTemplate{
 		sideBar.setVgap(10);
 		
 		BorderPane.setMargin(Table, new Insets(15, 0, 15, 0));
-		BorderPane.setAlignment(titleLbl, Pos.CENTER);
-		titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
+		CatatanHarianLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 		
 		sideBarTop.add(JFCS, 0, 1);
 		
