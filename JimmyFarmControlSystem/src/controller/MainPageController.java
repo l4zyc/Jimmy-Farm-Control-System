@@ -17,6 +17,7 @@ import main.Main;
 import model.CatatanHarianUtama;
 import util.Data;
 import util.reusableMethod;
+import view.LoginView;
 import view.MainPageInputDataView;
 import view.MainPageUpdateView;
 import view.MainPageView;
@@ -32,6 +33,7 @@ public class MainPageController {
 		setOnActionEventUpdate();
 		setOnActionEventInputData();
 		setOnActionEventDelete();
+		setOnLogOut();
 		setOnMouseClicked();
 	}
 	
@@ -42,6 +44,16 @@ public class MainPageController {
 	        selectionModel.setSelectionMode(SelectionMode.SINGLE);
 	        catatan = selectionModel.getSelectedItem();
 	    });
+	}
+	
+	public void setOnLogOut() {
+		view.getLogOut().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				new LoginView();
+			}
+		});
 	}
 
 	// Open update view if an item is selected

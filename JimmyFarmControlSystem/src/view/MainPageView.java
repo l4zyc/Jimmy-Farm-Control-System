@@ -3,6 +3,8 @@ package view;
 import java.sql.Date;
 
 import controller.MainPageController;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -12,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import model.CatatanHarianUtama;
 import util.Data;
@@ -35,7 +38,6 @@ public class MainPageView extends ViewTemplate{
 		mainStage.show();
 
 		new MainPageController(this);
-		new LoginView();
 	}
 	
 	//CatatanHarianLbl = judul yang diatas tabel 
@@ -168,8 +170,10 @@ public class MainPageView extends ViewTemplate{
 		leftBtnContainer.getChildren().addAll(InputData, Update);
 		
 		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
+		
+		Label titleLbl = new Label("Catatan Harian");
 	
-		TableLayout.setTop(new Label("Catatan Harian"));
+		TableLayout.setTop(titleLbl);
 		TableLayout.setCenter(Table);
 		TableLayout.setBottom(ButtonContainer);
 		
@@ -177,6 +181,9 @@ public class MainPageView extends ViewTemplate{
 		sideBar.add(sideBarBottom, 0, 1);
 		sideBar.setVgap(10);
 		
+		BorderPane.setMargin(Table, new Insets(15, 0, 15, 0));
+		BorderPane.setAlignment(titleLbl, Pos.CENTER);
+		titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 		
 		sideBarTop.add(JFCS, 0, 1);
 		
@@ -187,6 +194,14 @@ public class MainPageView extends ViewTemplate{
 		sideBarBottom.add(MasterSupplier, 0, 4);
 		
 		sideBarBottom.setVgap(10);
+		ButtonContainer.setSpacing(10);
+		
+		sideBarBottom.setStyle("-fx-border-width: 2px 2px 0px 0px;"
+				+ "-fx-border-color: BLACK");
+		
+		TableLayout.setPadding(new Insets(80));
+		CatatanHarianLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		Home.setDisable(true);
 	}
 
 	public Scene getScene() {
