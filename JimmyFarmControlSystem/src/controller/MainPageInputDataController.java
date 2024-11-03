@@ -50,7 +50,6 @@ public class MainPageInputDataController {
 				data.insertCatatanHarianUtama(chu);
 				
 				view.getKodeKandang().setText("");
-				view.getLokasi().setText("");
 				view.getKeteranganJenis().setText("");
 				view.getTanggalMasuk().setValue(null);
 				view.getJumlahAwalBetina().setText("");

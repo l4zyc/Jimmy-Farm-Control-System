@@ -50,9 +50,8 @@ public class Data {
 	}
 	
 	public String getkodeCatatan() {
-		String query = "SELECT KODE_CATATAN from catatanharianutama"
-				+ "ORDER BY KODE_CATATAN "
-				+ "DESC LIMIT 1";
+		String query = "SELECT KODE_CATATAN from CatatanHarianUtama "
+				+ "ORDER BY KODE_CATATAN DESC LIMIT 1";
 		
 		String lastKode = "";
 		connect.rs = connect.execQuery(query);
@@ -62,7 +61,7 @@ public class Data {
 			}
 			
 			lastKode = connect.rs.getString("KODE_CATATAN");
-			String num = lastKode.substring(2);
+			String num = lastKode.substring(3);
 			Integer incr = Integer.parseInt(num) + 1;
 			
 			lastKode = String.format("KCT%05d", incr);
@@ -140,9 +139,19 @@ public class Data {
 	}
 	
 	public void deleteCatatanHarianData(CatatanHarianUtama catatan) {
-		String query = String.format("DELETE FROM catatanharianutama"
-				+ " WHERE KODE_KANDANG  = '%s'", catatan.getKodeKandang());
-		connect.execUpdate(query);
+	    String deleteDetailsQuery = String.format(
+	        "DELETE FROM catatanhariandetail "
+	        + "WHERE KODE_CATATAN = '%s'", 
+	        catatan.getKodeCatatan()
+	    );
+	    connect.execUpdate(deleteDetailsQuery);
+
+	    String deleteMainQuery = String.format(
+	        "DELETE FROM catatanharianutama "
+	        + "WHERE KODE_CATATAN = '%s'", 
+	        catatan.getKodeCatatan()
+	    );
+	    connect.execUpdate(deleteMainQuery);
 	}
 	
 	public void insertCatatanHarianUtama(CatatanHarianUtama catatanharianutama) {
