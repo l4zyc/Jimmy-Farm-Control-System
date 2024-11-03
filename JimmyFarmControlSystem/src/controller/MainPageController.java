@@ -64,7 +64,7 @@ public class MainPageController {
 				if (catatan != null) {
 				    new MainPageUpdateView(view, catatan);
 				} else {
-				    System.out.println("No item selected.");
+				    reusableMethod.showAlert(AlertType.ERROR, "Item Select", "No Item was Selected");
 				}
 			}
 		});

@@ -3,6 +3,8 @@ package view;
 import java.sql.Date;
 
 import controller.MainPageInputDataController;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -35,6 +37,7 @@ public class MainPageInputDataView extends ViewTemplate{
 	
 	private MainPageView view;
 	private Stage stage;
+	
 
 	public MainPageInputDataView(MainPageView view) { 
 		this.view = view;
@@ -42,6 +45,7 @@ public class MainPageInputDataView extends ViewTemplate{
 		arrangeComponent(); 
 		stage = new Stage();
 		stage.setTitle("Input Catatan Harian");
+		
 		
 		new MainPageInputDataController(this);
 		
@@ -97,6 +101,10 @@ public class MainPageInputDataView extends ViewTemplate{
 		
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
+		
+		bp.setPadding(new Insets(50));
+		form1.setAlignment(Pos.CENTER);
+		BorderPane.setAlignment(Save, Pos.CENTER);
 	}
 	
 	public Label getKeteranganJenisLbl() {
