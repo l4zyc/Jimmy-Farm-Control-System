@@ -36,18 +36,18 @@ public class MainPageInputDataController {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				String KodeKandang = view.getKodeKandang().getText();
-				String Lokasi = view.getLokasi().getText();
-				String KeteranganJenis = view.getKeteranganJenis().getText();  
 				LocalDate dateConv = view.getTanggalMasuk().getValue();
 				Date date = Date.valueOf(dateConv);
+				String KodeKandang = view.getKodeKandang().getText();
+				String KeteranganJenis = view.getKeteranganJenis().getText();  
 				Integer JumlahAwalBetina = Integer.parseInt(view.getJumlahAwalBetina().getText());
 				Integer JumlahAwalJantan = Integer.parseInt(view.getJumlahAwalJantan().getText()); 
 				String Komentar = view.getKomentar().getText();
+				String kodeCatatan = data.getkodeCatatan();
 				
-				CatatanHarianUtama chu = new CatatanHarianUtama(KodeKandang, Lokasi, date, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar);
+				CatatanHarianUtama chu = new CatatanHarianUtama(kodeCatatan, date, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar);
 				
-				insertCatatanHarianUtama(chu);
+				data.insertCatatanHarianUtama(chu);
 				
 				view.getKodeKandang().setText("");
 				view.getLokasi().setText("");
@@ -57,7 +57,7 @@ public class MainPageInputDataController {
 				view.getJumlahAwalJantan().setText("");
 				view.getKomentar().setText("");
 				
-				refreshTable(view.getView().getTable());
+				data.refreshCatatanHarianUtamaTable(view.getView().getTable());
 				
 				Stage stage = (Stage) view.getBp().getScene().getWindow();
 				stage.close();
@@ -66,17 +66,4 @@ public class MainPageInputDataController {
 		});
 	} 
 	
-	protected void insertCatatanHarianUtama(CatatanHarianUtama catatanharianutama) {
-	    String query = String.format("INSERT INTO CatatanHarianUtama VALUES ('%s', '%s', '%s', '%s', '%d', '%d', '%s')",
-	            catatanharianutama.getKodeKandang(), catatanharianutama.getLokasi(), catatanharianutama.getKeteranganJenis(), 
-	            catatanharianutama.getTanggalMasuk().toString(), catatanharianutama.getJumlahAwalJantan(), 
-	            catatanharianutama.getJumlahAwalBetina(), catatanharianutama.getKomentar());
-		connect.execUpdate(query);	
-		reusableMethod.showAlert(AlertType.INFORMATION, "CatatanHarianUtama", "CatatanHarianUtama Added Succesfully!");
-	}
-	
-	public void refreshTable(TableView<CatatanHarianUtama> catatan) {
-		catatan.getItems().clear();
-		catatan.setItems(data.getCatatanHarian());
-	}
 }

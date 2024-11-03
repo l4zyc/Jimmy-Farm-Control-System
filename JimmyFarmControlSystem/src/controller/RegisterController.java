@@ -113,7 +113,7 @@ public class RegisterController {
 	
 	//validasi nama harus unik
 	public boolean isNameUnique(String name) {
-		ArrayList<User> users = data.getData();
+		ArrayList<User> users = data.getUserData();
 		
 		for (User user : users) {
 			if(user.getName().equals(name)) { 
@@ -125,7 +125,7 @@ public class RegisterController {
 	
 	//validasi username harus unik
 	public boolean isUserNameUnique(String username) { 
-		ArrayList<User> users = data.getData(); 
+		ArrayList<User> users = data.getUserData(); 
 		
 		for (User user : users) { 
 			if(user.getUsername().equals(username)) { 

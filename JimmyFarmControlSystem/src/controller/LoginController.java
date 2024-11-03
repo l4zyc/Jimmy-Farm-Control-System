@@ -53,7 +53,7 @@ public class LoginController {
 		String username = view.getUsernameTF().getText();
 		String password = view.getPasswdPF().getText();
 
-		boolean listCheck = checkList(data.getData(), username, password);
+		boolean listCheck = checkList(data.getUserData(), username, password);
 		
 		if(!listCheck) {
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Invalid Username or Password");

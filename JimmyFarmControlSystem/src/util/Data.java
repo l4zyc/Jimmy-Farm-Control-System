@@ -6,6 +6,7 @@ import java.sql.Date;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import model.CatatanHarianUtama;
 import model.User;
@@ -47,19 +48,44 @@ public class Data {
 		
 		return lastID;
 	}
-
 	
-	public ArrayList<User> getData() {
+	public String getkodeCatatan() {
+		String query = "SELECT KODE_CATATAN from catatanharianutama"
+				+ "ORDER BY KODE_CATATAN "
+				+ "DESC LIMIT 1";
+		
+		String lastKode = "";
+		connect.rs = connect.execQuery(query);
+		try {
+			if(!(connect.rs.next())) {
+				return "KCT00001";
+			}
+			
+			lastKode = connect.rs.getString("KODE_CATATAN");
+			String num = lastKode.substring(2);
+			Integer incr = Integer.parseInt(num) + 1;
+			
+			lastKode = String.format("KCT%05d", incr);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lastKode;
+	}
+
+	public ArrayList<User> getUserData() {
 		connect.rs = connect.execQuery("SELECT * FROM MsUser");
 		
 		ArrayList<User> user_list = new ArrayList<User>();
 		
 		try {
 			while(connect.rs.next()) {
-				String ID = connect.rs.getString("UserID");
-				String name = connect.rs.getString("Name");
-				String username = connect.rs.getString("Username");
-				String passwd = connect.rs.getString("passwd");
+				String ID = connect.rs.getString("USERID");
+				String name = connect.rs.getString("NAME");
+				String username = connect.rs.getString("USERNAME");
+				String passwd = connect.rs.getString("PASSWORD");
 				
 				user_list.add(new User(ID, name, username, passwd, passwd));
 			}
@@ -69,7 +95,7 @@ public class Data {
 		}
 		
 		return user_list;
-	}
+	} 
 	
 	public ObservableList<CatatanHarianUtama> getCatatanHarian() {
 		connect.rs = connect.execQuery("SELECT * FROM catatanharianutama");
@@ -117,5 +143,23 @@ public class Data {
 		String query = String.format("DELETE FROM catatanharianutama"
 				+ " WHERE KODE_KANDANG  = '%s'", catatan.getKodeKandang());
 		connect.execUpdate(query);
+	}
+	
+	public void insertCatatanHarianUtama(CatatanHarianUtama catatanharianutama) {
+	    String query = String.format("INSERT INTO CatatanHarianUtama VALUES ('%s', '%s', '%s','%s', '%d', '%d', '%s')",
+	            catatanharianutama.getKodeCatatan(), 
+	            catatanharianutama.getTanggalMasuk().toString(), 
+	            catatanharianutama.getKodeKandang(), 
+	            catatanharianutama.getKeteranganJenis(), 
+	            catatanharianutama.getJumlahAwalJantan(), 
+	            catatanharianutama.getJumlahAwalBetina(), 
+	            catatanharianutama.getKomentar());
+		connect.execUpdate(query);	
+		reusableMethod.showAlert(AlertType.INFORMATION, "CatatanHarianUtama", "CatatanHarianUtama Added Succesfully!");
+	}
+	
+	public void refreshCatatanHarianUtamaTable(TableView<CatatanHarianUtama> catatan) {
+		catatan.getItems().clear();
+		catatan.setItems(getCatatanHarian());
 	}
 }
