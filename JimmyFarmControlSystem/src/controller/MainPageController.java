@@ -77,6 +77,8 @@ public class MainPageController {
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Delete Data");
+				alert.setTitle("Are you sure you want to delete the data?");
 				Optional op = alert.showAndWait();
 				
 				if(op.get().equals(ButtonType.OK)) {
