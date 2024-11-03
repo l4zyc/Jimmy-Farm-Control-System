@@ -24,8 +24,8 @@ public class MainPageUpdateView extends ViewTemplate{
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
-	Label LokasiLbl, KodeKandangLbl, TanggalMasukLbl, JumlahAwalJantanLbl, JumlahAwalBetinaLbl, KomentarLbl;
-	TextField Lokasi, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar;
+	Label KodeCatatanLbl, KodeKandangLbl, KeteranganJenisLbl, TanggalMasukLbl, JumlahAwalJantanLbl, JumlahAwalBetinaLbl, KomentarLbl;
+	TextField KodeCatatanTF, KodeKandang, KeteranganJenisTF, JumlahAwalJantan, JumlahAwalBetina, Komentar;
 	DatePicker TanggalMasuk; 
 	Button Save;
 	
@@ -50,13 +50,18 @@ public class MainPageUpdateView extends ViewTemplate{
 	@Override
 	public void init() {
 	    // Initialize fields and labels
-	    LokasiLbl = new Label("Lokasi*"); 
-	    Lokasi = new TextField();  
-	    Lokasi.setText(catatan.getLokasi());
+		KodeCatatanLbl = new Label("Kode Catatan"); 
+		KodeCatatanTF = new TextField(); 
+		KodeCatatanTF.setEditable(false);
+		KodeCatatanTF.setText(catatan.getKodeCatatan());
 
 	    KodeKandangLbl = new Label("Kode Kandang*"); 
 	    KodeKandang = new TextField();  
 	    KodeKandang.setText(catatan.getKodeKandang());
+	    
+	    KeteranganJenisLbl = new Label("Keterangan Jenis");
+	    KeteranganJenisTF = new TextField();
+	    KeteranganJenisTF.setText(catatan.getKeteranganJenis());
 
 	    TanggalMasukLbl = new Label("Tanggal Masuk*"); 
 	    TanggalMasuk = new DatePicker(catatan.getTanggalMasuk().toLocalDate()); 
@@ -83,18 +88,20 @@ public class MainPageUpdateView extends ViewTemplate{
 		// TODO Auto-generated method stub
 		form1.setHgap(10); 
 		form1.setVgap(10);  
-		form1.add(LokasiLbl, 1, 0); 
-		form1.add(Lokasi, 2, 0);
+		form1.add(KodeCatatanLbl, 1, 0); 
+		form1.add(KodeCatatanTF, 2, 0);
 		form1.add(KodeKandangLbl, 1, 1); 
-		form1.add(KodeKandang, 2, 1); 
-		form1.add(TanggalMasukLbl, 1, 2);
-		form1.add(TanggalMasuk, 2, 2); 
-		form1.add(JumlahAwalJantanLbl, 1, 3); 
-		form1.add(JumlahAwalJantan, 2, 3); 
-		form1.add(JumlahAwalBetinaLbl, 1, 4); 
-		form1.add(JumlahAwalBetina, 2, 4); 
-		form1.add(KomentarLbl, 1, 5); 
-		form1.add(Komentar, 2, 5); 
+		form1.add(KodeKandang, 2, 1);
+		form1.add(KeteranganJenisLbl, 1, 2); 
+		form1.add(KeteranganJenisTF, 2, 2); 
+		form1.add(TanggalMasukLbl, 1, 3);
+		form1.add(TanggalMasuk, 2, 3); 
+		form1.add(JumlahAwalJantanLbl, 1, 4); 
+		form1.add(JumlahAwalJantan, 2, 4); 
+		form1.add(JumlahAwalBetinaLbl, 1, 5); 
+		form1.add(JumlahAwalBetina, 2, 5); 
+		form1.add(KomentarLbl, 1, 6); 
+		form1.add(Komentar, 2, 6); 
 		form1.setAlignment(Pos.CENTER);
 		
 		bp.setBottom(Save); 
@@ -124,9 +131,6 @@ public class MainPageUpdateView extends ViewTemplate{
 		return scene;
 	}
 
-	public Label getLokasiLbl() {
-		return LokasiLbl;
-	}
 
 	public Label getKodeKandangLbl() {
 		return KodeKandangLbl;
@@ -147,17 +151,17 @@ public class MainPageUpdateView extends ViewTemplate{
 	public Label getKomentarLbl() {
 		return KomentarLbl;
 	}
-
-	public TextField getLokasi() {
-		return Lokasi;
-	}
-
+	
 	public TextField getKodeKandang() {
 		return KodeKandang;
 	}
 
-	public TextField getKeteranganJenis() {
-		return KeteranganJenis;
+	public TextField getKeteranganJenisTF() {
+		return KeteranganJenisTF;
+	}
+	
+	public Label getKeteranganJenisLbl() {
+		return KeteranganJenisLbl;
 	}
 
 	public TextField getJumlahAwalJantan() {
@@ -204,10 +208,6 @@ public class MainPageUpdateView extends ViewTemplate{
 		this.scene = scene;
 	}
 
-	public void setLokasiLbl(Label lokasiLbl) {
-		LokasiLbl = lokasiLbl;
-	}
-
 	public void setKodeKandangLbl(Label kodeKandangLbl) {
 		KodeKandangLbl = kodeKandangLbl;
 	}
@@ -228,17 +228,10 @@ public class MainPageUpdateView extends ViewTemplate{
 		KomentarLbl = komentarLbl;
 	}
 
-	public void setLokasi(TextField lokasi) {
-		Lokasi = lokasi;
-	}
-
 	public void setKodeKandang(TextField kodeKandang) {
 		KodeKandang = kodeKandang;
 	}
 
-	public void setKeteranganJenis(TextField keteranganJenis) {
-		KeteranganJenis = keteranganJenis;
-	}
 
 	public void setJumlahAwalJantan(TextField jumlahAwalJantan) {
 		JumlahAwalJantan = jumlahAwalJantan;
@@ -272,6 +265,19 @@ public class MainPageUpdateView extends ViewTemplate{
 		this.view = view;
 	}
 
-	
-	
+	public Label getKodeCatatan() {
+		return KodeCatatanLbl;
+	}
+
+	public void setKodeCatatan(Label kodeCatatan) {
+		KodeCatatanLbl = kodeCatatan;
+	}
+
+	public TextField getKodeCatatanTF() {
+		return KodeCatatanTF;
+	}
+
+	public void setKodeCatatanTF(TextField kodeCatatanTF) {
+		KodeCatatanTF = kodeCatatanTF;
+	}	
 }

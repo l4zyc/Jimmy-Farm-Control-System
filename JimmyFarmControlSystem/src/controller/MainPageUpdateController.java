@@ -24,17 +24,16 @@ public class MainPageUpdateController {
 	
 	public void setOnActionEvent() {
 		view.getSave().setOnAction(e -> {
-			String ID = view.getKodeKandang().getText();
-			String KODE = view.getKodeKandang().getText(); 
-			String LOKASI = view.getLokasi().getText();
-			String KETERANGAN = "";
+			String KODE_KANDANG = view.getKodeKandang().getText();
+			String KODE_CATATAN = view.getKodeCatatanTF().getText(); 
+			String KETERANGAN = view.getKeteranganJenisTF().getText();
 			LocalDate DATE_ = view.getTanggalMasuk().getValue();
 			Date DATE = Date.valueOf(DATE_);
 			Integer JumlahJantan = Integer.parseInt(view.getJumlahAwalJantan().getText()); 
 			Integer JumlahBetina = Integer.parseInt(view.getJumlahAwalBetina().getText());
 			String KOMENTAR = view.getKomentar().getText();
 			
-			data.updateCatatanHarianData(new CatatanHarianUtama(LOKASI, KODE, DATE, KETERANGAN, JumlahJantan, JumlahBetina, KOMENTAR));
+			data.updateCatatanHarianData(new CatatanHarianUtama(KODE_CATATAN, DATE, KODE_KANDANG, KETERANGAN, JumlahJantan, JumlahBetina, KOMENTAR));
 			reusableMethod.showAlert(AlertType.INFORMATION, "Update", "Value Updated!");
 			refreshTable(view.getView().getTable());
 			

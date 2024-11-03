@@ -22,7 +22,6 @@ public class MainPageView extends ViewTemplate{
 	
 	private Scene scene;
 	public static Stage mainStage;
-	private BorderPane mainLayout, TableLayout; 
 	private Data data = new Data();
 	
 	private GridPane sideBar, sideBarTop, sideBarBottom;
@@ -45,7 +44,7 @@ public class MainPageView extends ViewTemplate{
 	
 	Label CatatanHarianLbl, JFCS; 
 	TableView<CatatanHarianUtama> Table;
-	TableColumn<CatatanHarianUtama, String> LokasiTC, KodeKandangTC, KeteranganJenisTC, KomentarTC;
+	TableColumn<CatatanHarianUtama, String> KodeCatatanTC, KodeKandangTC, KeteranganJenisTC, KomentarTC;
 	TableColumn<CatatanHarianUtama, Date> TanggalMasukTC;
 	TableColumn<CatatanHarianUtama, Integer> JumlahAwalJantanTC, JumlahAwalBetinaTC; 
 	Button Update, Delete, InputData; //button
@@ -67,34 +66,34 @@ public class MainPageView extends ViewTemplate{
 		
 		//column Lokasi
 		Table = new TableView<CatatanHarianUtama>();
-		LokasiTC = new TableColumn<CatatanHarianUtama, String>("Lokasi");
-		LokasiTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, String>("Lokasi"));
+		KodeCatatanTC = new TableColumn<CatatanHarianUtama, String>("Kode Catatan");
+		KodeCatatanTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, String>("kodeCatatan"));
 		
 		//column Kode Kandang 
-		KodeKandangTC = new TableColumn<CatatanHarianUtama, String>("KodeKandang"); 
+		KodeKandangTC = new TableColumn<CatatanHarianUtama, String>("Kode Kandang"); 
 		KodeKandangTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, String>("KodeKandang")); 
 		
 		//column Tanggal Masuk 
-		TanggalMasukTC = new TableColumn<CatatanHarianUtama, Date>("TanggalMasuk"); 
+		TanggalMasukTC = new TableColumn<CatatanHarianUtama, Date>("Tanggal Masuk"); 
 		TanggalMasukTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, Date>("TanggalMasuk")); 
 		
 		//column Keterangan Jenis 
-		KeteranganJenisTC = new TableColumn<CatatanHarianUtama, String>("KeteranganJenis"); 
+		KeteranganJenisTC = new TableColumn<CatatanHarianUtama, String>("Keterangan Jenis"); 
 		KeteranganJenisTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, String>("KeteranganJenis"));
 		
 		//Column Jumlah Awal Jantan 
-		JumlahAwalJantanTC = new TableColumn<CatatanHarianUtama, Integer>("JumlahAwalJantan"); 
+		JumlahAwalJantanTC = new TableColumn<CatatanHarianUtama, Integer>("Jumlah Awal Jantan"); 
 		JumlahAwalJantanTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, Integer>("JumlahAwalJantan")); 
 		
 		//Column Jumlah Awal Betina
-		JumlahAwalBetinaTC = new TableColumn<CatatanHarianUtama, Integer>("JumlahAwalBetina"); 
+		JumlahAwalBetinaTC = new TableColumn<CatatanHarianUtama, Integer>("Jumlah Awal Betina"); 
 		JumlahAwalBetinaTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, Integer>("JumlahAwalBetina"));
 		
 		//Column Komentar
 		KomentarTC = new TableColumn<CatatanHarianUtama, String>("Komentar"); 
 		KomentarTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianUtama, String>("Komentar"));
 		
-		Table.getColumns().addAll(LokasiTC, KodeKandangTC, TanggalMasukTC, KeteranganJenisTC
+		Table.getColumns().addAll(KodeCatatanTC, KodeKandangTC, TanggalMasukTC, KeteranganJenisTC
 		, JumlahAwalJantanTC, JumlahAwalBetinaTC,KomentarTC);
 		
 		Table.getItems().addAll(data.getCatatanHarian());
@@ -139,7 +138,7 @@ public class MainPageView extends ViewTemplate{
 		
 		JFCS = new Label("Jimmy Farm Control System");
 		
-		LokasiTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
+		KodeCatatanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 		KodeKandangTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 		JumlahAwalBetinaTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.12));
 		JumlahAwalJantanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.12));
@@ -147,7 +146,7 @@ public class MainPageView extends ViewTemplate{
 		KomentarTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 		TanggalMasukTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 		
-		LokasiTC.setStyle("-fx-alignment: CENTER;");
+		KodeCatatanTC.setStyle("-fx-alignment: CENTER;");
 		KodeKandangTC.setStyle("-fx-alignment: CENTER;");
 		JumlahAwalBetinaTC.setStyle("-fx-alignment: CENTER;");
 		JumlahAwalJantanTC.setStyle("-fx-alignment: CENTER;");
@@ -220,22 +219,6 @@ public class MainPageView extends ViewTemplate{
 		MainPageView.mainStage = mainStage;
 	}
 
-	public BorderPane getMainLayout() {
-		return mainLayout;
-	}
-
-	public void setMainLayout(BorderPane mainLayout) {
-		this.mainLayout = mainLayout;
-	}
-
-	public BorderPane getTableLayout() {
-		return TableLayout;
-	}
-
-	public void setTableLayout(BorderPane tableLayout) {
-		TableLayout = tableLayout;
-	}
-
 	public GridPane getSideBar() {
 		return sideBar;
 	}
@@ -284,13 +267,6 @@ public class MainPageView extends ViewTemplate{
 		this.Table = Table;
 	}
 
-	public TableColumn<CatatanHarianUtama, String> getLokasiTC() {
-		return LokasiTC;
-	}
-
-	public void setLokasiTC(TableColumn<CatatanHarianUtama, String> lokasiTC) {
-		LokasiTC = lokasiTC;
-	}
 
 	public TableColumn<CatatanHarianUtama, String> getKodeKandangTC() {
 		return KodeKandangTC;

@@ -98,21 +98,21 @@ public class Data {
 	} 
 	
 	public ObservableList<CatatanHarianUtama> getCatatanHarian() {
-		connect.rs = connect.execQuery("SELECT * FROM catatanharianutama");
+		connect.rs = connect.execQuery("SELECT * FROM CatatanHarianUtama");
 		
 		ObservableList<CatatanHarianUtama> listCatatan = FXCollections.observableArrayList();
 		
 		try {
 			while(connect.rs.next()) {
 				String kodeKandang = connect.rs.getString("KODE_KANDANG");
-				String Lokasi = connect.rs.getString("LOKASI"); 
+				String kodeCatatan = connect.rs.getString("KODE_CATATAN"); 
 				String KeteranganJenis = connect.rs.getString("KETERANGAN_JENIS");
 				Date TanggalMasuk = connect.rs.getDate("TANGGAL_MASUK");
 				Integer jumlahAwalJantan = connect.rs.getInt("JUMLAH_AWAL_JANTAN"); 
 				Integer jumlajAwalBetina = connect.rs.getInt("JUMLAH_AWAL_BETINA");
 				String Komentar = connect.rs.getString("KOMENTAR");
 				
-				listCatatan.add(new CatatanHarianUtama(kodeKandang, Lokasi, TanggalMasuk, KeteranganJenis, jumlahAwalJantan,
+				listCatatan.add(new CatatanHarianUtama(kodeCatatan, TanggalMasuk, kodeKandang, KeteranganJenis, jumlahAwalJantan,
 						jumlajAwalBetina, Komentar));
 			}
 		} catch (Exception e) {
@@ -125,16 +125,16 @@ public class Data {
 	
 	public void updateCatatanHarianData(CatatanHarianUtama catatan) {
 		
-		String query = String.format("UPDATE catatanharianutama "
-                + "SET KODE_KANDANG = '%s', LOKASI = '%s', "
+		String query = String.format("UPDATE CatatanHarianUtama "
+                + "SET KODE_CATATAN = '%s', KODE_KANDANG = '%s', "
                 + "KETERANGAN_JENIS = '%s', TANGGAL_MASUK = '%s', "
                 + "JUMLAH_AWAL_JANTAN = %d, JUMLAH_AWAL_BETINA = %d, "
                 + "KOMENTAR = '%s' "
-                + "WHERE KODE_KANDANG = '%s'",
-                catatan.getKodeKandang(), catatan.getLokasi(),
-                catatan.getKeteranganJenis(), catatan.getTanggalMasuk(),
+                + "WHERE KODE_CATATAN = '%s'",
+                catatan.getKodeCatatan(), catatan.getKodeKandang(),
+                catatan.getKeteranganJenis(), catatan.getTanggalMasuk().toString(),
                 catatan.getJumlahAwalJantan(), catatan.getJumlahAwalBetina(),
-                catatan.getKomentar(), catatan.getKodeKandang()
+                catatan.getKomentar(), catatan.getKodeCatatan()
 		);
 		connect.execUpdate(query);
 	}
