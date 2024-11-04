@@ -21,6 +21,10 @@ import view.LoginView;
 import view.MainPageInputDataView;
 import view.MainPageUpdateView;
 import view.MainPageView;
+import view.MasterKandangView;
+import view.MasterObatView;
+import view.MasterPakanView;
+import view.MasterSupplierView;
 
 public class MainPageController {
 	
@@ -34,7 +38,11 @@ public class MainPageController {
 		setOnActionEventInputData();
 		setOnActionEventDelete();
 		setOnLogOut();
-		setOnMouseClicked();
+		setOnMouseClicked(); 
+		setOnMouseClickedMasterPakan(); 
+		setOnMouseClickedMasterObat(); 
+		setOnMouseClickedMasterSupplier(); 
+		setOnMouseClickedMasterKandang();
 	}
 	
 	// Set up the selection handler
@@ -56,7 +64,7 @@ public class MainPageController {
 		});
 	}
 
-	// Open update view if an item is selected
+	//Open update view if an item is selected
 	public void setOnActionEventUpdate() {
 		view.getUpdate().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -64,12 +72,13 @@ public class MainPageController {
 				if (catatan != null) {
 				    new MainPageUpdateView(view, catatan);
 				} else {
-				    System.out.println("No item selected.");
+				    reusableMethod.showAlert(AlertType.ERROR, "Item Select", "No Item was Selected");
 				}
 			}
 		});
 	} 
 	
+	//Delete Data
 	public void setOnActionEventDelete() {
 		view.getDelete().setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -77,6 +86,8 @@ public class MainPageController {
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Delete Data");
+				alert.setTitle("Are you sure you want to delete the data?");
 				Optional op = alert.showAndWait();
 				
 				if(op.get().equals(ButtonType.OK)) {
@@ -88,7 +99,7 @@ public class MainPageController {
 		});
 	}
 	
-	// Open input data view
+	//Open input data view
 	public void setOnActionEventInputData() { 
 		view.getInputData().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -96,6 +107,63 @@ public class MainPageController {
 				new MainPageInputDataView(view);
 			} 
 		}); 
+	}  
+	
+	public void setOnMouseClickedMasterPakan() { 
+		view.getMasterPakan().setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				window.close(); 
+				new MasterPakanView();
+			} 
+			
+		});
 	} 
+	
+	public void setOnMouseClickedMasterObat() { 
+		view.getMasterObat().setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				window.close(); 
+				new MasterObatView();
+			} 
+			
+		});
+	}
+	
+	public void setOnMouseClickedMasterSupplier() { 
+		view.getMasterSupplier().setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				window.close(); 
+				new MasterSupplierView();
+			} 
+			
+		});
+	}
+	
+	public void setOnMouseClickedMasterKandang() { 
+		view.getMasterKandang().setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				window.close(); 
+				new MasterKandangView();
+			} 
+			
+		});
+	}
+	
 }
 

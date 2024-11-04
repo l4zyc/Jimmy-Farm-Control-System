@@ -3,6 +3,8 @@ package view;
 import java.sql.Date;
 
 import controller.MainPageInputDataController;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -28,13 +30,14 @@ public class MainPageInputDataView extends ViewTemplate{
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
-	Label LokasiLbl, KodeKandangLbl, KeteranganJenisLbl, TanggalMasukLbl, JumlahAwalJantanLbl, JumlahAwalBetinaLbl, KomentarLbl;
-	TextField Lokasi, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar;
+	Label KodeCatatanLbl, KodeKandangLbl, KeteranganJenisLbl, TanggalMasukLbl, JumlahAwalJantanLbl, JumlahAwalBetinaLbl, KomentarLbl;
+	TextField KodeCatatanTF, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar;
 	DatePicker TanggalMasuk; 
 	Button Save;
 	
 	private MainPageView view;
 	private Stage stage;
+	
 
 	public MainPageInputDataView(MainPageView view) { 
 		this.view = view;
@@ -42,6 +45,7 @@ public class MainPageInputDataView extends ViewTemplate{
 		arrangeComponent(); 
 		stage = new Stage();
 		stage.setTitle("Input Catatan Harian");
+		
 		
 		new MainPageInputDataController(this);
 		
@@ -52,9 +56,6 @@ public class MainPageInputDataView extends ViewTemplate{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub 
-		//Lokasi
-		LokasiLbl = new Label("Lokasi*"); 
-		Lokasi = new TextField();  
 		//Kode Kandang
 		KodeKandangLbl = new Label("Kode Kandang*"); 
 		KodeKandang = new TextField();  
@@ -85,8 +86,6 @@ public class MainPageInputDataView extends ViewTemplate{
 		// TODO Auto-generated method stub 
 		form1.setHgap(10); 
 		form1.setVgap(10);  
-		form1.add(LokasiLbl, 1, 0); 
-		form1.add(Lokasi, 2, 0);
 		form1.add(KodeKandangLbl, 1, 1); 
 		form1.add(KodeKandang, 2, 1); 
 		form1.add(TanggalMasukLbl, 1, 2);
@@ -102,6 +101,10 @@ public class MainPageInputDataView extends ViewTemplate{
 		
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
+		
+		bp.setPadding(new Insets(50));
+		form1.setAlignment(Pos.CENTER);
+		BorderPane.setAlignment(Save, Pos.CENTER);
 	}
 	
 	public Label getKeteranganJenisLbl() {
@@ -160,13 +163,6 @@ public class MainPageInputDataView extends ViewTemplate{
 		this.scene = scene;
 	}
 
-	public Label getLokasiLbl() {
-		return LokasiLbl;
-	}
-
-	public void setLokasiLbl(Label lokasiLbl) {
-		LokasiLbl = lokasiLbl;
-	}
 
 	public Label getKodeKandangLbl() {
 		return KodeKandangLbl;
@@ -208,13 +204,6 @@ public class MainPageInputDataView extends ViewTemplate{
 		KomentarLbl = komentarLbl;
 	}
 
-	public TextField getLokasi() {
-		return Lokasi;
-	}
-
-	public void setLokasi(TextField lokasi) {
-		Lokasi = lokasi;
-	}
 
 	public TextField getKodeKandang() {
 		return KodeKandang;
