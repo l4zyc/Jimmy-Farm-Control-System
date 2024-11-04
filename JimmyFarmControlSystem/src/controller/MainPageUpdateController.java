@@ -35,16 +35,12 @@ public class MainPageUpdateController {
 			
 			data.updateCatatanHarianData(new CatatanHarianUtama(KODE_CATATAN, DATE, KODE_KANDANG, KETERANGAN, JumlahJantan, JumlahBetina, KOMENTAR));
 			reusableMethod.showAlert(AlertType.INFORMATION, "Update", "Value Updated!");
-			refreshTable(view.getView().getTable());
+			data.refreshCatatanHarianUtamaTable(view.getView().getTable());
 			
 			Stage stage = view.getStage();
 			stage.close();
 		});
 	}
 	
-	public void refreshTable(TableView<CatatanHarianUtama> catatan) {
-		catatan.getItems().clear();
-		catatan.setItems(data.getCatatanHarian());
-	}
 	
 }

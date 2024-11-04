@@ -3,6 +3,7 @@ package view;
 import java.sql.Date;
 
 import controller.MainPageInputDataController;
+import controller.MasterObatInputController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -46,6 +47,8 @@ public class ObatInputView extends ViewTemplate{
 		
 		stage.setScene(scene);
 		stage.show(); 
+		
+		new MasterObatInputController(this);
 	}
 	
 	@Override
