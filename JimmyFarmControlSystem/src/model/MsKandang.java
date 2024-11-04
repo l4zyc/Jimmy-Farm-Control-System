@@ -8,7 +8,6 @@ public class MsKandang {
 	private String Lokasi;
 	
 	public MsKandang(String kodeKandang, String lokasi) {
-		super();
 		KodeKandang = kodeKandang;
 		Lokasi = lokasi;
 	}
