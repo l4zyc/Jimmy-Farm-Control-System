@@ -131,7 +131,7 @@ public class MasterObatController {
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				Stage window = (Stage) view.getMasterObat().getScene().getWindow();
 				window.close(); 
 				new MasterObatView();
 			} 
@@ -145,7 +145,7 @@ public class MasterObatController {
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				Stage window = (Stage) view.getMasterSupplier().getScene().getWindow();
 				window.close(); 
 				new MasterSupplierView();
 			} 
@@ -159,7 +159,7 @@ public class MasterObatController {
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				Stage window = (Stage) view.getMasterKandang().getScene().getWindow();
 				window.close(); 
 				new MasterKandangView();
 			} 

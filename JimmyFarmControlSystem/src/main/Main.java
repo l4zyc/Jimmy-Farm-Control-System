@@ -32,7 +32,6 @@ public class Main extends Application{
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub 
 		new MainPageView(); 
-		new MasterObatView();
 	}
 	
 	

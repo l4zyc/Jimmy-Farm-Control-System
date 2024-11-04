@@ -2,6 +2,7 @@ package view;
 
 import java.sql.Date;
 
+import controller.MasterObatController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,7 +19,7 @@ import util.Data;
 public class MasterObatView extends ViewTemplate{
 
 	private Scene scene;
-	public static Stage ObatStage;
+	private Stage ObatStage;
 	private Data data = new Data();
 	
 	private GridPane sideBar, sideBarTop, sideBarBottom;
@@ -33,8 +34,8 @@ public class MasterObatView extends ViewTemplate{
 		ObatStage.setScene(scene);
 		ObatStage.setTitle("Jimmy Farm Control System");
 		ObatStage.show();
-
 		
+		new MasterObatController(this);
 	}
 
 	Label CatatanHarianLbl, JFCS; 
@@ -63,15 +64,15 @@ public class MasterObatView extends ViewTemplate{
 		//column Kode Obat
 		TableObat = new TableView<DaftarObat>();
 		KodeObatTC = new TableColumn<DaftarObat, String>("Kode Obat");
-		KodeObatTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, String>("Kode Obat"));
+		KodeObatTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, String>("kodeObat"));
 		
 		//column Nama Obat 
 		NamaObatTC = new TableColumn<DaftarObat, String>("Nama Obat"); 
-		NamaObatTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, String>("Nama Obat"));
+		NamaObatTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, String>("namaObat"));
 		
 		//column jenis obat
 		JenisObatTC = new TableColumn<DaftarObat, String>("Jenis Obat");
-		JenisObatTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, String>("Jenis Obat"));
+		JenisObatTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, String>("jenisObat"));
 		
 		//column dosis obat
 		DosisTC = new TableColumn<DaftarObat, Integer>("Dosis");
@@ -87,15 +88,15 @@ public class MasterObatView extends ViewTemplate{
 		
 		//column Jumlah Per Pack
 		JumlahPerPackTC = new TableColumn<DaftarObat, Integer>("Jumlah Per Pack");
-		JumlahPerPackTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, Integer>("Jumlah Per Pack"));
+		JumlahPerPackTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, Integer>("jumlahPerPack"));
 		
 		//column Harga Per Pack
 		HargaPerPackTC = new TableColumn<DaftarObat, Integer>("Harga Per Pack");
-		HargaPerPackTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, Integer>("Harga Per Pack"));
+		HargaPerPackTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, Integer>("hargaPerPack"));
 		
 		//column Harga Per Satuan
 		HargaPerSatuanTC = new TableColumn<DaftarObat, Integer>("Harga Per Satuan");
-		HargaPerSatuanTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, Integer>("Harga Per Satuan"));
+		HargaPerSatuanTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, Integer>("hargaPerSatuan"));
 		
 		//Memasukan column ke table
 		TableObat.getColumns().addAll(KodeObatTC, 
@@ -107,6 +108,8 @@ public class MasterObatView extends ViewTemplate{
 		JumlahPerPackTC, 
 		HargaPerPackTC, 
 		HargaPerSatuanTC); 
+		
+		TableObat.getItems().addAll(data.getObatData());
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
@@ -151,11 +154,11 @@ public class MasterObatView extends ViewTemplate{
 				
 		JFCS = new Label("Jimmy Farm Control System");
 		
-		KodeObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
-		NamaObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
-		JenisObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
-		DosisTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
-		SatuanTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
+		KodeObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.05));
+		NamaObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.10));
+		JenisObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.10));
+		DosisTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.05));
+		SatuanTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.10));
 		PenyakitTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
 		JumlahPerPackTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
 		HargaPerPackTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
@@ -174,7 +177,11 @@ public class MasterObatView extends ViewTemplate{
 
 	@Override
 	public void arrangeComponent() {
-		// TODO Auto-generated method stub 
+		// TODO Auto-generated method stub
+		
+		mainLayout.setTop(mb);
+		mainLayout.setLeft(sideBar);
+		mainLayout.setCenter(TableLayout);
 		mb.getMenus().add(action);
 		action.getItems().addAll(Home, LogOut); 
 		
@@ -183,7 +190,7 @@ public class MasterObatView extends ViewTemplate{
 		
 		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
 		
-		CatatanHarianLbl = new Label("Catatan Harian");
+		CatatanHarianLbl = new Label("Master Obat");
 	
 		TableLayout.setTop(CatatanHarianLbl);
 		TableLayout.setCenter(TableObat);
@@ -215,13 +222,14 @@ public class MasterObatView extends ViewTemplate{
 		TableLayout.setPadding(new Insets(80));
 		CatatanHarianLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 10));
 		Home.setDisable(true);
+	
 	}
 
 	public Scene getScene() {
 		return scene;
 	}
 
-	public static Stage getObatStage() {
+	public Stage getObatStage() {
 		return ObatStage;
 	}
 
@@ -369,7 +377,7 @@ public class MasterObatView extends ViewTemplate{
 		this.scene = scene;
 	}
 
-	public static void setObatStage(Stage obatStage) {
+	public void setObatStage(Stage obatStage) {
 		ObatStage = obatStage;
 	}
 

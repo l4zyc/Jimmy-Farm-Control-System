@@ -176,6 +176,33 @@ public class Data {
 	} 
 //===================================================================================================== 
 
+	public String getNewkodeObat() {
+		String query = "SELECT KODE_OBAT from msobat "
+				+ "ORDER BY KODE_OBAT DESC LIMIT 1";
+		
+		String lastKode = "";
+		connect.rs = connect.execQuery(query);
+		try {
+			if(!(connect.rs.next())) {
+				return "OBT00001";
+			}
+			
+			lastKode = connect.rs.getString("KODE_OBAT");
+			String num = lastKode.substring(3);
+			Integer incr = Integer.parseInt(num) + 1;
+			
+			lastKode = String.format("OBT%05d", incr);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lastKode;
+	}
+
+	
+	
 	public ObservableList<DaftarObat> getObatData(){
 		connect.rs = connect.execQuery("SELECT * FROM MsObat");
 		
