@@ -258,15 +258,15 @@ public class Data {
 		
 		String query = String.format("UPDATE msobat "
                 + "SET KODE_OBAT = '%s', NAMA_OBAT = '%s', "
-                + "JENIS_OBAT = '%s', DOSIS = '%d', "
-                + "SATUAN = %s, PENYAKIT = %s, "
-                + "JUMLAH_PER_PACK = '%d', HARGA_PER_PACK = '%d'"  
-                + "HARGA_PER_SATUAN = '%d'"
+                + "JENIS_OBAT = '%s', DOSIS = %d, "
+                + "SATUAN = '%s', PENYAKIT = '%s', "
+                + "JUMLAH_PER_PACK = %d, HARGA_PER_PACK = %d, "  
+                + "HARGA_PER_SATUAN = %d "
                 + "WHERE KODE_OBAT = '%s'",
                 Obat.getKodeObat(), Obat.getNamaObat(), Obat.getJenisObat(), 
                 Obat.getDosis(), Obat.getSatuan(), Obat.getPenyakit(), 
                 Obat.getJumlahPerPack(), Obat.getHargaPerPack(), 
-                Obat.getHargaPerSatuan()
+                Obat.getHargaPerSatuan(), Obat.getKodeObat()
 		);
 		connect.execUpdate(query);
 	}
