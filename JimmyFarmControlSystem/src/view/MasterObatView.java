@@ -16,7 +16,7 @@ import model.CatatanHarianUtama;
 import model.DaftarObat;
 import util.Data;
 
-public class MasterObatView extends ViewTemplate{
+public class MasterObatView extends TableViewTemplate{
 
 	private Scene scene;
 	private Stage ObatStage;

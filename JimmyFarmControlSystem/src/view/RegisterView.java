@@ -34,7 +34,6 @@ public class RegisterView extends ViewTemplate{
 	//PF = Password Field (Dikhususkan untuk password)  
 	//ALbl itu untuk tulisan "Login" yang dibuat bold 
 	//HBOX login itu buat yang bagian masuk lagi ke halaman login 
-	
 
 	TextField nameTF, usernameTF; 
 	PasswordField passwordPF, confirmpasswordPF;

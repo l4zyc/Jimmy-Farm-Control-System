@@ -16,7 +16,7 @@ import model.DaftarPakan;
 import util.Data;
 
 
-public class MasterPakanView extends ViewTemplate{
+public class MasterPakanView extends TableViewTemplate{
 
 	private Scene scene;
 	public static Stage PakanStage;

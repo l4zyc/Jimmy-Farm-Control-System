@@ -17,7 +17,7 @@ import model.DaftarSupplier;
 import model.MsKandang;
 import util.Data;
 
-public class MasterKandangView extends ViewTemplate{
+public class MasterKandangView extends TableViewTemplate{
 
 	private Scene scene;
 	public static Stage KandangStage;

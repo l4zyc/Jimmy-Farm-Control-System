@@ -16,7 +16,7 @@ import model.DaftarPakan;
 import model.DaftarSupplier;
 import util.Data;
 
-public class MasterSupplierView extends ViewTemplate{
+public class MasterSupplierView extends TableViewTemplate{
 
 	private Scene scene;
 	public static Stage SupplierStage;

@@ -19,9 +19,6 @@ public class MainPageUpdateView extends ViewTemplate{
 	BorderPane bp = new BorderPane(); 
 	GridPane form1 = new GridPane(); 
 
-	Double width = Screen.getPrimary().getBounds().getWidth();
-	Double height = Screen.getPrimary().getBounds().getHeight(); 
-
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
 	Label KodeCatatanLbl, KodeKandangLbl, KeteranganJenisLbl, TanggalMasukLbl, JumlahAwalJantanLbl, JumlahAwalBetinaLbl, KomentarLbl;

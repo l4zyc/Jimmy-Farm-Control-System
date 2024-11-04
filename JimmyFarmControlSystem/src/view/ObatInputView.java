@@ -23,10 +23,7 @@ import javafx.stage.Stage;
 public class ObatInputView extends ViewTemplate{
 
 	BorderPane bp = new BorderPane(); 
-	GridPane form1 = new GridPane(); 
-
-	Double width = Screen.getPrimary().getBounds().getWidth();
-	Double height = Screen.getPrimary().getBounds().getHeight(); 
+	GridPane form1 = new GridPane();  
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
