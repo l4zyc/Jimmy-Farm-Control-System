@@ -10,8 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -53,8 +51,8 @@ public class MainPageView extends ViewTemplate{
 	Menu action;//Buat action menu bar 
 	
 	//Daftar tabel samping
-	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl; 
-	HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, ButtonContainer;
+	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
+	HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, MasterKandang, ButtonContainer;
 	@Override
 	public void init() {
 		mainLayout = new BorderPane();
@@ -132,9 +130,12 @@ public class MainPageView extends ViewTemplate{
 		MasterObat = new HBox(); //Bagian Master Obat
 		MasterObatLbl = new Label("Master Obat");
 		MasterObat.getChildren().addAll(MasterObatLbl);  
-		MasterSupplier = new HBox(); 
+		MasterSupplier = new HBox(); //Bagian Master Supplier
 		MasterSupplierLbl = new Label("Master Supplier"); 
 		MasterSupplier.getChildren().addAll(MasterSupplierLbl);
+		MasterKandang = new HBox(); // Bagian Master Kandang
+		MasterKandangLbl = new Label("Master Kandang");  
+		MasterKandang.getChildren().addAll(MasterKandangLbl); 
 		
 		JFCS = new Label("Jimmy Farm Control System");
 		
@@ -191,6 +192,7 @@ public class MainPageView extends ViewTemplate{
 		sideBarBottom.add(MasterPakan, 0, 2);		
 		sideBarBottom.add(MasterObat, 0, 3);		
 		sideBarBottom.add(MasterSupplier, 0, 4);
+		sideBarBottom.add(MasterKandang, 0, 5); 
 		
 		sideBarBottom.setVgap(10);
 		ButtonContainer.setSpacing(10);
@@ -201,6 +203,46 @@ public class MainPageView extends ViewTemplate{
 		TableLayout.setPadding(new Insets(80));
 		CatatanHarianLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 10));
 		Home.setDisable(true);
+	}
+
+	public Data getData() {
+		return data;
+	}
+
+	public TableColumn<CatatanHarianUtama, String> getKodeCatatanTC() {
+		return KodeCatatanTC;
+	}
+
+	public Label getMasterKandangLbl() {
+		return MasterKandangLbl;
+	}
+
+	public HBox getMasterKandang() {
+		return MasterKandang;
+	}
+
+	public HBox getButtonContainer() {
+		return ButtonContainer;
+	}
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+	public void setKodeCatatanTC(TableColumn<CatatanHarianUtama, String> kodeCatatanTC) {
+		KodeCatatanTC = kodeCatatanTC;
+	}
+
+	public void setMasterKandangLbl(Label masterKandangLbl) {
+		MasterKandangLbl = masterKandangLbl;
+	}
+
+	public void setMasterKandang(HBox masterKandang) {
+		MasterKandang = masterKandang;
+	}
+
+	public void setButtonContainer(HBox buttonContainer) {
+		ButtonContainer = buttonContainer;
 	}
 
 	public Scene getScene() {

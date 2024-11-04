@@ -14,31 +14,31 @@ import javafx.stage.Stage;
 import model.CatatanHarianUtama;
 import model.DaftarPakan;
 import model.DaftarSupplier;
+import model.MsKandang;
 import util.Data;
 
-public class MasterSupplierView extends ViewTemplate{
+public class MasterKandangView extends ViewTemplate{
 
 	private Scene scene;
-	public static Stage SupplierStage;
+	public static Stage KandangStage;
 	private Data data = new Data();
 	
 	private GridPane sideBar, sideBarTop, sideBarBottom;
 	
-	public MasterSupplierView() {
-		// TODO Auto-generated method stub
+	public MasterKandangView() { 
 		init();
 		arrangeComponent();
-		SupplierStage = new Stage();
+		KandangStage = new Stage();
 		
-		SupplierStage.setMaximized(true);
-		SupplierStage.setScene(scene);
-		SupplierStage.setTitle("Jimmy Farm Control System");
-		SupplierStage.show();
+		KandangStage.setMaximized(true);
+		KandangStage.setScene(scene);
+		KandangStage.setTitle("Jimmy Farm Control System");
+		KandangStage.show();
 	}
-
+	
 	Label CatatanHarianLbl, JFCS; 
-	TableView<DaftarSupplier> TableSupplier;
-	TableColumn<DaftarSupplier, String> KodeSupplierTC, NamaSupplierTC;
+	TableView<MsKandang> TableKandang;
+	TableColumn<MsKandang, String> KodeKandangTC, NamaKandangTC;
 	Button Update, Delete, InputData; //button
 	MenuBar mb;  //menubar
 	MenuItem Home, LogOut; //isi menu bar 
@@ -47,7 +47,6 @@ public class MasterSupplierView extends ViewTemplate{
 	//Daftar tabel samping
 	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
 	HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, MasterKandang, ButtonContainer;
-	
 	
 	@Override
 	public void init() {
@@ -60,39 +59,39 @@ public class MasterSupplierView extends ViewTemplate{
 		scene = new Scene(mainLayout);  
 		
 		//Column Kode Pakan
-		TableSupplier = new TableView<DaftarSupplier>();
-		KodeSupplierTC = new TableColumn<DaftarSupplier, String>("Kode Supplier");
-		KodeSupplierTC.setCellValueFactory(new PropertyValueFactory<DaftarSupplier, String>("Kode Supplier")); 
-		
+		TableKandang = new TableView<MsKandang>();
+		KodeKandangTC = new TableColumn<MsKandang, String>("Kode Kandang");
+		KodeKandangTC.setCellValueFactory(new PropertyValueFactory<MsKandang, String>("Kode Kandang")); 
+				
 		//Column Nama Pakan 
-		NamaSupplierTC = new TableColumn<DaftarSupplier, String>("Nama Supplier");
-		NamaSupplierTC.setCellValueFactory(new PropertyValueFactory<DaftarSupplier, String>("Nama Supplier"));
-		
-		TableSupplier.getColumns().addAll(KodeSupplierTC, NamaSupplierTC); 
+		NamaKandangTC = new TableColumn<MsKandang, String>("Nama Kandang");
+		NamaKandangTC.setCellValueFactory(new PropertyValueFactory<MsKandang, String>("Nama Kandang"));
+				
+		TableKandang.getColumns().addAll(KodeKandangTC, NamaKandangTC); 
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
 		Update.setFont(Font.font("Inter", 20)); 
 		Update.setMinWidth(50); 
-								
+										
 		//Bagian button Delete 
 		Delete = new Button("Delete"); 
 		Delete.setFont(Font.font("Inter", 20)); 
 		Delete.setMinWidth(50); 
-								
+										
 		//Bagian button Input Data 
 		InputData = new Button("Input Data"); 
 		InputData.setFont(Font.font("Inter", 20));
 		InputData.setMinWidth(50);
-								
+										
 		//Bagian Menubar
 		mb = new MenuBar();  
 		action = new Menu("Action"); 
 		Home = new MenuItem("Home"); 
 		LogOut = new MenuItem("Log Out"); 
-								
+										
 		ButtonContainer = new HBox();
-				
+						
 		//Bagian Daftar Tabel
 		DaftarTabel = new Label("Daftar Tabel");  
 		CatatanHarian = new HBox(); //Bagian Catatan Harian 
@@ -110,15 +109,14 @@ public class MasterSupplierView extends ViewTemplate{
 		MasterKandang = new HBox(); // Bagian Master Kandang
 		MasterKandangLbl = new Label("Master Kandang");  
 		MasterKandang.getChildren().addAll(MasterKandangLbl); 
-				
+						
 		JFCS = new Label("Jimmy Farm Control System");
 		
-		KodeSupplierTC.prefWidthProperty().bind(TableSupplier.widthProperty().multiply(0.15));
-		NamaSupplierTC.prefWidthProperty().bind(TableSupplier.widthProperty().multiply(0.15));
+		KodeKandangTC.prefWidthProperty().bind(TableKandang.widthProperty().multiply(0.15));
+		NamaKandangTC.prefWidthProperty().bind(TableKandang.widthProperty().multiply(0.15));
 		
-		KodeSupplierTC.setStyle("-fx-alignment: CENTER;");
-		NamaSupplierTC.setStyle("-fx-alignment: CENTER;");
-		
+		KodeKandangTC.setStyle("-fx-alignment: CENTER;");
+		NamaKandangTC.setStyle("-fx-alignment: CENTER;");
 	}
 
 	@Override
@@ -136,14 +134,14 @@ public class MasterSupplierView extends ViewTemplate{
 		CatatanHarianLbl = new Label("Catatan Harian");
 	
 		TableLayout.setTop(CatatanHarianLbl);
-		TableLayout.setCenter(TableSupplier);
+		TableLayout.setCenter(TableKandang);
 		TableLayout.setBottom(ButtonContainer);
 		
 		sideBar.add(sideBarTop, 0, 0);
 		sideBar.add(sideBarBottom, 0, 1);
 		sideBar.setVgap(10);
 		
-		BorderPane.setMargin(TableSupplier, new Insets(15, 0, 15, 0));
+		BorderPane.setMargin(TableKandang, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
 		CatatanHarianLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 		
@@ -167,5 +165,5 @@ public class MasterSupplierView extends ViewTemplate{
 		Home.setDisable(true);
 		
 	}
-	
+
 }

@@ -9,11 +9,12 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import model.CatatanHarianUtama;
+import model.DaftarObat;
 import model.User;
 
 public class Data {
 	public final Connect connect = Connect.getInstance();
-	
+//Urusin bagian Login dan Register	
 	public void insertUser(User user) {
 		String query = String.format("INSERT INTO MsUser (UserID, Name, Username, passwd) VALUES ('%s', '%s', '%s', '%s')"
 				, user.getID(), user.getName(), user.getUsername(), user.getPassword());
@@ -22,7 +23,7 @@ public class Data {
 		reusableMethod.showAlert(AlertType.INFORMATION, "User","User Created!");
 	}
 	
-	
+	//Set User ID
 	public String getNewUserID() {
 		String query = "SELECT UserID from MsUser "
 				+ "ORDER BY UserID "
@@ -47,9 +48,32 @@ public class Data {
 		}
 		
 		return lastID;
-	}
+	} 
 	
-	public String getkodeCatatan() {
+	public ArrayList<User> getUserData() {
+		connect.rs = connect.execQuery("SELECT * FROM MsUser");
+		
+		ArrayList<User> user_list = new ArrayList<User>();
+		
+		try {
+			while(connect.rs.next()) {
+				String ID = connect.rs.getString("USERID");
+				String name = connect.rs.getString("NAME");
+				String username = connect.rs.getString("USERNAME");
+				String passwd = connect.rs.getString("PASSWORD");
+				
+				user_list.add(new User(ID, name, username, passwd, passwd));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return user_list;
+	} 
+//===================================================================================
+//Bagian CatatanHarianUtama
+	public String getNewkodeCatatan() {
 		String query = "SELECT KODE_CATATAN from CatatanHarianUtama "
 				+ "ORDER BY KODE_CATATAN DESC LIMIT 1";
 		
@@ -74,27 +98,6 @@ public class Data {
 		return lastKode;
 	}
 
-	public ArrayList<User> getUserData() {
-		connect.rs = connect.execQuery("SELECT * FROM MsUser");
-		
-		ArrayList<User> user_list = new ArrayList<User>();
-		
-		try {
-			while(connect.rs.next()) {
-				String ID = connect.rs.getString("USERID");
-				String name = connect.rs.getString("NAME");
-				String username = connect.rs.getString("USERNAME");
-				String passwd = connect.rs.getString("PASSWORD");
-				
-				user_list.add(new User(ID, name, username, passwd, passwd));
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return user_list;
-	} 
 	
 	public ObservableList<CatatanHarianUtama> getCatatanHarian() {
 		connect.rs = connect.execQuery("SELECT * FROM CatatanHarianUtama");
@@ -170,5 +173,99 @@ public class Data {
 	public void refreshCatatanHarianUtamaTable(TableView<CatatanHarianUtama> catatan) {
 		catatan.getItems().clear();
 		catatan.setItems(getCatatanHarian());
+	} 
+//===================================================================================================== 
+
+	public ObservableList<DaftarObat> getObatData(){
+		connect.rs = connect.execQuery("SELECT * FROM MsObat");
+		
+		ObservableList<DaftarObat> obat_list = FXCollections.observableArrayList();
+		
+		try {
+			while(connect.rs.next()) { 
+				String KodeObat = connect.rs.getString("KODE_OBAT");
+				String NamaObat = connect.rs.getString("NAMA_OBAT");
+				String JenisObat = connect.rs.getString("JENIS_OBAT");
+				Integer Dosis = connect.rs.getInt("DOSIS");
+				String Satuan = connect.rs.getString("SATUAN");
+				String Penyakit = connect.rs.getString("PENYAKIT");
+				Integer JumlahPerPack = connect.rs.getInt("JUMLAH_PER_PACK");
+				Integer HargaPerPack = connect.rs.getInt("HARGA_PER_PACK");
+				Integer HargaPerSatuan = connect.rs.getInt("HARGA_PER_SATUAN");
+			
+				obat_list.add(new DaftarObat(KodeObat, 
+						NamaObat, 
+						JenisObat, 
+						Dosis, 
+						Satuan, 
+						Penyakit, 
+						JumlahPerPack, 
+						HargaPerPack, 
+						HargaPerSatuan));
+			
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return obat_list;	
+	} 
+	
+	public void insertMasterObat(DaftarObat daftarobat) {
+	    String query = String.format("INSERT INTO msobat VALUES ('%s', '%s', '%s', '%d', '%s', '%s', '%d', '%d', '%d')",
+	            daftarobat.getKodeObat(), 
+	            daftarobat.getNamaObat(), 
+	            daftarobat.getJenisObat(), 
+	            daftarobat.getDosis(), 
+	            daftarobat.getSatuan(), 
+	            daftarobat.getPenyakit(), 
+	            daftarobat.getJumlahPerPack(), 
+	            daftarobat.getHargaPerPack(), 
+	            daftarobat.getHargaPerSatuan());
+		connect.execUpdate(query);	
+		reusableMethod.showAlert(AlertType.INFORMATION, "Master Obat", "New Data Obat Added Succesfully!");
 	}
-}
+	
+	public void updateMasterObat(DaftarObat Obat) {
+		
+		String query = String.format("UPDATE msobat "
+                + "SET KODE_OBAT = '%s', NAMA_OBAT = '%s', "
+                + "JENIS_OBAT = '%s', DOSIS = '%d', "
+                + "SATUAN = %s, PENYAKIT = %s, "
+                + "JUMLAH_PER_PACK = '%d', HARGA_PER_PACK = '%d'"  
+                + "HARGA_PER_SATUAN = '%d'"
+                + "WHERE KODE_OBAT = '%s'",
+                Obat.getKodeObat(), Obat.getNamaObat(), Obat.getJenisObat(), 
+                Obat.getDosis(), Obat.getSatuan(), Obat.getPenyakit(), 
+                Obat.getJumlahPerPack(), Obat.getHargaPerPack(), 
+                Obat.getHargaPerSatuan()
+		);
+		connect.execUpdate(query);
+	}
+	 
+	public void deleteMasterObat(DaftarObat Obat) {
+	    String deleteDetailsQuery = String.format(
+	        "DELETE FROM msobat "
+	        + "WHERE KODE_OBAT = '%s'", 
+	        Obat.getKodeObat()
+	    );
+	    connect.execUpdate(deleteDetailsQuery);
+
+	    String deleteMainQuery = String.format(
+	        "DELETE FROM msobat "
+	        + "WHERE KODE_OBAT = '%s'", 
+	        Obat.getKodeObat()
+	    );
+	    connect.execUpdate(deleteMainQuery);
+	}	
+	
+	public void refreshMasterObat(TableView<DaftarObat> Obat) {
+		Obat.getItems().clear();
+		Obat.setItems(getObatData());
+	}
+
+
+
+	
+} 

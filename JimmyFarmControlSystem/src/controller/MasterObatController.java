@@ -14,7 +14,7 @@ import javafx.scene.control.TableSelectionModel;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Main;
-import model.CatatanHarianUtama;
+import model.DaftarObat;
 import util.Data;
 import util.reusableMethod;
 import view.LoginView;
@@ -25,15 +25,17 @@ import view.MasterKandangView;
 import view.MasterObatView;
 import view.MasterPakanView;
 import view.MasterSupplierView;
+import view.ObatInputView;
+import view.ObatUpdateView;
 
-public class MainPageController {
-	
-	private MainPageView view; 
-	private CatatanHarianUtama catatan;  // Selected item
+public class MasterObatController {
+
+	private MasterObatView view; 
+	private DaftarObat obat;  // Selected item
 	private Data data = new Data();
 	
-	public MainPageController(MainPageView mainpageview) { 
-		this.view = mainpageview; 
+	public MasterObatController(MasterObatView masterobatview) { 
+		this.view = masterobatview; 
 		setOnActionEventUpdate();
 		setOnActionEventInputData();
 		setOnActionEventDelete();
@@ -47,10 +49,10 @@ public class MainPageController {
 	
 	// Set up the selection handler
 	public void setOnMouseClicked() {
-	    view.getTable().setOnMouseClicked(event -> {
-	        TableSelectionModel<CatatanHarianUtama> selectionModel = view.getTable().getSelectionModel();
+	    view.getTableObat().setOnMouseClicked(event -> {
+	        TableSelectionModel<DaftarObat> selectionModel = view.getTableObat().getSelectionModel();
 	        selectionModel.setSelectionMode(SelectionMode.SINGLE);
-	        catatan = selectionModel.getSelectedItem();
+	        obat = selectionModel.getSelectedItem();
 	    });
 	}
 	
@@ -69,8 +71,8 @@ public class MainPageController {
 		view.getUpdate().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (catatan != null) {
-				    new MainPageUpdateView(view, catatan);
+				if (obat != null) {
+				    new ObatUpdateView(view, obat); // 
 				} else {
 				    reusableMethod.showAlert(AlertType.ERROR, "Item Select", "No Item was Selected");
 				}
@@ -91,9 +93,9 @@ public class MainPageController {
 				Optional op = alert.showAndWait();
 				
 				if(op.get().equals(ButtonType.OK)) {
-					data.deleteCatatanHarianData(catatan);
+					data.deleteMasterObat(obat);
 					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
-					reusableMethod.refreshTable(view.getTable());
+					reusableMethod.refreshCatatanObatTable(view.getTableObat());
 				}
 			}
 		});
@@ -104,7 +106,7 @@ public class MainPageController {
 		view.getInputData().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				new MainPageInputDataView(view);
+				new ObatInputView(view);
 			} 
 		}); 
 	}  
@@ -166,4 +168,3 @@ public class MainPageController {
 	}
 	
 }
-
