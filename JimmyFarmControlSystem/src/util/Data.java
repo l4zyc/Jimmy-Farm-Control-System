@@ -323,6 +323,30 @@ public class Data {
 		return lastKode;
 	}
 	
+	public ObservableList<DaftarPakan> getMasterPakanData() {
+		ObservableList<DaftarPakan> lists = FXCollections.observableArrayList();
+		
+		String query = "SELECT * FROM MsPakan";
+		
+		connect.rs = connect.execQuery(query);
+		
+		try {
+			while(connect.rs.next()) {
+				String KODE_PAKAN = connect.rs.getString("KODE_PAKAN");
+				String NAMA_PAKAN = connect.rs.getString("NAMA_PAKAN");
+				String JENIS_PAKAN = connect.rs.getString("JENIS_PAKAN");
+				Integer HARGA = Integer.parseInt("HARGA");
+				
+				lists.add(new DaftarPakan(KODE_PAKAN, NAMA_PAKAN, JENIS_PAKAN, HARGA));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lists;
+	}
+	
 	public void insertMasterPakan(DaftarPakan pakan) {
 		String query = String.format("INSERT INTO MsPakan VALUES ("
 				+ " '%s', '%s', '%s', %d"

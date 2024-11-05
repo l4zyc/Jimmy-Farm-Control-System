@@ -78,10 +78,13 @@ public class MasterPakanView extends TableViewTemplate{
 		HargaTC = new TableColumn<DaftarPakan, Integer>("Harga");
 		HargaTC.setCellValueFactory(new PropertyValueFactory<DaftarPakan, Integer>("Harga")); 
 		
+		
 		TablePakan.getColumns().addAll(KodePakanTC, 
 		NamaPakanTC, 
 		JenisPakanTC, 
 		HargaTC); 
+		
+		TablePakan.getItems().addAll(data.getMasterPakanData());
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
