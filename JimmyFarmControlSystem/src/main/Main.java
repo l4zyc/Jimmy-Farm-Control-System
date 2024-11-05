@@ -1,6 +1,6 @@
 package main;
 
-import controller.LoginController;
+import controller.login.LoginController;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -11,9 +11,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import view.LoginView;
-import view.MainPageView;
-import view.MasterObatView;
+import view.MainPage.MainPageView;
+import view.MasterObat.MasterObatView;
+import view.login.LoginView;
 import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

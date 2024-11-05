@@ -3,12 +3,12 @@ package controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import view.MainPageView;
-import view.MasterKandangView;
-import view.MasterObatView;
-import view.MasterPakanView;
-import view.MasterSupplierView;
 import view.TableViewTemplate;
+import view.MainPage.MainPageView;
+import view.MasterKandang.MasterKandangView;
+import view.MasterObat.MasterObatView;
+import view.MasterPakan.MasterPakanView;
+import view.MasterSupplier.MasterSupplierView;
 
 public class MainTemplateController {
 	
