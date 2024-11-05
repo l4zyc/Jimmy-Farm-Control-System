@@ -3,6 +3,7 @@ package controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import view.MainPageView;
 import view.MasterKandangView;
 import view.MasterObatView;
 import view.MasterPakanView;
@@ -22,6 +23,20 @@ public class MainTemplateController {
 		setOnMouseClickedMasterObat(); 
 		setOnMouseClickedMasterSupplier(); 
 		setOnMouseClickedMasterKandang();
+	}
+	
+	public void setOnMouseClickedCatatanHarian() {
+		view.getMasterPakan().setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				window.close(); 
+				new MainPageView();
+			} 
+			
+		});
 	}
 	
 	public void setOnMouseClickedMasterPakan() { 
