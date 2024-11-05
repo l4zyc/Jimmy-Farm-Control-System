@@ -41,10 +41,6 @@ public class MasterObatController extends MainTemplateController{
 		setOnActionEventDelete();
 		setOnLogOut();
 		setOnMouseClicked(); 
-		setOnMouseClickedMasterPakan(); 
-		setOnMouseClickedMasterObat(); 
-		setOnMouseClickedMasterSupplier(); 
-		setOnMouseClickedMasterKandang();
 	}
 	
 	// Set up the selection handler
