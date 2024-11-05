@@ -27,7 +27,7 @@ public class MainTemplateController {
 	}
 	
 	public void setOnMouseClickedCatatanHarian() {
-		view.getMasterPakan().setOnMouseClicked(new EventHandler<MouseEvent>() {
+		view.getSideBarCatatanHarianLbl().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
@@ -41,7 +41,7 @@ public class MainTemplateController {
 	}
 	
 	public void setOnMouseClickedMasterPakan() { 
-		view.getMasterPakan().setOnMouseClicked(new EventHandler<MouseEvent>() {
+		view.getMasterPakanLbl().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
@@ -55,7 +55,7 @@ public class MainTemplateController {
 	} 
 	
 	public void setOnMouseClickedMasterObat() { 
-		view.getMasterObat().setOnMouseClicked(new EventHandler<MouseEvent>() {
+		view.getMasterObatLbl().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
@@ -69,7 +69,7 @@ public class MainTemplateController {
 	}
 	
 	public void setOnMouseClickedMasterSupplier() { 
-		view.getMasterSupplier().setOnMouseClicked(new EventHandler<MouseEvent>() {
+		view.getMasterSupplierLbl().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
@@ -83,7 +83,7 @@ public class MainTemplateController {
 	}
 	
 	public void setOnMouseClickedMasterKandang() { 
-		view.getMasterKandang().setOnMouseClicked(new EventHandler<MouseEvent>() {
+		view.getMasterKandangLbl().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
