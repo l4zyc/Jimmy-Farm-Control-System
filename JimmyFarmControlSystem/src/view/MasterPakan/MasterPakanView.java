@@ -169,4 +169,296 @@ public class MasterPakanView extends TableViewTemplate{
 		mainLayout.setLeft(getSideBar());
 	}
 
+
+	public Scene getScene() {
+		return scene;
+	}
+
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+
+	public Stage getPakanStage() {
+		return PakanStage;
+	}
+
+
+	public void setPakanStage(Stage pakanStage) {
+		PakanStage = pakanStage;
+	}
+
+
+	public Data getData() {
+		return data;
+	}
+
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+
+	public Label getCatatanHarianLbl() {
+		return CatatanHarianLbl;
+	}
+
+
+	public void setCatatanHarianLbl(Label catatanHarianLbl) {
+		CatatanHarianLbl = catatanHarianLbl;
+	}
+
+
+	public Label getJFCS() {
+		return JFCS;
+	}
+
+
+	public void setJFCS(Label jFCS) {
+		JFCS = jFCS;
+	}
+
+
+	public TableView<DaftarPakan> getTablePakan() {
+		return TablePakan;
+	}
+
+
+	public void setTablePakan(TableView<DaftarPakan> tablePakan) {
+		TablePakan = tablePakan;
+	}
+
+
+	public TableColumn<DaftarPakan, String> getKodePakanTC() {
+		return KodePakanTC;
+	}
+
+
+	public void setKodePakanTC(TableColumn<DaftarPakan, String> kodePakanTC) {
+		KodePakanTC = kodePakanTC;
+	}
+
+
+	public TableColumn<DaftarPakan, String> getNamaPakanTC() {
+		return NamaPakanTC;
+	}
+
+
+	public void setNamaPakanTC(TableColumn<DaftarPakan, String> namaPakanTC) {
+		NamaPakanTC = namaPakanTC;
+	}
+
+
+	public TableColumn<DaftarPakan, String> getJenisPakanTC() {
+		return JenisPakanTC;
+	}
+
+
+	public void setJenisPakanTC(TableColumn<DaftarPakan, String> jenisPakanTC) {
+		JenisPakanTC = jenisPakanTC;
+	}
+
+
+	public TableColumn<DaftarPakan, Integer> getHargaTC() {
+		return HargaTC;
+	}
+
+
+	public void setHargaTC(TableColumn<DaftarPakan, Integer> hargaTC) {
+		HargaTC = hargaTC;
+	}
+
+
+	public Button getUpdate() {
+		return Update;
+	}
+
+
+	public void setUpdate(Button update) {
+		Update = update;
+	}
+
+
+	public Button getDelete() {
+		return Delete;
+	}
+
+
+	public void setDelete(Button delete) {
+		Delete = delete;
+	}
+
+
+	public Button getInputData() {
+		return InputData;
+	}
+
+
+	public void setInputData(Button inputData) {
+		InputData = inputData;
+	}
+
+
+	public MenuBar getMb() {
+		return mb;
+	}
+
+
+	public void setMb(MenuBar mb) {
+		this.mb = mb;
+	}
+
+
+	public MenuItem getHome() {
+		return Home;
+	}
+
+
+	public void setHome(MenuItem home) {
+		Home = home;
+	}
+
+
+	public MenuItem getLogOut() {
+		return LogOut;
+	}
+
+
+	public void setLogOut(MenuItem logOut) {
+		LogOut = logOut;
+	}
+
+
+	public Menu getAction() {
+		return action;
+	}
+
+
+	public void setAction(Menu action) {
+		this.action = action;
+	}
+
+
+	public Label getDaftarTabel() {
+		return DaftarTabel;
+	}
+
+
+	public void setDaftarTabel(Label daftarTabel) {
+		DaftarTabel = daftarTabel;
+	}
+
+
+	public Label getCatatanHarianLbl2() {
+		return CatatanHarianLbl2;
+	}
+
+
+	public void setCatatanHarianLbl2(Label catatanHarianLbl2) {
+		CatatanHarianLbl2 = catatanHarianLbl2;
+	}
+
+
+	public Label getMasterPakanLbl() {
+		return MasterPakanLbl;
+	}
+
+
+	public void setMasterPakanLbl(Label masterPakanLbl) {
+		MasterPakanLbl = masterPakanLbl;
+	}
+
+
+	public Label getMasterObatLbl() {
+		return MasterObatLbl;
+	}
+
+
+	public void setMasterObatLbl(Label masterObatLbl) {
+		MasterObatLbl = masterObatLbl;
+	}
+
+
+	public Label getMasterSupplierLbl() {
+		return MasterSupplierLbl;
+	}
+
+
+	public void setMasterSupplierLbl(Label masterSupplierLbl) {
+		MasterSupplierLbl = masterSupplierLbl;
+	}
+
+
+	public Label getMasterKandangLbl() {
+		return MasterKandangLbl;
+	}
+
+
+	public void setMasterKandangLbl(Label masterKandangLbl) {
+		MasterKandangLbl = masterKandangLbl;
+	}
+
+
+	public HBox getCatatanHarian() {
+		return CatatanHarian;
+	}
+
+
+	public void setCatatanHarian(HBox catatanHarian) {
+		CatatanHarian = catatanHarian;
+	}
+
+
+	public HBox getMasterPakan() {
+		return MasterPakan;
+	}
+
+
+	public void setMasterPakan(HBox masterPakan) {
+		MasterPakan = masterPakan;
+	}
+
+
+	public HBox getMasterObat() {
+		return MasterObat;
+	}
+
+
+	public void setMasterObat(HBox masterObat) {
+		MasterObat = masterObat;
+	}
+
+
+	public HBox getMasterSupplier() {
+		return MasterSupplier;
+	}
+
+
+	public void setMasterSupplier(HBox masterSupplier) {
+		MasterSupplier = masterSupplier;
+	}
+
+
+	public HBox getMasterKandang() {
+		return MasterKandang;
+	}
+
+
+	public void setMasterKandang(HBox masterKandang) {
+		MasterKandang = masterKandang;
+	}
+
+
+	public HBox getButtonContainer() {
+		return ButtonContainer;
+	}
+
+
+	public void setButtonContainer(HBox buttonContainer) {
+		ButtonContainer = buttonContainer;
+	}
+	
+	
+
 }

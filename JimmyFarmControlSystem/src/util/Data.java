@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import model.CatatanHarianUtama;
 import model.DaftarObat;
+import model.DaftarPakan;
 import model.User;
 
 public class Data {
@@ -292,7 +293,55 @@ public class Data {
 		Obat.setItems(getObatData());
 	}
 
+	//===================================================================================================== 
+	//===================================================================================================== 
+	//===================================================================================================== 
+	//===================================================================================================== 
 
-
+	public String getNewKodePakan() {
+		String query = "SELECT KODE_PAKAN from MsPakan "
+				+ "ORDER BY KODE_PAKAN DESC LIMIT 1";
+		
+		String lastKode = "";
+		connect.rs = connect.execQuery(query);
+		try {
+			if(!(connect.rs.next())) {
+				return "PKN00001";
+			}
+			
+			lastKode = connect.rs.getString("KODE_OBAT");
+			String num = lastKode.substring(3);
+			Integer incr = Integer.parseInt(num) + 1;
+			
+			lastKode = String.format("PKN%05d", incr);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lastKode;
+	}
 	
+	public void insertMasterPakan(DaftarPakan pakan) {
+		String query = String.format("INSERT INTO MsPakan VALUES ("
+				+ " '%s', '%s', '%s', %d"
+				+ ")", pakan.getKodePakan(),
+				pakan.getNamaPakan(),
+				pakan.getJenisPakan(),
+				pakan.getHarga());
+		
+		connect.execUpdate(query);
+		reusableMethod.showAlert(AlertType.INFORMATION, "Data", "Data Added!");
+	}
+	
+	public void updateMasterPakan(DaftarPakan pakan) {
+		
+		String query = String.format("UPDATE mspakan "
+				+ "SET KODE_PAKAN = '%s', NAMA_PAKAN = '%s', "
+				+ "JENIS_PAKAN = '%s', HARGA = %d WHERE "
+				+ "KODE_PAKAN = '%s'");
+		connect.execUpdate(query);
+		reusableMethod.showAlert(AlertType.INFORMATION, "Data", "Data Updated!");
+	}
 } 

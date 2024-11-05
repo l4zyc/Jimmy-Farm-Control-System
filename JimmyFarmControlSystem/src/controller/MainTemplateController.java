@@ -10,7 +10,7 @@ import view.MasterObat.MasterObatView;
 import view.MasterPakan.MasterPakanView;
 import view.MasterSupplier.MasterSupplierView;
 
-public class MainTemplateController {
+public class MainTemplateController extends ControllerData{
 	
 	protected TableViewTemplate view;
 

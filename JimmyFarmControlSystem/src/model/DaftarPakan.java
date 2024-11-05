@@ -9,8 +9,7 @@ public class DaftarPakan{
 	private String JenisPakan;
 	private Integer Harga; 
 	
-	public DaftarPakan(String kodeSupplier, String namaSupplier, String kodePakan, String namaPakan, String jenisPakan,
-			Integer harga) {
+	public DaftarPakan(String kodePakan, String namaPakan, String jenisPakan,Integer harga) {
 
 		KodePakan = kodePakan;
 		NamaPakan = namaPakan;
