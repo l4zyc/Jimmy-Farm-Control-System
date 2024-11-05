@@ -13,6 +13,7 @@ public class PakanInputController extends ControllerData{
 
 	public PakanInputController(PakanInputView view) {
 		this.view = view;
+		setOnAction();
 	}
 	
 	public void setOnAction() {
@@ -21,6 +22,7 @@ public class PakanInputController extends ControllerData{
 			@Override
 			public void handle(ActionEvent event) {
 				data.insertMasterPakan(getInputData());
+				data.refreshTablePakan(view.getView().getTablePakan());
 				
 				Stage stage = (Stage) view.getBp().getScene().getWindow();
 				stage.close();

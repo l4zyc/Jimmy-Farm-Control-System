@@ -11,6 +11,8 @@ import javafx.scene.control.Alert.AlertType;
 import model.CatatanHarianUtama;
 import model.DaftarObat;
 import model.DaftarPakan;
+import model.DaftarSupplier;
+import model.MsKandang;
 import model.User;
 
 public class Data {
@@ -172,7 +174,6 @@ public class Data {
 	}
 	
 	public void refreshCatatanHarianUtamaTable(TableView<CatatanHarianUtama> catatan) {
-		catatan.getItems().clear();
 		catatan.setItems(getCatatanHarian());
 	} 
 //===================================================================================================== 
@@ -289,7 +290,6 @@ public class Data {
 	}	
 	
 	public void refreshMasterObat(TableView<DaftarObat> Obat) {
-		Obat.getItems().clear();
 		Obat.setItems(getObatData());
 	}
 
@@ -309,7 +309,7 @@ public class Data {
 				return "PKN00001";
 			}
 			
-			lastKode = connect.rs.getString("KODE_OBAT");
+			lastKode = connect.rs.getString("KODE_PAKAN");
 			String num = lastKode.substring(3);
 			Integer incr = Integer.parseInt(num) + 1;
 			
@@ -335,7 +335,7 @@ public class Data {
 				String KODE_PAKAN = connect.rs.getString("KODE_PAKAN");
 				String NAMA_PAKAN = connect.rs.getString("NAMA_PAKAN");
 				String JENIS_PAKAN = connect.rs.getString("JENIS_PAKAN");
-				Integer HARGA = Integer.parseInt("HARGA");
+				Integer HARGA = Integer.parseInt(connect.rs.getString("HARGA"));
 				
 				lists.add(new DaftarPakan(KODE_PAKAN, NAMA_PAKAN, JENIS_PAKAN, HARGA));
 			}
@@ -364,8 +364,155 @@ public class Data {
 		String query = String.format("UPDATE mspakan "
 				+ "SET KODE_PAKAN = '%s', NAMA_PAKAN = '%s', "
 				+ "JENIS_PAKAN = '%s', HARGA = %d WHERE "
-				+ "KODE_PAKAN = '%s'");
+				+ "KODE_PAKAN = '%s'", pakan.getKodePakan(), 
+				pakan.getNamaPakan(), pakan.getJenisPakan(),
+				pakan.getHarga(), pakan.getKodePakan());
 		connect.execUpdate(query);
-		reusableMethod.showAlert(AlertType.INFORMATION, "Data", "Data Updated!");
+	}
+	
+	public void refreshTablePakan(TableView<DaftarPakan> pakan) {
+		pakan.setItems(getMasterPakanData());
+	}
+	
+//===================================================================================================== 
+//Bagian Kandang
+	public ObservableList<MsKandang> getMasterKandangData(){
+		connect.rs = connect.execQuery("SELECT * FROM mskandang");
+		
+		ObservableList<MsKandang> kandang_list = FXCollections.observableArrayList();
+		
+		try {
+			while(connect.rs.next()) { 
+				String KodeKandang = connect.rs.getString("KODE_KANDANG");
+				String Lokasi = connect.rs.getString("LOKASI");
+			
+			
+				kandang_list.add(new MsKandang(KodeKandang, 
+						Lokasi));
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return kandang_list;	
+	} 
+	
+	public void insertMasterKandang(MsKandang mskandang) {
+	    String query = String.format("INSERT INTO mskandang VALUES ('%s', '%s')",
+	    		mskandang.getKodeKandang(), 
+	    		mskandang.getLokasi());
+		connect.execUpdate(query);	
+		reusableMethod.showAlert(AlertType.INFORMATION, "Master Kandang", "New Data Kandang Added Succesfully!");
+	}	
+	
+	public void updateMasterKandang(MsKandang kandang) {
+		
+		String query = String.format("UPDATE mskandang "
+                + "SET KODE_KANDANG = '%s', LOKASI = '%s', "
+                + "WHERE KODE_KANDANG = '%s'", 
+                kandang.getKodeKandang(), kandang.getLokasi()
+                
+		);
+		connect.execUpdate(query);
+	}
+	
+	public void deleteMasterKandang(MsKandang kandang) {
+		 
+	    String deleteMainQuery = String.format(
+	        "DELETE FROM mskandang "
+	        + "WHERE KODE_KANDANG = '%s'", 
+	        kandang.getKodeKandang()
+	    );
+	    connect.execUpdate(deleteMainQuery);
+	}	
+	
+	public void refreshMasterKandang(TableView<MsKandang> Kandang) {
+		Kandang.setItems(getMasterKandangData());
+	}
+	
+	
+//=====================================================================================================
+//Data Base Master Supplier	
+
+	public String getNewkodeSupplier() {
+		String query = "SELECT KODE_OBAT from mssupplier "
+				+ "ORDER BY KODE_OBAT DESC LIMIT 1";
+		
+		String lastKode = "";
+		connect.rs = connect.execQuery(query);
+		try {
+			if(!(connect.rs.next())) {
+				return "SU001";
+			}
+			
+			lastKode = connect.rs.getString("KODE_SUPPLIER");
+			String num = lastKode.substring(2);
+			Integer incr = Integer.parseInt(num) + 1;
+			
+			lastKode = String.format("SU%03d", incr);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lastKode;
+	}
+
+	
+	
+	public ObservableList<DaftarSupplier> getMasterSupplierData(){
+		connect.rs = connect.execQuery("SELECT * FROM mssupplier");
+		
+		ObservableList<DaftarSupplier> supplier_list = FXCollections.observableArrayList();
+		
+		try {
+			while(connect.rs.next()) { 
+				String KodeSupplier = connect.rs.getString("KODE_SUPPLIER");
+				String NamaSupplier = connect.rs.getString("NAMA_SUPPLIER");
+			
+			
+				supplier_list.add(new DaftarSupplier(KodeSupplier, 
+						NamaSupplier));
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return supplier_list;	
+	} 
+	
+	public void insertMasterSupplier(DaftarSupplier daftarsupplier) {
+	    String query = String.format("INSERT INTO msobat VALUES ('%s', '%s')",
+	    		daftarsupplier.getKodeSupplier(), 
+	    		daftarsupplier.getNamaSupplier());
+		connect.execUpdate(query);	
+		reusableMethod.showAlert(AlertType.INFORMATION, "Master Supplier", "New Data Supplier Added Succesfully!");
+	}
+	
+	public void updateMasterSupplier(DaftarSupplier supplier) {
+		
+		String query = String.format("UPDATE mssupplier "
+                + "SET KODE_SUPPLIER = '%s', NAMA_SUPPLIER = '%s', "
+                + "WHERE KODE_SUPPLIER = '%s'",
+                supplier.getKodeSupplier(), supplier.getNamaSupplier()
+		);
+		connect.execUpdate(query);
+	}
+	 
+	public void deleteMasterSupplier(DaftarSupplier supplier) {
+	 
+	    String deleteMainQuery = String.format(
+	        "DELETE FROM mssupplier "
+	        + "WHERE KODE_SUPPLIER = '%s'", 
+	        supplier.getKodeSupplier()
+	    );
+	    connect.execUpdate(deleteMainQuery);
+	}	
+	
+	public void refreshMasterSupplier(TableView<DaftarSupplier> Supplier) {
+		Supplier.setItems(getMasterSupplierData());
 	}
 } 

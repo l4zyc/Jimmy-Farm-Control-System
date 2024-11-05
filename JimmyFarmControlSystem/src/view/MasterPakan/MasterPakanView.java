@@ -64,15 +64,15 @@ public class MasterPakanView extends TableViewTemplate{
 		//Column Kode Pakan
 		TablePakan = new TableView<DaftarPakan>();
 		KodePakanTC = new TableColumn<DaftarPakan, String>("Kode Pakan");
-		KodePakanTC.setCellValueFactory(new PropertyValueFactory<DaftarPakan, String>("Kode Pakan")); 
+		KodePakanTC.setCellValueFactory(new PropertyValueFactory<DaftarPakan, String>("kodePakan")); 
 		
 		//Column Nama Pakan
 		NamaPakanTC = new TableColumn<DaftarPakan, String>("Nama Pakan");
-		NamaPakanTC.setCellValueFactory(new PropertyValueFactory<DaftarPakan, String>("Nama Pakan")); 
+		NamaPakanTC.setCellValueFactory(new PropertyValueFactory<DaftarPakan, String>("namaPakan")); 
 		
 		//Column Jenis Pakan
 		JenisPakanTC = new TableColumn<DaftarPakan, String>("Jenis Pakan");
-		JenisPakanTC.setCellValueFactory(new PropertyValueFactory<DaftarPakan, String>("Jenis Pakan")); 
+		JenisPakanTC.setCellValueFactory(new PropertyValueFactory<DaftarPakan, String>("jenisPakan")); 
 		
 		//Column Harga
 		HargaTC = new TableColumn<DaftarPakan, Integer>("Harga");
