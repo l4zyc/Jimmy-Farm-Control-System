@@ -159,7 +159,7 @@ public class MainPageView extends TableViewTemplate{
 		BorderPane.setMargin(Table, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
 		CatatanHarianLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-		getSideBarCatatanHarianLbl().setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		getSideBarCatatanHarianLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
 	
 		
 		TableLayout.setPadding(new Insets(80));

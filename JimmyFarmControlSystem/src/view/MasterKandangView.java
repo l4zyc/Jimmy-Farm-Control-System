@@ -157,7 +157,7 @@ public class MasterKandangView extends TableViewTemplate{
 		+ "-fx-border-color: BLACK");
 		
 		TableLayout.setPadding(new Insets(80));
-		getMasterKandangLbl().setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		getMasterKandangLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		
 		mainLayout.setCenter(TableLayout);
 		mainLayout.setLeft(getSideBar());

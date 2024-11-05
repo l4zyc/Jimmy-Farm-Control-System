@@ -161,7 +161,7 @@ public class MasterPakanView extends TableViewTemplate{
 		
 		
 		TableLayout.setPadding(new Insets(80));
-		getMasterPakanLbl().setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		getMasterPakanLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		Home.setDisable(true);
 		
 		mainLayout.setCenter(TableLayout);
