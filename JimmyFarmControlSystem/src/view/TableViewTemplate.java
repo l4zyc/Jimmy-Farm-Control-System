@@ -12,7 +12,6 @@ public abstract class TableViewTemplate extends ViewTemplate{
 	private HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, MasterKandang;
 	private Label DaftarTabel, SideBarCatatanHarianLbl, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
 	
-	
 	public void setSideBar() {
 		sideBar = new GridPane();
 		sideBarTop = new GridPane(); 
@@ -26,15 +25,19 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		CatatanHarian = new HBox(); //Bagian Catatan Harian 
 		SideBarCatatanHarianLbl = new Label("Catatan Harian");
 		CatatanHarian.getChildren().addAll(SideBarCatatanHarianLbl);  
+		
 		MasterPakan = new HBox(); //Bagian Master Pakan 
 		MasterPakanLbl = new Label("Master Pakan");
 		MasterPakan.getChildren().addAll(MasterPakanLbl);  
+		
 		MasterObat = new HBox(); //Bagian Master Obat
 		MasterObatLbl = new Label("Master Obat");
 		MasterObat.getChildren().addAll(MasterObatLbl);  
+		
 		MasterSupplier = new HBox(); //Bagian Master Supplier
 		MasterSupplierLbl = new Label("Master Supplier"); 
 		MasterSupplier.getChildren().addAll(MasterSupplierLbl);
+		
 		MasterKandang = new HBox(); // Bagian Master Kandang
 		MasterKandangLbl = new Label("Master Kandang");  
 		MasterKandang.getChildren().addAll(MasterKandangLbl); 
@@ -52,10 +55,15 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		
 		sideBarBottom.setVgap(10);
 		
-		sideBarBottom.setStyle("-fx-border-width: 2px 2px 0px 0px;"
+		sideBar.setStyle("-fx-border-width: 2px 2px 0px 0px;"
 				+ "-fx-border-color: BLACK");
+		sideBarBottom.setStyle("-fx-border-width: 2px 0px 0px 0px;"
+				+ "-fx-border-color: BLACK");
+		
+		sideBarBottom.setMinWidth(200);
+		sideBar.setMinWidth(200);
 	}
-	
+
 	public BorderPane getMainLayout() {
 		return mainLayout;
 	}
@@ -152,6 +160,14 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		DaftarTabel = daftarTabel;
 	}
 
+	public Label getSideBarCatatanHarianLbl() {
+		return SideBarCatatanHarianLbl;
+	}
+
+	public void setSideBarCatatanHarianLbl(Label sideBarCatatanHarianLbl) {
+		SideBarCatatanHarianLbl = sideBarCatatanHarianLbl;
+	}
+
 	public Label getMasterPakanLbl() {
 		return MasterPakanLbl;
 	}
@@ -183,14 +199,7 @@ public abstract class TableViewTemplate extends ViewTemplate{
 	public void setMasterKandangLbl(Label masterKandangLbl) {
 		MasterKandangLbl = masterKandangLbl;
 	}
-
-	public Label getSideBarCatatanHarianLbl() {
-		return SideBarCatatanHarianLbl;
-	}
-
-	public void setSideBarCatatanHarianLbl(Label sideBarCatatanHarianLbl) {
-		SideBarCatatanHarianLbl = sideBarCatatanHarianLbl;
-	}
+	
 	
 	
 	
