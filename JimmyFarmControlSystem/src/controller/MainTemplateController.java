@@ -19,6 +19,7 @@ public class MainTemplateController {
 	}
 	
 	public void setOnMouseClickedTemplate() {
+		setOnMouseClickedCatatanHarian();
 		setOnMouseClickedMasterPakan(); 
 		setOnMouseClickedMasterObat(); 
 		setOnMouseClickedMasterSupplier(); 
