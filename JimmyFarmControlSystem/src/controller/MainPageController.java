@@ -25,37 +25,34 @@ import view.MasterKandangView;
 import view.MasterObatView;
 import view.MasterPakanView;
 import view.MasterSupplierView;
+import view.TableViewTemplate;
 
-public class MainPageController {
+public class MainPageController extends MainTemplateController{
 	
-	private MainPageView view; 
 	private CatatanHarianUtama catatan;  // Selected item
 	private Data data = new Data();
 	
-	public MainPageController(MainPageView mainpageview) { 
-		this.view = mainpageview; 
+	public MainPageController(MainPageView view) { 
+		super((MainPageView) view);
 		setOnActionEventUpdate();
 		setOnActionEventInputData();
 		setOnActionEventDelete();
 		setOnLogOut();
 		setOnMouseClicked(); 
-		setOnMouseClickedMasterPakan(); 
-		setOnMouseClickedMasterObat(); 
-		setOnMouseClickedMasterSupplier(); 
-		setOnMouseClickedMasterKandang();
+		setOnMouseClickedTemplate();
 	}
 	
 	// Set up the selection handler
 	public void setOnMouseClicked() {
-	    view.getTable().setOnMouseClicked(event -> {
-	        TableSelectionModel<CatatanHarianUtama> selectionModel = view.getTable().getSelectionModel();
+	    ((MainPageView) view).getTable().setOnMouseClicked(event -> {
+	        TableSelectionModel<CatatanHarianUtama> selectionModel = ((MainPageView) view).getTable().getSelectionModel();
 	        selectionModel.setSelectionMode(SelectionMode.SINGLE);
 	        catatan = selectionModel.getSelectedItem();
 	    });
 	}
 	
 	public void setOnLogOut() {
-		view.getLogOut().setOnAction(new EventHandler<ActionEvent>() {
+		((MainPageView) view).getLogOut().setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
@@ -66,11 +63,11 @@ public class MainPageController {
 
 	//Open update view if an item is selected
 	public void setOnActionEventUpdate() {
-		view.getUpdate().setOnAction(new EventHandler<ActionEvent>() {
+		((MainPageView) view).getUpdate().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				if (catatan != null) {
-				    new MainPageUpdateView(view, catatan);
+				    new MainPageUpdateView(((MainPageView) view), catatan);
 				} else {
 				    reusableMethod.showAlert(AlertType.ERROR, "Item Select", "No Item was Selected");
 				}
@@ -80,7 +77,7 @@ public class MainPageController {
 	
 	//Delete Data
 	public void setOnActionEventDelete() {
-		view.getDelete().setOnAction(new EventHandler<ActionEvent>() {
+		((MainPageView) view).getDelete().setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
@@ -93,7 +90,7 @@ public class MainPageController {
 				if(op.get().equals(ButtonType.OK)) {
 					data.deleteCatatanHarianData(catatan);
 					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
-					reusableMethod.refreshTable(view.getTable());
+					reusableMethod.refreshTable(((MainPageView) view).getTable());
 				}
 			}
 		});
@@ -101,69 +98,14 @@ public class MainPageController {
 	
 	//Open input data view
 	public void setOnActionEventInputData() { 
-		view.getInputData().setOnAction(new EventHandler<ActionEvent>() {
+		((MainPageView) view).getInputData().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				new MainPageInputDataView(view);
+				new MainPageInputDataView(((MainPageView) view));
 			} 
 		}); 
 	}  
 	
-	public void setOnMouseClickedMasterPakan() { 
-		view.getMasterPakan().setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
-				window.close(); 
-				new MasterPakanView();
-			} 
-			
-		});
-	} 
-	
-	public void setOnMouseClickedMasterObat() { 
-		view.getMasterObat().setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
-				window.close(); 
-				new MasterObatView();
-			} 
-			
-		});
-	}
-	
-	public void setOnMouseClickedMasterSupplier() { 
-		view.getMasterSupplier().setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
-				window.close(); 
-				new MasterSupplierView();
-			} 
-			
-		});
-	}
-	
-	public void setOnMouseClickedMasterKandang() { 
-		view.getMasterKandang().setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
-				window.close(); 
-				new MasterKandangView();
-			} 
-			
-		});
-	}
 	
 }
 

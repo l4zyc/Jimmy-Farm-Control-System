@@ -1,7 +1,5 @@
 package view;
 
-import java.sql.Date;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,21 +9,19 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import model.CatatanHarianUtama;
-import model.DaftarPakan;
-import model.DaftarSupplier;
 import model.MsKandang;
 import util.Data;
 
 public class MasterKandangView extends TableViewTemplate{
 
 	private Scene scene;
-	public static Stage KandangStage;
+	private Stage KandangStage;
 	private Data data = new Data();
 	
 	private GridPane sideBar, sideBarTop, sideBarBottom;
 	
 	public MasterKandangView() { 
+		setSideBar();
 		init();
 		arrangeComponent();
 		KandangStage = new Stage();
@@ -38,7 +34,7 @@ public class MasterKandangView extends TableViewTemplate{
 	
 	Label CatatanHarianLbl, JFCS; 
 	TableView<MsKandang> TableKandang;
-	TableColumn<MsKandang, String> KodeKandangTC, NamaKandangTC;
+	TableColumn<MsKandang, String> KodeKandangTC, LokasiTC;
 	Button Update, Delete, InputData; //button
 	MenuBar mb;  //menubar
 	MenuItem Home, LogOut; //isi menu bar 
@@ -58,16 +54,16 @@ public class MasterKandangView extends TableViewTemplate{
 		TableLayout = new BorderPane();
 		scene = new Scene(mainLayout);  
 		
-		//Column Kode Pakan
+		//Column Kode Kandang
 		TableKandang = new TableView<MsKandang>();
 		KodeKandangTC = new TableColumn<MsKandang, String>("Kode Kandang");
 		KodeKandangTC.setCellValueFactory(new PropertyValueFactory<MsKandang, String>("Kode Kandang")); 
 				
-		//Column Nama Pakan 
-		NamaKandangTC = new TableColumn<MsKandang, String>("Nama Kandang");
-		NamaKandangTC.setCellValueFactory(new PropertyValueFactory<MsKandang, String>("Nama Kandang"));
+		//Column Nama Kandang 
+		LokasiTC = new TableColumn<MsKandang, String>("Lokasi");
+		LokasiTC.setCellValueFactory(new PropertyValueFactory<MsKandang, String>("Lokasi"));
 				
-		TableKandang.getColumns().addAll(KodeKandangTC, NamaKandangTC); 
+		TableKandang.getColumns().addAll(KodeKandangTC, LokasiTC); 
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
@@ -113,10 +109,10 @@ public class MasterKandangView extends TableViewTemplate{
 		JFCS = new Label("Jimmy Farm Control System");
 		
 		KodeKandangTC.prefWidthProperty().bind(TableKandang.widthProperty().multiply(0.15));
-		NamaKandangTC.prefWidthProperty().bind(TableKandang.widthProperty().multiply(0.15));
+		LokasiTC.prefWidthProperty().bind(TableKandang.widthProperty().multiply(0.15));
 		
 		KodeKandangTC.setStyle("-fx-alignment: CENTER;");
-		NamaKandangTC.setStyle("-fx-alignment: CENTER;");
+		LokasiTC.setStyle("-fx-alignment: CENTER;");
 	}
 
 	@Override
@@ -161,9 +157,252 @@ public class MasterKandangView extends TableViewTemplate{
 		+ "-fx-border-color: BLACK");
 		
 		TableLayout.setPadding(new Insets(80));
-		CatatanHarianLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-		Home.setDisable(true);
+		getMasterKandangLbl().setFont(Font.font("Arial", FontWeight.BOLD, 10));
 		
+		mainLayout.setCenter(TableLayout);
+		mainLayout.setLeft(getSideBar());
 	}
 
+	public Scene getScene() {
+		return scene;
+	}
+
+	public Stage getKandangStage() {
+		return KandangStage;
+	}
+
+	public Data getData() {
+		return data;
+	}
+
+	public GridPane getSideBar() {
+		return sideBar;
+	}
+
+	public GridPane getSideBarTop() {
+		return sideBarTop;
+	}
+
+	public GridPane getSideBarBottom() {
+		return sideBarBottom;
+	}
+
+	public Label getCatatanHarianLbl() {
+		return CatatanHarianLbl;
+	}
+
+	public Label getJFCS() {
+		return JFCS;
+	}
+
+	public TableView<MsKandang> getTableKandang() {
+		return TableKandang;
+	}
+
+	public TableColumn<MsKandang, String> getKodeKandangTC() {
+		return KodeKandangTC;
+	}
+
+	public TableColumn<MsKandang, String> getLokasiTC() {
+		return LokasiTC;
+	}
+
+	public Button getUpdate() {
+		return Update;
+	}
+
+	public Button getDelete() {
+		return Delete;
+	}
+
+	public Button getInputData() {
+		return InputData;
+	}
+
+	public MenuBar getMb() {
+		return mb;
+	}
+
+	public MenuItem getHome() {
+		return Home;
+	}
+
+	public MenuItem getLogOut() {
+		return LogOut;
+	}
+
+	public Menu getAction() {
+		return action;
+	}
+
+	public Label getDaftarTabel() {
+		return DaftarTabel;
+	}
+
+	public Label getCatatanHarianLbl2() {
+		return CatatanHarianLbl2;
+	}
+
+	public Label getMasterPakanLbl() {
+		return MasterPakanLbl;
+	}
+
+	public Label getMasterObatLbl() {
+		return MasterObatLbl;
+	}
+
+	public Label getMasterSupplierLbl() {
+		return MasterSupplierLbl;
+	}
+
+	public Label getMasterKandangLbl() {
+		return MasterKandangLbl;
+	}
+
+	public HBox getCatatanHarian() {
+		return CatatanHarian;
+	}
+
+	public HBox getMasterPakan() {
+		return MasterPakan;
+	}
+
+	public HBox getMasterObat() {
+		return MasterObat;
+	}
+
+	public HBox getMasterSupplier() {
+		return MasterSupplier;
+	}
+
+	public HBox getMasterKandang() {
+		return MasterKandang;
+	}
+
+	public HBox getButtonContainer() {
+		return ButtonContainer;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+	public void setKandangStage(Stage kandangStage) {
+		KandangStage = kandangStage;
+	}
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+	public void setSideBar(GridPane sideBar) {
+		this.sideBar = sideBar;
+	}
+
+	public void setSideBarTop(GridPane sideBarTop) {
+		this.sideBarTop = sideBarTop;
+	}
+
+	public void setSideBarBottom(GridPane sideBarBottom) {
+		this.sideBarBottom = sideBarBottom;
+	}
+
+	public void setCatatanHarianLbl(Label catatanHarianLbl) {
+		CatatanHarianLbl = catatanHarianLbl;
+	}
+
+	public void setJFCS(Label jFCS) {
+		JFCS = jFCS;
+	}
+
+	public void setTableKandang(TableView<MsKandang> tableKandang) {
+		TableKandang = tableKandang;
+	}
+
+	public void setKodeKandangTC(TableColumn<MsKandang, String> kodeKandangTC) {
+		KodeKandangTC = kodeKandangTC;
+	}
+
+	public void setLokasiTC(TableColumn<MsKandang, String> lokasiTC) {
+		LokasiTC = lokasiTC;
+	}
+
+	public void setUpdate(Button update) {
+		Update = update;
+	}
+
+	public void setDelete(Button delete) {
+		Delete = delete;
+	}
+
+	public void setInputData(Button inputData) {
+		InputData = inputData;
+	}
+
+	public void setMb(MenuBar mb) {
+		this.mb = mb;
+	}
+
+	public void setHome(MenuItem home) {
+		Home = home;
+	}
+
+	public void setLogOut(MenuItem logOut) {
+		LogOut = logOut;
+	}
+
+	public void setAction(Menu action) {
+		this.action = action;
+	}
+
+	public void setDaftarTabel(Label daftarTabel) {
+		DaftarTabel = daftarTabel;
+	}
+
+	public void setCatatanHarianLbl2(Label catatanHarianLbl2) {
+		CatatanHarianLbl2 = catatanHarianLbl2;
+	}
+
+	public void setMasterPakanLbl(Label masterPakanLbl) {
+		MasterPakanLbl = masterPakanLbl;
+	}
+
+	public void setMasterObatLbl(Label masterObatLbl) {
+		MasterObatLbl = masterObatLbl;
+	}
+
+	public void setMasterSupplierLbl(Label masterSupplierLbl) {
+		MasterSupplierLbl = masterSupplierLbl;
+	}
+
+	public void setMasterKandangLbl(Label masterKandangLbl) {
+		MasterKandangLbl = masterKandangLbl;
+	}
+
+	public void setCatatanHarian(HBox catatanHarian) {
+		CatatanHarian = catatanHarian;
+	}
+
+	public void setMasterPakan(HBox masterPakan) {
+		MasterPakan = masterPakan;
+	}
+
+	public void setMasterObat(HBox masterObat) {
+		MasterObat = masterObat;
+	}
+
+	public void setMasterSupplier(HBox masterSupplier) {
+		MasterSupplier = masterSupplier;
+	}
+
+	public void setMasterKandang(HBox masterKandang) {
+		MasterKandang = masterKandang;
+	}
+
+	public void setButtonContainer(HBox buttonContainer) {
+		ButtonContainer = buttonContainer;
+	}
+
+	
+	
 }

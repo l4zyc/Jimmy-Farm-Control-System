@@ -19,15 +19,13 @@ import util.Data;
 public class MasterPakanView extends TableViewTemplate{
 
 	private Scene scene;
-	public static Stage PakanStage;
+	public Stage PakanStage;
 	private Data data = new Data();
-	
-	private GridPane sideBar, sideBarTop, sideBarBottom;
 	
 	
 	public MasterPakanView() {
 		// TODO Auto-generated method stub
-
+		setSideBar();
 		init();
 		arrangeComponent();
 		PakanStage = new Stage();
@@ -36,7 +34,6 @@ public class MasterPakanView extends TableViewTemplate{
 		PakanStage.setScene(scene);
 		PakanStage.setTitle("Jimmy Farm Control System");
 		PakanStage.show();
-		
 	}
 
 	Label CatatanHarianLbl, JFCS; 
@@ -57,9 +54,6 @@ public class MasterPakanView extends TableViewTemplate{
 	public void init() {
 		// TODO Auto-generated method stub
 		mainLayout = new BorderPane();
-		sideBar = new GridPane();
-		sideBarTop = new GridPane(); 
-		sideBarBottom = new GridPane();
 		TableLayout = new BorderPane();
 		scene = new Scene(mainLayout); 
 		
@@ -128,16 +122,15 @@ public class MasterPakanView extends TableViewTemplate{
 		
 		JFCS = new Label("Jimmy Farm Control System");
 		
-		KodePakanTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.15));
-		NamaPakanTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.15));
-		JenisPakanTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.15));
-		HargaTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.15));
+		KodePakanTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
+		NamaPakanTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
+		JenisPakanTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
+		HargaTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
 		
 		KodePakanTC.setStyle("-fx-alignment: CENTER;");
 		NamaPakanTC.setStyle("-fx-alignment: CENTER;");
 		JenisPakanTC.setStyle("-fx-alignment: CENTER;");
 		HargaTC.setStyle("-fx-alignment: CENTER;");
-	
 	}
 
 
@@ -159,33 +152,20 @@ public class MasterPakanView extends TableViewTemplate{
 		TableLayout.setCenter(TablePakan);
 		TableLayout.setBottom(ButtonContainer);
 		
-		sideBar.add(sideBarTop, 0, 0);
-		sideBar.add(sideBarBottom, 0, 1);
-		sideBar.setVgap(10);
-		
 		BorderPane.setMargin(TablePakan, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
 		CatatanHarianLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-		
-		sideBarTop.add(JFCS, 0, 1);
-		
-		sideBarBottom.add(DaftarTabel, 0, 0);		
-		sideBarBottom.add(CatatanHarian, 0, 1);		
-		sideBarBottom.add(MasterPakan, 0, 2);		
-		sideBarBottom.add(MasterObat, 0, 3);		
-		sideBarBottom.add(MasterSupplier, 0, 4);
-		sideBarBottom.add(MasterKandang, 0, 5);
-		
-		sideBarBottom.setVgap(10);
+	
+	
 		ButtonContainer.setSpacing(10);
 		
-		sideBarBottom.setStyle("-fx-border-width: 2px 2px 0px 0px;"
-				+ "-fx-border-color: BLACK");
 		
 		TableLayout.setPadding(new Insets(80));
-		CatatanHarianLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		getMasterPakanLbl().setFont(Font.font("Arial", FontWeight.BOLD, 10));
 		Home.setDisable(true);
 		
+		mainLayout.setCenter(TableLayout);
+		mainLayout.setLeft(getSideBar());
 	}
 
 }
