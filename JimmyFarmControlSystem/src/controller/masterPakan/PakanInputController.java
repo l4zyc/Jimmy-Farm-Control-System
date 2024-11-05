@@ -3,6 +3,7 @@ package controller.masterPakan;
 import controller.ControllerData;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.stage.Stage;
 import model.DaftarPakan;
 import view.MasterPakan.PakanInputView;
 
@@ -20,6 +21,9 @@ public class PakanInputController extends ControllerData{
 			@Override
 			public void handle(ActionEvent event) {
 				data.insertMasterPakan(getInputData());
+				
+				Stage stage = (Stage) view.getBp().getScene().getWindow();
+				stage.close();
 			}
 		});
 	}

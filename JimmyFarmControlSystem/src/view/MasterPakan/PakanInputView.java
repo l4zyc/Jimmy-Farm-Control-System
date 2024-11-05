@@ -2,6 +2,7 @@ package view.MasterPakan;
 
 import java.sql.Date;
 
+import controller.masterPakan.PakanInputController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -43,6 +44,7 @@ public class PakanInputView extends ViewTemplate{
 		stage.setScene(scene);
 		stage.show(); 
 		
+		new PakanInputController(this);
 	}
 	
 	@Override

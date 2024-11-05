@@ -2,6 +2,7 @@ package view.MasterPakan;
 
 import java.sql.Date;
 
+import controller.masterPakan.MasterPakanController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -35,6 +36,8 @@ public class MasterPakanView extends TableViewTemplate{
 		PakanStage.setScene(scene);
 		PakanStage.setTitle("Jimmy Farm Control System");
 		PakanStage.show();
+		
+		new MasterPakanController(this);
 	}
 
 	Label CatatanHarianLbl, JFCS; 
