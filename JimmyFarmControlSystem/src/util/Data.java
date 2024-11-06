@@ -632,7 +632,7 @@ public class Data {
 				Integer SISA_JANTAN = connect.rs.getInt("SISA_JANTAN");
 				Integer KEMATIAN_BETINA = connect.rs.getInt("KEMATIAN_BETINA");
 				Integer SISA_BETINA = connect.rs.getInt("SISA_BETINA");
-				Integer TOTAL_SISA = connect.rs.getInt("TOTAL_SISA");
+				String TOTAL_SISA = connect.rs.getString("TOTAL_SISA");
 				String KODE_PAKAN = connect.rs.getString("KODE_PAKAN");
 				Integer JUMLAH_PAKAN = connect.rs.getInt("JUMLAH_PAKAN");
 				String KODE_OBAT = connect.rs.getString("KODE_OBAT");
