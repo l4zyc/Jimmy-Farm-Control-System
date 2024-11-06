@@ -618,7 +618,7 @@ public class Data {
 	}
 	
 	public ObservableList<CatatanHarianDetail> getCatatanHarianDetail() {
-		String query = "SELECT * FROM CatatanHarianDetail";
+		String query = "SELECT * FROM viewcatatanhariandetail";
 		
 		connect.rs = connect.execQuery(query);
 		ObservableList<CatatanHarianDetail> lists = FXCollections.observableArrayList();
@@ -629,16 +629,16 @@ public class Data {
 				String KODE_CATATAN = connect.rs.getString("KODE_CATATAN");
 				Date TANGGAL_CATATAN = connect.rs.getDate("TANGGAL_CATATAN"); 
 				Integer KEMATIAN_JANTAN = connect.rs.getInt("KEMATIAN_JANTAN");
+				Integer SISA_JANTAN = connect.rs.getInt("SISA_JANTAN");
 				Integer KEMATIAN_BETINA = connect.rs.getInt("KEMATIAN_BETINA");
+				Integer SISA_BETINA = connect.rs.getInt("SISA_BETINA");
+				Integer TOTAL_SISA = connect.rs.getInt("TOTAL_SISA");
 				String KODE_PAKAN = connect.rs.getString("KODE_PAKAN");
 				Integer JUMLAH_PAKAN = connect.rs.getInt("JUMLAH_PAKAN");
 				String KODE_OBAT = connect.rs.getString("KODE_OBAT");
 				Integer JUMLAH_OBAT = connect.rs.getInt("JUMLAH_OBAT");
 				Integer PRODUKSI_TELUR = connect.rs.getInt("BIAYA_VARIABEL");
 				String KOMENTAR_KEMATIAN = connect.rs.getString("KOMENTAR_KEMATIAN");
-				Integer SISA_JANTAN = getJumlahJantan(KODE_CATATAN) - KEMATIAN_JANTAN;
-				Integer SISA_BETINA = getJumlahBetina(KODE_CATATAN) - KEMATIAN_BETINA;
-				Integer TOTAL_SISA = SISA_JANTAN + SISA_BETINA;
 				
 				
 				lists.add(new CatatanHarianDetail(
