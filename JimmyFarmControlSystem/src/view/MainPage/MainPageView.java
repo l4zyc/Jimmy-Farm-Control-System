@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import model.CatatanHarianUtama;
 import util.Data;
 import view.TableViewTemplate;
+import view.login.LoginView;
 public class MainPageView extends TableViewTemplate{
 	
 	private Scene scene;
@@ -34,6 +35,7 @@ public class MainPageView extends TableViewTemplate{
 		mainStage.setScene(scene);
 		mainStage.setTitle("Jimmy Farm Control System");
 		mainStage.show();
+		new LoginView();
 
 		new MainPageController(this);
 	}
