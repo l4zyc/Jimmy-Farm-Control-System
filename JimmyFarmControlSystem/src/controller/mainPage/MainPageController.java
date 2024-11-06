@@ -31,10 +31,9 @@ import view.login.LoginView;
 public class MainPageController extends MainTemplateController{
 	
 	private CatatanHarianUtama catatan;  // Selected item
-	private Data data = new Data();
 	
 	public MainPageController(MainPageView view) { 
-		super((MainPageView) view);
+		super(view);
 		setOnActionEventUpdate();
 		setOnActionEventInputData();
 		setOnActionEventDelete();
