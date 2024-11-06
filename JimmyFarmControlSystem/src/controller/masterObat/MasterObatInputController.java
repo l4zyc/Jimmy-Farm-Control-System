@@ -1,5 +1,6 @@
 package controller.masterObat;
 
+import controller.ControllerData;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -7,9 +8,8 @@ import model.DaftarObat;
 import util.Data;
 import view.MasterObat.ObatInputView;
 
-public class MasterObatInputController {
+public class MasterObatInputController extends ControllerData {
 	
-	private Data data = new Data();
 	ObatInputView view;
 	
 	public MasterObatInputController(ObatInputView view) {

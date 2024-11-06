@@ -3,6 +3,7 @@ package controller.mainPage;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import controller.ControllerData;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -12,10 +13,9 @@ import util.reusableMethod;
 import view.MainPage.MainPageInputDataView;
 import view.MainPage.MainPageUpdateView;
 
-public class MainPageUpdateController {
+public class MainPageUpdateController extends ControllerData{
 	
 	private MainPageUpdateView view;
-	private Data data = new Data();
 
 	public MainPageUpdateController(MainPageUpdateView mainPageUpdateView) {
 		this.view = mainPageUpdateView;

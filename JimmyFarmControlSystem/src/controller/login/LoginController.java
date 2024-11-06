@@ -2,6 +2,7 @@ package controller.login;
 
 import java.util.ArrayList;
 
+import controller.ControllerData;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,10 +16,9 @@ import util.reusableMethod;
 import view.login.LoginView;
 import view.register.RegisterView;
 
-public class LoginController {
+public class LoginController extends ControllerData{
 	
 	private LoginView view;
-	private Data data = new Data();
 	
 	public LoginController(LoginView loginView) {
 		this.view = loginView;

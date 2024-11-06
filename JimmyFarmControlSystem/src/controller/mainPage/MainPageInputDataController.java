@@ -1,6 +1,7 @@
 package controller.mainPage;
 import java.util.ArrayList;
 
+import controller.ControllerData;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,11 +22,10 @@ import view.MainPage.MainPageInputDataView;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class MainPageInputDataController {
+public class MainPageInputDataController extends ControllerData{
 	
 	private MainPageInputDataView view; 
 	private Connect connect = Connect.getInstance();
-	private Data data = new Data();
 	
 	public MainPageInputDataController(MainPageInputDataView mainpageinputdataview) { 
 		this.view = mainpageinputdataview; 
@@ -42,18 +42,13 @@ public class MainPageInputDataController {
 				Date date = Date.valueOf(dateConv);
 				String KodeKandang = view.getKodeKandang().getText();
 				String KeteranganJenis = view.getKeteranganJenis().getText();  
-				Integer JumlahAwalBetina = Integer.parseInt(view.getJumlahAwalBetina().getText());
-				Integer JumlahAwalJantan = Integer.parseInt(view.getJumlahAwalJantan().getText()); 
+				Integer JumlahAwalBetina = Integer.parseInt(view.getJumlahAwalBetina().getText().trim());
+				Integer JumlahAwalJantan = Integer.parseInt(view.getJumlahAwalJantan().getText().trim()); 
 				String Komentar = view.getKomentar().getText();
 				String kodeCatatan = data.getNewkodeCatatan();
-				
-				ObservableList<MsKandang> kandang = data.getMasterKandangData();
-				
-				for (MsKandang mskandang : kandang) {
-					if(!mskandang.getKodeKandang().equals(KodeKandang)) {
-						reusableMethod.showAlert(AlertType.ERROR, "Data", String.format("%s Does not exist", KodeKandang));
-						return;
-					}
+			
+				if(!kodeKandanginList(KodeKandang)) {
+					return;
 				}
 				
 				CatatanHarianUtama chu = new CatatanHarianUtama(kodeCatatan, date, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar);
@@ -75,5 +70,18 @@ public class MainPageInputDataController {
 			
 		});
 	} 
+	
+	public boolean kodeKandanginList(String KodeKandang) {
+		ObservableList<MsKandang> kandang = data.getMasterKandangData();
+		
+		for (MsKandang mskandang : kandang) {
+			if((mskandang.getKodeKandang().equals(KodeKandang))) {
+				return true;
+			}
+		}
+		
+		reusableMethod.showAlert(AlertType.ERROR, "Data", String.format("%s Does not exist", KodeKandang));
+		return false;
+	}
 	
 }

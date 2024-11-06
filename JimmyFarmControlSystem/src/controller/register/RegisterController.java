@@ -2,6 +2,7 @@ package controller.register;
 
 import java.util.ArrayList;
 
+import controller.ControllerData;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,9 +16,8 @@ import util.reusableMethod;
 import view.login.LoginView;
 import view.register.RegisterView;
 
-public class RegisterController {
+public class RegisterController extends ControllerData{
 	private RegisterView view;
-	private Data data = new Data();
 	
 	public RegisterController(RegisterView view) {
 		this.view = view;

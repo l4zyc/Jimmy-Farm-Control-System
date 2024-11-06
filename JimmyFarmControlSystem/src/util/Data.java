@@ -394,7 +394,6 @@ public class Data {
 				String KodeKandang = connect.rs.getString("KODE_KANDANG");
 				String Lokasi = connect.rs.getString("LOKASI");
 			
-			
 				kandang_list.add(new MsKandang(KodeKandang, 
 						Lokasi));
 			}
