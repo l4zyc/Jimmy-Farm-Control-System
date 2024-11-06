@@ -86,12 +86,12 @@ public class MasterObatController extends MainTemplateController{
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Delete Data");
 				alert.setTitle("Are you sure you want to delete the data?");
-				Optional op = alert.showAndWait();
+				Optional<ButtonType> op = alert.showAndWait();
 				
 				if(op.get().equals(ButtonType.OK)) {
 					data.deleteMasterObat(obat);
 					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
-					reusableMethod.refreshCatatanObatTable(((MasterObatView) view).getTableObat());
+					data.refreshMasterObat(((MasterObatView) view).getTableObat());
 				}
 			}
 		});

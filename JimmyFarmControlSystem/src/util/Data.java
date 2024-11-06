@@ -370,6 +370,14 @@ public class Data {
 		connect.execUpdate(query);
 	}
 	
+	public void deleteMasterPakan(DaftarPakan pakan) {
+		String deleteFromMasterPakan = String.format(
+				"DELETE FROM mspakan WHERE KODE_PAKAN = '%s'", 
+				pakan.getKodePakan());
+		
+		connect.execUpdate(deleteFromMasterPakan);
+	}
+	
 	public void refreshTablePakan(TableView<DaftarPakan> pakan) {
 		pakan.setItems(getMasterPakanData());
 	}

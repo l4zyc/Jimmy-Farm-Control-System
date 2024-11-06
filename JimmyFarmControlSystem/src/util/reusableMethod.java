@@ -1,13 +1,24 @@
 package util;
 
+import java.util.Optional;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import model.CatatanHarianUtama;
 import model.DaftarObat;
 
 public interface reusableMethod {
-	static Data data = new Data();
+	
+	public static Optional<ButtonType> confirmationAlert() {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Delete Data");
+		alert.setContentText("Do you want to delete this data ?");
+		Optional<ButtonType> optional = alert.showAndWait();
+		
+		return optional;
+	}
 	
 	public static void showAlert(AlertType type, String title, String content) {
 		Alert alert = new Alert(type);
@@ -15,15 +26,5 @@ public interface reusableMethod {
 		alert.setTitle(title);
 		
 		alert.showAndWait();
-	}
-	
-	public static void refreshTable(TableView<CatatanHarianUtama> catatan) {
-		catatan.getItems().clear();
-		catatan.setItems(data.getCatatanHarian());
-	}
-	
-	public static void refreshCatatanObatTable(TableView<DaftarObat> Obat_Table) {
-		Obat_Table.getItems().clear();
-		Obat_Table.setItems(data.getObatData());
 	}
 }

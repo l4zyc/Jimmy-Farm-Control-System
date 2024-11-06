@@ -1,12 +1,16 @@
 package controller.masterPakan;
 
+import java.util.Optional;
+
 import controller.MainTemplateController;
 import controller.mainPage.MainPageController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableSelectionModel;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import model.DaftarPakan;
 import util.reusableMethod;
@@ -46,6 +50,24 @@ public class MasterPakanController extends MainTemplateController{
 					new PakanUpdateView(((MasterPakanView) view), getSelectedPakan());
 				} else {
 					reusableMethod.showAlert(AlertType.ERROR, "Select item", "No Item was selected");
+				}
+			}
+		});
+		
+		((MasterPakanView)view).getDelete().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Delete Data");
+				alert.setContentText("Do you want to delete this data ?");
+				Optional<ButtonType> optional = alert.showAndWait();
+				
+				if(optional.get().equals(ButtonType.OK)) {
+					data.deleteMasterPakan(getSelectedPakan());
+					reusableMethod.showAlert(AlertType.INFORMATION, "Delete Data", "Data Deleted!");
+					data.refreshTablePakan(((MasterPakanView) view).getTablePakan());
 				}
 			}
 		});

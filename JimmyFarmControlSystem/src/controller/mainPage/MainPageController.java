@@ -71,15 +71,11 @@ public class MainPageController extends MainTemplateController{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Delete Data");
-				alert.setTitle("Are you sure you want to delete the data?");
-				Optional op = alert.showAndWait();
 				
-				if(op.get().equals(ButtonType.OK)) {
+				if(reusableMethod.confirmationAlert()) {
 					data.deleteCatatanHarianData(catatan);
 					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
-					reusableMethod.refreshTable(((MainPageView) view).getTable());
+					data.refreshCatatanHarianUtamaTable(((MainPageView) view).getTable());
 				}
 			}
 		});
