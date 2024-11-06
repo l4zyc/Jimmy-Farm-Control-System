@@ -538,4 +538,9 @@ public class Data {
 	public void refreshMasterSupplier(TableView<DaftarSupplier> Supplier) {
 		Supplier.setItems(getMasterSupplierData());
 	}
+	
+	public void refreshTableMasterPakan(TableView<DaftarPakan> table) {
+		table.getItems().clear();
+		table.setItems(null);
+	}
 } 
