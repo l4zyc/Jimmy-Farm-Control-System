@@ -635,9 +635,12 @@ public class Data {
 				String TOTAL_SISA = connect.rs.getString("TOTAL_SISA");
 				String KODE_PAKAN = connect.rs.getString("KODE_PAKAN");
 				Integer JUMLAH_PAKAN = connect.rs.getInt("JUMLAH_PAKAN");
+				String PAKAN_PER_EKOR = connect.rs.getString("PAKAN_PER_EKOR");
 				String KODE_OBAT = connect.rs.getString("KODE_OBAT");
-				Integer JUMLAH_OBAT = connect.rs.getInt("JUMLAH_OBAT");
-				Integer PRODUKSI_TELUR = connect.rs.getInt("BIAYA_VARIABEL");
+				String JUMLAH_OBAT = connect.rs.getString("JUMLAH_OBAT");
+				String PRODUKSI_TELUR = connect.rs.getString("PRODUKSI_TELUR");
+				String PERSENTASE_PRODUKSI = connect.rs.getString("PERSENTASE_PRODUKSI");
+				String BIAYA_VARIABEL = connect.rs.getString("BIAYA_VARIABEL");
 				String KOMENTAR_KEMATIAN = connect.rs.getString("KOMENTAR_KEMATIAN");
 				
 				
