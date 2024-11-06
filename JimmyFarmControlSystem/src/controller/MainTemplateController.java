@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -9,6 +10,7 @@ import view.MasterKandang.MasterKandangView;
 import view.MasterObat.MasterObatView;
 import view.MasterPakan.MasterPakanView;
 import view.MasterSupplier.MasterSupplierView;
+import view.login.LoginView;
 
 public class MainTemplateController extends ControllerData{
 	
