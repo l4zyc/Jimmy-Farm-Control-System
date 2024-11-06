@@ -72,7 +72,7 @@ public class MainPageController extends MainTemplateController{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				
-				if(reusableMethod.confirmationAlert()) {
+				if(reusableMethod.confirmationAlert().get().equals(ButtonType.OK)) {
 					data.deleteCatatanHarianData(catatan);
 					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
 					data.refreshCatatanHarianUtamaTable(((MainPageView) view).getTable());
