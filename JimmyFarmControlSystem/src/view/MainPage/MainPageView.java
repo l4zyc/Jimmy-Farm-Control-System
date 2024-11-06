@@ -34,7 +34,6 @@ public class MainPageView extends TableViewTemplate{
 		mainStage.setScene(scene);
 		mainStage.setTitle("Jimmy Farm Control System");
 		mainStage.show();
-		new LoginView();
 
 		new MainPageController(this);
 	}

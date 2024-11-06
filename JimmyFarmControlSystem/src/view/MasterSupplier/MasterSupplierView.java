@@ -23,8 +23,6 @@ public class MasterSupplierView extends TableViewTemplate{
 	private Scene scene;
 	public Stage SupplierStage;
 	
-	private GridPane sideBar, sideBarTop, sideBarBottom;
-	
 	public MasterSupplierView() {
 		// TODO Auto-generated method stub
 		init();
@@ -45,20 +43,14 @@ public class MasterSupplierView extends TableViewTemplate{
 	Button Update, Delete, InputData; //button
 	MenuBar mb;  //menubar
 	MenuItem Home, LogOut; //isi menu bar 
-	Menu action;//Buat action menu bar 
-	
-	//Daftar tabel samping
-	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
-	HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, MasterKandang, ButtonContainer;
+	Menu action;//Buat action menu bar  
+	HBox ButtonContainer;
 	
 	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
 		mainLayout = new BorderPane();
-		sideBar = new GridPane();
-		sideBarTop = new GridPane(); 
-		sideBarBottom = new GridPane();
 		TableLayout = new BorderPane();
 		scene = new Scene(mainLayout);  
 		
@@ -97,24 +89,6 @@ public class MasterSupplierView extends TableViewTemplate{
 								
 		ButtonContainer = new HBox();
 				
-		//Bagian Daftar Tabel
-		DaftarTabel = new Label("Daftar Tabel");  
-		CatatanHarian = new HBox(); //Bagian Catatan Harian 
-		CatatanHarianLbl2 = new Label("Catatan Harian");
-		CatatanHarian.getChildren().addAll(CatatanHarianLbl2);  
-		MasterPakan = new HBox(); //Bagian Master Pakan 
-		MasterPakanLbl = new Label("Master Pakan");
-		MasterPakan.getChildren().addAll(MasterPakanLbl);  
-		MasterObat = new HBox(); //Bagian Master Obat
-		MasterObatLbl = new Label("Master Obat");
-		MasterObat.getChildren().addAll(MasterObatLbl);  
-		MasterSupplier = new HBox(); //Bagian Master Supplier
-		titleLbl = new Label("Master Supplier"); 
-		MasterSupplier.getChildren().addAll(titleLbl);  
-		MasterKandang = new HBox(); // Bagian Master Kandang
-		MasterKandangLbl = new Label("Master Kandang");  
-		MasterKandang.getChildren().addAll(MasterKandangLbl); 
-				
 		JFCS = new Label("Jimmy Farm Control System");
 		
 		KodeSupplierTC.prefWidthProperty().bind(TableSupplier.widthProperty().multiply(0.15));
@@ -143,31 +117,17 @@ public class MasterSupplierView extends TableViewTemplate{
 		TableLayout.setCenter(TableSupplier);
 		TableLayout.setBottom(ButtonContainer);
 		
-		sideBar.add(sideBarTop, 0, 0);
-		sideBar.add(sideBarBottom, 0, 1);
-		sideBar.setVgap(10);
 		
 		BorderPane.setMargin(TableSupplier, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(titleLbl, Pos.CENTER);
 		titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 		
-		sideBarTop.add(JFCS, 0, 1);
 		
-		sideBarBottom.add(DaftarTabel, 0, 0);		
-		sideBarBottom.add(CatatanHarian, 0, 1);		
-		sideBarBottom.add(MasterPakan, 0, 2);		
-		sideBarBottom.add(MasterObat, 0, 3);		
-		sideBarBottom.add(MasterSupplier, 0, 4);
-		sideBarBottom.add(MasterKandang, 0, 5);
-		
-		sideBarBottom.setVgap(10);
 		ButtonContainer.setSpacing(10);
 		
-		sideBarBottom.setStyle("-fx-border-width: 2px 2px 0px 0px;"
-		+ "-fx-border-color: BLACK");
 		
 		TableLayout.setPadding(new Insets(80));
-		CatatanHarianLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+		getMasterSupplierLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		Home.setDisable(true);
 		
 		mainLayout.setLeft(getSideBar());
@@ -189,30 +149,6 @@ public class MasterSupplierView extends TableViewTemplate{
 
 	public void setSupplierStage(Stage supplierStage) {
 		SupplierStage = supplierStage;
-	}
-
-	public GridPane getSideBar() {
-		return sideBar;
-	}
-
-	public void setSideBar(GridPane sideBar) {
-		this.sideBar = sideBar;
-	}
-
-	public GridPane getSideBarTop() {
-		return sideBarTop;
-	}
-
-	public void setSideBarTop(GridPane sideBarTop) {
-		this.sideBarTop = sideBarTop;
-	}
-
-	public GridPane getSideBarBottom() {
-		return sideBarBottom;
-	}
-
-	public void setSideBarBottom(GridPane sideBarBottom) {
-		this.sideBarBottom = sideBarBottom;
 	}
 
 	public Label getTitleLbl() {
@@ -309,94 +245,6 @@ public class MasterSupplierView extends TableViewTemplate{
 
 	public void setAction(Menu action) {
 		this.action = action;
-	}
-
-	public Label getDaftarTabel() {
-		return DaftarTabel;
-	}
-
-	public void setDaftarTabel(Label daftarTabel) {
-		DaftarTabel = daftarTabel;
-	}
-
-	public Label getCatatanHarianLbl2() {
-		return CatatanHarianLbl2;
-	}
-
-	public void setCatatanHarianLbl2(Label catatanHarianLbl2) {
-		CatatanHarianLbl2 = catatanHarianLbl2;
-	}
-
-	public Label getMasterPakanLbl() {
-		return MasterPakanLbl;
-	}
-
-	public void setMasterPakanLbl(Label masterPakanLbl) {
-		MasterPakanLbl = masterPakanLbl;
-	}
-
-	public Label getMasterObatLbl() {
-		return MasterObatLbl;
-	}
-
-	public void setMasterObatLbl(Label masterObatLbl) {
-		MasterObatLbl = masterObatLbl;
-	}
-
-	public Label getMasterSupplierLbl() {
-		return MasterSupplierLbl;
-	}
-
-	public void setMasterSupplierLbl(Label masterSupplierLbl) {
-		MasterSupplierLbl = masterSupplierLbl;
-	}
-
-	public Label getMasterKandangLbl() {
-		return MasterKandangLbl;
-	}
-
-	public void setMasterKandangLbl(Label masterKandangLbl) {
-		MasterKandangLbl = masterKandangLbl;
-	}
-
-	public HBox getCatatanHarian() {
-		return CatatanHarian;
-	}
-
-	public void setCatatanHarian(HBox catatanHarian) {
-		CatatanHarian = catatanHarian;
-	}
-
-	public HBox getMasterPakan() {
-		return MasterPakan;
-	}
-
-	public void setMasterPakan(HBox masterPakan) {
-		MasterPakan = masterPakan;
-	}
-
-	public HBox getMasterObat() {
-		return MasterObat;
-	}
-
-	public void setMasterObat(HBox masterObat) {
-		MasterObat = masterObat;
-	}
-
-	public HBox getMasterSupplier() {
-		return MasterSupplier;
-	}
-
-	public void setMasterSupplier(HBox masterSupplier) {
-		MasterSupplier = masterSupplier;
-	}
-
-	public HBox getMasterKandang() {
-		return MasterKandang;
-	}
-
-	public void setMasterKandang(HBox masterKandang) {
-		MasterKandang = masterKandang;
 	}
 
 	public HBox getButtonContainer() {
