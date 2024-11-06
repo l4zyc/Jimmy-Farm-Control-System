@@ -18,7 +18,6 @@ public class MasterKandangView extends TableViewTemplate{
 
 	private Scene scene;
 	private Stage KandangStage;
-	private Data data = new Data();
 	
 	private GridPane sideBar, sideBarTop, sideBarBottom;
 	
@@ -40,9 +39,6 @@ public class MasterKandangView extends TableViewTemplate{
 	TableView<MsKandang> TableKandang;
 	TableColumn<MsKandang, String> KodeKandangTC, LokasiTC;
 	Button Update, Delete, InputData; //button
-	MenuBar mb;  //menubar
-	MenuItem Home, LogOut; //isi menu bar 
-	Menu action;//Buat action menu bar 
 	
 	//Daftar tabel samping
 	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
@@ -86,10 +82,6 @@ public class MasterKandangView extends TableViewTemplate{
 		InputData.setMinWidth(50);
 										
 		//Bagian Menubar
-		mb = new MenuBar();  
-		action = new Menu("Action"); 
-		Home = new MenuItem("Home"); 
-		LogOut = new MenuItem("Log Out"); 
 										
 		ButtonContainer = new HBox();
 						
@@ -124,9 +116,6 @@ public class MasterKandangView extends TableViewTemplate{
 	@Override
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
-		
-		mb.getMenus().add(action);
-		action.getItems().addAll(Home, LogOut); 
 		
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
@@ -165,6 +154,7 @@ public class MasterKandangView extends TableViewTemplate{
 		TableLayout.setPadding(new Insets(80));
 		getMasterKandangLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		
+		mainLayout.setTop(getMb());
 		mainLayout.setCenter(TableLayout);
 		mainLayout.setLeft(getSideBar());
 	}
@@ -225,21 +215,6 @@ public class MasterKandangView extends TableViewTemplate{
 		return InputData;
 	}
 
-	public MenuBar getMb() {
-		return mb;
-	}
-
-	public MenuItem getHome() {
-		return Home;
-	}
-
-	public MenuItem getLogOut() {
-		return LogOut;
-	}
-
-	public Menu getAction() {
-		return action;
-	}
 
 	public Label getDaftarTabel() {
 		return DaftarTabel;
@@ -345,21 +320,6 @@ public class MasterKandangView extends TableViewTemplate{
 		InputData = inputData;
 	}
 
-	public void setMb(MenuBar mb) {
-		this.mb = mb;
-	}
-
-	public void setHome(MenuItem home) {
-		Home = home;
-	}
-
-	public void setLogOut(MenuItem logOut) {
-		LogOut = logOut;
-	}
-
-	public void setAction(Menu action) {
-		this.action = action;
-	}
 
 	public void setDaftarTabel(Label daftarTabel) {
 		DaftarTabel = daftarTabel;
