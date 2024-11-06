@@ -3,6 +3,7 @@ package view.CatatanDetail;
 import view.TableViewTemplate;
 import java.sql.Date;
 
+import controller.detailCatatan.DetailCatatanController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -26,7 +27,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	private Scene scene;
 	public Stage stage;
 	
-	Label CatatanHarianLbl;
+	Label titleLbl;
 	TableView<CatatanHarianDetail> table;
 	
 	TableColumn<CatatanHarianDetail, Integer> jantanTC, betinaTC;
@@ -42,6 +43,8 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		stage.setScene(scene);
 		stage.setTitle("Jimmy Farm Control System Detail");
 		stage.show();
+		
+		new DetailCatatanController(this);
 	}
 
 	@Override
@@ -133,6 +136,8 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 
 		table.getItems().addAll(data.getCatatanHarianDetail());
 
+		titleLbl = new Label("Detail Catatan Harian");
+		
 		// Button configuration
 		Update = new Button("Update");
 		Update.setFont(Font.font("Inter", 20));
@@ -147,6 +152,10 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		InputData.setMinWidth(50);
 
 		ButtonContainer = new HBox();
+		HBox leftBtnContainer = new HBox();
+		leftBtnContainer.getChildren().addAll(InputData, Update);
+		
+		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
 
 		// Set widths of table columns dynamically based on Table width
 		double columnWidth = 0.15;
@@ -192,8 +201,10 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		persentaseProduksiTC.setStyle(alignmentStyle);
 		biayaVariabelTC.setStyle(alignmentStyle);
 		komentarTC.setStyle(alignmentStyle);
-
-
+		TableLayout.setCenter(table);
+		TableLayout.setTop(titleLbl);
+		TableLayout.setBottom(ButtonContainer);
+		
 		mainLayout.setTop(getMb()); 
 		mainLayout.setCenter(TableLayout);
 		mainLayout.setLeft(getSideBar());
@@ -203,6 +214,48 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
 		
+		TableLayout.setPadding(new Insets(50));
+		BorderPane.setMargin(table, new Insets(15, 0, 15, 0));
+		BorderPane.setAlignment(titleLbl, Pos.CENTER);
+		titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+		
+		ButtonContainer.setSpacing(20);
+		
+		getSideBarCatatanHarianLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
 	}
+
+	public TableView<CatatanHarianDetail> getTable() {
+		return table;
+	}
+
+	public void setTable(TableView<CatatanHarianDetail> table) {
+		this.table = table;
+	}
+
+	public Button getUpdate() {
+		return Update;
+	}
+
+	public void setUpdate(Button update) {
+		Update = update;
+	}
+
+	public Button getDelete() {
+		return Delete;
+	}
+
+	public void setDelete(Button delete) {
+		Delete = delete;
+	}
+
+	public Button getInputData() {
+		return InputData;
+	}
+
+	public void setInputData(Button inputData) {
+		InputData = inputData;
+	}
+	
+	
 
 }
