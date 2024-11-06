@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Main;
 import model.CatatanHarianUtama;
+import model.MsKandang;
 import util.Connect;
 import util.Data;
 import util.reusableMethod;
@@ -45,6 +46,15 @@ public class MainPageInputDataController {
 				Integer JumlahAwalJantan = Integer.parseInt(view.getJumlahAwalJantan().getText()); 
 				String Komentar = view.getKomentar().getText();
 				String kodeCatatan = data.getNewkodeCatatan();
+				
+				ObservableList<MsKandang> kandang = data.getMasterKandangData();
+				
+				for (MsKandang mskandang : kandang) {
+					if(!mskandang.getKodeKandang().equals(KodeKandang)) {
+						reusableMethod.showAlert(AlertType.ERROR, "Data", String.format("%s Does not exist", KodeKandang));
+						return;
+					}
+				}
 				
 				CatatanHarianUtama chu = new CatatanHarianUtama(kodeCatatan, date, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar);
 				
