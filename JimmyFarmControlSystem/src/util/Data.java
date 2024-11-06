@@ -1,12 +1,14 @@
 package util;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.Date;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.Pane;
 import javafx.scene.control.Alert.AlertType;
 import model.CatatanHarianDetail;
 import model.CatatanHarianUtama;
@@ -543,8 +545,77 @@ public class Data {
 		table.getItems().clear();
 		table.setItems(null);
 	}
+
+//========================================================================================	
+//Catatan Harian Detail
+	public Integer calculateAge(Date Date) {
+		LocalDate currDate = LocalDate.now();
+		LocalDate startDate = Date.toLocalDate();
+			
+		Integer year = currDate.getYear() - startDate.getYear();
+		
+		if(currDate.getMonthValue() < startDate.getMonthValue()
+				||
+		        (currDate.getMonthValue() == startDate.getMonthValue() 
+		        && currDate.getDayOfMonth() < startDate.getDayOfMonth())) {
+			year--;
+		}
+		
+		return year;
+	}
 	
-	//Catatan Harian Detail
+	public Integer calculateWeeks(Date Date) {
+		LocalDate currDate = LocalDate.now();
+		LocalDate startDate = Date.toLocalDate();
+		
+	    long daysDifference = currDate.toEpochDay() - startDate.toEpochDay();
+
+	    int weeks = (int) (daysDifference / 7);
+
+	    return weeks;
+	}
+	
+	public Integer getJumlahJantan(String KODE_CATATAN) {
+		Integer JUMLAH_JANTAN = 0;
+		
+		
+		String catatanUtamaQuery = String.format(
+				"SELECT * FROM catatanharianutama "
+				+ "WHERE KODE_CATATAN = '%s'", KODE_CATATAN);
+		
+		connect.rs = connect.execQuery(catatanUtamaQuery);
+		
+		try {
+			if(connect.rs.next()) {
+				JUMLAH_JANTAN = connect.rs.getInt("JUMLAH_AWAL_JANTAN");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return JUMLAH_JANTAN;
+	}
+	
+	public Integer getJumlahBetina(String KODE_CATATAN) {
+		Integer JUMLAH_BETINA = 0;
+		
+		String catatanUtamaQuery = String.format(
+				"SELECT * FROM catatanharianutama "
+				+ "WHERE KODE_CATATAN = '%s'", KODE_CATATAN);
+		
+		connect.rs = connect.execQuery(catatanUtamaQuery);
+		try {
+			if(connect.rs.next()) {
+				JUMLAH_BETINA = connect.rs.getInt("JUMLAH_AWAL_JANTAN");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return JUMLAH_BETINA;
+	}
 	
 	public ObservableList<CatatanHarianDetail> getCatatanHarianDetail() {
 		String query = "SELECT * FROM CatatanHarianDetail";
@@ -554,6 +625,7 @@ public class Data {
 		
 		try {
 			while(connect.rs.next()) {
+				
 				String KODE_CATATAN = connect.rs.getString("KODE_CATATAN");
 				Date TANGGAL_CATATAN = connect.rs.getDate("TANGGAL_CATATAN"); 
 				Integer KEMATIAN_JANTAN = connect.rs.getInt("KEMATIAN_JANTAN");
@@ -564,19 +636,24 @@ public class Data {
 				Integer JUMLAH_OBAT = connect.rs.getInt("JUMLAH_OBAT");
 				Integer PRODUKSI_TELUR = connect.rs.getInt("BIAYA_VARIABEL");
 				String KOMENTAR_KEMATIAN = connect.rs.getString("KOMENTAR_KEMATIAN");
-			
+				Integer SISA_JANTAN = getJumlahJantan(KODE_CATATAN) - KEMATIAN_JANTAN;
+				Integer SISA_BETINA = getJumlahBetina(KODE_CATATAN) - KEMATIAN_BETINA;
+				Integer TOTAL_SISA = SISA_JANTAN + SISA_BETINA;
+				
+				
 				lists.add(new CatatanHarianDetail(
-						KODE_CATATAN, 
-						TANGGAL_CATATAN, 
-						KEMATIAN_JANTAN, 
-						KEMATIAN_BETINA, 
-						KODE_PAKAN, 
-						JUMLAH_PAKAN, 
-						KODE_OBAT, 
-						JUMLAH_OBAT, 
-						PRODUKSI_TELUR, 
-						PRODUKSI_TELUR, 
-						KOMENTAR_KEMATIAN));
+						KODE_CATATAN,
+						TANGGAL_CATATAN,
+						calculateAge(TANGGAL_CATATAN),
+						calculateWeeks(TANGGAL_CATATAN),
+						KEMATIAN_JANTAN,
+						SISA_JANTAN,
+						KEMATIAN_BETINA,
+						SISA_BETINA,
+						TOTAL_SISA,
+						KODE_PAKAN,
+						JUMLAH_PAKAN
+					));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
