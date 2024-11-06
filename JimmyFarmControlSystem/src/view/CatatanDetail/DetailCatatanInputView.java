@@ -106,6 +106,8 @@ public class DetailCatatanInputView extends ViewTemplate{
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
 		
+		KomentarKematianTA.setMaxWidth(150);
+		
 		bp.setPadding(new Insets(50));
 		form1.setAlignment(Pos.CENTER);
 		BorderPane.setAlignment(Save, Pos.CENTER);
