@@ -628,13 +628,16 @@ public class Data {
 				
 				String KODE_CATATAN = connect.rs.getString("KODE_CATATAN");
 				Date TANGGAL_CATATAN = connect.rs.getDate("TANGGAL_CATATAN"); 
+				String UMUR = connect.rs.getString("UMUR");
+				Integer MINGGU = connect.rs.getInt("MINGGU");
 				Integer KEMATIAN_JANTAN = connect.rs.getInt("KEMATIAN_JANTAN");
 				Integer SISA_JANTAN = connect.rs.getInt("SISA_JANTAN");
 				Integer KEMATIAN_BETINA = connect.rs.getInt("KEMATIAN_BETINA");
 				Integer SISA_BETINA = connect.rs.getInt("SISA_BETINA");
-				String TOTAL_SISA = connect.rs.getString("TOTAL_SISA");
+				Integer TOTAL_SISA = connect.rs.getInt("TOTAL_SISA");
+				String PERBANDINGAN = connect.rs.getString("PERBANDINGAN_JANTAN_BETINA");
 				String KODE_PAKAN = connect.rs.getString("KODE_PAKAN");
-				Integer JUMLAH_PAKAN = connect.rs.getInt("JUMLAH_PAKAN");
+				String JUMLAH_PAKAN = connect.rs.getString("JUMLAH_PAKAN");
 				String PAKAN_PER_EKOR = connect.rs.getString("PAKAN_PER_EKOR");
 				String KODE_OBAT = connect.rs.getString("KODE_OBAT");
 				String JUMLAH_OBAT = connect.rs.getString("JUMLAH_OBAT");
@@ -643,20 +646,34 @@ public class Data {
 				String BIAYA_VARIABEL = connect.rs.getString("BIAYA_VARIABEL");
 				String KOMENTAR_KEMATIAN = connect.rs.getString("KOMENTAR_KEMATIAN");
 				
+				String[] perbandingan = PERBANDINGAN.split(":");
+				Integer PerbandinganJantan = Integer.parseInt(perbandingan[0]);
+				Integer PerbandinganBetina = Integer.parseInt(perbandingan[1]);
 				
-				lists.add(new CatatanHarianDetail(
-						KODE_CATATAN,
-						TANGGAL_CATATAN,
-						calculateAge(TANGGAL_CATATAN),
-						calculateWeeks(TANGGAL_CATATAN),
-						KEMATIAN_JANTAN,
-						SISA_JANTAN,
-						KEMATIAN_BETINA,
-						SISA_BETINA,
-						TOTAL_SISA,
-						KODE_PAKAN,
-						JUMLAH_PAKAN
-					));
+				lists.add(
+							new CatatanHarianDetail(
+									KODE_CATATAN,
+									TANGGAL_CATATAN,
+									UMUR,
+									MINGGU,
+									KEMATIAN_JANTAN,
+									SISA_JANTAN,
+									KEMATIAN_BETINA,
+									SISA_BETINA,
+									TOTAL_SISA,
+									PerbandinganJantan,
+									PerbandinganBetina,
+									KODE_PAKAN,
+									JUMLAH_PAKAN,
+									PAKAN_PER_EKOR,
+									KODE_OBAT,
+									JUMLAH_OBAT,
+									PRODUKSI_TELUR,
+									PERSENTASE_PRODUKSI,
+									BIAYA_VARIABEL,
+									KOMENTAR_KEMATIAN
+									)
+						);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

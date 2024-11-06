@@ -27,12 +27,9 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	public Stage stage;
 	
 	Label CatatanHarianLbl;
-	TableView<CatatanHarianDetail> Table;
-	TableColumn<CatatanHarianDetail, String> KodePakanTC, KodeObatTC, KomentarTC;
-	TableColumn<CatatanHarianDetail, Date> TanggalTC;
-	TableColumn<CatatanHarianDetail, Integer> UmurTC, MingguTC, KematianJantanTC, KematianBetinaTC, JumlahPakanTC, JumlahObatTC, ProduksiTelurTC, BiayaVariabelTC; 
-	TableColumn<CatatanHarianDetail, Integer> SisaJantanTC, SisaBetinaTC, SisaTotalTC, PakanPerEkorTC;
-	TableColumn<CatatanHarianDetail, Double> PerbandinganJantanBetinaTC, PersentaseProduksiTC;
+	TableView<CatatanHarianDetail> table;
+	
+	TableColumn<CatatanHarianDetail, Integer> jantanTC, betinaTC;
 	Button Update, Delete, InputData;
 	HBox ButtonContainer;
 
@@ -52,143 +49,150 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		mainLayout = new BorderPane();
 		TableLayout = new BorderPane();
 		scene = new Scene(mainLayout); 
+		
+		table = new TableView<>();
 
-		Table = new TableView<CatatanHarianDetail>();
-		//column Tanggal Masuk 
-		TanggalTC = new TableColumn<CatatanHarianDetail, Date>("Tanggal"); 
-		TanggalTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Date>("Tanggal")); 
+		// Main Columns
+		TableColumn<CatatanHarianDetail, Date> tanggalTC = new TableColumn<>("Tanggal");
+		tanggalTC.setCellValueFactory(new PropertyValueFactory<>("tanggalCatatan"));
 
-		//column Umur
-		UmurTC = new TableColumn<CatatanHarianDetail, Integer>("Umur");
-		UmurTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Umur"));
-		
-		//column Minggu 
-		MingguTC = new TableColumn<CatatanHarianDetail, Integer>("Minggu");
-		MingguTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Minggu"));
+		TableColumn<CatatanHarianDetail, String> umurTC = new TableColumn<>("Umur");
+		umurTC.setCellValueFactory(new PropertyValueFactory<>("umur"));
 
-		//column Kematian Jantan
-		KematianJantanTC = new TableColumn<CatatanHarianDetail, Integer>("Kematian Jantan"); 
-		KematianJantanTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Kematian Jantan")); 
-		
-		//column sisa Jantan
-		SisaJantanTC = new TableColumn<CatatanHarianDetail, Integer>("Sisa Jantan"); 
-		SisaJantanTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Sisa Jantan")); 
+		TableColumn<CatatanHarianDetail, Integer> mingguTC = new TableColumn<>("Minggu");
+		mingguTC.setCellValueFactory(new PropertyValueFactory<>("minggu"));
 
-		//column Kematian Betina
-		KematianBetinaTC = new TableColumn<CatatanHarianDetail, Integer>("Kematian Betina"); 
-		KematianBetinaTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Kematian Betina")); 
-		
-		//column sisa Betina
-		SisaBetinaTC = new TableColumn<CatatanHarianDetail, Integer>("Sisa Betina"); 
-		SisaBetinaTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Sisa Betina")); 
+		// Nested Columns for "Jantan"
+		TableColumn<CatatanHarianDetail, Integer> kematianJantanTC = new TableColumn<>("Kematian");
+		kematianJantanTC.setCellValueFactory(new PropertyValueFactory<>("kematianJantan"));
 
-		//column Total Sisa
-		SisaTotalTC = new TableColumn<CatatanHarianDetail, Integer>("Total Sisa"); 
-		SisaTotalTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Total Sisa")); 
-		
-		//column Perbandingan Jantan Betina
-		PerbandinganJantanBetinaTC = new TableColumn<CatatanHarianDetail, Double>("Perbandingan Jantan Betina"); 
-		PerbandinganJantanBetinaTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Double>("PPerbandingan Jantan Betina"));
-		
-		//column Kode Pakan 
-		KodePakanTC = new TableColumn<CatatanHarianDetail, String>("Kode Pakan"); 
-		KodePakanTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, String>("Kode Pakan"));
-		
-		//column Jumlah Pakan
-		JumlahPakanTC = new TableColumn<CatatanHarianDetail, Integer>("Jumlah Pakan"); 
-		JumlahPakanTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Jumlah Pakan")); 
+		TableColumn<CatatanHarianDetail, Integer> sisaJantanTC = new TableColumn<>("Sisa");
+		sisaJantanTC.setCellValueFactory(new PropertyValueFactory<>("sisaJantan"));
 
-		//column Pakan per ekor
-		PakanPerEkorTC = new TableColumn<CatatanHarianDetail, Integer>("Pakan per ekor"); 
-		PakanPerEkorTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Pakan per ekor"));
+		TableColumn<CatatanHarianDetail, Integer> jantanTC = new TableColumn<>("Jantan");
+		jantanTC.getColumns().addAll(kematianJantanTC, sisaJantanTC);
 
-		//column Kode Obat 
-		KodeObatTC = new TableColumn<CatatanHarianDetail, String>("Kode Obat"); 
-		KodeObatTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, String>("Kode Obat"));
-		
-		//column Jumlah Obat
-		JumlahObatTC = new TableColumn<CatatanHarianDetail, Integer>("Jumlah Obat"); 
-		JumlahObatTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Jumlah Obat")); 
+		// Nested Columns for "Betina"
+		TableColumn<CatatanHarianDetail, Integer> kematianBetinaTC = new TableColumn<>("Kematian");
+		kematianBetinaTC.setCellValueFactory(new PropertyValueFactory<>("kematianBetina"));
 
-		//column Produksi Telur
-		ProduksiTelurTC = new TableColumn<CatatanHarianDetail, Integer>("Produksi Telur"); 
-		ProduksiTelurTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Produksi Telur")); 		
-		
-		//column persentase produksi
-		PersentaseProduksiTC = new TableColumn<CatatanHarianDetail, Double>("Persentase Produksi"); 
-		PersentaseProduksiTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Double>("Persentase Produksi")); 		
-		
-		//column Biaya Variabel
-		BiayaVariabelTC = new TableColumn<CatatanHarianDetail, Integer>("Biaya Variabel"); 
-		BiayaVariabelTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, Integer>("Biaya Variabel")); 		
+		TableColumn<CatatanHarianDetail, Integer> sisaBetinaTC = new TableColumn<>("Sisa");
+		sisaBetinaTC.setCellValueFactory(new PropertyValueFactory<>("sisaBetina"));
 
-		//column Komentar
-		KomentarTC = new TableColumn<CatatanHarianDetail, String>("Komentar"); 
-		KomentarTC.setCellValueFactory(new PropertyValueFactory<CatatanHarianDetail, String>("Komentar")); 				
+		TableColumn<CatatanHarianDetail, Integer> betinaTC = new TableColumn<>("Betina");
+		betinaTC.getColumns().addAll(kematianBetinaTC, sisaBetinaTC);
 
-		Table.getColumns().addAll(TanggalTC, UmurTC, MingguTC, KematianJantanTC, SisaJantanTC, KematianBetinaTC
-		, SisaBetinaTC, SisaTotalTC, PerbandinganJantanBetinaTC, 
-		KodePakanTC, JumlahPakanTC, PakanPerEkorTC, KodeObatTC, JumlahObatTC, 
-		ProduksiTelurTC, PersentaseProduksiTC, BiayaVariabelTC, KomentarTC);
-		
-		Table.getItems().addAll(data.getCatatanHarian());
-		
-		//Bagian button update 
-		Update = new Button("Update"); 
-		Update.setFont(Font.font("Inter", 20)); 
-		Update.setMinWidth(50); 
-		
-		//Bagian button Delete 
-		Delete = new Button("Delete"); 
-		Delete.setFont(Font.font("Inter", 20)); 
-		Delete.setMinWidth(50); 
-		
-		//Bagian button Input Data 
-		InputData = new Button("Input Data"); 
+		// Additional Main Columns
+		TableColumn<CatatanHarianDetail, Integer> totalSisaTC = new TableColumn<>("Total Sisa");
+		totalSisaTC.setCellValueFactory(new PropertyValueFactory<>("totalSisa"));
+
+		// Nested Columns for "Perbandingan Jantan Betina"
+		TableColumn<CatatanHarianDetail, Integer> perbandinganJantanTC = new TableColumn<>("Jantan Ratio");
+		perbandinganJantanTC.setCellValueFactory(new PropertyValueFactory<>("perbandinganJantan"));
+
+		TableColumn<CatatanHarianDetail, Integer> perbandinganBetinaTC = new TableColumn<>("Betina Ratio");
+		perbandinganBetinaTC.setCellValueFactory(new PropertyValueFactory<>("perbandinganBetina"));
+
+		TableColumn<CatatanHarianDetail, Integer> perbandinganJantanBetinaNestedTC = new TableColumn<>("Perbandingan Jantan Betina");
+		perbandinganJantanBetinaNestedTC.getColumns().addAll(perbandinganJantanTC, perbandinganBetinaTC);
+
+		// Remaining Columns
+		TableColumn<CatatanHarianDetail, String> kodePakanTC = new TableColumn<>("Kode Pakan");
+		kodePakanTC.setCellValueFactory(new PropertyValueFactory<>("kodePakan"));
+
+		TableColumn<CatatanHarianDetail, String> jumlahPakanTC = new TableColumn<>("Jumlah Pakan");
+		jumlahPakanTC.setCellValueFactory(new PropertyValueFactory<>("jumlahPakan"));
+
+		TableColumn<CatatanHarianDetail, String> pakanPerEkorTC = new TableColumn<>("Pakan per ekor");
+		pakanPerEkorTC.setCellValueFactory(new PropertyValueFactory<>("pakanPerEkor"));
+
+		TableColumn<CatatanHarianDetail, String> kodeObatTC = new TableColumn<>("Kode Obat");
+		kodeObatTC.setCellValueFactory(new PropertyValueFactory<>("kodeObat"));
+
+		TableColumn<CatatanHarianDetail, String> jumlahObatTC = new TableColumn<>("Jumlah Obat");
+		jumlahObatTC.setCellValueFactory(new PropertyValueFactory<>("jumlahObat"));
+
+		TableColumn<CatatanHarianDetail, String> produksiTelurTC = new TableColumn<>("Produksi Telur");
+		produksiTelurTC.setCellValueFactory(new PropertyValueFactory<>("produksiTelur"));
+
+		TableColumn<CatatanHarianDetail, String> persentaseProduksiTC = new TableColumn<>("Persentase Produksi");
+		persentaseProduksiTC.setCellValueFactory(new PropertyValueFactory<>("persentaseProduksi"));
+
+		TableColumn<CatatanHarianDetail, String> biayaVariabelTC = new TableColumn<>("Biaya Variabel");
+		biayaVariabelTC.setCellValueFactory(new PropertyValueFactory<>("biayaVariabel"));
+
+		TableColumn<CatatanHarianDetail, String> komentarTC = new TableColumn<>("Komentar Kematian");
+		komentarTC.setCellValueFactory(new PropertyValueFactory<>("komentarKematian"));
+
+		// Add all columns to the table
+		table.getColumns().addAll(
+		    tanggalTC, umurTC, mingguTC, jantanTC, betinaTC, totalSisaTC, perbandinganJantanBetinaNestedTC,
+		    kodePakanTC, jumlahPakanTC, pakanPerEkorTC, kodeObatTC, jumlahObatTC, 
+		    produksiTelurTC, persentaseProduksiTC, biayaVariabelTC, komentarTC
+		);
+
+		table.getItems().addAll(data.getCatatanHarianDetail());
+
+		// Button configuration
+		Update = new Button("Update");
+		Update.setFont(Font.font("Inter", 20));
+		Update.setMinWidth(50);
+
+		Delete = new Button("Delete");
+		Delete.setFont(Font.font("Inter", 20));
+		Delete.setMinWidth(50);
+
+		InputData = new Button("Input Data");
 		InputData.setFont(Font.font("Inter", 20));
 		InputData.setMinWidth(50);
-		
-		
-		ButtonContainer = new HBox();
-		
-		
-		TanggalTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		UmurTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		MingguTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.12));
-		KematianJantanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.12));
-		SisaJantanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		KematianBetinaTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		SisaBetinaTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		SisaTotalTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));		
-		PerbandinganJantanBetinaTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		KodePakanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		JumlahPakanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		PakanPerEkorTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		KodeObatTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		JumlahObatTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		ProduksiTelurTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		PersentaseProduksiTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		BiayaVariabelTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
-		KomentarTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 
-	
-		TanggalTC.setStyle("-fx-alignment: CENTER;");
-		UmurTC.setStyle("-fx-alignment: CENTER;");
-		MingguTC.setStyle("-fx-alignment: CENTER;");
-		KematianJantanTC.setStyle("-fx-alignment: CENTER;");
-		SisaJantanTC.setStyle("-fx-alignment: CENTER;");
-		KematianBetinaTC.setStyle("-fx-alignment: CENTER;");
-		SisaBetinaTC.setStyle("-fx-alignment: CENTER;");
-		SisaTotalTC.setStyle("-fx-alignment: CENTER;");
-		PerbandinganJantanBetinaTC.setStyle("-fx-alignment: CENTER;");
-		KodePakanTC.setStyle("-fx-alignment: CENTER;");
-		PakanPerEkorTC.setStyle("-fx-alignment: CENTER;");
-		KodeObatTC.setStyle("-fx-alignment: CENTER;");
-		JumlahObatTC.setStyle("-fx-alignment: CENTER;");
-		ProduksiTelurTC.setStyle("-fx-alignment: CENTER;");
-		PersentaseProduksiTC.setStyle("-fx-alignment: CENTER;");
-		BiayaVariabelTC.setStyle("-fx-alignment: CENTER;");
-		KomentarTC.setStyle("-fx-alignment: CENTER;");
+		ButtonContainer = new HBox();
+
+		// Set widths of table columns dynamically based on Table width
+		double columnWidth = 0.15;
+		double columnWidthNested = 0.12;
+
+		// Main Columns
+		tanggalTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		umurTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		mingguTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
+		kematianJantanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
+		sisaJantanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		kematianBetinaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
+		sisaBetinaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		totalSisaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		perbandinganJantanBetinaNestedTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
+		kodePakanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		jumlahPakanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		pakanPerEkorTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		kodeObatTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		jumlahObatTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		produksiTelurTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		persentaseProduksiTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		biayaVariabelTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		komentarTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+
+		// Set alignment for each column
+		String alignmentStyle = "-fx-alignment: CENTER;";
+
+		tanggalTC.setStyle(alignmentStyle);
+		umurTC.setStyle(alignmentStyle);
+		mingguTC.setStyle(alignmentStyle);
+		kematianJantanTC.setStyle(alignmentStyle);
+		sisaJantanTC.setStyle(alignmentStyle);
+		kematianBetinaTC.setStyle(alignmentStyle);
+		sisaBetinaTC.setStyle(alignmentStyle);
+		totalSisaTC.setStyle(alignmentStyle);
+		perbandinganJantanBetinaNestedTC.setStyle(alignmentStyle);
+		kodePakanTC.setStyle(alignmentStyle);
+		pakanPerEkorTC.setStyle(alignmentStyle);
+		kodeObatTC.setStyle(alignmentStyle);
+		jumlahObatTC.setStyle(alignmentStyle);
+		produksiTelurTC.setStyle(alignmentStyle);
+		persentaseProduksiTC.setStyle(alignmentStyle);
+		biayaVariabelTC.setStyle(alignmentStyle);
+		komentarTC.setStyle(alignmentStyle);
+
 
 		mainLayout.setTop(getMb()); 
 		mainLayout.setCenter(TableLayout);
