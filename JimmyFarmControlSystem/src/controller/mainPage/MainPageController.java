@@ -39,7 +39,6 @@ public class MainPageController extends MainTemplateController{
 		setOnActionEventDelete();
 		setOnLogOut();
 		setOnMouseClicked(); 
-		setOnMouseClickedTemplate();
 	}
 	
 	// Set up the selection handler

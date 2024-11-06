@@ -36,7 +36,6 @@ public class MasterObatController extends MainTemplateController{
 	
 	public MasterObatController(MasterObatView view) { 
 		super((MasterObatView)view);
-		setOnMouseClickedTemplate();
 		setOnActionEventUpdate();
 		setOnActionEventInputData();
 		setOnActionEventDelete();

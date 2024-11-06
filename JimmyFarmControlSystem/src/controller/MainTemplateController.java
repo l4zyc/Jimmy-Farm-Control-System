@@ -18,6 +18,7 @@ public class MainTemplateController extends ControllerData{
 
 	public MainTemplateController(TableViewTemplate view) {
 		this.view = view;
+		setOnMouseClickedTemplate();
 	}
 	
 	public void setOnMouseClickedTemplate() {

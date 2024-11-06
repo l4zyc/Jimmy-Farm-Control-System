@@ -27,7 +27,6 @@ public class MasterPakanView extends TableViewTemplate{
 	
 	public MasterPakanView() {
 		// TODO Auto-generated method stub
-		setSideBar();
 		init();
 		arrangeComponent();
 		PakanStage = new Stage();
@@ -45,13 +44,8 @@ public class MasterPakanView extends TableViewTemplate{
 	TableColumn<DaftarPakan, String> KodePakanTC, NamaPakanTC, JenisPakanTC;
 	TableColumn<DaftarPakan, Integer> HargaTC; 
 	Button Update, Delete, InputData; //button
-	MenuBar mb;  //menubar
-	MenuItem Home, LogOut; //isi menu bar 
-	Menu action;//Buat action menu bar 
-	
-	//Daftar tabel samping
-	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
-	HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, MasterKandang, ButtonContainer;
+	 
+	HBox ButtonContainer;
 	
 
 	@Override
@@ -101,31 +95,9 @@ public class MasterPakanView extends TableViewTemplate{
 		InputData.setFont(Font.font("Inter", 20));
 		InputData.setMinWidth(50);
 						
-		//Bagian Menubar
-		mb = new MenuBar();  
-		action = new Menu("Action"); 
-		Home = new MenuItem("Home"); 
-		LogOut = new MenuItem("Log Out"); 
 						
 		ButtonContainer = new HBox();
-		
-		//Bagian Daftar Tabel
-		DaftarTabel = new Label("Daftar Tabel");  
-		CatatanHarian = new HBox(); //Bagian Catatan Harian 
-		CatatanHarianLbl2 = new Label("Catatan Harian");
-		CatatanHarian.getChildren().addAll(CatatanHarianLbl2);  
-		MasterPakan = new HBox(); //Bagian Master Pakan 
-		MasterPakanLbl = new Label("Master Pakan");
-		MasterPakan.getChildren().addAll(MasterPakanLbl);  
-		MasterObat = new HBox(); //Bagian Master Obat
-		MasterObatLbl = new Label("Master Obat");
-		MasterObat.getChildren().addAll(MasterObatLbl);  
-		MasterSupplier = new HBox(); //Bagian Master Supplier
-		MasterSupplierLbl = new Label("Master Supplier"); 
-		MasterSupplier.getChildren().addAll(MasterSupplierLbl);  
-		MasterKandang = new HBox(); // Bagian Master Kandang
-		MasterKandangLbl = new Label("Master Kandang");  
-		MasterKandang.getChildren().addAll(MasterKandangLbl); 
+		 
 		
 		JFCS = new Label("Jimmy Farm Control System");
 		
@@ -144,9 +116,7 @@ public class MasterPakanView extends TableViewTemplate{
 	@Override
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
-		
-		mb.getMenus().add(action);
-		action.getItems().addAll(Home, LogOut); 
+	
 		
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
@@ -169,7 +139,6 @@ public class MasterPakanView extends TableViewTemplate{
 		
 		TableLayout.setPadding(new Insets(80));
 		getMasterPakanLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		Home.setDisable(true);
 		
 		mainLayout.setCenter(TableLayout);
 		mainLayout.setLeft(getSideBar());
@@ -303,156 +272,6 @@ public class MasterPakanView extends TableViewTemplate{
 
 	public void setInputData(Button inputData) {
 		InputData = inputData;
-	}
-
-
-	public MenuBar getMb() {
-		return mb;
-	}
-
-
-	public void setMb(MenuBar mb) {
-		this.mb = mb;
-	}
-
-
-	public MenuItem getHome() {
-		return Home;
-	}
-
-
-	public void setHome(MenuItem home) {
-		Home = home;
-	}
-
-
-	public MenuItem getLogOut() {
-		return LogOut;
-	}
-
-
-	public void setLogOut(MenuItem logOut) {
-		LogOut = logOut;
-	}
-
-
-	public Menu getAction() {
-		return action;
-	}
-
-
-	public void setAction(Menu action) {
-		this.action = action;
-	}
-
-
-	public Label getDaftarTabel() {
-		return DaftarTabel;
-	}
-
-
-	public void setDaftarTabel(Label daftarTabel) {
-		DaftarTabel = daftarTabel;
-	}
-
-
-	public Label getCatatanHarianLbl2() {
-		return CatatanHarianLbl2;
-	}
-
-
-	public void setCatatanHarianLbl2(Label catatanHarianLbl2) {
-		CatatanHarianLbl2 = catatanHarianLbl2;
-	}
-
-
-	public Label getMasterPakanLbl() {
-		return MasterPakanLbl;
-	}
-
-
-	public void setMasterPakanLbl(Label masterPakanLbl) {
-		MasterPakanLbl = masterPakanLbl;
-	}
-
-
-	public Label getMasterObatLbl() {
-		return MasterObatLbl;
-	}
-
-
-	public void setMasterObatLbl(Label masterObatLbl) {
-		MasterObatLbl = masterObatLbl;
-	}
-
-
-	public Label getMasterSupplierLbl() {
-		return MasterSupplierLbl;
-	}
-
-
-	public void setMasterSupplierLbl(Label masterSupplierLbl) {
-		MasterSupplierLbl = masterSupplierLbl;
-	}
-
-
-	public Label getMasterKandangLbl() {
-		return MasterKandangLbl;
-	}
-
-
-	public void setMasterKandangLbl(Label masterKandangLbl) {
-		MasterKandangLbl = masterKandangLbl;
-	}
-
-
-	public HBox getCatatanHarian() {
-		return CatatanHarian;
-	}
-
-
-	public void setCatatanHarian(HBox catatanHarian) {
-		CatatanHarian = catatanHarian;
-	}
-
-
-	public HBox getMasterPakan() {
-		return MasterPakan;
-	}
-
-
-	public void setMasterPakan(HBox masterPakan) {
-		MasterPakan = masterPakan;
-	}
-
-
-	public HBox getMasterObat() {
-		return MasterObat;
-	}
-
-
-	public void setMasterObat(HBox masterObat) {
-		MasterObat = masterObat;
-	}
-
-
-	public HBox getMasterSupplier() {
-		return MasterSupplier;
-	}
-
-
-	public void setMasterSupplier(HBox masterSupplier) {
-		MasterSupplier = masterSupplier;
-	}
-
-
-	public HBox getMasterKandang() {
-		return MasterKandang;
-	}
-
-
-	public void setMasterKandang(HBox masterKandang) {
-		MasterKandang = masterKandang;
 	}
 
 

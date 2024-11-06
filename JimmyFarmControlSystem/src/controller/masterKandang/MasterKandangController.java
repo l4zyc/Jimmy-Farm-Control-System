@@ -23,7 +23,6 @@ public class MasterKandangController extends MainTemplateController{
 
 	public MasterKandangController(TableViewTemplate view) {
 		super(view);
-		setOnMouseClickedTemplate();
 		setOnLogOut();
 		setOnAction();
 	}
