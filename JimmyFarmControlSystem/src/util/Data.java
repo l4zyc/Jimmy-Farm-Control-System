@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import model.CatatanHarianDetail;
 import model.CatatanHarianUtama;
 import model.DaftarObat;
 import model.DaftarPakan;
@@ -17,7 +18,7 @@ import model.User;
 
 public class Data {
 	public final Connect connect = Connect.getInstance();
-//Urusin bagian Login dan Register	
+	//Urusin bagian Login dan Register	
 	public void insertUser(User user) {
 		String query = String.format("INSERT INTO MsUser (UserID, Name, Username, passwd) VALUES ('%s', '%s', '%s', '%s')"
 				, user.getID(), user.getName(), user.getUsername(), user.getPassword());
@@ -541,5 +542,47 @@ public class Data {
 	public void refreshTableMasterPakan(TableView<DaftarPakan> table) {
 		table.getItems().clear();
 		table.setItems(null);
+	}
+	
+	//Catatan Harian Detail
+	
+	public ObservableList<CatatanHarianDetail> getCatatanHarianDetail() {
+		String query = "SELECT * FROM CatatanHarianDetail";
+		
+		connect.rs = connect.execQuery(query);
+		ObservableList<CatatanHarianDetail> lists = FXCollections.observableArrayList();
+		
+		try {
+			while(connect.rs.next()) {
+				String KODE_CATATAN = connect.rs.getString("KODE_CATATAN");
+				Date TANGGAL_CATATAN = connect.rs.getDate("TANGGAL_CATATAN"); 
+				Integer KEMATIAN_JANTAN = connect.rs.getInt("KEMATIAN_JANTAN");
+				Integer KEMATIAN_BETINA = connect.rs.getInt("KEMATIAN_BETINA");
+				String KODE_PAKAN = connect.rs.getString("KODE_PAKAN");
+				Integer JUMLAH_PAKAN = connect.rs.getInt("JUMLAH_PAKAN");
+				String KODE_OBAT = connect.rs.getString("KODE_OBAT");
+				Integer JUMLAH_OBAT = connect.rs.getInt("JUMLAH_OBAT");
+				Integer PRODUKSI_TELUR = connect.rs.getInt("BIAYA_VARIABEL");
+				String KOMENTAR_KEMATIAN = connect.rs.getString("KOMENTAR_KEMATIAN");
+			
+				lists.add(new CatatanHarianDetail(
+						KODE_CATATAN, 
+						TANGGAL_CATATAN, 
+						KEMATIAN_JANTAN, 
+						KEMATIAN_BETINA, 
+						KODE_PAKAN, 
+						JUMLAH_PAKAN, 
+						KODE_OBAT, 
+						JUMLAH_OBAT, 
+						PRODUKSI_TELUR, 
+						PRODUKSI_TELUR, 
+						KOMENTAR_KEMATIAN));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lists;
 	}
 } 
