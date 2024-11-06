@@ -12,6 +12,10 @@ public abstract class TableViewTemplate extends ViewTemplate{
 	private HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, MasterKandang;
 	private Label DaftarTabel, SideBarCatatanHarianLbl, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
 	
+	public TableViewTemplate() {
+		setSideBar();
+	}
+	
 	public void setSideBar() {
 		sideBar = new GridPane();
 		sideBarTop = new GridPane(); 

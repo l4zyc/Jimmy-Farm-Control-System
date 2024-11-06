@@ -445,8 +445,8 @@ public class Data {
 //Data Base Master Supplier	
 
 	public String getNewkodeSupplier() {
-		String query = "SELECT KODE_OBAT from mssupplier "
-				+ "ORDER BY KODE_OBAT DESC LIMIT 1";
+		String query = "SELECT KODE_SUPPLIER from mssupplier "
+				+ "ORDER BY KODE_SUPPLIER DESC LIMIT 1";
 		
 		String lastKode = "";
 		connect.rs = connect.execQuery(query);
@@ -494,7 +494,7 @@ public class Data {
 	} 
 	
 	public void insertMasterSupplier(DaftarSupplier daftarsupplier) {
-	    String query = String.format("INSERT INTO msobat VALUES ('%s', '%s')",
+	    String query = String.format("INSERT INTO mssupplier VALUES ('%s', '%s')",
 	    		daftarsupplier.getKodeSupplier(), 
 	    		daftarsupplier.getNamaSupplier());
 		connect.execUpdate(query);	
@@ -504,9 +504,10 @@ public class Data {
 	public void updateMasterSupplier(DaftarSupplier supplier) {
 		
 		String query = String.format("UPDATE mssupplier "
-                + "SET KODE_SUPPLIER = '%s', NAMA_SUPPLIER = '%s', "
+                + "SET KODE_SUPPLIER = '%s', NAMA_SUPPLIER = '%s' "
                 + "WHERE KODE_SUPPLIER = '%s'",
-                supplier.getKodeSupplier(), supplier.getNamaSupplier()
+                supplier.getKodeSupplier(), supplier.getNamaSupplier(),
+                supplier.getKodeSupplier()
 		);
 		connect.execUpdate(query);
 	}

@@ -1,0 +1,42 @@
+package controller.masterSupplier;
+
+import controller.ControllerData;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.stage.Stage;
+import model.DaftarSupplier;
+import util.Data;
+import view.MasterSupplier.SupplierInputView;
+
+public class SupplierInputController extends ControllerData {
+
+	SupplierInputView view;
+	
+	public SupplierInputController(SupplierInputView view) {
+		this.view = view;
+		setOnActionSave();
+	}
+	
+	public void setOnActionSave() {
+		view.getSave().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				String KODE_SUPPLIER = data.getNewkodeSupplier();
+				String NAMA_SUPPLIER = view.getNamaSupplierTF().getText();
+				
+				DaftarSupplier Object_Supplier = new DaftarSupplier(KODE_SUPPLIER, NAMA_SUPPLIER);
+				
+				data.insertMasterSupplier(Object_Supplier);
+	
+				data.refreshMasterSupplier(view.getView().getTableSupplier());
+
+				
+				Stage stage = (Stage) view.getBp().getScene().getWindow();
+				stage.close();
+			}
+		});
+	}
+
+}

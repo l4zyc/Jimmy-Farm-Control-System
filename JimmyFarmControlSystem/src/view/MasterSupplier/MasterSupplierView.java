@@ -2,6 +2,7 @@ package view.MasterSupplier;
 
 import java.sql.Date;
 
+import controller.masterSupplier.MasterSupplierController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,8 +21,7 @@ import view.TableViewTemplate;
 public class MasterSupplierView extends TableViewTemplate{
 
 	private Scene scene;
-	public static Stage SupplierStage;
-	private Data data = new Data();
+	public Stage SupplierStage;
 	
 	private GridPane sideBar, sideBarTop, sideBarBottom;
 	
@@ -35,9 +35,11 @@ public class MasterSupplierView extends TableViewTemplate{
 		SupplierStage.setScene(scene);
 		SupplierStage.setTitle("Jimmy Farm Control System");
 		SupplierStage.show();
+		
+		new MasterSupplierController(this);
 	}
 
-	Label CatatanHarianLbl, JFCS; 
+	Label titleLbl, JFCS; 
 	TableView<DaftarSupplier> TableSupplier;
 	TableColumn<DaftarSupplier, String> KodeSupplierTC, NamaSupplierTC;
 	Button Update, Delete, InputData; //button
@@ -63,13 +65,14 @@ public class MasterSupplierView extends TableViewTemplate{
 		//Column Kode Pakan
 		TableSupplier = new TableView<DaftarSupplier>();
 		KodeSupplierTC = new TableColumn<DaftarSupplier, String>("Kode Supplier");
-		KodeSupplierTC.setCellValueFactory(new PropertyValueFactory<DaftarSupplier, String>("Kode Supplier")); 
+		KodeSupplierTC.setCellValueFactory(new PropertyValueFactory<DaftarSupplier, String>("KodeSupplier")); 
 		
 		//Column Nama Pakan 
 		NamaSupplierTC = new TableColumn<DaftarSupplier, String>("Nama Supplier");
-		NamaSupplierTC.setCellValueFactory(new PropertyValueFactory<DaftarSupplier, String>("Nama Supplier"));
+		NamaSupplierTC.setCellValueFactory(new PropertyValueFactory<DaftarSupplier, String>("NamaSupplier"));
 		
 		TableSupplier.getColumns().addAll(KodeSupplierTC, NamaSupplierTC); 
+		TableSupplier.getItems().addAll(data.getMasterSupplierData());
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
@@ -106,8 +109,8 @@ public class MasterSupplierView extends TableViewTemplate{
 		MasterObatLbl = new Label("Master Obat");
 		MasterObat.getChildren().addAll(MasterObatLbl);  
 		MasterSupplier = new HBox(); //Bagian Master Supplier
-		MasterSupplierLbl = new Label("Master Supplier"); 
-		MasterSupplier.getChildren().addAll(MasterSupplierLbl);  
+		titleLbl = new Label("Master Supplier"); 
+		MasterSupplier.getChildren().addAll(titleLbl);  
 		MasterKandang = new HBox(); // Bagian Master Kandang
 		MasterKandangLbl = new Label("Master Kandang");  
 		MasterKandang.getChildren().addAll(MasterKandangLbl); 
@@ -134,9 +137,9 @@ public class MasterSupplierView extends TableViewTemplate{
 		
 		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
 		
-		CatatanHarianLbl = new Label("Master Supplier");
+		titleLbl = new Label("Master Supplier");
 	
-		TableLayout.setTop(CatatanHarianLbl);
+		TableLayout.setTop(titleLbl);
 		TableLayout.setCenter(TableSupplier);
 		TableLayout.setBottom(ButtonContainer);
 		
@@ -145,8 +148,8 @@ public class MasterSupplierView extends TableViewTemplate{
 		sideBar.setVgap(10);
 		
 		BorderPane.setMargin(TableSupplier, new Insets(15, 0, 15, 0));
-		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
-		CatatanHarianLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+		BorderPane.setAlignment(titleLbl, Pos.CENTER);
+		titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 		
 		sideBarTop.add(JFCS, 0, 1);
 		
@@ -167,6 +170,241 @@ public class MasterSupplierView extends TableViewTemplate{
 		CatatanHarianLbl2.setFont(Font.font("Arial", FontWeight.BOLD, 10));
 		Home.setDisable(true);
 		
+		mainLayout.setLeft(getSideBar());
+		mainLayout.setTop(mb);
+		mainLayout.setCenter(TableLayout);
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+	public Stage getSupplierStage() {
+		return SupplierStage;
+	}
+
+	public void setSupplierStage(Stage supplierStage) {
+		SupplierStage = supplierStage;
+	}
+
+	public GridPane getSideBar() {
+		return sideBar;
+	}
+
+	public void setSideBar(GridPane sideBar) {
+		this.sideBar = sideBar;
+	}
+
+	public GridPane getSideBarTop() {
+		return sideBarTop;
+	}
+
+	public void setSideBarTop(GridPane sideBarTop) {
+		this.sideBarTop = sideBarTop;
+	}
+
+	public GridPane getSideBarBottom() {
+		return sideBarBottom;
+	}
+
+	public void setSideBarBottom(GridPane sideBarBottom) {
+		this.sideBarBottom = sideBarBottom;
+	}
+
+	public Label getTitleLbl() {
+		return titleLbl;
+	}
+
+	public void setTitleLbl(Label titleLbl) {
+		this.titleLbl = titleLbl;
+	}
+
+	public Label getJFCS() {
+		return JFCS;
+	}
+
+	public void setJFCS(Label jFCS) {
+		JFCS = jFCS;
+	}
+
+	public TableView<DaftarSupplier> getTableSupplier() {
+		return TableSupplier;
+	}
+
+	public void setTableSupplier(TableView<DaftarSupplier> tableSupplier) {
+		TableSupplier = tableSupplier;
+	}
+
+	public TableColumn<DaftarSupplier, String> getKodeSupplierTC() {
+		return KodeSupplierTC;
+	}
+
+	public void setKodeSupplierTC(TableColumn<DaftarSupplier, String> kodeSupplierTC) {
+		KodeSupplierTC = kodeSupplierTC;
+	}
+
+	public TableColumn<DaftarSupplier, String> getNamaSupplierTC() {
+		return NamaSupplierTC;
+	}
+
+	public void setNamaSupplierTC(TableColumn<DaftarSupplier, String> namaSupplierTC) {
+		NamaSupplierTC = namaSupplierTC;
+	}
+
+	public Button getUpdate() {
+		return Update;
+	}
+
+	public void setUpdate(Button update) {
+		Update = update;
+	}
+
+	public Button getDelete() {
+		return Delete;
+	}
+
+	public void setDelete(Button delete) {
+		Delete = delete;
+	}
+
+	public Button getInputData() {
+		return InputData;
+	}
+
+	public void setInputData(Button inputData) {
+		InputData = inputData;
+	}
+
+	public MenuBar getMb() {
+		return mb;
+	}
+
+	public void setMb(MenuBar mb) {
+		this.mb = mb;
+	}
+
+	public MenuItem getHome() {
+		return Home;
+	}
+
+	public void setHome(MenuItem home) {
+		Home = home;
+	}
+
+	public MenuItem getLogOut() {
+		return LogOut;
+	}
+
+	public void setLogOut(MenuItem logOut) {
+		LogOut = logOut;
+	}
+
+	public Menu getAction() {
+		return action;
+	}
+
+	public void setAction(Menu action) {
+		this.action = action;
+	}
+
+	public Label getDaftarTabel() {
+		return DaftarTabel;
+	}
+
+	public void setDaftarTabel(Label daftarTabel) {
+		DaftarTabel = daftarTabel;
+	}
+
+	public Label getCatatanHarianLbl2() {
+		return CatatanHarianLbl2;
+	}
+
+	public void setCatatanHarianLbl2(Label catatanHarianLbl2) {
+		CatatanHarianLbl2 = catatanHarianLbl2;
+	}
+
+	public Label getMasterPakanLbl() {
+		return MasterPakanLbl;
+	}
+
+	public void setMasterPakanLbl(Label masterPakanLbl) {
+		MasterPakanLbl = masterPakanLbl;
+	}
+
+	public Label getMasterObatLbl() {
+		return MasterObatLbl;
+	}
+
+	public void setMasterObatLbl(Label masterObatLbl) {
+		MasterObatLbl = masterObatLbl;
+	}
+
+	public Label getMasterSupplierLbl() {
+		return MasterSupplierLbl;
+	}
+
+	public void setMasterSupplierLbl(Label masterSupplierLbl) {
+		MasterSupplierLbl = masterSupplierLbl;
+	}
+
+	public Label getMasterKandangLbl() {
+		return MasterKandangLbl;
+	}
+
+	public void setMasterKandangLbl(Label masterKandangLbl) {
+		MasterKandangLbl = masterKandangLbl;
+	}
+
+	public HBox getCatatanHarian() {
+		return CatatanHarian;
+	}
+
+	public void setCatatanHarian(HBox catatanHarian) {
+		CatatanHarian = catatanHarian;
+	}
+
+	public HBox getMasterPakan() {
+		return MasterPakan;
+	}
+
+	public void setMasterPakan(HBox masterPakan) {
+		MasterPakan = masterPakan;
+	}
+
+	public HBox getMasterObat() {
+		return MasterObat;
+	}
+
+	public void setMasterObat(HBox masterObat) {
+		MasterObat = masterObat;
+	}
+
+	public HBox getMasterSupplier() {
+		return MasterSupplier;
+	}
+
+	public void setMasterSupplier(HBox masterSupplier) {
+		MasterSupplier = masterSupplier;
+	}
+
+	public HBox getMasterKandang() {
+		return MasterKandang;
+	}
+
+	public void setMasterKandang(HBox masterKandang) {
+		MasterKandang = masterKandang;
+	}
+
+	public HBox getButtonContainer() {
+		return ButtonContainer;
+	}
+
+	public void setButtonContainer(HBox buttonContainer) {
+		ButtonContainer = buttonContainer;
 	}
 	
 	

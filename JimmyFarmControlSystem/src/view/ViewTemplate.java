@@ -3,12 +3,14 @@ package view;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
+import util.Data;
 
 public abstract class ViewTemplate {
 	
 	protected Double width = Screen.getPrimary().getBounds().getWidth();
 	protected Double height = Screen.getPrimary().getBounds().getHeight();
 	private GridPane sideBar, sideBarTop, sideBarBottom;
+	protected Data data = new Data();
 	
 	public ViewTemplate() {
 		// TODO Auto-generated constructor stub
