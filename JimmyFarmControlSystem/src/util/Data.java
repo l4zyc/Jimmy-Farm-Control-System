@@ -409,9 +409,10 @@ public class Data {
 	public void updateMasterKandang(MsKandang kandang) {
 		
 		String query = String.format("UPDATE mskandang "
-                + "SET KODE_KANDANG = '%s', LOKASI = '%s', "
+                + "SET KODE_KANDANG = '%s', LOKASI = '%s' "
                 + "WHERE KODE_KANDANG = '%s'", 
-                kandang.getKodeKandang(), kandang.getLokasi()
+                kandang.getKodeKandang(), kandang.getLokasi(), 
+                kandang.getKodeKandang()
                 
 		);
 		connect.execUpdate(query);
@@ -424,6 +425,14 @@ public class Data {
 	        + "WHERE KODE_KANDANG = '%s'", 
 	        kandang.getKodeKandang()
 	    );
+	    
+	    String deleteFromCatatanHarianUtama = String.format(
+		        "DELETE FROM from catatanharianutama "
+		        + "WHERE KODE_KANDANG = '%s'", 
+		        kandang.getKodeKandang()
+		    );
+	    
+	    connect.execUpdate(deleteFromCatatanHarianUtama);
 	    connect.execUpdate(deleteMainQuery);
 	}	
 	

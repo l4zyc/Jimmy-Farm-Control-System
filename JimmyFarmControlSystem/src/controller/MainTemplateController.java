@@ -26,7 +26,7 @@ public class MainTemplateController extends ControllerData{
 		setOnMouseClickedMasterKandang();
 	}
 	
-	public void setOnMouseClickedCatatanHarian() {
+	private void setOnMouseClickedCatatanHarian() {
 		view.getCatatanHarian().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -40,7 +40,7 @@ public class MainTemplateController extends ControllerData{
 		});
 	}
 	
-	public void setOnMouseClickedMasterPakan() { 
+	private void setOnMouseClickedMasterPakan() { 
 		view.getMasterPakan().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -54,7 +54,7 @@ public class MainTemplateController extends ControllerData{
 		});
 	} 
 	
-	public void setOnMouseClickedMasterObat() { 
+	private void setOnMouseClickedMasterObat() { 
 		view.getMasterObat().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -68,7 +68,7 @@ public class MainTemplateController extends ControllerData{
 		});
 	}
 	
-	public void setOnMouseClickedMasterSupplier() { 
+	private void setOnMouseClickedMasterSupplier() { 
 		view.getMasterSupplier().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -82,7 +82,7 @@ public class MainTemplateController extends ControllerData{
 		});
 	}
 	
-	public void setOnMouseClickedMasterKandang() { 
+	private void setOnMouseClickedMasterKandang() { 
 		view.getMasterKandang().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override

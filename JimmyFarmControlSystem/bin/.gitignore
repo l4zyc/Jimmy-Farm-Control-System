@@ -1,3 +1,6 @@
 /controller/
-/view/
+/main/
+/model/
+/module-info.class
 /util/
+/view/

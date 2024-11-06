@@ -1,5 +1,6 @@
 package view.MasterKandang;
 
+import controller.masterKandang.KandangUpdateController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -34,7 +35,6 @@ public class KandangUpdateView extends ViewTemplate{
 	private MsKandang kandang;  
 	
 	public KandangUpdateView(MasterKandangView view, MsKandang kandang) { 
-		
 		this.view = view;
 		this.kandang = kandang;
 		init(); 
@@ -45,7 +45,7 @@ public class KandangUpdateView extends ViewTemplate{
 		stage.setScene(scene);
 		stage.show(); 
 		
-		
+		new KandangUpdateController(this);
 	}
 	
 	Label KodeKandangLbl, LokasiLbl;
@@ -57,9 +57,12 @@ public class KandangUpdateView extends ViewTemplate{
 		// TODO Auto-generated method stub
 		KodeKandangLbl = new Label("Kode Kandang*"); 
 		KodeKandangTF = new TextField(); 
+		KodeKandangTF.setText(kandang.getKodeKandang());
+		KodeKandangTF.setEditable(false);
 		
 		LokasiLbl = new Label("Lokasi*"); 
 		LokasiTF = new TextField();
+		LokasiTF.setText(kandang.getLokasi());
 		
 		Save = new Button("Save"); 
 		Save.setFont(Font.font("Inter", 20));
@@ -72,8 +75,8 @@ public class KandangUpdateView extends ViewTemplate{
 		form1.setVgap(10);   
 		form1.add(KodeKandangLbl, 1, 1);
 		form1.add(KodeKandangTF, 2, 1);
-		form1.add(KodeKandangLbl, 1, 2);
-		form1.add(KodeKandangTF, 2, 2); 
+		form1.add(LokasiLbl, 1, 2);
+		form1.add(LokasiTF, 2, 2); 
 		
 		bp.setBottom(Save); 
 		bp.setCenter(form1);

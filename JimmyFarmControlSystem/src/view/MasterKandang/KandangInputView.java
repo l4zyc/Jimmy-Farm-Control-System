@@ -2,7 +2,7 @@ package view.MasterKandang;
 
 import java.sql.Date;
 
-import controller.KandangInputController;
+import controller.masterKandang.KandangInputController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,11 +30,10 @@ public class KandangInputView extends ViewTemplate{
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
-	
 	private MasterKandangView view;
 	private Stage stage;
 	
-	public KandangInputView() { 
+	public KandangInputView(MasterKandangView view) { 
 		this.view = view;
 		init(); 
 		arrangeComponent(); 
@@ -72,8 +71,8 @@ public class KandangInputView extends ViewTemplate{
 		form1.setVgap(10);   
 		form1.add(KodeKandangLbl, 1, 1);
 		form1.add(KodeKandangTF, 2, 1);
-		form1.add(KodeKandangLbl, 1, 2);
-		form1.add(KodeKandangTF, 2, 2); 
+		form1.add(LokasiLbl, 1, 2);
+		form1.add(LokasiTF, 2, 2); 
 		
 		bp.setBottom(Save); 
 		bp.setCenter(form1);

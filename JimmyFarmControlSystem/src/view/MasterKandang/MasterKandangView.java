@@ -1,5 +1,6 @@
 package view.MasterKandang;
 
+import controller.masterKandang.MasterKandangController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,6 +32,8 @@ public class MasterKandangView extends TableViewTemplate{
 		KandangStage.setScene(scene);
 		KandangStage.setTitle("Jimmy Farm Control System");
 		KandangStage.show();
+		
+		new MasterKandangController(this);
 	}
 	
 	Label CatatanHarianLbl, JFCS; 
@@ -58,13 +61,14 @@ public class MasterKandangView extends TableViewTemplate{
 		//Column Kode Kandang
 		TableKandang = new TableView<MsKandang>();
 		KodeKandangTC = new TableColumn<MsKandang, String>("Kode Kandang");
-		KodeKandangTC.setCellValueFactory(new PropertyValueFactory<MsKandang, String>("Kode Kandang")); 
+		KodeKandangTC.setCellValueFactory(new PropertyValueFactory<MsKandang, String>("KodeKandang")); 
 				
 		//Column Nama Kandang 
 		LokasiTC = new TableColumn<MsKandang, String>("Lokasi");
 		LokasiTC.setCellValueFactory(new PropertyValueFactory<MsKandang, String>("Lokasi"));
 				
 		TableKandang.getColumns().addAll(KodeKandangTC, LokasiTC); 
+		TableKandang.getItems().addAll(data.getMasterKandangData());
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
@@ -114,6 +118,7 @@ public class MasterKandangView extends TableViewTemplate{
 		
 		KodeKandangTC.setStyle("-fx-alignment: CENTER;");
 		LokasiTC.setStyle("-fx-alignment: CENTER;");
+		
 	}
 
 	@Override
