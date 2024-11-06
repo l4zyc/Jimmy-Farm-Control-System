@@ -65,15 +65,10 @@ public class MasterKandangController extends MainTemplateController{
 		((MasterKandangView) view).getDelete().setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
-			public void handle(ActionEvent event) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Delete Data");
-				alert.setContentText("Are you sure you want to delete the data?");
-				Optional op = alert.showAndWait();
-				
-				if(op.get().equals(ButtonType.OK)) {
+			public void handle(ActionEvent event) {	
+				if(reusableMethod.confirmationAlert().get().equals(ButtonType.OK)) {
 					data.deleteMasterKandang(getMasterKandang());
-					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
+					reusableMethod.showAlert(AlertType.CONFIRMATION, "Delete", "Data Deleted");
 					data.refreshMasterKandang(((MasterKandangView) view).getTableKandang());
 				}
 			}
