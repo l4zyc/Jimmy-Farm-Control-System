@@ -513,12 +513,17 @@ public class Data {
 	}
 	 
 	public void deleteMasterSupplier(DaftarSupplier supplier) {
-	 
+		String deleteFromPakan = String.format(
+				"DELETE FROM supplierobatpakan "
+				+ "WHERE KODE_SUPPLIER = '%s'",
+				supplier.getKodeSupplier());
+		
 	    String deleteMainQuery = String.format(
 	        "DELETE FROM mssupplier "
 	        + "WHERE KODE_SUPPLIER = '%s'", 
 	        supplier.getKodeSupplier()
 	    );
+	    connect.execUpdate(deleteFromPakan);
 	    connect.execUpdate(deleteMainQuery);
 	}	
 	

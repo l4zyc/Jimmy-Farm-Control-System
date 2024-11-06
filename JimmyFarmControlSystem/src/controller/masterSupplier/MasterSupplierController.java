@@ -71,7 +71,7 @@ public class MasterSupplierController extends MainTemplateController{
 				if(op.get().equals(ButtonType.OK)) {
 					data.deleteMasterSupplier(getSupplierItem());
 					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
-					reusableMethod.refreshTable(((MainPageView) view).getTable());
+					data.refreshMasterSupplier(((MasterSupplierView)view).getTableSupplier());
 				}
 			}
 		});
