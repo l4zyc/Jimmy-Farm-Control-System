@@ -134,7 +134,7 @@ public class MasterSupplierView extends TableViewTemplate{
 		
 		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
 		
-		CatatanHarianLbl = new Label("Catatan Harian");
+		CatatanHarianLbl = new Label("Master Supplier");
 	
 		TableLayout.setTop(CatatanHarianLbl);
 		TableLayout.setCenter(TableSupplier);
@@ -168,5 +168,7 @@ public class MasterSupplierView extends TableViewTemplate{
 		Home.setDisable(true);
 		
 	}
+	
+	
 	
 }
