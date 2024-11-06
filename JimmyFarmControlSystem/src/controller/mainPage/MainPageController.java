@@ -51,16 +51,6 @@ public class MainPageController extends MainTemplateController{
 	        catatan = selectionModel.getSelectedItem();
 	    });
 	}
-	
-	public void setOnLogOut() {
-		((MainPageView) view).getLogOut().setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				new LoginView();
-			}
-		});
-	}
 
 	//Open update view if an item is selected
 	public void setOnActionEventUpdate() {

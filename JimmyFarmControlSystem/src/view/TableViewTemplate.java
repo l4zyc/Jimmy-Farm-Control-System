@@ -1,6 +1,9 @@
 package view;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -12,8 +15,22 @@ public abstract class TableViewTemplate extends ViewTemplate{
 	private HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, MasterKandang;
 	private Label DaftarTabel, SideBarCatatanHarianLbl, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
 	
+	private MenuBar mb;
+	private MenuItem Home, LogOut; //isi menu bar 
+	private Menu action;//Buat action menu bar 
+	
 	public TableViewTemplate() {
 		setSideBar();
+		setMenuBar();
+	}
+	
+	public void setMenuBar() {
+		mb = new MenuBar();  
+		action = new Menu("Action"); 
+		Home = new MenuItem("Home"); 
+		LogOut = new MenuItem("Log Out"); 
+		mb.getMenus().add(action);
+		action.getItems().addAll(Home, LogOut); 
 	}
 	
 	public void setSideBar() {
@@ -66,6 +83,40 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		
 		sideBarBottom.setMinWidth(200);
 		sideBar.setMinWidth(200);
+	}
+
+	
+
+	public MenuBar getMb() {
+		return mb;
+	}
+
+	public void setMb(MenuBar mb) {
+		this.mb = mb;
+	}
+
+	public MenuItem getHome() {
+		return Home;
+	}
+
+	public void setHome(MenuItem home) {
+		Home = home;
+	}
+
+	public MenuItem getLogOut() {
+		return LogOut;
+	}
+
+	public void setLogOut(MenuItem logOut) {
+		LogOut = logOut;
+	}
+
+	public Menu getAction() {
+		return action;
+	}
+
+	public void setAction(Menu action) {
+		this.action = action;
 	}
 
 	public BorderPane getMainLayout() {

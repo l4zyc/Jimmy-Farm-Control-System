@@ -28,6 +28,16 @@ public class MainTemplateController extends ControllerData{
 		setOnMouseClickedMasterKandang();
 	}
 	
+	public void setOnLogOut() {
+		view.getLogOut().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				new LoginView();
+			}
+		});
+	}
+	
 	private void setOnMouseClickedCatatanHarian() {
 		view.getCatatanHarian().setOnMouseClicked(new EventHandler<MouseEvent>() {
 

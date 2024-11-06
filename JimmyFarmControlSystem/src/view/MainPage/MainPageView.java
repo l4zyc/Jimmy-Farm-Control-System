@@ -25,7 +25,6 @@ public class MainPageView extends TableViewTemplate{
 	private Data data = new Data();
 	
 	public MainPageView() {
-		setSideBar();
 		
 		init();
 		arrangeComponent();
@@ -48,10 +47,7 @@ public class MainPageView extends TableViewTemplate{
 	TableColumn<CatatanHarianUtama, String> KodeCatatanTC, KodeKandangTC, KeteranganJenisTC, KomentarTC;
 	TableColumn<CatatanHarianUtama, Date> TanggalMasukTC;
 	TableColumn<CatatanHarianUtama, Integer> JumlahAwalJantanTC, JumlahAwalBetinaTC; 
-	Button Update, Delete, InputData; //button
-	MenuBar mb;  //menubar
-	MenuItem Home, LogOut; //isi menu bar 
-	Menu action;//Buat action menu bar 
+	Button Update, Delete, InputData;
 	
 	//Daftar tabel samping
 	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
@@ -111,11 +107,6 @@ public class MainPageView extends TableViewTemplate{
 		InputData.setFont(Font.font("Inter", 20));
 		InputData.setMinWidth(50);
 		
-		//Bagian Menubar
-		mb = new MenuBar();  
-		action = new Menu("Action"); 
-		Home = new MenuItem("Home"); 
-		LogOut = new MenuItem("Log Out"); 
 		
 		ButtonContainer = new HBox();
 		
@@ -136,7 +127,7 @@ public class MainPageView extends TableViewTemplate{
 		KomentarTC.setStyle("-fx-alignment: CENTER;");
 		TanggalMasukTC.setStyle("-fx-alignment: CENTER;");
 		
-		mainLayout.setTop(mb); 
+		mainLayout.setTop(getMb()); 
 		mainLayout.setCenter(TableLayout);
 		mainLayout.setLeft(getSideBar());
 	}
@@ -144,8 +135,6 @@ public class MainPageView extends TableViewTemplate{
 	@Override
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
-		mb.getMenus().add(action);
-		action.getItems().addAll(Home, LogOut); 
 		
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
@@ -166,8 +155,6 @@ public class MainPageView extends TableViewTemplate{
 	
 		
 		TableLayout.setPadding(new Insets(80));
-
-		Home.setDisable(true);
 	}
 
 	public Data getData() {
@@ -309,38 +296,6 @@ public class MainPageView extends TableViewTemplate{
 
 	public void setInputData(Button inputData) {
 		InputData = inputData;
-	}
-
-	public MenuBar getMb() {
-		return mb;
-	}
-
-	public void setMb(MenuBar mb) {
-		this.mb = mb;
-	}
-
-	public MenuItem getHome() {
-		return Home;
-	}
-
-	public void setHome(MenuItem home) {
-		Home = home;
-	}
-
-	public MenuItem getLogOut() {
-		return LogOut;
-	}
-
-	public void setLogOut(MenuItem logOut) {
-		LogOut = logOut;
-	}
-
-	public Menu getAction() {
-		return action;
-	}
-
-	public void setAction(Menu action) {
-		this.action = action;
 	}
 
 	public Label getDaftarTabel() {
