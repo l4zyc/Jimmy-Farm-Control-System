@@ -46,15 +46,13 @@ public class KandangInputView extends ViewTemplate{
 		new KandangInputController(this);
 	}
 	
-	Label KodeKandangLbl, LokasiLbl;
-	TextField KodeKandangTF, LokasiTF; 
+	Label LokasiLbl;
+	TextField LokasiTF; 
 	Button Save;
 	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		KodeKandangLbl = new Label("Kode Kandang"); 
-		KodeKandangTF = new TextField(); 
 		
 		LokasiLbl = new Label("Lokasi"); 
 		LokasiTF = new TextField();
@@ -69,10 +67,8 @@ public class KandangInputView extends ViewTemplate{
 		// TODO Auto-generated method stub
 		form1.setHgap(10); 
 		form1.setVgap(10);   
-		form1.add(KodeKandangLbl, 1, 1);
-		form1.add(KodeKandangTF, 2, 1);
-		form1.add(LokasiLbl, 1, 2);
-		form1.add(LokasiTF, 2, 2); 
+		form1.add(LokasiLbl, 1, 1);
+		form1.add(LokasiTF, 2, 1); 
 		
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
@@ -110,17 +106,10 @@ public class KandangInputView extends ViewTemplate{
 		return stage;
 	}
 
-	public Label getKodeKandangLbl() {
-		return KodeKandangLbl;
-	}
-
 	public Label getLokasiLbl() {
 		return LokasiLbl;
 	}
 
-	public TextField getKodeKandangTF() {
-		return KodeKandangTF;
-	}
 
 	public TextField getLokasiTF() {
 		return LokasiTF;
@@ -158,17 +147,11 @@ public class KandangInputView extends ViewTemplate{
 		this.stage = stage;
 	}
 
-	public void setKodeKandangLbl(Label kodeKandangLbl) {
-		KodeKandangLbl = kodeKandangLbl;
-	}
 
 	public void setLokasiLbl(Label lokasiLbl) {
 		LokasiLbl = lokasiLbl;
 	}
 
-	public void setKodeKandangTF(TextField kodeKandangTF) {
-		KodeKandangTF = kodeKandangTF;
-	}
 
 	public void setLokasiTF(TextField lokasiTF) {
 		LokasiTF = lokasiTF;
@@ -177,5 +160,7 @@ public class KandangInputView extends ViewTemplate{
 	public void setSave(Button save) {
 		Save = save;
 	}
+	
+	
 	
 }

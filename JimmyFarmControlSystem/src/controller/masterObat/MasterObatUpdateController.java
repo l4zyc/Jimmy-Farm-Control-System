@@ -18,9 +18,9 @@ public class MasterObatUpdateController extends ControllerData{
 	public void setOnAction() {
 		view.getSave().setOnAction(e -> {
 			String NAMA_OBAT = view.getNamaObatTF().getText();
-			String JENIS_OBAT = view.getJenisObatTF().getText();
+			String JENIS_OBAT = view.getJenisObatCB().getValue().toString();
 			Integer DOSIS = Integer.parseInt(view.getDosisTF().getText());
-			String SATUAN = view.getSatuanTF().getText();
+			String SATUAN = view.getSatuanCB().getValue().toString();
 			String PENYAKIT = view.getPenyakitTF().getText();
 			Integer JUMLAH_PER_PACK = Integer.parseInt(view.getJumlahPerPackTF().getText());
 			Integer HARGA_PER_PACK = Integer.parseInt(view.getHargaPerPackTF().getText());

@@ -21,7 +21,7 @@ public class KandangInputController extends ControllerData{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				String KODE_KANDANG = view.getKodeKandangTF().getText();
+				String KODE_KANDANG = data.getNewkodeKandang();
 				String LOKASI = view.getLokasiTF().getText();
 				
 				MsKandang object_kandang = new MsKandang(KODE_KANDANG, LOKASI);

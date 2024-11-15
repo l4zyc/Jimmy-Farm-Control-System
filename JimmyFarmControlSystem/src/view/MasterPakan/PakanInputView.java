@@ -3,10 +3,12 @@ package view.MasterPakan;
 import java.sql.Date;
 
 import controller.masterPakan.PakanInputController;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -28,8 +30,11 @@ public class PakanInputView extends ViewTemplate{
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
 	Label KodePakanLbl, NamaPakanLbl, JenisPakanLbl, HargaLbl;
-	TextField KodePakanTF, NamaPakanTF, JenisPakanTF, HargaTF;
+	TextField KodePakanTF, NamaPakanTF, HargaTF;
 	Button Save;
+	
+	ComboBox JenisPakanCB; 
+	String JenisPakanS[] = {"Pakan Grower", "Pakan Starter", "Pakan Layer"}; 
 	
 	private MasterPakanView view;
 	private Stage stage;
@@ -39,7 +44,7 @@ public class PakanInputView extends ViewTemplate{
 		init(); 
 		arrangeComponent(); 
 		stage = new Stage();
-		stage.setTitle("Input Obat");
+		stage.setTitle("Input Pakan");
 		
 		stage.setScene(scene);
 		stage.show(); 
@@ -58,9 +63,9 @@ public class PakanInputView extends ViewTemplate{
 		NamaPakanTF = new TextField();   
 		//Keterangan Jenis
 		JenisPakanLbl = new Label("Jenis Pakan*");
-		JenisPakanTF = new TextField();
+		JenisPakanCB = new ComboBox(FXCollections.observableArrayList(JenisPakanS));
 		//Jumlah Awal Jantan
-		HargaLbl = new Label("Harga Label*"); 
+		HargaLbl = new Label("Harga*"); 
 		HargaTF = new TextField();  
 		
 		//Button Save
@@ -81,7 +86,7 @@ public class PakanInputView extends ViewTemplate{
 		form1.add(NamaPakanLbl, 1, 2);
 		form1.add(NamaPakanTF, 2, 2);  
 		form1.add(JenisPakanLbl, 1, 3); 
-		form1.add(JenisPakanTF, 2, 3);
+		form1.add(JenisPakanCB, 2, 3);
 		form1.add(HargaLbl, 1, 4); 
 		form1.add(HargaTF, 2, 4); 
 		
@@ -109,7 +114,9 @@ public class PakanInputView extends ViewTemplate{
 	public Double getHeight() {
 		return height;
 	}
-
+	
+	
+	
 	public Scene getScene() {
 		return scene;
 	}
@@ -138,9 +145,6 @@ public class PakanInputView extends ViewTemplate{
 		return NamaPakanTF;
 	}
 
-	public TextField getJenisPakanTF() {
-		return JenisPakanTF;
-	}
 
 	public TextField getHargaTF() {
 		return HargaTF;
@@ -201,9 +205,23 @@ public class PakanInputView extends ViewTemplate{
 	public void setNamaPakanTF(TextField namaPakanTF) {
 		NamaPakanTF = namaPakanTF;
 	}
+	
+	
+	
+	public ComboBox getJenisPakanCB() {
+		return JenisPakanCB;
+	}
 
-	public void setJenisPakanTF(TextField jenisPakanTF) {
-		JenisPakanTF = jenisPakanTF;
+	public String[] getJenisPakanS() {
+		return JenisPakanS;
+	}
+
+	public void setJenisPakanCB(ComboBox jenisPakanCB) {
+		JenisPakanCB = jenisPakanCB;
+	}
+
+	public void setJenisPakanS(String[] jenisPakanS) {
+		JenisPakanS = jenisPakanS;
 	}
 
 	public void setHargaTF(TextField hargaTF) {

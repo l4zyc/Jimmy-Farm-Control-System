@@ -33,8 +33,10 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	TableColumn<CatatanHarianDetail, Integer> jantanTC, betinaTC;
 	Button Update, Delete, InputData;
 	HBox ButtonContainer;
+	String kode;
 
-	public CatatanHarianDetailView() {
+	public CatatanHarianDetailView(String kodeCatatan) {
+		this.kode = kodeCatatan;
 		init();
 		arrangeComponent();
 		stage = new Stage();
@@ -134,9 +136,9 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		    produksiTelurTC, persentaseProduksiTC, biayaVariabelTC, komentarTC
 		);
 
-		table.getItems().addAll(data.getCatatanHarianDetail());
+		table.getItems().addAll(data.getSpecificCatatanHarianDetail(kode));
 
-		titleLbl = new Label("Detail Catatan Harian");
+		titleLbl = new Label("Detail Catatan Harian" + kode);
 		
 		// Button configuration
 		Update = new Button("Update");
@@ -183,7 +185,9 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 
 		// Set alignment for each column
 		String alignmentStyle = "-fx-alignment: CENTER;";
-
+		
+		table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
 		tanggalTC.setStyle(alignmentStyle);
 		umurTC.setStyle(alignmentStyle);
 		mingguTC.setStyle(alignmentStyle);
@@ -256,6 +260,4 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		InputData = inputData;
 	}
 	
-	
-
 }

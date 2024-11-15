@@ -40,7 +40,7 @@ public class KandangUpdateView extends ViewTemplate{
 		init(); 
 		arrangeComponent(); 
 		stage = new Stage();
-		stage.setTitle("Input Supplier*");
+		stage.setTitle("Input kandang*");
 		
 		stage.setScene(scene);
 		stage.show(); 
@@ -55,7 +55,7 @@ public class KandangUpdateView extends ViewTemplate{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		KodeKandangLbl = new Label("Kode Kandang*"); 
+		KodeKandangLbl = new Label("Kode Kandang"); 
 		KodeKandangTF = new TextField(); 
 		KodeKandangTF.setText(kandang.getKodeKandang());
 		KodeKandangTF.setEditable(false);

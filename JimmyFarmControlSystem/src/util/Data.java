@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.sql.ResultSet;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +23,7 @@ public class Data {
 	public final Connect connect = Connect.getInstance();
 	//Urusin bagian Login dan Register	
 	public void insertUser(User user) {
-		String query = String.format("INSERT INTO MsUser (UserID, Name, Username, passwd) VALUES ('%s', '%s', '%s', '%s')"
+		String query = String.format("INSERT INTO MsUser (USERID, NAME, USERNAME, PASSWORD) VALUES ('%s', '%s', '%s', '%s')"
 				, user.getID(), user.getName(), user.getUsername(), user.getPassword());
 		
 		connect.execUpdate(query);
@@ -178,7 +179,29 @@ public class Data {
 	
 	public void refreshCatatanHarianUtamaTable(TableView<CatatanHarianUtama> catatan) {
 		catatan.setItems(getCatatanHarian());
-	} 
+	}  
+	
+	  public static ObservableList<String> getKodeKandangData() {
+	        ObservableList<String> dataList = FXCollections.observableArrayList();
+	        Connect connect = Connect.getInstance();
+
+	        String query = "SELECT KODE_KANDANG FROM mskandang"; // Query to fetch KODE_KANDANG from mskandang
+
+	        try {
+	            ResultSet resultSet = connect.execQuery(query);
+	            while (resultSet.next()) {
+	                String kodeKandang = resultSet.getString("KODE_KANDANG");
+	                dataList.add(kodeKandang);
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	        return dataList;
+	    }
+	
+	
+	
 //===================================================================================================== 
 
 	public String getNewkodeObat() {
@@ -301,31 +324,7 @@ public class Data {
 	//===================================================================================================== 
 	//===================================================================================================== 
 
-	public String getNewKodePakan() {
-		String query = "SELECT KODE_PAKAN from MsPakan "
-				+ "ORDER BY KODE_PAKAN DESC LIMIT 1";
-		
-		String lastKode = "";
-		connect.rs = connect.execQuery(query);
-		try {
-			if(!(connect.rs.next())) {
-				return "PKN00001";
-			}
-			
-			lastKode = connect.rs.getString("KODE_PAKAN");
-			String num = lastKode.substring(3);
-			Integer incr = Integer.parseInt(num) + 1;
-			
-			lastKode = String.format("PKN%05d", incr);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return lastKode;
-	}
-	
+
 	public ObservableList<DaftarPakan> getMasterPakanData() {
 		ObservableList<DaftarPakan> lists = FXCollections.observableArrayList();
 		
@@ -386,7 +385,34 @@ public class Data {
 	}
 	
 //===================================================================================================== 
-//Bagian Kandang
+//Bagian Kandang 
+	
+	public String getNewkodeKandang() {
+		String query = "SELECT KODE_KANDANG from mskandang "
+				+ "ORDER BY KODE_KANDANG DESC LIMIT 1";
+		
+		String lastKode = "";
+		connect.rs = connect.execQuery(query);
+		try {
+			if(!(connect.rs.next())) {
+				return "KK001";
+			}
+			
+			lastKode = connect.rs.getString("KODE_KANDANG");
+			String num = lastKode.substring(3);
+			Integer incr = Integer.parseInt(num) + 1;
+			
+			lastKode = String.format("KK%03d", incr);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lastKode;
+	}
+
+	
 	public ObservableList<MsKandang> getMasterKandangData(){
 		connect.rs = connect.execQuery("SELECT * FROM mskandang");
 		
@@ -548,7 +574,7 @@ public class Data {
 
 //========================================================================================	
 //Catatan Harian Detail
-	public Integer calculateAge(Date Date) {
+	public Integer calculateAge(Date Date) {//untuk kalkulasi umur
 		LocalDate currDate = LocalDate.now();
 		LocalDate startDate = Date.toLocalDate();
 			
@@ -564,7 +590,7 @@ public class Data {
 		return year;
 	}
 	
-	public Integer calculateWeeks(Date Date) {
+	public Integer calculateWeeks(Date Date) {//untuk kalkulasi week atau minggu
 		LocalDate currDate = LocalDate.now();
 		LocalDate startDate = Date.toLocalDate();
 		
@@ -575,7 +601,7 @@ public class Data {
 	    return weeks;
 	}
 	
-	public Integer getJumlahJantan(String KODE_CATATAN) {
+	public Integer getJumlahJantan(String KODE_CATATAN) {//untuk kalkulasi sisa jantan
 		Integer JUMLAH_JANTAN = 0;
 		
 		
@@ -597,7 +623,7 @@ public class Data {
 		return JUMLAH_JANTAN;
 	}
 	
-	public Integer getJumlahBetina(String KODE_CATATAN) {
+	public Integer getJumlahBetina(String KODE_CATATAN) {// untuk kalkulasi jumlah betina
 		Integer JUMLAH_BETINA = 0;
 		
 		String catatanUtamaQuery = String.format(
@@ -617,8 +643,48 @@ public class Data {
 		return JUMLAH_BETINA;
 	}
 	
-	public ObservableList<CatatanHarianDetail> getCatatanHarianDetail() {
-		String query = "SELECT * FROM viewcatatanhariandetail";
+	public static ObservableList<String> getKodePakanData(){
+		ObservableList<String> dataList = FXCollections.observableArrayList();
+        Connect connect = Connect.getInstance();
+
+        String query = "SELECT KODE_PAKAN FROM mspakan"; // Query to fetch KODE_KANDANG from mskandang
+
+        try {
+            ResultSet resultSet = connect.execQuery(query);
+            while (resultSet.next()) {
+                String KodePakan = resultSet.getString("KODE_PAKAN");
+                dataList.add(KodePakan);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dataList;
+	} 
+	
+	public static ObservableList<String> getKodeObatData(){
+		ObservableList<String> dataList = FXCollections.observableArrayList();
+        Connect connect = Connect.getInstance();
+
+        String query = "SELECT KODE_OBAT FROM msobat"; // Query to fetch KODE_KANDANG from mskandang
+
+        try {
+            ResultSet resultSet = connect.execQuery(query);
+            while (resultSet.next()) {
+                String KodeObat = resultSet.getString("KODE_OBAT");
+                dataList.add(KodeObat);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dataList;
+	} 
+	
+	public ObservableList<CatatanHarianDetail> getSpecificCatatanHarianDetail(String KodeCatatan) {
+		String query = 
+				String.format("SELECT * FROM viewcatatanhariandetail WHERE KODE_CATATAN = '%s'", 
+						KodeCatatan);
 		
 		connect.rs = connect.execQuery(query);
 		ObservableList<CatatanHarianDetail> lists = FXCollections.observableArrayList();
@@ -681,5 +747,52 @@ public class Data {
 		}
 		
 		return lists;
+	} 
+	
+	
+	
+	public void insertCatatanHarianDetail(CatatanHarianDetail catatanhariandetail) {
+	    String query = String.format("INSERT INTO catatanhariandetail VALUES ('%d', '%d', '%s', '%d', '%s', '%d', '%d', '%d', '%s')",
+	    		catatanhariandetail.getKematianJantan(), 
+	    		catatanhariandetail.getKematianBetina(), 
+	    		catatanhariandetail.getKodePakan(), 
+	    		catatanhariandetail.getJumlahPakan(),
+	    		catatanhariandetail.getKodeObat(),
+	    		catatanhariandetail.getJumlahObat(), 
+	    		catatanhariandetail.getProduksiTelur(), 
+	    		catatanhariandetail.getBiayaVariabel(), 
+	    		catatanhariandetail.getKomentarKematian()
+	    		);
+		connect.execUpdate(query);	
+		reusableMethod.showAlert(AlertType.INFORMATION, "Catatan Harian Detail", "New Data Detail Added Succesfully!");
 	}
+	
+	public void updateCatatanHarianDetail(CatatanHarianDetail CHD) { 
+		String query = String.format("UPDATE catatanhariandetail" 
+				+ "SET KEMATIAN_JANTAN = '%d', SET KEMATIAN_BETINA = '%d'" 
+				+ "SET KODE_PAKAN = '%s', SET JUMLAH_PAKAN = '%d'" 
+				+ "SET KODE_OBAT = '%s', SET JUMLAH_OBAT ='%d'" 
+				+ "SET PRODUKSI_TELUR = '%d', SET BIAYA_VARIABLE = '%d'" 
+				+ "SET KOMENTAR_KEMATIAN = '%s'", CHD.getKematianJantan() 
+				, CHD.getKematianBetina(), 
+				CHD.getKodePakan(), 
+				CHD.getJumlahPakan(), 
+				CHD.getKodeObat(), 
+				CHD.getJumlahObat(), 
+				CHD.getProduksiTelur(), 
+				CHD.getBiayaVariabel(), 
+				CHD.getKomentarKematian()); 
+				
+		connect.execUpdate(query);
+	}
+	
+	
+	
+	public void refreshTableCatatanHarianDetail(TableView<CatatanHarianDetail> table, String KodeCatatan) {
+		ObservableList<CatatanHarianDetail> items = getSpecificCatatanHarianDetail(KodeCatatan); 
+		table.setItems(items); 
+		table.refresh();
+	}
+	
+	
 } 

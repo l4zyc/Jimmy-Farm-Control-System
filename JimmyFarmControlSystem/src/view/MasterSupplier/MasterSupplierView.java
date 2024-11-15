@@ -94,6 +94,8 @@ public class MasterSupplierView extends TableViewTemplate{
 		KodeSupplierTC.prefWidthProperty().bind(TableSupplier.widthProperty().multiply(0.15));
 		NamaSupplierTC.prefWidthProperty().bind(TableSupplier.widthProperty().multiply(0.15));
 		
+		TableSupplier.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
 		KodeSupplierTC.setStyle("-fx-alignment: CENTER;");
 		NamaSupplierTC.setStyle("-fx-alignment: CENTER;");
 		

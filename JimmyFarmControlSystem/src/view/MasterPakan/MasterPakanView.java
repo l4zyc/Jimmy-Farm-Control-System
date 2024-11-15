@@ -106,6 +106,8 @@ public class MasterPakanView extends TableViewTemplate{
 		JenisPakanTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
 		HargaTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
 		
+		TablePakan.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
 		KodePakanTC.setStyle("-fx-alignment: CENTER;");
 		NamaPakanTC.setStyle("-fx-alignment: CENTER;");
 		JenisPakanTC.setStyle("-fx-alignment: CENTER;");
@@ -116,15 +118,13 @@ public class MasterPakanView extends TableViewTemplate{
 	@Override
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
-	
-		
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
 		
 		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
 		
-		CatatanHarianLbl = new Label("Catatan Harian");
-	
+		CatatanHarianLbl = new Label("Master Pakan");
+		
 		TableLayout.setTop(CatatanHarianLbl);
 		TableLayout.setCenter(TablePakan);
 		TableLayout.setBottom(ButtonContainer);
@@ -133,9 +133,7 @@ public class MasterPakanView extends TableViewTemplate{
 		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
 		CatatanHarianLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 	
-	
 		ButtonContainer.setSpacing(10);
-		
 		
 		TableLayout.setPadding(new Insets(80));
 		getMasterPakanLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));

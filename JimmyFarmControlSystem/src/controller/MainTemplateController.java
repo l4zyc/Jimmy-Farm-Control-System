@@ -73,7 +73,7 @@ public class MainTemplateController extends ControllerData{
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
-				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				Stage window = (Stage) view.getMasterPakan().getScene().getWindow(); 
 				window.close(); 
 				new MasterObatView();
 			} 

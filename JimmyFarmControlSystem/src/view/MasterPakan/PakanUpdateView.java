@@ -3,10 +3,12 @@ package view.MasterPakan;
 import java.sql.Date;
 
 import controller.masterPakan.PakanUpdateController;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -32,8 +34,11 @@ public class PakanUpdateView extends ViewTemplate{
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
 	Label KodePakanLbl, NamaPakanLbl, JenisPakanLbl, HargaLbl;
-	TextField KodePakanTF, NamaPakanTF, JenisPakanTF, HargaTF;
+	TextField KodePakanTF, NamaPakanTF, HargaTF;
 	Button Save;
+	
+	ComboBox JenisPakanCB; 
+	String JenisPakanS[] = {"Pakan Grower", "Pakan Starter", "Pakan Layer"}; 
 	
 	private MasterPakanView view;
 	private Stage stage;
@@ -69,8 +74,8 @@ public class PakanUpdateView extends ViewTemplate{
 		NamaPakanTF.setText(pakan.getNamaPakan());
 		//Keterangan Jenis
 		JenisPakanLbl = new Label("Jenis Pakan*");
-		JenisPakanTF = new TextField();
-		JenisPakanTF.setText(pakan.getJenisPakan());
+		JenisPakanCB = new ComboBox(FXCollections.observableArrayList(JenisPakanS));
+		JenisPakanCB.setValue(pakan.getJenisPakan());
 		//Jumlah Awal Jantan
 		HargaLbl = new Label("Harga Label*"); 
 		HargaTF = new TextField();  
@@ -92,7 +97,7 @@ public class PakanUpdateView extends ViewTemplate{
 		form1.add(NamaPakanLbl, 1, 2);
 		form1.add(NamaPakanTF, 2, 2);  
 		form1.add(JenisPakanLbl, 1, 3); 
-		form1.add(JenisPakanTF, 2, 3);
+		form1.add(JenisPakanCB, 2, 3);
 		form1.add(HargaLbl, 1, 4); 
 		form1.add(HargaTF, 2, 4); 
 		
@@ -149,9 +154,6 @@ public class PakanUpdateView extends ViewTemplate{
 		return NamaPakanTF;
 	}
 
-	public TextField getJenisPakanTF() {
-		return JenisPakanTF;
-	}
 
 	public TextField getHargaTF() {
 		return HargaTF;
@@ -217,8 +219,22 @@ public class PakanUpdateView extends ViewTemplate{
 		NamaPakanTF = namaPakanTF;
 	}
 
-	public void setJenisPakanTF(TextField jenisPakanTF) {
-		JenisPakanTF = jenisPakanTF;
+	
+
+	public ComboBox getJenisPakanCB() {
+		return JenisPakanCB;
+	}
+
+	public String[] getJenisPakanS() {
+		return JenisPakanS;
+	}
+
+	public void setJenisPakanCB(ComboBox jenisPakanCB) {
+		JenisPakanCB = jenisPakanCB;
+	}
+
+	public void setJenisPakanS(String[] jenisPakanS) {
+		JenisPakanS = jenisPakanS;
 	}
 
 	public void setHargaTF(TextField hargaTF) {

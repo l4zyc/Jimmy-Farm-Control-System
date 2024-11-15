@@ -46,7 +46,7 @@ public class MainPageView extends TableViewTemplate{
 	TableColumn<CatatanHarianUtama, String> KodeCatatanTC, KodeKandangTC, KeteranganJenisTC, KomentarTC;
 	TableColumn<CatatanHarianUtama, Date> TanggalMasukTC;
 	TableColumn<CatatanHarianUtama, Integer> JumlahAwalJantanTC, JumlahAwalBetinaTC; 
-	Button Update, Delete, InputData;
+	Button Update, Delete, InputData, CatatanHarianDetail;
 	
 	//Daftar tabel samping
 	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
@@ -104,8 +104,12 @@ public class MainPageView extends TableViewTemplate{
 		//Bagian button Input Data 
 		InputData = new Button("Input Data"); 
 		InputData.setFont(Font.font("Inter", 20));
-		InputData.setMinWidth(50);
 		
+		
+		//Bagian catatan Harian Detail
+		CatatanHarianDetail = new Button("Catatan Harian Detail"); 
+		CatatanHarianDetail.setFont(Font.font("Inter", 20)); 
+		InputData.setMinWidth(100);
 		
 		ButtonContainer = new HBox();
 		
@@ -117,6 +121,8 @@ public class MainPageView extends TableViewTemplate{
 		KeteranganJenisTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 		KomentarTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
 		TanggalMasukTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
+		
+		Table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		KodeCatatanTC.setStyle("-fx-alignment: CENTER;");
 		KodeKandangTC.setStyle("-fx-alignment: CENTER;");
@@ -138,7 +144,7 @@ public class MainPageView extends TableViewTemplate{
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
+		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, CatatanHarianDetail);
 		
 		CatatanHarianLbl = new Label("Catatan Harian");
 	
@@ -171,6 +177,14 @@ public class MainPageView extends TableViewTemplate{
 
 	public HBox getButtonContainer() {
 		return ButtonContainer;
+	}
+	
+	public Button getCatatanHarianDetail() {
+		return CatatanHarianDetail;
+	}
+
+	public void setCatatanHarianDetail(Button catatanHarianDetail) {
+		CatatanHarianDetail = catatanHarianDetail;
 	}
 
 	public void setData(Data data) {

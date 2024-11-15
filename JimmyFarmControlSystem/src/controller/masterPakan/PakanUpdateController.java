@@ -20,7 +20,7 @@ public class PakanUpdateController extends ControllerData{
 		view.getSave().setOnAction(e -> { 
 			String KODE_PAKAN = view.getKodePakanTF().getText(); 
 			String NAMA_PAKAN = view.getNamaPakanTF().getText();  
-			String JENIS_PAKAN = view.getJenisPakanTF().getText(); 
+			String JENIS_PAKAN = view.getJenisPakanCB().getValue().toString();  
 			Integer HARGA = Integer.parseInt(view.getHargaTF().getText());
 			
 			data.updateMasterPakan( 

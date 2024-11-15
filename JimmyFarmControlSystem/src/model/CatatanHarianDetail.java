@@ -53,7 +53,17 @@ public class CatatanHarianDetail {
 		PersentaseProduksi = persentaseProduksi;
 		BiayaVariabel = biayaVariabel;
 		KomentarKematian = komentarKematian;
+	} 
+	//====================================
+
+
+	public CatatanHarianDetail(Integer kematianJantan2, Integer kematianBetina2, String kodePakan2,
+			Integer jumlahPakan2, String kodeObat2, Integer jumlahObat2, Integer jumlahProduksiTelur,
+			Integer biayaVariable, String komentarKematian2) {
+		// TODO Auto-generated constructor stub
 	}
+
+
 	public String getKodeCatatan() {
 		return KodeCatatan;
 	}

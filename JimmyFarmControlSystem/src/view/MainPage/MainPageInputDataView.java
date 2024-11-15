@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import util.Data;
 import view.ViewTemplate;
 
 public class MainPageInputDataView extends ViewTemplate{
@@ -29,9 +31,11 @@ public class MainPageInputDataView extends ViewTemplate{
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
 	Label KodeCatatanLbl, KodeKandangLbl, KeteranganJenisLbl, TanggalMasukLbl, JumlahAwalJantanLbl, JumlahAwalBetinaLbl, KomentarLbl;
-	TextField KodeCatatanTF, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar;
+	TextField KodeCatatanTF, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar;
 	DatePicker TanggalMasuk; 
 	Button Save;
+	
+	ComboBox<String> KodeKandangCB; 
 	
 	private MainPageView view;
 	private Stage stage;
@@ -56,7 +60,7 @@ public class MainPageInputDataView extends ViewTemplate{
 		// TODO Auto-generated method stub 
 		//Kode Kandang
 		KodeKandangLbl = new Label("Kode Kandang*"); 
-		KodeKandang = new TextField();  
+		KodeKandangCB = new ComboBox(Data.getKodeKandangData());
 		//Tanggal Masuk
 		TanggalMasukLbl = new Label("Tanggal Masuk*"); 
 		TanggalMasuk = new DatePicker();   
@@ -85,7 +89,7 @@ public class MainPageInputDataView extends ViewTemplate{
 		form1.setHgap(10); 
 		form1.setVgap(10);  
 		form1.add(KodeKandangLbl, 1, 1); 
-		form1.add(KodeKandang, 2, 1); 
+		form1.add(KodeKandangCB, 2, 1); 
 		form1.add(TanggalMasukLbl, 1, 2);
 		form1.add(TanggalMasuk, 2, 2);  
 		form1.add(KeteranganJenisLbl, 1, 3); 
@@ -203,12 +207,28 @@ public class MainPageInputDataView extends ViewTemplate{
 	}
 
 
-	public TextField getKodeKandang() {
-		return KodeKandang;
+	public Label getKodeCatatanLbl() {
+		return KodeCatatanLbl;
 	}
 
-	public void setKodeKandang(TextField kodeKandang) {
-		KodeKandang = kodeKandang;
+	public TextField getKodeCatatanTF() {
+		return KodeCatatanTF;
+	}
+
+	public ComboBox<String> getKodeKandangCB() {
+		return KodeKandangCB;
+	}
+
+	public void setKodeCatatanLbl(Label kodeCatatanLbl) {
+		KodeCatatanLbl = kodeCatatanLbl;
+	}
+
+	public void setKodeCatatanTF(TextField kodeCatatanTF) {
+		KodeCatatanTF = kodeCatatanTF;
+	}
+
+	public void setKodeKandangCB(ComboBox<String> kodeKandangCB) {
+		KodeKandangCB = kodeKandangCB;
 	}
 
 	public TextField getKeteranganJenis() {

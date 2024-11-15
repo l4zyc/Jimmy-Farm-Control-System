@@ -40,7 +40,7 @@ public class MainPageInputDataController extends ControllerData{
 				// TODO Auto-generated method stub
 				LocalDate dateConv = view.getTanggalMasuk().getValue();
 				Date date = Date.valueOf(dateConv);
-				String KodeKandang = view.getKodeKandang().getText();
+				String KodeKandang = view.getKodeKandangCB().getValue().toString();
 				String KeteranganJenis = view.getKeteranganJenis().getText();  
 				Integer JumlahAwalBetina = Integer.parseInt(view.getJumlahAwalBetina().getText().trim());
 				Integer JumlahAwalJantan = Integer.parseInt(view.getJumlahAwalJantan().getText().trim()); 
@@ -55,13 +55,12 @@ public class MainPageInputDataController extends ControllerData{
 				
 				data.insertCatatanHarianUtama(chu);
 				
-				view.getKodeKandang().setText("");
+				view.getKodeKandangCB().setValue(null);
 				view.getKeteranganJenis().setText("");
 				view.getTanggalMasuk().setValue(null);
 				view.getJumlahAwalBetina().setText("");
 				view.getJumlahAwalJantan().setText("");
 				view.getKomentar().setText("");
-				
 				data.refreshCatatanHarianUtamaTable(view.getView().getTable());
 				
 				Stage stage = (Stage) view.getBp().getScene().getWindow();

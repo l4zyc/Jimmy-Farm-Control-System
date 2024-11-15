@@ -4,10 +4,12 @@ import java.sql.Date;
 
 import controller.mainPage.MainPageInputDataController;
 import controller.masterObat.MasterObatInputController;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -29,8 +31,14 @@ public class ObatInputView extends ViewTemplate{
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
 	Label NamaObatLbl, JenisObatLbl, DosisLbl, SatuanLbl, PenyakitLbl, JumlahPerPackLbl, HargaPerPackLbl, HargaPerSatuanLbl;
-	TextField NamaObatTF, JenisObatTF, DosisTF, SatuanTF, PenyakitTF, JumlahPerPackTF, HargaPerPackTF, HargaPerSatuanTF;
+	TextField NamaObatTF, DosisTF, PenyakitTF, JumlahPerPackTF, HargaPerPackTF, HargaPerSatuanTF;
 	Button Save;
+	
+	ComboBox JenisObatCB; 
+	String JenisObatS[] = {"VITAMIN", "VAKSIN", "OBAT", "KOKSI"}; 
+	
+	ComboBox SatuanCB; 
+	String	SatuanS[] = {"ML", "GRAM", "VIAL", "BOTOL"};
 	
 	private MasterObatView view;
 	private Stage stage;
@@ -58,13 +66,13 @@ public class ObatInputView extends ViewTemplate{
 		NamaObatTF = new TextField();  
 		//Tanggal Masuk
 		JenisObatLbl = new Label("Jenis Obat*"); 
-		JenisObatTF = new TextField();   
+		JenisObatCB = new ComboBox(FXCollections.observableArrayList(JenisObatS));
 		//Keterangan Jenis
 		DosisLbl = new Label("Dosis*");
 		DosisTF = new TextField();
 		//Jumlah Awal Jantan
 		SatuanLbl = new Label("Satuan*"); 
-		SatuanTF = new TextField();  
+		SatuanCB = new ComboBox(FXCollections.observableArrayList(SatuanS));
 		//Jumlah Awal Betina
 		PenyakitLbl = new Label("Penyakit*"); 
 		PenyakitTF = new TextField();  
@@ -92,11 +100,11 @@ public class ObatInputView extends ViewTemplate{
 		form1.add(NamaObatLbl, 1, 1); 
 		form1.add(NamaObatTF, 2, 1); 
 		form1.add(JenisObatLbl, 1, 2);
-		form1.add(JenisObatTF, 2, 2);  
+		form1.add(JenisObatCB, 2, 2);  
 		form1.add(DosisLbl, 1, 3); 
 		form1.add(DosisTF, 2, 3);
 		form1.add(SatuanLbl, 1, 4); 
-		form1.add(SatuanTF, 2, 4); 
+		form1.add(SatuanCB, 2, 4); 
 		form1.add(PenyakitLbl, 1, 5); 
 		form1.add(PenyakitTF, 2, 5); 
 		form1.add(JumlahPerPackLbl, 1, 6); 
@@ -170,16 +178,43 @@ public class ObatInputView extends ViewTemplate{
 		return NamaObatTF;
 	}
 
-	public TextField getJenisObatTF() {
-		return JenisObatTF;
-	}
 
 	public TextField getDosisTF() {
 		return DosisTF;
 	}
 
-	public TextField getSatuanTF() {
-		return SatuanTF;
+
+
+	public ComboBox getJenisObatCB() {
+		return JenisObatCB;
+	}
+
+	public String[] getJenisObatS() {
+		return JenisObatS;
+	}
+
+	public ComboBox getSatuanCB() {
+		return SatuanCB;
+	}
+
+	public String[] getSatuanS() {
+		return SatuanS;
+	}
+
+	public void setJenisObatCB(ComboBox jenisObatCB) {
+		JenisObatCB = jenisObatCB;
+	}
+
+	public void setJenisObatS(String[] jenisObatS) {
+		JenisObatS = jenisObatS;
+	}
+
+	public void setSatuanCB(ComboBox satuanCB) {
+		SatuanCB = satuanCB;
+	}
+
+	public void setSatuanS(String[] satuanS) {
+		SatuanS = satuanS;
 	}
 
 	public TextField getPenyakitTF() {
@@ -266,17 +301,12 @@ public class ObatInputView extends ViewTemplate{
 		NamaObatTF = namaObatTF;
 	}
 
-	public void setJenisObatTF(TextField jenisObatTF) {
-		JenisObatTF = jenisObatTF;
-	}
+
 
 	public void setDosisTF(TextField dosisTF) {
 		DosisTF = dosisTF;
 	}
 
-	public void setSatuanTF(TextField satuanTF) {
-		SatuanTF = satuanTF;
-	}
 
 	public void setPenyakitTF(TextField penyakitTF) {
 		PenyakitTF = penyakitTF;

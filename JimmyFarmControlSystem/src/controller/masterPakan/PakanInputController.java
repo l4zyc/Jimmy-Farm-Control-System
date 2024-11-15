@@ -31,9 +31,9 @@ public class PakanInputController extends ControllerData{
 	}
 	
 	public DaftarPakan getInputData() {
-		String KODE_PAKAN = data.getNewKodePakan();
+		String KODE_PAKAN = view.getKodePakanTF().getText();
 		String NAMA_PAKAN = view.getNamaPakanTF().getText();
-		String JENIS_PAKAN = view.getJenisPakanTF().getText();
+		String JENIS_PAKAN = view.getJenisPakanCB().getValue().toString();
 		Integer HARGA = Integer.parseInt(view.getHargaTF().getText());
 		
 		DaftarPakan pakan = new DaftarPakan(KODE_PAKAN, NAMA_PAKAN, JENIS_PAKAN, HARGA);
