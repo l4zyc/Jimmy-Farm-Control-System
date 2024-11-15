@@ -48,7 +48,7 @@ public class DetailCatatanUpdateController extends ControllerData{
 						KomentarKematian
 					));
 			
-			reusableMethod.showAlert(AlertType.INFORMATION, "Update", "Obat Data Updated!");
+			reusableMethod.showAlert(AlertType.INFORMATION, "Update", "Data Updated!");
 			data.refreshTableCatatanHarianDetail(view.getView().getTable(), KODE_CATATAN);
 			Stage stage = view.getStage();
 			stage.close();
