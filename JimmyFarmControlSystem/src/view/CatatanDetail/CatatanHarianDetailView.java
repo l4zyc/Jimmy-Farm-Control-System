@@ -259,5 +259,14 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	public void setInputData(Button inputData) {
 		InputData = inputData;
 	}
+
+	public String getKode() {
+		return kode;
+	}
+
+	public void setKode(String kode) {
+		this.kode = kode;
+	}
+
 	
 }

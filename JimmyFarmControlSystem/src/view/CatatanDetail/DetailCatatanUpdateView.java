@@ -1,5 +1,6 @@
 package view.CatatanDetail;
 
+import controller.detailCatatan.DetailCatatanUpdateController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.CatatanHarianDetail;
 import view.ViewTemplate;
 import view.MainPage.MainPageView;
 
@@ -35,8 +37,13 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 	ComboBox KodePakanCB, KodeObatCB;
 	
 	private Stage stage;
+	private CatatanHarianDetailView view;
+	private CatatanHarianDetail catatan;
 	
-	public DetailCatatanUpdateView() {
+	public DetailCatatanUpdateView(CatatanHarianDetailView detailView, 
+			CatatanHarianDetail catatan) {
+		this.view = detailView;
+		this.catatan = catatan;
 		init(); 
 		arrangeComponent(); 
 		stage = new Stage();
@@ -44,6 +51,7 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 		
 		stage.setScene(scene);
 		stage.show(); 
+		new DetailCatatanUpdateController(this);
 	}
 
 	@Override
@@ -52,30 +60,47 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 		//Kematian Jantan
 		KematianJantanLbl = new Label("Kematian Jantan*"); 
 		KematianJantanTF = new TextField();  
+		KematianJantanTF.setText(catatan.getKematianJantan().toString());
+		
 		//Kematian Betina
 		KematianBetinaLbl = new Label("Kematian Betina*"); 
 		KematianBetinaTF = new TextField();   
+		KematianBetinaTF.setText(catatan.getKematianBetina().toString());
+		
 		//Kode Pakan
 		KodePakanLbl = new Label("Kode Pakan*"); 
 		KodePakanCB = new ComboBox(data.getKodePakanData());
+		KodePakanCB.setValue(catatan.getKodePakan());
+		
 		//Jumlah Pakan
 		JumlahPakanLbl = new Label("Jumlah Pakan*"); 
 		JumlahPakanTF = new TextField(); 
+		JumlahPakanTF.setText(catatan.getJumlahPakan().split("Kg")[0].trim());
+		
 		//Kode Obat
 		KodeObatLbl = new Label("Kode Obat"); 
 		KodeObatCB = new ComboBox(data.getKodeObatData()); 
+		KodeObatCB.setValue(catatan.getKodeObat());
+		
 		//Jumlah Obat
 		JumlahObatLbl = new Label("Jumlah Obat"); 
 		JumlahObatTF = new TextField(); 
+		JumlahObatTF.setText(catatan.getJumlahObat().split(" ")[0].trim());
+		
 		//Jumlah Produksi Telur
 		JumlahProduksiTelurLbl = new Label("Jumlah Produksi Telur"); 
 		JumlahProduksiTelurTF = new TextField(); 
+		JumlahProduksiTelurTF.setText(catatan.getProduksiTelur().split("butir")[0].trim());
+		
 		//Biata Variabel
 		BiayaVariabelLbl = new Label("Biaya Variabel"); 
 		BiayaVariabelTF = new TextField();
+		BiayaVariabelTF.setText(catatan.getBiayaVariabel().split(" ")[1].trim());
+		
 		//Komentar Kematian
 		KomentarKematianLbl = new Label("Komentar");
 		KomentarKematianTA = new TextArea();
+		KomentarKematianTA.setText(catatan.getKomentarKematian());
 		
 		//Button Save
 		Save = new Button("Save"); 
@@ -301,6 +326,12 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 		this.stage = stage;
 	}
 	
-	
+	public CatatanHarianDetailView getView() {
+		return view;
+	}
+
+	public void setView(CatatanHarianDetailView view) {
+		this.view = view;
+	}
 	
 }

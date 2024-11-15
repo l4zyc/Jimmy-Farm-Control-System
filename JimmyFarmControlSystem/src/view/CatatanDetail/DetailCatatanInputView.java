@@ -1,5 +1,6 @@
 package view.CatatanDetail;
 
+import controller.detailCatatan.DetailCatatanInputController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -36,8 +37,12 @@ public class DetailCatatanInputView extends ViewTemplate{
 	ComboBox KodePakanCB, KodeObatCB;
 	
 	private Stage stage;
+	private CatatanHarianDetailView view;
+	private String Kode;
 	
-	public DetailCatatanInputView() {
+	public DetailCatatanInputView(CatatanHarianDetailView view, String KODE) {
+		this.Kode = KODE;
+		this.view = view;
 		init(); 
 		arrangeComponent(); 
 		stage = new Stage();
@@ -45,6 +50,8 @@ public class DetailCatatanInputView extends ViewTemplate{
 		
 		stage.setScene(scene);
 		stage.show(); 
+		
+		new DetailCatatanInputController(this);
 	}
 
 	@Override
@@ -300,6 +307,22 @@ public class DetailCatatanInputView extends ViewTemplate{
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
+	}
+
+	public CatatanHarianDetailView getView() {
+		return view;
+	}
+
+	public void setView(CatatanHarianDetailView view) {
+		this.view = view;
+	}
+
+	public String getKode() {
+		return Kode;
+	}
+
+	public void setKode(String kode) {
+		Kode = kode;
 	}
 
 	

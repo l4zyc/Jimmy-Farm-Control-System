@@ -25,8 +25,6 @@ public class CatatanHarianDetail {
 	private String BiayaVariabel; 
 	private String KomentarKematian;
 	
-	
-	
 	public CatatanHarianDetail(String kodeCatatan, Date tanggalCatatan, String umur, Integer minggu,
 			Integer kematianJantan, Integer sisaJantan, Integer kematianBetina, Integer sisaBetina, Integer totalSisa,
 			Integer perbandinganJantan, Integer perbandinganBetina, String kodePakan, String jumlahPakan,
@@ -57,11 +55,29 @@ public class CatatanHarianDetail {
 	//====================================
 
 
-	public CatatanHarianDetail(Integer kematianJantan2, Integer kematianBetina2, String kodePakan2,
-			Integer jumlahPakan2, String kodeObat2, Integer jumlahObat2, Integer jumlahProduksiTelur,
-			Integer biayaVariable, String komentarKematian2) {
-		// TODO Auto-generated constructor stub
-	}
+	public CatatanHarianDetail(String kodeCatatan, 
+            Date tanggalCatatan, 
+            Integer kematianJantan, 
+            Integer kematianBetina, 
+            String kodePakan, 
+            String jumlahPakan, 
+            String kodeObat, 
+            String jumlahObat, 
+            String produksiTelur, 
+            String biayaVariabel, 
+            String komentarKematian) {
+			this.KodeCatatan = kodeCatatan;
+			this.TanggalCatatan = tanggalCatatan;
+			this.KematianJantan = kematianJantan;
+			this.KematianBetina = kematianBetina;
+			this.KodePakan = kodePakan;
+			this.JumlahPakan = jumlahPakan;
+			this.KodeObat = kodeObat;
+			this.JumlahObat = jumlahObat;
+			this.ProduksiTelur = produksiTelur;
+			this.BiayaVariabel = biayaVariabel;
+			this.KomentarKematian = komentarKematian;
+		}
 
 
 	public String getKodeCatatan() {

@@ -132,6 +132,34 @@ public class Data {
 		return listCatatan;
 	}
 	
+	public CatatanHarianUtama getSpecificCatatanHarian(String KODE_CATATAN) {
+		String query = String.format("SELECT * FROM CatatanHarianUtama WHERE KODE_CATATAN = '%s'",
+				KODE_CATATAN, KODE_CATATAN);
+		connect.rs = connect.execQuery(query);
+		
+		CatatanHarianUtama catatan = null;
+		
+		try {
+			while(connect.rs.next()) {
+				String kodeKandang = connect.rs.getString("KODE_KANDANG");
+				String kodeCatatan = connect.rs.getString("KODE_CATATAN"); 
+				String KeteranganJenis = connect.rs.getString("KETERANGAN_JENIS");
+				Date TanggalMasuk = connect.rs.getDate("TANGGAL_MASUK");
+				Integer jumlahAwalJantan = connect.rs.getInt("JUMLAH_AWAL_JANTAN"); 
+				Integer jumlajAwalBetina = connect.rs.getInt("JUMLAH_AWAL_BETINA");
+				String Komentar = connect.rs.getString("KOMENTAR");
+				
+				catatan = new CatatanHarianUtama(kodeCatatan, TanggalMasuk, kodeKandang, KeteranganJenis, jumlahAwalJantan,
+						jumlajAwalBetina, Komentar);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return catatan;
+	}
+	
 	public void updateCatatanHarianData(CatatanHarianUtama catatan) {
 		
 		String query = String.format("UPDATE CatatanHarianUtama "
@@ -752,15 +780,18 @@ public class Data {
 	
 	
 	public void insertCatatanHarianDetail(CatatanHarianDetail catatanhariandetail) {
-	    String query = String.format("INSERT INTO catatanhariandetail VALUES ('%d', '%d', '%s', '%d', '%s', '%d', '%d', '%d', '%s')",
-	    		catatanhariandetail.getKematianJantan(), 
-	    		catatanhariandetail.getKematianBetina(), 
-	    		catatanhariandetail.getKodePakan(), 
-	    		catatanhariandetail.getJumlahPakan(),
+	    String query = String.format("INSERT INTO catatanhariandetail VALUES ("
+	    		+ " '%s', '%s', %d, %d, '%s', %d, '%s', %d, %d, %d, '%s')",
+	    		catatanhariandetail.getKodeCatatan(),
+	    		catatanhariandetail.getTanggalCatatan().toString(),
+	    		catatanhariandetail.getKematianJantan(),
+	    		catatanhariandetail.getKematianBetina(),
+	    		catatanhariandetail.getKodePakan(),
+	    		Integer.parseInt(catatanhariandetail.getJumlahPakan()),
 	    		catatanhariandetail.getKodeObat(),
-	    		catatanhariandetail.getJumlahObat(), 
-	    		catatanhariandetail.getProduksiTelur(), 
-	    		catatanhariandetail.getBiayaVariabel(), 
+	    		Integer.parseInt(catatanhariandetail.getJumlahObat()),
+	    		Integer.parseInt(catatanhariandetail.getProduksiTelur()),
+	    		Integer.parseInt(catatanhariandetail.getBiayaVariabel()),
 	    		catatanhariandetail.getKomentarKematian()
 	    		);
 		connect.execUpdate(query);	
@@ -769,29 +800,36 @@ public class Data {
 	
 	public void updateCatatanHarianDetail(CatatanHarianDetail CHD) { 
 		String query = String.format("UPDATE catatanhariandetail" 
-				+ "SET KEMATIAN_JANTAN = '%d', SET KEMATIAN_BETINA = '%d'" 
-				+ "SET KODE_PAKAN = '%s', SET JUMLAH_PAKAN = '%d'" 
-				+ "SET KODE_OBAT = '%s', SET JUMLAH_OBAT ='%d'" 
-				+ "SET PRODUKSI_TELUR = '%d', SET BIAYA_VARIABLE = '%d'" 
-				+ "SET KOMENTAR_KEMATIAN = '%s'", CHD.getKematianJantan() 
+				+ " SET KEMATIAN_JANTAN = %d, KEMATIAN_BETINA = %d," 
+				+ " KODE_PAKAN = '%s', JUMLAH_PAKAN = %d," 
+				+ " KODE_OBAT = '%s', JUMLAH_OBAT =%d," 
+				+ " PRODUKSI_TELUR = %d, BIAYA_VARIABEL = %d," 
+				+ " KOMENTAR_KEMATIAN = '%s' WHERE KODE_CATATAN = '%s'"
+				+ " AND TANGGAL_CATATAN = '%s'", CHD.getKematianJantan() 
 				, CHD.getKematianBetina(), 
 				CHD.getKodePakan(), 
-				CHD.getJumlahPakan(), 
+				Integer.parseInt(CHD.getJumlahPakan()), 
 				CHD.getKodeObat(), 
-				CHD.getJumlahObat(), 
-				CHD.getProduksiTelur(), 
-				CHD.getBiayaVariabel(), 
-				CHD.getKomentarKematian()); 
+				Integer.parseInt(CHD.getJumlahObat()), 
+				Integer.parseInt(CHD.getProduksiTelur()), 
+				Integer.parseInt(CHD.getBiayaVariabel()), 
+				CHD.getKomentarKematian(), CHD.getKodeCatatan(), CHD.getTanggalCatatan().toString()); 
 				
 		connect.execUpdate(query);
 	}
 	
+	public void deleteCatatanHarianDetail(CatatanHarianDetail catatan) {
+		String query = String.format("DELETE FROM catatanhariandetail "
+				+ "WHERE KODE_CATATAN = '%s' AND TANGGAL_CATATAN = '%s'", 
+				catatan.getKodeCatatan(), catatan.getTanggalCatatan());
+		
+		connect.execUpdate(query);
+	}
 	
 	
 	public void refreshTableCatatanHarianDetail(TableView<CatatanHarianDetail> table, String KodeCatatan) {
 		ObservableList<CatatanHarianDetail> items = getSpecificCatatanHarianDetail(KodeCatatan); 
 		table.setItems(items); 
-		table.refresh();
 	}
 	
 	
