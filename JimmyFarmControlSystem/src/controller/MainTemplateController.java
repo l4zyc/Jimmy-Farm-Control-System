@@ -39,6 +39,16 @@ public class MainTemplateController extends ControllerData{
 		});
 	}
 	
+	public void setOnHome() { 
+		view.getHome().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) { 
+				new MainPageView();
+			}
+		});
+	}
+	
 	private void setOnMouseClickedCatatanHarian() {
 		view.getCatatanHarian().setOnMouseClicked(new EventHandler<MouseEvent>() {
 

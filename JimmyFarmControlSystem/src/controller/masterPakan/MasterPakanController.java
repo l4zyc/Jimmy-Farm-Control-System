@@ -12,9 +12,11 @@ import javafx.scene.control.TableSelectionModel;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import model.DaftarPakan;
 import util.reusableMethod;
 import view.TableViewTemplate;
+import view.MainPage.MainPageView;
 import view.MasterPakan.MasterPakanView;
 import view.MasterPakan.PakanInputView;
 import view.MasterPakan.PakanUpdateView;
@@ -23,7 +25,9 @@ public class MasterPakanController extends MainTemplateController{
 	
 	public MasterPakanController(MasterPakanView view) {
 		super(view);
-		setOnAction();
+		setOnAction(); 
+		setOnHome(); 
+		setOnLogOut();
 	}
 	
 	public DaftarPakan getSelectedPakan() {
@@ -69,6 +73,18 @@ public class MasterPakanController extends MainTemplateController{
 					reusableMethod.showAlert(AlertType.INFORMATION, "Delete Data", "Data Deleted!");
 					data.refreshTablePakan(((MasterPakanView) view).getTablePakan());
 				}
+			}
+		});
+	} 
+	
+	public void setOnHome() { 
+		view.getHome().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {  
+				Stage window = (Stage) view.getMasterPakan().getScene().getWindow(); 
+				window.close();
+				new MainPageView();
 			}
 		});
 	}

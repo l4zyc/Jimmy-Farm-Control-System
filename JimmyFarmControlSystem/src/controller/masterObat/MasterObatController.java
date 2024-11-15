@@ -39,7 +39,8 @@ public class MasterObatController extends MainTemplateController{
 		setOnActionEventUpdate();
 		setOnActionEventInputData();
 		setOnActionEventDelete();
-		setOnLogOut();
+		setOnLogOut(); 
+		setOnHome();
 		setOnMouseClicked(); 
 	}
 	
@@ -105,6 +106,18 @@ public class MasterObatController extends MainTemplateController{
 				new ObatInputView(((MasterObatView) view));
 			} 
 		}); 
-	}  
+	}   
+	
+	public void setOnHome() { 
+		view.getHome().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {  
+				Stage window = (Stage) view.getMasterObat().getScene().getWindow(); 
+				window.close();
+				new MainPageView();
+			}
+		});
+	}
 	
 }

@@ -10,6 +10,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableSelectionModel;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import model.MsKandang;
 import util.reusableMethod;
 import view.TableViewTemplate;
@@ -24,7 +25,8 @@ public class MasterKandangController extends MainTemplateController{
 	public MasterKandangController(TableViewTemplate view) {
 		super(view);
 		setOnLogOut();
-		setOnAction();
+		setOnAction(); 
+		setOnHome();
 	}
 	
 	public void setOnLogOut() {
@@ -81,4 +83,16 @@ public class MasterKandangController extends MainTemplateController{
 		return (MsKandang)model.getSelectedItem();
 	}
 
+	public void setOnHome() { 
+		view.getHome().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {  
+				Stage window = (Stage) view.getMasterKandang().getScene().getWindow(); 
+				window.close();
+				new MainPageView();
+			}
+		});
+	}
+	
 }

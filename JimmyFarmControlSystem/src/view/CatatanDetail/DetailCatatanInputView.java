@@ -1,6 +1,7 @@
 package view.CatatanDetail;
 
 import controller.detailCatatan.DetailCatatanInputController;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,10 +32,11 @@ public class DetailCatatanInputView extends ViewTemplate{
 
 	Label KematianJantanLbl, KematianBetinaLbl, KodePakanLbl, JumlahPakanLbl, JumlahObatLbl, KodeObatLbl, JumlahProduksiTelurLbl, BiayaVariabelLbl, KomentarKematianLbl;
 	TextField KematianJantanTF, KematianBetinaTF, JumlahPakanTF, JumlahObatTF, JumlahProduksiTelurTF, BiayaVariabelTF; 
-	TextArea KomentarKematianTA;
 	Button Save;
 	
-	ComboBox KodePakanCB, KodeObatCB;
+	ComboBox KodePakanCB, KodeObatCB, Komentar;
+	
+	String KomentarS[] = {"Afkir", "Pindah Kandang", "Dijual", "Mati", "Hari Pertama", "-"};
 	
 	private Stage stage;
 	private CatatanHarianDetailView view;
@@ -53,7 +55,7 @@ public class DetailCatatanInputView extends ViewTemplate{
 		
 		new DetailCatatanInputController(this);
 	}
-
+	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub 
@@ -83,7 +85,7 @@ public class DetailCatatanInputView extends ViewTemplate{
 		BiayaVariabelTF = new TextField();
 		//Komentar Kematian
 		KomentarKematianLbl = new Label("Komentar");
-		KomentarKematianTA = new TextArea();
+		Komentar= new ComboBox(FXCollections.observableArrayList(KomentarS));
 		
 		//Button Save
 		Save = new Button("Save"); 
@@ -113,12 +115,11 @@ public class DetailCatatanInputView extends ViewTemplate{
 		form1.add(BiayaVariabelLbl, 1, 8); 
 		form1.add(BiayaVariabelTF , 2, 8);  
 		form1.add(KomentarKematianLbl, 1, 9); 
-		form1.add(KomentarKematianTA, 2, 9); 
+		form1.add(Komentar, 2, 9); 
 	
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
 		
-		KomentarKematianTA.setMaxWidth(150);
 		
 		bp.setPadding(new Insets(50));
 		form1.setAlignment(Pos.CENTER);
@@ -195,10 +196,6 @@ public class DetailCatatanInputView extends ViewTemplate{
 
 	public TextField getBiayaVariabelTF() {
 		return BiayaVariabelTF;
-	}
-
-	public TextArea getKomentarKematianTA() {
-		return KomentarKematianTA;
 	}
 
 	public Button getSave() {
@@ -288,11 +285,7 @@ public class DetailCatatanInputView extends ViewTemplate{
 	public void setBiayaVariabelTF(TextField biayaVariabelTF) {
 		BiayaVariabelTF = biayaVariabelTF;
 	}
-
-	public void setKomentarKematianTA(TextArea komentarKematianTA) {
-		KomentarKematianTA = komentarKematianTA;
-	}
-
+	
 	public void setSave(Button save) {
 		Save = save;
 	}
@@ -323,6 +316,22 @@ public class DetailCatatanInputView extends ViewTemplate{
 
 	public void setKode(String kode) {
 		Kode = kode;
+	}
+
+	public ComboBox getKomentar() {
+		return Komentar;
+	}
+
+	public String[] getKomentarS() {
+		return KomentarS;
+	}
+
+	public void setKomentar(ComboBox komentar) {
+		Komentar = komentar;
+	}
+
+	public void setKomentarS(String[] komentarS) {
+		KomentarS = komentarS;
 	}
 
 	

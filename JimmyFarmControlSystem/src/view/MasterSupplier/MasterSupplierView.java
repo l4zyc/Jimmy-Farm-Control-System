@@ -86,7 +86,7 @@ public class MasterSupplierView extends TableViewTemplate{
 		action = new Menu("Action"); 
 		Home = new MenuItem("Home"); 
 		LogOut = new MenuItem("Log Out"); 
-								
+				
 		ButtonContainer = new HBox();
 				
 		JFCS = new Label("Jimmy Farm Control System");
@@ -130,7 +130,6 @@ public class MasterSupplierView extends TableViewTemplate{
 		
 		TableLayout.setPadding(new Insets(80));
 		getMasterSupplierLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		Home.setDisable(true);
 		
 		mainLayout.setLeft(getSideBar());
 		mainLayout.setTop(mb);

@@ -39,6 +39,10 @@ public class MasterKandangView extends TableViewTemplate{
 	Button Update, Delete, InputData; //button
 	HBox ButtonContainer;
 	
+	MenuBar mb;  //menubar
+	MenuItem Home, LogOut; //isi menu bar 
+	Menu action;//Buat action menu bar 
+	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
@@ -77,13 +81,22 @@ public class MasterKandangView extends TableViewTemplate{
 										
 		ButtonContainer = new HBox();
 						
-						
-		JFCS = new Label("Jimmy Farm Control System");
+		//Bagian Menubar
+		mb = new MenuBar();  
+		action = new Menu("Action"); 
+		Home = new MenuItem("Home"); 
+		LogOut = new MenuItem("Log Out"); 
+		
+		
+		
+		JFCS = new Label("Jimmy Farm Control System"); 
 		
 		KodeKandangTC.prefWidthProperty().bind(TableKandang.widthProperty().multiply(0.15));
 		LokasiTC.prefWidthProperty().bind(TableKandang.widthProperty().multiply(0.15));
 		
-		TableKandang.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		TableKandang.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); 
+		
+		
 		
 		KodeKandangTC.setStyle("-fx-alignment: CENTER;");
 		LokasiTC.setStyle("-fx-alignment: CENTER;");
@@ -93,6 +106,9 @@ public class MasterKandangView extends TableViewTemplate{
 	@Override
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
+		
+		mb.getMenus().add(action); 
+		action.getItems().addAll(Home, LogOut);
 		
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
@@ -215,6 +231,38 @@ public class MasterKandangView extends TableViewTemplate{
 
 	public void setButtonContainer(HBox buttonContainer) {
 		ButtonContainer = buttonContainer;
+	}
+
+	public MenuBar getMb() {
+		return mb;
+	}
+
+	public MenuItem getHome() {
+		return Home;
+	}
+
+	public MenuItem getLogOut() {
+		return LogOut;
+	}
+
+	public Menu getAction() {
+		return action;
+	}
+
+	public void setMb(MenuBar mb) {
+		this.mb = mb;
+	}
+
+	public void setHome(MenuItem home) {
+		Home = home;
+	}
+
+	public void setLogOut(MenuItem logOut) {
+		LogOut = logOut;
+	}
+
+	public void setAction(Menu action) {
+		this.action = action;
 	}
 
 	

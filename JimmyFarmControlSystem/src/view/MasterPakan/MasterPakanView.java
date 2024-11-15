@@ -47,6 +47,9 @@ public class MasterPakanView extends TableViewTemplate{
 	 
 	HBox ButtonContainer;
 	
+	MenuBar mb;  //menubar
+	MenuItem Home, LogOut; //isi menu bar 
+	Menu action;//Buat action menu bar 
 
 	@Override
 	public void init() {
@@ -97,7 +100,11 @@ public class MasterPakanView extends TableViewTemplate{
 						
 						
 		ButtonContainer = new HBox();
-		 
+		
+		mb = new MenuBar();  
+		action = new Menu("Action"); 
+		Home = new MenuItem("Home"); 
+		LogOut = new MenuItem("Log Out"); 
 		
 		JFCS = new Label("Jimmy Farm Control System");
 		
@@ -117,7 +124,10 @@ public class MasterPakanView extends TableViewTemplate{
 
 	@Override
 	public void arrangeComponent() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
+		mb.getMenus().add(action);
+		action.getItems().addAll(Home, LogOut); 
+		
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
 		
@@ -138,6 +148,7 @@ public class MasterPakanView extends TableViewTemplate{
 		TableLayout.setPadding(new Insets(80));
 		getMasterPakanLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
 		
+		mainLayout.setTop(mb);
 		mainLayout.setCenter(TableLayout);
 		mainLayout.setLeft(getSideBar());
 	}
@@ -280,6 +291,46 @@ public class MasterPakanView extends TableViewTemplate{
 
 	public void setButtonContainer(HBox buttonContainer) {
 		ButtonContainer = buttonContainer;
+	}
+
+
+	public MenuBar getMb() {
+		return mb;
+	}
+
+
+	public MenuItem getHome() {
+		return Home;
+	}
+
+
+	public MenuItem getLogOut() {
+		return LogOut;
+	}
+
+
+	public Menu getAction() {
+		return action;
+	}
+
+
+	public void setMb(MenuBar mb) {
+		this.mb = mb;
+	}
+
+
+	public void setHome(MenuItem home) {
+		Home = home;
+	}
+
+
+	public void setLogOut(MenuItem logOut) {
+		LogOut = logOut;
+	}
+
+
+	public void setAction(Menu action) {
+		this.action = action;
 	}
 	
 	

@@ -4,6 +4,7 @@ import controller.MainTemplateController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableSelectionModel;
 import model.CatatanHarianDetail;
@@ -12,6 +13,7 @@ import view.TableViewTemplate;
 import view.CatatanDetail.CatatanHarianDetailView;
 import view.CatatanDetail.DetailCatatanInputView;
 import view.CatatanDetail.DetailCatatanUpdateView;
+import view.MainPage.MainPageView;
 
 public class DetailCatatanController extends MainTemplateController{
 
@@ -23,7 +25,9 @@ public class DetailCatatanController extends MainTemplateController{
 		detailView = view;
 		setOnMouseClick();
 		setOnAction();
-	}
+		setOnLogOut(); 
+		setOnHome();
+	} 
 	
 	public void setOnMouseClick() {
 		((CatatanHarianDetailView) view).getTable().setOnMouseClicked(e -> {
@@ -67,5 +71,17 @@ public class DetailCatatanController extends MainTemplateController{
 				}
 			}
 		});
-	} 
+	}  
+	
+	public void setOnHome() { 
+		view.getHome().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {  
+				Stage window = (Stage) view.getMasterKandang().getScene().getWindow(); 
+				window.close();
+				new MainPageView();
+			}
+		});
+	}
 }

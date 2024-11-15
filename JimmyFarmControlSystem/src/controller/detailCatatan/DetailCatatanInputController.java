@@ -37,7 +37,7 @@ public class DetailCatatanInputController extends ControllerData{
 				Integer JumlahObat = Integer.parseInt(view.getJumlahObatTF().getText().trim()); 
 				Integer JumlahProduksiTelur = Integer.parseInt(view.getJumlahProduksiTelurTF().getText().trim()); 
 				Integer BiayaVariable = Integer.parseInt(view.getBiayaVariabelTF().getText().trim()); 
-				String KomentarKematian = view.getKomentarKematianTA().getText(); 
+				String KomentarKematian = view.getKomentar().getValue().toString();
 				
 				CatatanHarianUtama baseData = data.getSpecificCatatanHarian(view.getView().getKode());
 				

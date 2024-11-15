@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableSelectionModel;
 import javafx.scene.control.TableView.TableViewSelectionModel;
+import javafx.stage.Stage;
 import model.DaftarSupplier;
 import util.reusableMethod;
 import view.MasterSupplier.*;
@@ -23,7 +24,8 @@ public class MasterSupplierController extends MainTemplateController{
 	public MasterSupplierController(TableViewTemplate view) {
 		super(view);
 		setOnLogOut();
-		setOnAction();
+		setOnAction();  
+		setOnHome();
 	}
 
 	public void setOnLogOut() {
@@ -81,5 +83,18 @@ public class MasterSupplierController extends MainTemplateController{
 		TableViewSelectionModel<DaftarSupplier> model = ((MasterSupplierView) view).getTableSupplier().getSelectionModel();
 		model.setSelectionMode(SelectionMode.SINGLE);
 		return (DaftarSupplier) model.getSelectedItem();
+	} 
+	
+	public void setOnHome() { 
+		view.getHome().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {  
+				Stage window = (Stage) view.getMasterSupplier().getScene().getWindow(); 
+				window.close();
+				new MainPageView();
+			}
+		});
 	}
+	
  }
