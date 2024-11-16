@@ -3,6 +3,7 @@ package controller.masterKandang;
 import java.util.Optional;
 
 import controller.MainTemplateController;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -24,6 +25,7 @@ public class MasterKandangController extends MainTemplateController{
 
 	public MasterKandangController(TableViewTemplate view) {
 		super(view);
+		setOnSearch();
 		setOnLogOut();
 		setOnAction(); 
 		setOnHome();
@@ -94,5 +96,21 @@ public class MasterKandangController extends MainTemplateController{
 			}
 		});
 	}
+	
+	public void setOnSearch() {
+        // Assuming the search field is called getSearchField() 
+	    ((MasterKandangView) view).getSearch().textProperty().addListener((observable, oldValue, newValue) -> {
+	        // Check if 'data' is not null and 'searchMasterKandangData' method exists
+	        if (data != null) {
+	            ObservableList<MsKandang> searchResults = data.searchMasterKandangData(newValue);
+	            // Ensure the TableView is being updated with the search results
+	            ((MasterKandangView) view).getTableKandang().setItems(searchResults);
+	            // Optionally refresh the TableView to force the UI update
+	            ((MasterKandangView) view).getTableKandang().refresh();
+	        } else {
+	            System.err.println("Data instance is null or method not found.");
+	        }
+	    });;
+    }
 	
 }

@@ -39,6 +39,8 @@ public class MasterKandangView extends TableViewTemplate{
 	Button Update, Delete, InputData; //button
 	HBox ButtonContainer;
 	
+	TextField Search;
+	
 	MenuBar mb;  //menubar
 	MenuItem Home, LogOut; //isi menu bar 
 	Menu action;//Buat action menu bar 
@@ -87,7 +89,8 @@ public class MasterKandangView extends TableViewTemplate{
 		Home = new MenuItem("Home"); 
 		LogOut = new MenuItem("Log Out"); 
 		
-		
+		Search = new TextField(); 
+		Search.setPromptText("Search...");
 		
 		JFCS = new Label("Jimmy Farm Control System"); 
 		
@@ -113,10 +116,10 @@ public class MasterKandangView extends TableViewTemplate{
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
+		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, Search);
 		
 		CatatanHarianLbl = new Label("Master Kandang");
-	
+		
 		TableLayout.setTop(CatatanHarianLbl);
 		TableLayout.setCenter(TableKandang);
 		TableLayout.setBottom(ButtonContainer);
@@ -170,6 +173,14 @@ public class MasterKandangView extends TableViewTemplate{
 
 	public Button getUpdate() {
 		return Update;
+	}
+	
+	public TextField getSearch() {
+		return Search;
+	}
+
+	public void setSearch(TextField search) {
+		Search = search;
 	}
 
 	public Button getDelete() {

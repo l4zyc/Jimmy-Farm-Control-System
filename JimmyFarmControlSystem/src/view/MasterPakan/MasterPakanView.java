@@ -45,6 +45,8 @@ public class MasterPakanView extends TableViewTemplate{
 	TableColumn<DaftarPakan, Integer> HargaTC; 
 	Button Update, Delete, InputData; //button
 	 
+	TextField Search;
+	
 	HBox ButtonContainer;
 	
 	MenuBar mb;  //menubar
@@ -97,7 +99,9 @@ public class MasterPakanView extends TableViewTemplate{
 		InputData = new Button("Input Data"); 
 		InputData.setFont(Font.font("Inter", 20));
 		InputData.setMinWidth(50);
-						
+			
+		Search = new TextField(); 
+		Search.setPromptText("Search...");
 						
 		ButtonContainer = new HBox();
 		
@@ -131,7 +135,7 @@ public class MasterPakanView extends TableViewTemplate{
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
+		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, Search);
 		
 		CatatanHarianLbl = new Label("Master Pakan");
 		
@@ -156,6 +160,17 @@ public class MasterPakanView extends TableViewTemplate{
 
 	public Scene getScene() {
 		return scene;
+	}
+
+	
+
+	public TextField getSearch() {
+		return Search;
+	}
+
+
+	public void setSearch(TextField search) {
+		Search = search;
 	}
 
 

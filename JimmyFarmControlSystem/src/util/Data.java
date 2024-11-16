@@ -347,6 +347,39 @@ public class Data {
 		Obat.setItems(getObatData());
 	}
 
+	public ObservableList<DaftarObat> searchMasterObatData(String keyword, Integer keywordN) {
+	    ObservableList<DaftarObat> searchResults = FXCollections.observableArrayList();
+
+	    // Assuming you have a method to get the complete list of kandang data
+	    ObservableList<DaftarObat> allobat = getObatData();
+
+	    for (DaftarObat obat : allobat) {
+	    	if (keyword != null && !keyword.isEmpty()) {
+	            if (obat.getKodeObat().toLowerCase().contains(keyword.toLowerCase()) ||
+	                obat.getNamaObat().toLowerCase().contains(keyword.toLowerCase()) ||  
+	                obat.getJenisObat().toLowerCase().contains(keyword.toLowerCase()) || 
+	                obat.getSatuan().toLowerCase().contains(keyword.toLowerCase()) || 
+	                obat.getPenyakit().toLowerCase().contains(keyword.toLowerCase())) {
+	                searchResults.add(obat);
+	                continue; // Skip integer checks if already matched
+	            }
+	        }
+
+	        // Check integer fields
+	        if (keywordN != null) {
+	            if (obat.getDosis() == keywordN || 
+	                obat.getJumlahPerPack() == keywordN || 
+	                obat.getHargaPerPack() == keywordN || 
+	                obat.getHargaPerSatuan() == keywordN) {
+	                searchResults.add(obat);
+	            }
+	        }
+	    }
+
+	    return searchResults; 
+	}
+	
+	
 	//===================================================================================================== 
 	//===================================================================================================== 
 	//===================================================================================================== 
@@ -410,6 +443,23 @@ public class Data {
 	
 	public void refreshTablePakan(TableView<DaftarPakan> pakan) {
 		pakan.setItems(getMasterPakanData());
+	}
+	
+	public ObservableList<DaftarPakan> searchMasterPakanData(String keyword) {
+	    ObservableList<DaftarPakan> searchResults = FXCollections.observableArrayList();
+
+	    // Assuming you have a method to get the complete list of kandang data
+	    ObservableList<DaftarPakan> allpakan = getMasterPakanData();
+
+	    for (DaftarPakan pakan : allpakan) {
+	        if (pakan.getKodePakan().toLowerCase().contains(keyword.toLowerCase()) ||
+	            pakan.getNamaPakan().toLowerCase().contains(keyword.toLowerCase()) ||  
+	            pakan.getJenisPakan().toLowerCase().contains(keyword.toLowerCase())) {
+	            searchResults.add(pakan);
+	        }
+	    }
+
+	    return searchResults;
 	}
 	
 //===================================================================================================== 
@@ -503,7 +553,23 @@ public class Data {
 	public void refreshMasterKandang(TableView<MsKandang> Kandang) {
 		Kandang.setItems(getMasterKandangData());
 	}
-	
+	//=====Test Search=====
+	public ObservableList<MsKandang> searchMasterKandangData(String keyword) {
+	    ObservableList<MsKandang> searchResults = FXCollections.observableArrayList();
+
+	    // Assuming you have a method to get the complete list of kandang data
+	    ObservableList<MsKandang> allKandang = getMasterKandangData();
+
+	    for (MsKandang kandang : allKandang) {
+	        if (kandang.getKodeKandang().toLowerCase().contains(keyword.toLowerCase()) ||
+	            kandang.getLokasi().toLowerCase().contains(keyword.toLowerCase())) {
+	            searchResults.add(kandang);
+	        }
+	    }
+
+	    return searchResults;
+	}
+	//=====Search=====
 	
 //=====================================================================================================
 //Data Base Master Supplier	
@@ -600,6 +666,9 @@ public class Data {
 		table.setItems(null);
 	}
 
+	
+	
+	
 //========================================================================================	
 //Catatan Harian Detail
 	public Integer calculateAge(Date Date) {//untuk kalkulasi umur

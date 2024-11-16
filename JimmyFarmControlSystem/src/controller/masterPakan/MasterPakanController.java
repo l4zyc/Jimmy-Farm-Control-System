@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import controller.MainTemplateController;
 import controller.mainPage.MainPageController;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -14,9 +15,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.DaftarPakan;
+import model.MsKandang;
 import util.reusableMethod;
 import view.TableViewTemplate;
 import view.MainPage.MainPageView;
+import view.MasterKandang.MasterKandangView;
 import view.MasterPakan.MasterPakanView;
 import view.MasterPakan.PakanInputView;
 import view.MasterPakan.PakanUpdateView;
@@ -28,6 +31,7 @@ public class MasterPakanController extends MainTemplateController{
 		setOnAction(); 
 		setOnHome(); 
 		setOnLogOut();
+		setOnSearch();
 	}
 	
 	public DaftarPakan getSelectedPakan() {
@@ -89,4 +93,19 @@ public class MasterPakanController extends MainTemplateController{
 		});
 	}
 
+	public void setOnSearch() { 
+		((MasterPakanView) view).getSearch().textProperty().addListener((observable, oldValue, newValue) -> {
+	        // Check if 'data' is not null and 'searchMasterKandangData' method exists
+	        if (data != null) {
+	            ObservableList<DaftarPakan> searchResults = data.searchMasterPakanData(newValue);
+	            // Ensure the TableView is being updated with the search results
+	            ((MasterPakanView) view).getTablePakan().setItems(searchResults);
+	            // Optionally refresh the TableView to force the UI update
+	            ((MasterPakanView) view).getTablePakan().refresh();
+	        } else {
+	            System.err.println("Data instance is null or method not found.");
+	        }
+	    });;
+	}
+	
 }

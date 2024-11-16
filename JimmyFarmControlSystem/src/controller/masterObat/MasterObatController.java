@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import controller.MainTemplateController;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
@@ -16,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import main.Main;
 import model.DaftarObat;
+import model.MsKandang;
 import util.Data;
 import util.reusableMethod;
 import view.MainPage.MainPageInputDataView;
@@ -42,6 +44,7 @@ public class MasterObatController extends MainTemplateController{
 		setOnLogOut(); 
 		setOnHome();
 		setOnMouseClicked(); 
+		setOnSearch();
 	}
 	
 	// Set up the selection handler
@@ -118,6 +121,22 @@ public class MasterObatController extends MainTemplateController{
 				new MainPageView();
 			}
 		});
+	}
+	
+	public void setOnSearch() { 
+		
+		((MasterObatView) view).getSearch().textProperty().addListener((observable, oldValue, newValue) -> {
+	        // Check if 'data' is not null and 'searchMasterKandangData' method exists
+	        if (data != null) {
+	            ObservableList<DaftarObat> searchResults = data.searchMasterObatData(newValue, null);
+	            // Ensure the TableView is being updated with the search results
+	            ((MasterObatView) view).getTableObat().setItems(searchResults);
+	            // Optionally refresh the TableView to force the UI update
+	            ((MasterObatView) view).getTableObat().refresh();
+	        } else {
+	            System.err.println("Data instance is null or method not found.");
+	        }
+	    });;
 	}
 	
 }

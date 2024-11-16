@@ -47,6 +47,8 @@ public class MasterObatView extends TableViewTemplate{
 	MenuItem Home, LogOut; //isi menu bar 
 	Menu action;//Buat action menu bar 
 
+	TextField Search;
+	
 	HBox ButtonContainer;
 	
 	@Override
@@ -129,6 +131,9 @@ public class MasterObatView extends TableViewTemplate{
 				
 		ButtonContainer = new HBox();
 				
+		Search = new TextField(); 
+		Search.setPromptText("Search...");
+		
 		JFCS = new Label("Jimmy Farm Control System");
 		
 		KodeObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.05));
@@ -162,7 +167,7 @@ public class MasterObatView extends TableViewTemplate{
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
+		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, Search);
 		
 		CatatanHarianLbl = new Label("Master Obat");
 	
@@ -350,6 +355,16 @@ public class MasterObatView extends TableViewTemplate{
 
 	public void setLogOut(MenuItem logOut) {
 		LogOut = logOut;
+	}
+
+	
+	
+	public TextField getSearch() {
+		return Search;
+	}
+
+	public void setSearch(TextField search) {
+		Search = search;
 	}
 
 	public Menu getAction() {
