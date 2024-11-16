@@ -80,6 +80,9 @@ public class RegisterController extends ControllerData{
 		view.getPasswordPF().setText(null);
 		view.getConfirmpasswordPF().setText(null);
 		
+		Stage stage = (Stage) view.getBp().getScene().getWindow();
+		stage.close();
+		
 		new LoginView();
 	} 
 	
