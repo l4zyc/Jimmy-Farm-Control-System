@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class CatatanHarianDetail {
 
@@ -199,6 +200,12 @@ public class CatatanHarianDetail {
 	}
 	public void setKomentarKematian(String komentarKematian) {
 		KomentarKematian = komentarKematian;
+	}
+
+
+	public void setTanggalCatatan(LocalDate now) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

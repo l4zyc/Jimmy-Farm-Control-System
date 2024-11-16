@@ -1,5 +1,8 @@
 package controller.detailCatatan;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import controller.ControllerData;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,7 +31,9 @@ public class DetailCatatanInputController extends ControllerData{
 
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub 
+				LocalDate dateConv = view.getTanggal().getValue();
+				Date date = Date.valueOf(dateConv);
 				Integer KematianJantan = Integer.parseInt(view.getKematianJantanTF().getText().trim()); 
 				Integer KematianBetina = Integer.parseInt(view.getKematianBetinaTF().getText().trim()); 
 				String KodePakan = view.getKodePakanCB().getValue().toString(); 
@@ -43,7 +48,7 @@ public class DetailCatatanInputController extends ControllerData{
 				
 				CatatanHarianDetail CHD = new CatatanHarianDetail(
 							baseData.getKodeCatatan(),
-							baseData.getTanggalMasuk(),
+							date,
 							KematianJantan,
 							KematianBetina,
 							KodePakan,

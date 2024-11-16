@@ -30,11 +30,13 @@ public class DetailCatatanInputView extends ViewTemplate{
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
-	Label KematianJantanLbl, KematianBetinaLbl, KodePakanLbl, JumlahPakanLbl, JumlahObatLbl, KodeObatLbl, JumlahProduksiTelurLbl, BiayaVariabelLbl, KomentarKematianLbl;
+	Label TanggalLbl, KematianJantanLbl, KematianBetinaLbl, KodePakanLbl, JumlahPakanLbl, JumlahObatLbl, KodeObatLbl, JumlahProduksiTelurLbl, BiayaVariabelLbl, KomentarKematianLbl;
 	TextField KematianJantanTF, KematianBetinaTF, JumlahPakanTF, JumlahObatTF, JumlahProduksiTelurTF, BiayaVariabelTF; 
 	Button Save;
 	
 	ComboBox KodePakanCB, KodeObatCB, Komentar;
+	
+	DatePicker Tanggal;
 	
 	String KomentarS[] = {"Afkir", "Pindah Kandang", "Dijual", "Mati", "Hari Pertama", "-"};
 	
@@ -58,7 +60,10 @@ public class DetailCatatanInputView extends ViewTemplate{
 	
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub 
+		// TODO Auto-generated method stub  
+		//
+		TanggalLbl = new Label("Tanggal*"); 
+		Tanggal = new DatePicker();
 		//Kematian Jantan
 		KematianJantanLbl = new Label("Kematian Jantan*"); 
 		KematianJantanTF = new TextField();  
@@ -97,25 +102,27 @@ public class DetailCatatanInputView extends ViewTemplate{
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
 		form1.setHgap(10); 
-		form1.setVgap(10);  
-		form1.add(KematianJantanLbl, 1, 1); 
-		form1.add(KematianJantanTF, 2, 1); 
-		form1.add(KematianBetinaLbl, 1, 2);
-		form1.add(KematianBetinaTF, 2, 2);  
-		form1.add(KodePakanLbl , 1, 3); 
-		form1.add(KodePakanCB , 2, 3);
-		form1.add(JumlahPakanLbl, 1, 4); 
-		form1.add(JumlahPakanTF, 2, 4);  
-		form1.add(KodeObatLbl, 1, 5); 
-		form1.add(KodeObatCB, 2, 5);
-		form1.add(JumlahObatLbl, 1, 6); 
-		form1.add(JumlahObatTF, 2, 6); 
-		form1.add(JumlahProduksiTelurLbl, 1, 7); 
-		form1.add(JumlahProduksiTelurTF, 2, 7); 
-		form1.add(BiayaVariabelLbl, 1, 8); 
-		form1.add(BiayaVariabelTF , 2, 8);  
-		form1.add(KomentarKematianLbl, 1, 9); 
-		form1.add(Komentar, 2, 9); 
+		form1.setVgap(10);   
+		form1.add(TanggalLbl, 1, 1);  
+		form1.add(Tanggal, 2, 1); 
+		form1.add(KematianJantanLbl, 1, 2); 
+		form1.add(KematianJantanTF, 2, 2); 
+		form1.add(KematianBetinaLbl, 1, 3);
+		form1.add(KematianBetinaTF, 2, 3);  
+		form1.add(KodePakanLbl , 1, 4); 
+		form1.add(KodePakanCB , 2, 4);
+		form1.add(JumlahPakanLbl, 1, 5); 
+		form1.add(JumlahPakanTF, 2, 5);  
+		form1.add(KodeObatLbl, 1, 6); 
+		form1.add(KodeObatCB, 2, 6);
+		form1.add(JumlahObatLbl, 1, 7); 
+		form1.add(JumlahObatTF, 2, 7); 
+		form1.add(JumlahProduksiTelurLbl, 1, 8); 
+		form1.add(JumlahProduksiTelurTF, 2, 8); 
+		form1.add(BiayaVariabelLbl, 1, 9); 
+		form1.add(BiayaVariabelTF , 2, 9);  
+		form1.add(KomentarKematianLbl, 1, 10); 
+		form1.add(Komentar, 2, 10); 
 	
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
@@ -332,6 +339,22 @@ public class DetailCatatanInputView extends ViewTemplate{
 
 	public void setKomentarS(String[] komentarS) {
 		KomentarS = komentarS;
+	}
+
+	public Label getTanggalLbl() {
+		return TanggalLbl;
+	}
+
+	public DatePicker getTanggal() {
+		return Tanggal;
+	}
+
+	public void setTanggalLbl(Label tanggalLbl) {
+		TanggalLbl = tanggalLbl;
+	}
+
+	public void setTanggal(DatePicker tanggal) {
+		Tanggal = tanggal;
 	}
 
 	

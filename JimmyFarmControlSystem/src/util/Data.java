@@ -901,5 +901,10 @@ public class Data {
 		table.setItems(items); 
 	}
 	
-	
+	public void ValidateDate(CatatanHarianDetail catatanhariandetail) { 
+		 if (catatanhariandetail.getTanggalCatatan() == null) {
+		        catatanhariandetail.setTanggalCatatan(LocalDate.now()); // Set to current date if null
+		    } 
+		 insertCatatanHarianDetail(catatanhariandetail);
+	}
 } 
