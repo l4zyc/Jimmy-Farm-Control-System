@@ -444,7 +444,7 @@ public class Data {
 	public void refreshTablePakan(TableView<DaftarPakan> pakan) {
 		pakan.setItems(getMasterPakanData());
 	}
-	
+	//=====search====
 	public ObservableList<DaftarPakan> searchMasterPakanData(String keyword) {
 	    ObservableList<DaftarPakan> searchResults = FXCollections.observableArrayList();
 
@@ -461,7 +461,7 @@ public class Data {
 
 	    return searchResults;
 	}
-	
+	//==================
 //===================================================================================================== 
 //Bagian Kandang 
 	
@@ -666,7 +666,28 @@ public class Data {
 		table.setItems(null);
 	}
 
-	
+	public ObservableList<DaftarSupplier> searchMasterSupplierData(String keyword) {
+	    ObservableList<DaftarSupplier> searchResults = FXCollections.observableArrayList();
+	    String query = String.format(
+	        "SELECT * FROM mssupplier WHERE KODE_SUPPLIER LIKE '%%%s%%' OR NAMA_SUPPLIER LIKE '%%%s%%'", 
+	        keyword, keyword
+	    );
+
+	    connect.rs = connect.execQuery(query);
+
+	    try {
+	        while (connect.rs.next()) {
+	            String KodeSupplier = connect.rs.getString("KODE_SUPPLIER");
+	            String NamaSupplier = connect.rs.getString("NAMA_SUPPLIER");
+
+	            searchResults.add(new DaftarSupplier(KodeSupplier, NamaSupplier));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return searchResults;
+	}
 	
 	
 //========================================================================================	
@@ -808,10 +829,18 @@ public class Data {
 				String PERSENTASE_PRODUKSI = connect.rs.getString("PERSENTASE_PRODUKSI");
 				String BIAYA_VARIABEL = connect.rs.getString("BIAYA_VARIABEL");
 				String KOMENTAR_KEMATIAN = connect.rs.getString("KOMENTAR_KEMATIAN");
+				//Perbandingan Jantan dan Betina
+				 String[] perbandingan = PERBANDINGAN.split(":");
+					
+				 double PerbandinganJantan = 0.0;
+		         double PerbandinganBetina = 0.0;
 				
-				String[] perbandingan = PERBANDINGAN.split(":");
-				Integer PerbandinganJantan = Integer.parseInt(perbandingan[0]);
-				Integer PerbandinganBetina = Integer.parseInt(perbandingan[1]);
+				 PerbandinganJantan = Double.parseDouble(perbandingan[0]);
+                 PerbandinganBetina = Double.parseDouble(perbandingan[1]);
+
+                 // Ensure PerbandinganBetina has 2 decimal places
+                 PerbandinganBetina = Math.round(PerbandinganBetina * 100.0) / 100.0;
+				//====================================================================
 				
 				lists.add(
 							new CatatanHarianDetail(
@@ -906,5 +935,47 @@ public class Data {
 		        catatanhariandetail.setTanggalCatatan(LocalDate.now()); // Set to current date if null
 		    } 
 		 insertCatatanHarianDetail(catatanhariandetail);
+	}
+	
+	public ObservableList<CatatanHarianDetail> searchCatatanHarianDetailAllColumns(String KodeCatatan, String keyword) {
+	    // Get all data for the specified KodeCatatan
+	    ObservableList<CatatanHarianDetail> allDetails = getSpecificCatatanHarianDetail(KodeCatatan);
+	    ObservableList<CatatanHarianDetail> searchResults = FXCollections.observableArrayList();
+
+	    // If the keyword is null or empty, return the full list
+	    if (keyword == null || keyword.trim().isEmpty()) {
+	        return allDetails;
+	    }
+
+	    String searchKey = keyword.toLowerCase();
+
+	    // Iterate through all details and search across all columns
+	    for (CatatanHarianDetail detail : allDetails) {
+	        if (detail.getKodeCatatan().toLowerCase().contains(searchKey) ||
+	            detail.getTanggalCatatan().toString().toLowerCase().contains(searchKey) || // Date to String
+	            detail.getUmur().toLowerCase().contains(searchKey) ||
+	            detail.getMinggu().toString().toLowerCase().contains(searchKey) ||
+	            detail.getKematianJantan().toString().toLowerCase().contains(searchKey) ||
+	            detail.getSisaJantan().toString().toLowerCase().contains(searchKey) ||
+	            detail.getKematianBetina().toString().toLowerCase().contains(searchKey) ||
+	            detail.getSisaBetina().toString().toLowerCase().contains(searchKey) ||
+	            detail.getTotalSisa().toString().toLowerCase().contains(searchKey) ||
+	            detail.getPerbandinganJantan().toString().toLowerCase().contains(searchKey) ||
+	            detail.getPerbandinganBetina().toString().toLowerCase().contains(searchKey) ||
+	            detail.getKodePakan().toLowerCase().contains(searchKey) ||
+	            detail.getJumlahPakan().toLowerCase().contains(searchKey) ||
+	            detail.getPakanPerEkor().toLowerCase().contains(searchKey) ||
+	            detail.getKodeObat().toLowerCase().contains(searchKey) ||
+	            detail.getJumlahObat().toLowerCase().contains(searchKey) ||
+	            detail.getProduksiTelur().toLowerCase().contains(searchKey) ||
+	            detail.getPersentaseProduksi().toLowerCase().contains(searchKey) ||
+	            detail.getBiayaVariabel().toLowerCase().contains(searchKey) ||
+	            detail.getKomentarKematian().toLowerCase().contains(searchKey)) {
+	            // Add to results if any field matches the keyword
+	            searchResults.add(detail);
+	        }
+	    }
+
+	    return searchResults;
 	}
 } 

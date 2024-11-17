@@ -14,8 +14,8 @@ public class CatatanHarianDetail {
 	private Integer KematianBetina; 
 	private Integer SisaBetina;
 	private Integer TotalSisa;
-	private Integer perbandinganJantan;
-	private Integer perbandinganBetina;
+	private Double perbandinganJantan;
+	private Double perbandinganBetina;
 	private String KodePakan; 
 	private String JumlahPakan; 
 	private String PakanPerEkor;
@@ -28,7 +28,7 @@ public class CatatanHarianDetail {
 	
 	public CatatanHarianDetail(String kodeCatatan, Date tanggalCatatan, String umur, Integer minggu,
 			Integer kematianJantan, Integer sisaJantan, Integer kematianBetina, Integer sisaBetina, Integer totalSisa,
-			Integer perbandinganJantan, Integer perbandinganBetina, String kodePakan, String jumlahPakan,
+			Double perbandinganJantan, Double perbandinganBetina, String kodePakan, String jumlahPakan,
 			String pakanPerEkor, String kodeObat, String jumlahObat, String produksiTelur, String persentaseProduksi,
 			String biayaVariabel, String komentarKematian) {
 		super();
@@ -135,16 +135,16 @@ public class CatatanHarianDetail {
 	public void setTotalSisa(Integer totalSisa) {
 		TotalSisa = totalSisa;
 	}
-	public Integer getPerbandinganJantan() {
+	public Double getPerbandinganJantan() {
 		return perbandinganJantan;
 	}
-	public void setPerbandinganJantan(Integer perbandinganJantan) {
+	public void setPerbandinganJantan(Double perbandinganJantan) {
 		this.perbandinganJantan = perbandinganJantan;
 	}
-	public Integer getPerbandinganBetina() {
+	public Double getPerbandinganBetina() {
 		return perbandinganBetina;
 	}
-	public void setPerbandinganBetina(Integer perbandinganBetina) {
+	public void setPerbandinganBetina(Double perbandinganBetina) {
 		this.perbandinganBetina = perbandinganBetina;
 	}
 	public String getKodePakan() {

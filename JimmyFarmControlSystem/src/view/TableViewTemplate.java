@@ -1,10 +1,15 @@
 package view;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -33,6 +38,8 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		mb.getMenus().add(action);
 		action.getItems().addAll(Home, LogOut); 
 	}
+	Image image; 
+	ImageView image1;
 	
 	public void setSideBar() {
 		sideBar = new GridPane();
@@ -42,6 +49,16 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		sideBar.add(sideBarTop, 0, 0);
 		sideBar.add(sideBarBottom, 0, 1);
 		sideBar.setVgap(10);
+		FileInputStream inputstream;
+		try {
+		    inputstream = new FileInputStream("D:\\Kuliah\\Business Application Development (BAD)\\Coding\\CustomLogoJimmyFarm.png");
+		    image = new Image(inputstream);
+		    image1 = new ImageView(image); // Set the image to the ImageView
+		    image1.setFitWidth(100); // Optional: Adjust size if needed
+		    image1.setPreserveRatio(true); // Preserve the aspect ratio
+		} catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		}
 		
 		DaftarTabel = new Label("Daftar Tabel");  
 		CatatanHarian = new HBox(); //Bagian Catatan Harian 
@@ -66,8 +83,8 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		
 		JFCS = new Label("Jimmy Farm Control System");
 		
-		sideBarTop.add(JFCS, 0, 1);
-		
+		sideBarTop.add(image1, 0, 1);
+		sideBarTop.add(JFCS , 0, 2);
 		sideBarBottom.add(DaftarTabel, 0, 0);		
 		sideBarBottom.add(CatatanHarian, 0, 1);		
 		sideBarBottom.add(MasterPakan, 0, 2);		

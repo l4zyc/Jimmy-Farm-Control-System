@@ -1,5 +1,7 @@
 package view.MasterSupplier;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Date;
 
 import controller.masterSupplier.MasterSupplierController;
@@ -7,6 +9,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -29,6 +33,7 @@ public class MasterSupplierView extends TableViewTemplate{
 		arrangeComponent();
 		SupplierStage = new Stage();
 		
+
 		SupplierStage.setMaximized(true);
 		SupplierStage.setScene(scene);
 		SupplierStage.setTitle("Jimmy Farm Control System");
@@ -36,7 +41,8 @@ public class MasterSupplierView extends TableViewTemplate{
 		
 		new MasterSupplierController(this);
 	}
-
+	Image image; 
+	ImageView image1;
 	Label titleLbl, JFCS; 
 	TableView<DaftarSupplier> TableSupplier;
 	TableColumn<DaftarSupplier, String> KodeSupplierTC, NamaSupplierTC;
@@ -45,7 +51,8 @@ public class MasterSupplierView extends TableViewTemplate{
 	MenuItem Home, LogOut; //isi menu bar 
 	Menu action;//Buat action menu bar  
 	HBox ButtonContainer;
-	
+	FileInputStream inputstream; 
+	TextField Search1;
 	
 	@Override
 	public void init() {
@@ -91,6 +98,9 @@ public class MasterSupplierView extends TableViewTemplate{
 				
 		JFCS = new Label("Jimmy Farm Control System");
 		
+		Search1 = new TextField(); 
+		Search1.setPromptText("Search...");
+		
 		KodeSupplierTC.prefWidthProperty().bind(TableSupplier.widthProperty().multiply(0.15));
 		NamaSupplierTC.prefWidthProperty().bind(TableSupplier.widthProperty().multiply(0.15));
 		
@@ -111,10 +121,9 @@ public class MasterSupplierView extends TableViewTemplate{
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
+		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, Search1);
 		
 		titleLbl = new Label("Master Supplier");
-	
 		TableLayout.setTop(titleLbl);
 		TableLayout.setCenter(TableSupplier);
 		TableLayout.setBottom(ButtonContainer);
@@ -254,6 +263,38 @@ public class MasterSupplierView extends TableViewTemplate{
 
 	public void setButtonContainer(HBox buttonContainer) {
 		ButtonContainer = buttonContainer;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public ImageView getImage1() {
+		return image1;
+	}
+
+	public FileInputStream getInputstream() {
+		return inputstream;
+	}
+
+	public TextField getSearch1() {
+		return Search1;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	public void setImage1(ImageView image1) {
+		this.image1 = image1;
+	}
+
+	public void setInputstream(FileInputStream inputstream) {
+		this.inputstream = inputstream;
+	}
+
+	public void setSearch1(TextField search1) {
+		Search1 = search1;
 	}
 	
 	

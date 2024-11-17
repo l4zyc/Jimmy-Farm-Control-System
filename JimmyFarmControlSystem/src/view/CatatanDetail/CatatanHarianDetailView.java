@@ -34,7 +34,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	Button Update, Delete, InputData;
 	HBox ButtonContainer;
 	String kode;
-
+	TextField Search2;
 	public CatatanHarianDetailView(String kodeCatatan) {
 		this.kode = kodeCatatan;
 		init();
@@ -46,7 +46,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		stage.setTitle("Jimmy Farm Control System Detail");
 		stage.show();
 		
-		new DetailCatatanController(this);
+		new DetailCatatanController(this, kodeCatatan);
 	}
 
 	@Override
@@ -153,12 +153,15 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		InputData.setFont(Font.font("Inter", 20));
 		InputData.setMinWidth(50);
 
+		Search2 = new TextField(); 
+		Search2.setPromptText("Search...");
+		
 		ButtonContainer = new HBox();
 		HBox leftBtnContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(InputData, Update);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete);
-
+		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, Search2);
+		
 		// Set widths of table columns dynamically based on Table width
 		double columnWidth = 0.15;
 		double columnWidthNested = 0.12;
@@ -268,5 +271,62 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		this.kode = kode;
 	}
 
+	public Scene getScene() {
+		return scene;
+	}
+
+	public Stage getStage() {
+		return stage;
+	}
+
+	public Label getTitleLbl() {
+		return titleLbl;
+	}
+
+	public TableColumn<CatatanHarianDetail, Integer> getJantanTC() {
+		return jantanTC;
+	}
+
+	public TableColumn<CatatanHarianDetail, Integer> getBetinaTC() {
+		return betinaTC;
+	}
+
+	public HBox getButtonContainer() {
+		return ButtonContainer;
+	}
+
+	public TextField getSearch2() {
+		return Search2;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+
+	public void setTitleLbl(Label titleLbl) {
+		this.titleLbl = titleLbl;
+	}
+
+	public void setJantanTC(TableColumn<CatatanHarianDetail, Integer> jantanTC) {
+		this.jantanTC = jantanTC;
+	}
+
+	public void setBetinaTC(TableColumn<CatatanHarianDetail, Integer> betinaTC) {
+		this.betinaTC = betinaTC;
+	}
+
+	public void setButtonContainer(HBox buttonContainer) {
+		ButtonContainer = buttonContainer;
+	}
+
+	public void setSearch2(TextField search2) {
+		Search2 = search2;
+	}
+	
+	
 	
 }
