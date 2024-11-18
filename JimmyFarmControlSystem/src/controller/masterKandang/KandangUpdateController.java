@@ -21,6 +21,11 @@ public class KandangUpdateController extends ControllerData{
 			String KODE_KANDANG = view.getKodeKandangTF().getText();
 			String LOKASI = view.getLokasiTF().getText();
 			
+			if(LOKASI.isEmpty()) { 
+				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Lokasi must not be empty");
+				return;
+			}
+			
 			data.updateMasterKandang( 
 					new MsKandang(KODE_KANDANG, LOKASI)
 					);

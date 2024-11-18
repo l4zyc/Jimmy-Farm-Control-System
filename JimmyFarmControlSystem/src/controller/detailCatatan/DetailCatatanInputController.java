@@ -8,10 +8,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.CatatanHarianDetail;
 import model.CatatanHarianUtama;
 import util.Connect;
+import util.reusableMethod;
 import view.CatatanDetail.DetailCatatanInputView;
 
 public class DetailCatatanInputController extends ControllerData{ 
@@ -33,16 +35,86 @@ public class DetailCatatanInputController extends ControllerData{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub 
 				LocalDate dateConv = view.getTanggal().getValue();
-				Date date = Date.valueOf(dateConv);
-				Integer KematianJantan = Integer.parseInt(view.getKematianJantanTF().getText().trim()); 
-				Integer KematianBetina = Integer.parseInt(view.getKematianBetinaTF().getText().trim()); 
+				Date date = Date.valueOf(dateConv);  
+				Integer KematianJantan, KematianBetina;
+				try {
+					KematianJantan = Integer.parseInt(view.getKematianJantanTF().getText().trim()); 
+					KematianBetina = Integer.parseInt(view.getKematianBetinaTF().getText().trim());  
+					if(KematianBetina < 0 || KematianJantan < 0) { 
+						reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Kematian Betina and Jantan must be non-negative numbers.");
+				        return;
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Kematian Betina and Jantan must be whole numbers.");
+					 return;
+				}
 				String KodePakan = view.getKodePakanCB().getValue().toString(); 
-				Integer JumlahPakan = Integer.parseInt(view.getJumlahPakanTF().getText().trim()); 
+				Integer JumlahPakan;  
+				try {
+					JumlahPakan = Integer.parseInt(view.getJumlahPakanTF().getText().trim());  
+					if(JumlahPakan < 0) { 
+						reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Pakan must be non-negative numbers.");
+				        return;
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Pakan must be whole numbers.");
+					 return;
+				}
 				String KodeObat = view.getKodeObatCB().getValue().toString(); 
-				Integer JumlahObat = Integer.parseInt(view.getJumlahObatTF().getText().trim()); 
-				Integer JumlahProduksiTelur = Integer.parseInt(view.getJumlahProduksiTelurTF().getText().trim()); 
-				Integer BiayaVariable = Integer.parseInt(view.getBiayaVariabelTF().getText().trim()); 
+				Integer JumlahObat;
+				try {
+					JumlahObat = Integer.parseInt(view.getJumlahObatTF().getText().trim());  
+					if(JumlahObat < 0) { 
+						reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Obat must be non-negative numbers.");
+				        return;
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Obat must be whole numbers.");
+					 return;
+				}
+				Integer JumlahProduksiTelur; 
+				try {
+					JumlahProduksiTelur = Integer.parseInt(view.getJumlahProduksiTelurTF().getText().trim()); 
+					if(JumlahProduksiTelur < 0) { 
+						reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Produksi Telur must be non-negative numbers.");
+				        return;
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Produksi Telur must be whole numbers.");
+					 return;
+				}
+				Integer BiayaVariable;  
+				try {
+					BiayaVariable = Integer.parseInt(view.getBiayaVariabelTF().getText().trim());
+					if(BiayaVariable < 0) { 
+						reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Biaya Variable must be non-negative numbers.");
+				        return;
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Biaya Variable must be whole numbers.");
+					 return;
+				}
 				String KomentarKematian = view.getKomentar().getValue().toString();
+				
+				if(KodePakan.isEmpty()) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Kode Pakan must not be empty");
+					return;
+				} 
+				
+				if(KomentarKematian.isEmpty()) {
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Komentar Kematian must not be empty");
+					return;
+				}
 				
 				CatatanHarianUtama baseData = data.getSpecificCatatanHarian(view.getView().getKode());
 				

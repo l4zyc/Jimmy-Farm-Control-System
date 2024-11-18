@@ -1,10 +1,12 @@
 package view.MainPage;
 
 import controller.mainPage.MainPageUpdateController;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -14,6 +16,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.CatatanHarianUtama;
+import util.Data;
 import view.ViewTemplate;
 
 public class MainPageUpdateView extends ViewTemplate{
@@ -23,9 +26,11 @@ public class MainPageUpdateView extends ViewTemplate{
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
 	Label KodeCatatanLbl, KodeKandangLbl, KeteranganJenisLbl, TanggalMasukLbl, JumlahAwalJantanLbl, JumlahAwalBetinaLbl, KomentarLbl;
-	TextField KodeCatatanTF, KodeKandang, KeteranganJenisTF, JumlahAwalJantan, JumlahAwalBetina, Komentar;
+	TextField KodeCatatanTF, KeteranganJenisTF, JumlahAwalJantan, JumlahAwalBetina, Komentar;
 	DatePicker TanggalMasuk; 
 	Button Save;
+	
+	ComboBox KodeKandang;
 	
 	private CatatanHarianUtama catatan;
 	private MainPageView view;
@@ -54,8 +59,8 @@ public class MainPageUpdateView extends ViewTemplate{
 		KodeCatatanTF.setText(catatan.getKodeCatatan());
 
 	    KodeKandangLbl = new Label("Kode Kandang*"); 
-	    KodeKandang = new TextField();  
-	    KodeKandang.setText(catatan.getKodeKandang());
+	    KodeKandang = new ComboBox(Data.getKodeKandangData());  
+	    KodeKandang.setValue(catatan.getKodeKandang());
 	    
 	    KeteranganJenisLbl = new Label("Keterangan Jenis");
 	    KeteranganJenisTF = new TextField();
@@ -150,9 +155,6 @@ public class MainPageUpdateView extends ViewTemplate{
 		return KomentarLbl;
 	}
 	
-	public TextField getKodeKandang() {
-		return KodeKandang;
-	}
 
 	public TextField getKeteranganJenisTF() {
 		return KeteranganJenisTF;
@@ -226,10 +228,38 @@ public class MainPageUpdateView extends ViewTemplate{
 		KomentarLbl = komentarLbl;
 	}
 
-	public void setKodeKandang(TextField kodeKandang) {
+	
+	public Label getKodeCatatanLbl() {
+		return KodeCatatanLbl;
+	}
+
+	public ComboBox getKodeKandang() {
+		return KodeKandang;
+	}
+
+	public CatatanHarianUtama getCatatan() {
+		return catatan;
+	}
+
+	public void setKodeCatatanLbl(Label kodeCatatanLbl) {
+		KodeCatatanLbl = kodeCatatanLbl;
+	}
+
+	public void setKeteranganJenisLbl(Label keteranganJenisLbl) {
+		KeteranganJenisLbl = keteranganJenisLbl;
+	}
+
+	public void setKeteranganJenisTF(TextField keteranganJenisTF) {
+		KeteranganJenisTF = keteranganJenisTF;
+	}
+
+	public void setKodeKandang(ComboBox kodeKandang) {
 		KodeKandang = kodeKandang;
 	}
 
+	public void setCatatan(CatatanHarianUtama catatan) {
+		this.catatan = catatan;
+	}
 
 	public void setJumlahAwalJantan(TextField jumlahAwalJantan) {
 		JumlahAwalJantan = jumlahAwalJantan;

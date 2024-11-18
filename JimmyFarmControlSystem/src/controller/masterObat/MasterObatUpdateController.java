@@ -1,6 +1,7 @@
 package controller.masterObat;
 
 import controller.ControllerData;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.DaftarObat;
@@ -19,12 +20,69 @@ public class MasterObatUpdateController extends ControllerData{
 		view.getSave().setOnAction(e -> {
 			String NAMA_OBAT = view.getNamaObatTF().getText();
 			String JENIS_OBAT = view.getJenisObatCB().getValue().toString();
-			Integer DOSIS = Integer.parseInt(view.getDosisTF().getText());
+			Integer DOSIS; 
+			try {
+				DOSIS = Integer.parseInt(view.getDosisTF().getText());  
+				if(DOSIS < 0) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Dosis must be non-negative numbers.");
+			        return; 
+				}
+			} catch (Exception e1) {
+				// TODO: handle exception 
+				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Dosis must be whole numbers.");
+				return;
+			} 
 			String SATUAN = view.getSatuanCB().getValue().toString();
 			String PENYAKIT = view.getPenyakitTF().getText();
-			Integer JUMLAH_PER_PACK = Integer.parseInt(view.getJumlahPerPackTF().getText());
-			Integer HARGA_PER_PACK = Integer.parseInt(view.getHargaPerPackTF().getText());
-			Integer HARGA_PER_SATUAN = Integer.parseInt(view.getHargaPerSatuanTF().getText());
+			Integer JUMLAH_PER_PACK; 
+			try {
+				JUMLAH_PER_PACK = Integer.parseInt(view.getJumlahPerPackTF().getText());  
+				
+				if(JUMLAH_PER_PACK < 0) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Per Pack must be non-negative numbers.");
+			        return; 
+				}
+			} catch (Exception e1) {
+				// TODO: handle exception 
+				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Per Pack must be whole numbers.");
+				return;
+			}
+			Integer HARGA_PER_PACK; 
+			try {
+				HARGA_PER_PACK = Integer.parseInt(view.getHargaPerPackTF().getText());  
+				if(HARGA_PER_PACK < 0) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Harga per pack must be non-negative numbers.");
+			        return; 
+				}
+			} catch (Exception e1) {
+				// TODO: handle exception 
+				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Harga per pack must be whole numbers.");
+				return;
+			}
+			Integer HARGA_PER_SATUAN; 
+			try {
+				HARGA_PER_SATUAN = Integer.parseInt(view.getHargaPerSatuanTF().getText()); 
+				if(HARGA_PER_SATUAN < 0) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Harga per satuan must be non-negative numbers.");
+			        return; 
+				}
+			} catch (Exception e1) {
+				// TODO: handle exception
+				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Harga per satuan must be whole numbers.");
+				return;
+			}
+			
+
+			if(NAMA_OBAT.isEmpty()) { 
+				reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Insert Nama Obat");
+				return;
+			}
+			
+			
+			if(PENYAKIT.isEmpty()) { 
+				reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Insert Penyakit");
+				return;
+			}
 			
 			data.updateMasterObat(
 						new DaftarObat(view.getObat().getKodeObat(), 
@@ -44,4 +102,7 @@ public class MasterObatUpdateController extends ControllerData{
 			stage.close();
 		});
 	}
+	
+	
+	
 }

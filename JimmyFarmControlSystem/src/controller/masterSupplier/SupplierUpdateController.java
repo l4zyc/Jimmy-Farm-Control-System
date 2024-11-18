@@ -18,6 +18,10 @@ public class SupplierUpdateController extends ControllerData{
 		view.getSave().setOnAction(e -> {
 			String NAMA_SUPPLIER = view.getNamaSupplierTF().getText();
 			
+			if(NAMA_SUPPLIER.isEmpty()) { 
+				reusableMethod.showAlert(AlertType.ERROR, "Error", "Please input nama supplier");
+				return; 
+			} 
 			
 			data.updateMasterSupplier( 
 						new DaftarSupplier(view.getSupplier().getKodeSupplier(), 

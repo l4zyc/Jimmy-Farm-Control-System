@@ -3,8 +3,10 @@ package controller.masterKandang;
 import controller.ControllerData;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import model.MsKandang;
+import util.reusableMethod;
 import view.MasterKandang.KandangInputView;
 
 public class KandangInputController extends ControllerData{
@@ -23,6 +25,11 @@ public class KandangInputController extends ControllerData{
 				// TODO Auto-generated method stub
 				String KODE_KANDANG = data.getNewkodeKandang();
 				String LOKASI = view.getLokasiTF().getText();
+				
+				if(LOKASI.isEmpty()) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Lokasi must not be empty");
+					return;
+				}
 				
 				MsKandang object_kandang = new MsKandang(KODE_KANDANG, LOKASI);
 				

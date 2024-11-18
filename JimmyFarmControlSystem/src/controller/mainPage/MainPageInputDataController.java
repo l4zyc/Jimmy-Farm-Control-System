@@ -38,17 +38,51 @@ public class MainPageInputDataController extends ControllerData{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				LocalDate dateConv = view.getTanggalMasuk().getValue();
+				LocalDate dateConv = view.getTanggalMasuk().getValue();//perlu validasi di bagian date
 				Date date = Date.valueOf(dateConv);
 				String KodeKandang = view.getKodeKandangCB().getValue().toString();
-				String KeteranganJenis = view.getKeteranganJenis().getText();  
-				Integer JumlahAwalBetina = Integer.parseInt(view.getJumlahAwalBetina().getText().trim());
-				Integer JumlahAwalJantan = Integer.parseInt(view.getJumlahAwalJantan().getText().trim()); 
+				String KeteranganJenis = view.getKeteranganJenis().getText();   
+				Integer JumlahAwalBetina, JumlahAwalJantan;
+				try {
+					JumlahAwalBetina = Integer.parseInt(view.getJumlahAwalBetina().getText().trim()); 
+					JumlahAwalJantan = Integer.parseInt(view.getJumlahAwalJantan().getText().trim());  
+										
+					if(JumlahAwalBetina < 0 || JumlahAwalJantan < 0) { 
+						reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Awal Betina and Jantan must be non-negative numbers.");
+				        return;
+					}
+				} catch (Exception e) {
+					// TODO: handle exception 
+					 reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Awal Betina and Jantan must be whole numbers.");
+					 return;
+				}
+				
 				String Komentar = view.getKomentar().getText();
 				String kodeCatatan = data.getNewkodeCatatan();
 			
-				if(!kodeKandanginList(KodeKandang)) {
+				if(Komentar.isEmpty()) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Insert Komentar");
 					return;
+				}
+				
+				if(KeteranganJenis.isEmpty()) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Insert Keterangan Jenis");
+					return;
+				}
+				
+				if(KodeKandang.isEmpty()) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Insert Kode Kandang");
+					return;
+				}
+				
+				if(!kodeKandanginList(KodeKandang)) {//it have to exist 
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "Kode Kandang Does Not Exist");
+					return;
+				}  
+				
+				if(!kodeKandangUnique(KodeKandang)) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "Kode Kandang Already been used");
+					return; 
 				}
 				
 				CatatanHarianUtama chu = new CatatanHarianUtama(kodeCatatan, date, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar);
@@ -81,6 +115,17 @@ public class MainPageInputDataController extends ControllerData{
 		
 		reusableMethod.showAlert(AlertType.ERROR, "Data", String.format("%s Does not exist", KodeKandang));
 		return false;
+	} 
+	
+	public boolean kodeKandangUnique(String KodeKandang) { 
+		ObservableList<CatatanHarianUtama> CatatanHarian = data.getCatatanHarian(); 
+		
+		for (CatatanHarianUtama CH : CatatanHarian) { 
+			if(CH.getKodeKandang().equals(KodeKandang)) { 
+				return false;
+			}
+		}
+		return true;
 	}
 	
 }
