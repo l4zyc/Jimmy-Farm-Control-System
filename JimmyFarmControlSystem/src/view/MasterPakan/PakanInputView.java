@@ -29,11 +29,11 @@ public class PakanInputView extends ViewTemplate{
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
-	Label KodePakanLbl, NamaPakanLbl, JenisPakanLbl, HargaLbl;
+	Label KodePakanLbl, NamaPakanLbl, JenisPakanLbl, HargaLbl, KodeSupplierLbl;
 	TextField KodePakanTF, NamaPakanTF, HargaTF;
 	Button Save;
 	
-	ComboBox JenisPakanCB; 
+	ComboBox JenisPakanCB, KodeSupplier; 
 	String JenisPakanS[] = {"Pakan Grower", "Pakan Starter", "Pakan Layer"}; 
 	
 	private MasterPakanView view;
@@ -67,6 +67,9 @@ public class PakanInputView extends ViewTemplate{
 		//Jumlah Awal Jantan
 		HargaLbl = new Label("Harga*"); 
 		HargaTF = new TextField();  
+		//Combobox  
+		KodeSupplierLbl = new Label("Kode Supplier");
+		KodeSupplier = new ComboBox(data.getKodeSupplierData());
 		
 		//Button Save
 		Save = new Button("Save"); 
@@ -89,6 +92,8 @@ public class PakanInputView extends ViewTemplate{
 		form1.add(JenisPakanCB, 2, 3);
 		form1.add(HargaLbl, 1, 4); 
 		form1.add(HargaTF, 2, 4); 
+		form1.add(KodeSupplierLbl,  1, 5); 
+		form1.add(KodeSupplier, 2, 5);
 		
 		
 		bp.setBottom(Save); 
@@ -238,6 +243,22 @@ public class PakanInputView extends ViewTemplate{
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
+	}
+
+	public Label getKodeSupplierLbl() {
+		return KodeSupplierLbl;
+	}
+
+	public ComboBox getKodeSupplier() {
+		return KodeSupplier;
+	}
+
+	public void setKodeSupplierLbl(Label kodeSupplierLbl) {
+		KodeSupplierLbl = kodeSupplierLbl;
+	}
+
+	public void setKodeSupplier(ComboBox kodeSupplier) {
+		KodeSupplier = kodeSupplier;
 	}
 	
 	

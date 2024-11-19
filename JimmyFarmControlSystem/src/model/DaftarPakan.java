@@ -8,13 +8,17 @@ public class DaftarPakan{
 	private String NamaPakan; 
 	private String JenisPakan;
 	private Integer Harga; 
+	private String KodeSupplier;
 	
-	public DaftarPakan(String kodePakan, String namaPakan, String jenisPakan,Integer harga) {
+	
+	
+	public DaftarPakan(String kodePakan, String namaPakan, String jenisPakan,Integer harga, String kodeSupplier) {
 
 		KodePakan = kodePakan;
 		NamaPakan = namaPakan;
 		JenisPakan = jenisPakan;
 		Harga = harga;
+		KodeSupplier = kodeSupplier;
 	}
 	
 	public String getKodePakan() {
@@ -48,5 +52,15 @@ public class DaftarPakan{
 	public void setHarga(Integer harga) {
 		Harga = harga;
 	}
+
+	public String getKodeSupplier() {
+		return KodeSupplier;
+	}
+
+	public void setKodeSupplier(String kodeSupplier) {
+		KodeSupplier = kodeSupplier;
+	}
+	
+	
 	
 }

@@ -98,8 +98,10 @@ public class MasterObatInputController extends ControllerData {
 					return;
 				}
 				
+				String KODE_SUPPLIER = view.getKodeSupplier().getValue().toString();
+				
 				DaftarObat Object_Obat = new DaftarObat(KODE_OBAT, NAMA_OBAT, JENIS_OBAT, DOSIS, SATUAN,
-						PENYAKIT, JUMLAH_PER_PACK, HARGA_PER_PACK, HARGA_PER_SATUAN);
+						PENYAKIT, JUMLAH_PER_PACK, HARGA_PER_PACK, HARGA_PER_SATUAN, KODE_SUPPLIER);
 				
 				data.insertMasterObat(Object_Obat);
 				

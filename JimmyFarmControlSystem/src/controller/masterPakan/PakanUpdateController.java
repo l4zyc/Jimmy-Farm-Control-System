@@ -46,10 +46,12 @@ public class PakanUpdateController extends ControllerData{
 				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Awal Betina and Jantan must be whole numbers.");
 		        return;
 			}
+			 
+			String KODE_SUPPLIER = view.getKodeSupplier().getValue().toString();
 			
 			data.updateMasterPakan( 
 						new DaftarPakan(KODE_PAKAN, NAMA_PAKAN, 
-								JENIS_PAKAN, HARGA));
+								JENIS_PAKAN, HARGA, KODE_SUPPLIER));
 			
 			reusableMethod.showAlert(AlertType.INFORMATION, "Update", "Pakan Data Updated!");  
 			data.refreshTablePakan(view.getView().getTablePakan());

@@ -275,7 +275,8 @@ public class Data {
 				Integer JumlahPerPack = connect.rs.getInt("JUMLAH_PER_PACK");
 				Integer HargaPerPack = connect.rs.getInt("HARGA_PER_PACK");
 				Integer HargaPerSatuan = connect.rs.getInt("HARGA_PER_SATUAN");
-			
+				String KodeSupplier = connect.rs.getString("KODE_SUPPLIER"); 
+				
 				obat_list.add(new DaftarObat(KodeObat, 
 						NamaObat, 
 						JenisObat, 
@@ -284,7 +285,8 @@ public class Data {
 						Penyakit, 
 						JumlahPerPack, 
 						HargaPerPack, 
-						HargaPerSatuan));
+						HargaPerSatuan, 
+						KodeSupplier));
 			
 			}
 			
@@ -296,7 +298,7 @@ public class Data {
 	} 
 	
 	public void insertMasterObat(DaftarObat daftarobat) {
-	    String query = String.format("INSERT INTO msobat VALUES ('%s', '%s', '%s', '%d', '%s', '%s', '%d', '%d', '%d')",
+	    String query = String.format("INSERT INTO msobat VALUES ('%s', '%s', '%s', '%d', '%s', '%s', '%d', '%d', '%d', '%s')",
 	            daftarobat.getKodeObat(), 
 	            daftarobat.getNamaObat(), 
 	            daftarobat.getJenisObat(), 
@@ -305,7 +307,8 @@ public class Data {
 	            daftarobat.getPenyakit(), 
 	            daftarobat.getJumlahPerPack(), 
 	            daftarobat.getHargaPerPack(), 
-	            daftarobat.getHargaPerSatuan());
+	            daftarobat.getHargaPerSatuan(), 
+	            daftarobat.getKodeSupplier());
 		connect.execUpdate(query);	
 		reusableMethod.showAlert(AlertType.INFORMATION, "Master Obat", "New Data Obat Added Succesfully!");
 	}
@@ -317,12 +320,12 @@ public class Data {
                 + "JENIS_OBAT = '%s', DOSIS = %d, "
                 + "SATUAN = '%s', PENYAKIT = '%s', "
                 + "JUMLAH_PER_PACK = %d, HARGA_PER_PACK = %d, "  
-                + "HARGA_PER_SATUAN = %d "
+                + "HARGA_PER_SATUAN = %d, KODE_SUPPLIER = '%s' "
                 + "WHERE KODE_OBAT = '%s'",
                 Obat.getKodeObat(), Obat.getNamaObat(), Obat.getJenisObat(), 
                 Obat.getDosis(), Obat.getSatuan(), Obat.getPenyakit(), 
                 Obat.getJumlahPerPack(), Obat.getHargaPerPack(), 
-                Obat.getHargaPerSatuan(), Obat.getKodeObat()
+                Obat.getHargaPerSatuan(), Obat.getKodeSupplier(), Obat.getKodeObat()
 		);
 		connect.execUpdate(query);
 	}
@@ -359,7 +362,8 @@ public class Data {
 	                obat.getNamaObat().toLowerCase().contains(keyword.toLowerCase()) ||  
 	                obat.getJenisObat().toLowerCase().contains(keyword.toLowerCase()) || 
 	                obat.getSatuan().toLowerCase().contains(keyword.toLowerCase()) || 
-	                obat.getPenyakit().toLowerCase().contains(keyword.toLowerCase())) {
+	                obat.getPenyakit().toLowerCase().contains(keyword.toLowerCase()) || 
+	                obat.getKodeSupplier().toLowerCase().contains(keyword.toLowerCase()) ) {
 	                searchResults.add(obat);
 	                continue; // Skip integer checks if already matched
 	            }
@@ -379,6 +383,25 @@ public class Data {
 	    return searchResults; 
 	}
 	
+	public static ObservableList<String> getKodeSupplierData() {
+        ObservableList<String> dataList = FXCollections.observableArrayList();
+        Connect connect = Connect.getInstance();
+
+        String query = "SELECT KODE_SUPPLIER FROM mssupplier"; // Query to fetch KODE_SUPPLIER from msobat
+
+        try {
+            ResultSet resultSet = connect.execQuery(query);
+            while (resultSet.next()) {
+                String kodeSupplier = resultSet.getString("KODE_SUPPLIER");
+                dataList.add(kodeSupplier);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dataList;
+    }
+
 	
 	//===================================================================================================== 
 	//===================================================================================================== 
@@ -399,8 +422,9 @@ public class Data {
 				String NAMA_PAKAN = connect.rs.getString("NAMA_PAKAN");
 				String JENIS_PAKAN = connect.rs.getString("JENIS_PAKAN");
 				Integer HARGA = Integer.parseInt(connect.rs.getString("HARGA"));
+				String KODE_SUPPLIER = connect.rs.getString("KODE_SUPPLIER");
 				
-				lists.add(new DaftarPakan(KODE_PAKAN, NAMA_PAKAN, JENIS_PAKAN, HARGA));
+				lists.add(new DaftarPakan(KODE_PAKAN, NAMA_PAKAN, JENIS_PAKAN, HARGA, KODE_SUPPLIER));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -412,11 +436,12 @@ public class Data {
 	
 	public void insertMasterPakan(DaftarPakan pakan) {
 		String query = String.format("INSERT INTO MsPakan VALUES ("
-				+ " '%s', '%s', '%s', %d"
+				+ " '%s', '%s', '%s', %d, '%s'"
 				+ ")", pakan.getKodePakan(),
 				pakan.getNamaPakan(),
 				pakan.getJenisPakan(),
-				pakan.getHarga());
+				pakan.getHarga(), 
+				pakan.getKodeSupplier());
 		
 		connect.execUpdate(query);
 		reusableMethod.showAlert(AlertType.INFORMATION, "Data", "Data Added!");
@@ -426,10 +451,10 @@ public class Data {
 		
 		String query = String.format("UPDATE mspakan "
 				+ "SET KODE_PAKAN = '%s', NAMA_PAKAN = '%s', "
-				+ "JENIS_PAKAN = '%s', HARGA = %d WHERE "
-				+ "KODE_PAKAN = '%s'", pakan.getKodePakan(), 
+				+ "JENIS_PAKAN = '%s', HARGA = %d, KODE_SUPPLIER = '%s'"
+				+ "WHERE KODE_PAKAN = '%s'", pakan.getKodePakan(), 
 				pakan.getNamaPakan(), pakan.getJenisPakan(),
-				pakan.getHarga(), pakan.getKodePakan());
+				pakan.getHarga(), pakan.getKodeSupplier(), pakan.getKodePakan());
 		connect.execUpdate(query);
 	}
 	
@@ -454,7 +479,8 @@ public class Data {
 	    for (DaftarPakan pakan : allpakan) {
 	        if (pakan.getKodePakan().toLowerCase().contains(keyword.toLowerCase()) ||
 	            pakan.getNamaPakan().toLowerCase().contains(keyword.toLowerCase()) ||  
-	            pakan.getJenisPakan().toLowerCase().contains(keyword.toLowerCase())) {
+	            pakan.getJenisPakan().toLowerCase().contains(keyword.toLowerCase()) || 
+	            pakan.getKodeSupplier().toLowerCase().contains(keyword.toLowerCase())) {
 	            searchResults.add(pakan);
 	        }
 	    }

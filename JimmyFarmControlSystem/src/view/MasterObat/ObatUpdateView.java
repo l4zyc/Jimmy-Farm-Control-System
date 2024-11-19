@@ -27,11 +27,11 @@ public class ObatUpdateView extends ViewTemplate{
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
-	Label NamaObatLbl, JenisObatLbl, DosisLbl, SatuanLbl, PenyakitLbl, JumlahPerPackLbl, HargaPerPackLbl, HargaPerSatuanLbl;
+	Label NamaObatLbl, JenisObatLbl, DosisLbl, SatuanLbl, PenyakitLbl, JumlahPerPackLbl, HargaPerPackLbl, HargaPerSatuanLbl, KodeSupplierLbl;
 	TextField NamaObatTF, DosisTF, PenyakitTF, JumlahPerPackTF, HargaPerPackTF, HargaPerSatuanTF;
 	Button Save;
 	
-	ComboBox JenisObatCB; 
+	ComboBox JenisObatCB, KodeSupplierCB; 
 	String JenisObatS[] = {"VITAMIN", "VAKSIN", "OBAT", "KOKSI"}; 
 	
 	ComboBox SatuanCB; 
@@ -98,7 +98,11 @@ public class ObatUpdateView extends ViewTemplate{
 		HargaPerSatuanLbl = new Label("Harga Per Satuan");
 		HargaPerSatuanTF = new TextField();
 		HargaPerSatuanTF.setText(obat.getHargaPerSatuan().toString());
-						
+	
+		KodeSupplierLbl = new Label("Kode Supplier"); 
+		KodeSupplierCB = new ComboBox(data.getKodeSupplierData()); 
+		KodeSupplierCB.setValue(obat.getKodeSupplier());
+		
 		//Button Save
 		Save = new Button("Save"); 
 		Save.setFont(Font.font("Inter", 20));
@@ -128,6 +132,8 @@ public class ObatUpdateView extends ViewTemplate{
 		form1.add(HargaPerPackTF, 2, 7); 
 		form1.add(HargaPerSatuanLbl, 1, 8); 
 		form1.add(HargaPerSatuanTF, 2, 8); 
+		form1.add(KodeSupplierLbl, 1, 9); 
+		form1.add(KodeSupplierCB, 2, 9);
 		
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
@@ -358,5 +364,23 @@ public class ObatUpdateView extends ViewTemplate{
 	public void setObat(DaftarObat obat) {
 		this.obat = obat;
 	}
+
+	public Label getKodeSupplierLbl() {
+		return KodeSupplierLbl;
+	}
+
+	public ComboBox getKodeSupplierCB() {
+		return KodeSupplierCB;
+	}
+
+	public void setKodeSupplierLbl(Label kodeSupplierLbl) {
+		KodeSupplierLbl = kodeSupplierLbl;
+	}
+
+	public void setKodeSupplierCB(ComboBox kodeSupplierCB) {
+		KodeSupplierCB = kodeSupplierCB;
+	}
+	
+	
 	
 }

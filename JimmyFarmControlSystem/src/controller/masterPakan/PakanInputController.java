@@ -64,8 +64,10 @@ public class PakanInputController extends ControllerData{
 					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Awal Betina and Jantan must be whole numbers.");
 			        return;
 				}
+				 
+				String KODE_SUPPLIER = view.getKodeSupplier().getValue().toString();
 				
-				DaftarPakan pakan = new DaftarPakan(KODE_PAKAN, NAMA_PAKAN, JENIS_PAKAN, HARGA);
+				DaftarPakan pakan = new DaftarPakan(KODE_PAKAN, NAMA_PAKAN, JENIS_PAKAN, HARGA, KODE_SUPPLIER);
 			
 				
 				data.insertMasterPakan(pakan); 

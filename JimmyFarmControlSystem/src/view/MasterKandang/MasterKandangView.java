@@ -94,12 +94,7 @@ public class MasterKandangView extends TableViewTemplate{
 		
 		JFCS = new Label("Jimmy Farm Control System"); 
 		
-		KodeKandangTC.prefWidthProperty().bind(TableKandang.widthProperty().multiply(0.15));
-		LokasiTC.prefWidthProperty().bind(TableKandang.widthProperty().multiply(0.15));
-		
 		TableKandang.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); 
-		
-		
 		
 		KodeKandangTC.setStyle("-fx-alignment: CENTER;");
 		LokasiTC.setStyle("-fx-alignment: CENTER;");

@@ -53,11 +53,11 @@ public class SupplierInputController extends ControllerData {
 		});
 	} 
 	
-	public boolean NamaSupplierUnique(String NamaObat) { 
-		ObservableList<DaftarObat> Obat = data.getObatData(); 
+	public boolean NamaSupplierUnique(String NamaSupplier) { 
+		ObservableList<DaftarSupplier> Supplier = data.getMasterSupplierData(); 
 		
-		for (DaftarObat O : Obat) { 
-			if(O.getNamaObat().equals(NamaObat)) { 
+		for (DaftarSupplier DS : Supplier) { 
+			if(DS.getNamaSupplier().equals(NamaSupplier)) { 
 				return false;
 			}
 		}

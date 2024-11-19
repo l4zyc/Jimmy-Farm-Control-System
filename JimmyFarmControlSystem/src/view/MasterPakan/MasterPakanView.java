@@ -41,7 +41,7 @@ public class MasterPakanView extends TableViewTemplate{
 
 	Label CatatanHarianLbl, JFCS; 
 	TableView<DaftarPakan> TablePakan;
-	TableColumn<DaftarPakan, String> KodePakanTC, NamaPakanTC, JenisPakanTC;
+	TableColumn<DaftarPakan, String> KodePakanTC, NamaPakanTC, JenisPakanTC, KodeSupplierTC;
 	TableColumn<DaftarPakan, Integer> HargaTC; 
 	Button Update, Delete, InputData; //button
 	 
@@ -77,11 +77,14 @@ public class MasterPakanView extends TableViewTemplate{
 		HargaTC = new TableColumn<DaftarPakan, Integer>("Harga");
 		HargaTC.setCellValueFactory(new PropertyValueFactory<DaftarPakan, Integer>("Harga")); 
 		
+		KodeSupplierTC = new TableColumn<DaftarPakan, String>("Kode Supplier");
+		KodeSupplierTC.setCellValueFactory(new PropertyValueFactory<DaftarPakan, String>("KodeSupplier")); 
+	
 		
 		TablePakan.getColumns().addAll(KodePakanTC, 
 		NamaPakanTC, 
 		JenisPakanTC, 
-		HargaTC); 
+		HargaTC, KodeSupplierTC); 
 		
 		TablePakan.getItems().addAll(data.getMasterPakanData());
 		
@@ -116,6 +119,7 @@ public class MasterPakanView extends TableViewTemplate{
 		NamaPakanTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
 		JenisPakanTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
 		HargaTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
+		KodeSupplierTC.prefWidthProperty().bind(TablePakan.widthProperty().multiply(0.20));
 		
 		TablePakan.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
@@ -123,6 +127,7 @@ public class MasterPakanView extends TableViewTemplate{
 		NamaPakanTC.setStyle("-fx-alignment: CENTER;");
 		JenisPakanTC.setStyle("-fx-alignment: CENTER;");
 		HargaTC.setStyle("-fx-alignment: CENTER;");
+		KodeSupplierTC.setStyle("-fx-alignment: CENTER;");
 	}
 
 
@@ -346,6 +351,16 @@ public class MasterPakanView extends TableViewTemplate{
 
 	public void setAction(Menu action) {
 		this.action = action;
+	}
+
+
+	public TableColumn<DaftarPakan, String> getKodeSupplierTC() {
+		return KodeSupplierTC;
+	}
+
+
+	public void setKodeSupplierTC(TableColumn<DaftarPakan, String> kodeSupplierTC) {
+		KodeSupplierTC = kodeSupplierTC;
 	}
 	
 	

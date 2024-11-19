@@ -72,6 +72,7 @@ public class MasterObatUpdateController extends ControllerData{
 				return;
 			}
 			
+			String KODE_SUPPLIER = view.getKodeSupplierCB().getValue().toString();
 
 			if(NAMA_OBAT.isEmpty()) { 
 				reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Insert Nama Obat");
@@ -93,7 +94,8 @@ public class MasterObatUpdateController extends ControllerData{
 								PENYAKIT, 
 								JUMLAH_PER_PACK, 
 								HARGA_PER_PACK, 
-								HARGA_PER_SATUAN)
+								HARGA_PER_SATUAN, 
+								KODE_SUPPLIER)
 					);
 			
 			reusableMethod.showAlert(AlertType.INFORMATION, "Update", "Obat Data Updated!");

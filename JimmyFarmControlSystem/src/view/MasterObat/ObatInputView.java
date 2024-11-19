@@ -30,7 +30,7 @@ public class ObatInputView extends ViewTemplate{
 
 	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
 
-	Label NamaObatLbl, JenisObatLbl, DosisLbl, SatuanLbl, PenyakitLbl, JumlahPerPackLbl, HargaPerPackLbl, HargaPerSatuanLbl;
+	Label NamaObatLbl, JenisObatLbl, DosisLbl, SatuanLbl, PenyakitLbl, JumlahPerPackLbl, HargaPerPackLbl, HargaPerSatuanLbl, KodeSupplierLbl;
 	TextField NamaObatTF, DosisTF, PenyakitTF, JumlahPerPackTF, HargaPerPackTF, HargaPerSatuanTF;
 	Button Save;
 	
@@ -39,6 +39,8 @@ public class ObatInputView extends ViewTemplate{
 	
 	ComboBox SatuanCB; 
 	String	SatuanS[] = {"ML", "GRAM", "VIAL", "BOTOL"};
+	
+	ComboBox KodeSupplier;
 	
 	private MasterObatView view;
 	private Stage stage;
@@ -85,7 +87,10 @@ public class ObatInputView extends ViewTemplate{
 		//Komentar
 		HargaPerSatuanLbl = new Label("Harga Per Satuan");
 		HargaPerSatuanTF = new TextField();
-				
+		//Kode Supplier 
+		KodeSupplierLbl = new Label("Kode Supplier"); 
+		KodeSupplier = new ComboBox(data.getKodeSupplierData());
+		
 		//Button Save
 		Save = new Button("Save"); 
 		Save.setFont(Font.font("Inter", 20));
@@ -113,6 +118,8 @@ public class ObatInputView extends ViewTemplate{
 		form1.add(HargaPerPackTF, 2, 7); 
 		form1.add(HargaPerSatuanLbl, 1, 8); 
 		form1.add(HargaPerSatuanTF, 2, 8); 
+		form1.add(KodeSupplierLbl, 1, 9); 
+		form1.add(KodeSupplier, 2, 9);
 		
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
@@ -335,5 +342,23 @@ public class ObatInputView extends ViewTemplate{
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
+
+	public Label getKodeSupplierLbl() {
+		return KodeSupplierLbl;
+	}
+
+	public ComboBox getKodeSupplier() {
+		return KodeSupplier;
+	}
+
+	public void setKodeSupplierLbl(Label kodeSupplierLbl) {
+		KodeSupplierLbl = kodeSupplierLbl;
+	}
+
+	public void setKodeSupplier(ComboBox kodeSupplier) {
+		KodeSupplier = kodeSupplier;
+	}
+	
+	
 	
 }

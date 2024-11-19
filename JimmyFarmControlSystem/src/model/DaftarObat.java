@@ -12,10 +12,11 @@ public class DaftarObat{
 	private String Penyakit; 
 	private Integer JumlahPerPack; 
 	private Integer HargaPerPack;  
-	private Integer HargaPerSatuan;
+	private Integer HargaPerSatuan; 
+	private String KodeSupplier;
 	
 	public DaftarObat(String kodeObat, String namaObat, String jenisObat, Integer dosis, String satuan, String penyakit,
-			Integer jumlahPerPack, Integer hargaPerPack, Integer hargaPerSatuan) {
+			Integer jumlahPerPack, Integer hargaPerPack, Integer hargaPerSatuan, String kodeSupplier) {
 		KodeObat = kodeObat;
 		NamaObat = namaObat;
 		JenisObat = jenisObat;
@@ -24,7 +25,8 @@ public class DaftarObat{
 		Penyakit = penyakit;
 		JumlahPerPack = jumlahPerPack;
 		HargaPerPack = hargaPerPack;
-		HargaPerSatuan = hargaPerSatuan;
+		HargaPerSatuan = hargaPerSatuan; 
+		KodeSupplier = kodeSupplier;
 	}
 
 	public String getKodeObat() {
@@ -97,6 +99,14 @@ public class DaftarObat{
 
 	public void setHargaPerSatuan(Integer hargaPerSatuan) {
 		HargaPerSatuan = hargaPerSatuan;
+	}
+
+	public String getKodeSupplier() {
+		return KodeSupplier;
+	}
+
+	public void setKodeSupplier(String kodeSupplier) {
+		KodeSupplier = kodeSupplier;
 	}
 	
 	

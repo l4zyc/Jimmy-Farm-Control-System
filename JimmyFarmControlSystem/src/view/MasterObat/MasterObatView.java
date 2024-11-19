@@ -40,7 +40,7 @@ public class MasterObatView extends TableViewTemplate{
 
 	Label CatatanHarianLbl, JFCS; 
 	TableView<DaftarObat> TableObat;
-	TableColumn<DaftarObat, String> KodeObatTC, NamaObatTC, JenisObatTC, SatuanTC, PenyakitTC;
+	TableColumn<DaftarObat, String> KodeObatTC, NamaObatTC, JenisObatTC, SatuanTC, PenyakitTC, KodeSupplierTC;
 	TableColumn<DaftarObat, Integer> DosisTC, JumlahPerPackTC, HargaPerPackTC, HargaPerSatuanTC; 
 	Button Update, Delete, InputData; //button
 	MenuBar mb;  //menubar
@@ -95,6 +95,9 @@ public class MasterObatView extends TableViewTemplate{
 		HargaPerSatuanTC = new TableColumn<DaftarObat, Integer>("Harga Per Satuan");
 		HargaPerSatuanTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, Integer>("hargaPerSatuan"));
 		
+		KodeSupplierTC = new TableColumn<DaftarObat, String>("Kode Supplier");
+		KodeSupplierTC.setCellValueFactory(new PropertyValueFactory<DaftarObat, String>("KodeSupplier"));
+		
 		//Memasukan column ke table
 		TableObat.getColumns().addAll(KodeObatTC, 
 		NamaObatTC, 
@@ -104,7 +107,8 @@ public class MasterObatView extends TableViewTemplate{
 		PenyakitTC, 
 		JumlahPerPackTC, 
 		HargaPerPackTC, 
-		HargaPerSatuanTC); 
+		HargaPerSatuanTC, 
+		KodeSupplierTC); 
 		
 		TableObat.getItems().addAll(data.getObatData());
 		
@@ -136,15 +140,9 @@ public class MasterObatView extends TableViewTemplate{
 		
 		JFCS = new Label("Jimmy Farm Control System");
 		
-		KodeObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.05));
-		NamaObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.10));
-		JenisObatTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.10));
-		DosisTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.05));
-		SatuanTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.10));
-		PenyakitTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
-		JumlahPerPackTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
-		HargaPerPackTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
-		HargaPerSatuanTC.prefWidthProperty().bind(TableObat.widthProperty().multiply(0.15));
+		TableObat.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); 
+		
+		
 		
 		KodeObatTC.setStyle("-fx-alignment: CENTER;");
 		NamaObatTC.setStyle("-fx-alignment: CENTER;");
@@ -155,6 +153,8 @@ public class MasterObatView extends TableViewTemplate{
 		JumlahPerPackTC.setStyle("-fx-alignment: CENTER;");
 		HargaPerPackTC.setStyle("-fx-alignment: CENTER;"); 
 		HargaPerSatuanTC.setStyle("-fx-alignment: CENTER;");
+		KodeSupplierTC.setStyle("-fx-alignment: CENTER;");
+		
 	}
 
 	@Override
@@ -382,5 +382,15 @@ public class MasterObatView extends TableViewTemplate{
 	public void setButtonContainer(HBox buttonContainer) {
 		ButtonContainer = buttonContainer;
 	}
+
+	public TableColumn<DaftarObat, String> getKodeSupplierTC() {
+		return KodeSupplierTC;
+	}
+
+	public void setKodeSupplierTC(TableColumn<DaftarObat, String> kodeSupplierTC) {
+		KodeSupplierTC = kodeSupplierTC;
+	}
+	
+	
 	
 }
