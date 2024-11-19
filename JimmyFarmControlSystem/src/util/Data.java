@@ -821,7 +821,6 @@ public class Data {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return dataList;
 	} 
 	
@@ -840,8 +839,8 @@ public class Data {
 				Date TANGGAL_CATATAN = connect.rs.getDate("TANGGAL_CATATAN"); 
 				String UMUR = connect.rs.getString("UMUR");
 				Integer MINGGU = connect.rs.getInt("MINGGU");
-				Integer KEMATIAN_JANTAN = connect.rs.getInt("KEMATIAN_JANTAN");
-				Integer SISA_JANTAN = connect.rs.getInt("SISA_JANTAN");
+				Integer KEMATIAN_JANTAN = connect.rs.getInt("KEMATIAN_JANTAN"); 
+				Integer SISA_JANTAN = connect.rs.getInt("SISA_JANTAN"); 
 				Integer KEMATIAN_BETINA = connect.rs.getInt("KEMATIAN_BETINA");
 				Integer SISA_BETINA = connect.rs.getInt("SISA_BETINA");
 				Integer TOTAL_SISA = connect.rs.getInt("TOTAL_SISA");
@@ -855,6 +854,12 @@ public class Data {
 				String PERSENTASE_PRODUKSI = connect.rs.getString("PERSENTASE_PRODUKSI");
 				String BIAYA_VARIABEL = connect.rs.getString("BIAYA_VARIABEL");
 				String KOMENTAR_KEMATIAN = connect.rs.getString("KOMENTAR_KEMATIAN");
+				Integer PENJUALAN_JANTAN = connect.rs.getInt("PENJUALAN_JANTAN"); 
+				Integer AFKIR_JANTAN = connect.rs.getInt("AFKIR_JANTAN"); 
+				Integer PINDAH_JANTAN = connect.rs.getInt("PINDAH_JANTAN");
+				Integer PENJUALAN_BETINA = connect.rs.getInt("PENJUALAN_BETINA"); 
+				Integer AFKIR_BETINA = connect.rs.getInt("AFKIR_BETINA"); 
+				Integer PINDAH_BETINA = connect.rs.getInt("PINDAH_BETINA");
 				//Perbandingan Jantan dan Betina
 				 String[] perbandingan = PERBANDINGAN.split(":");
 					
@@ -874,9 +879,9 @@ public class Data {
 									TANGGAL_CATATAN,
 									UMUR,
 									MINGGU,
-									KEMATIAN_JANTAN,
+									KEMATIAN_JANTAN, 
 									SISA_JANTAN,
-									KEMATIAN_BETINA,
+									KEMATIAN_BETINA, 
 									SISA_BETINA,
 									TOTAL_SISA,
 									PerbandinganJantan,
@@ -889,7 +894,13 @@ public class Data {
 									PRODUKSI_TELUR,
 									PERSENTASE_PRODUKSI,
 									BIAYA_VARIABEL,
-									KOMENTAR_KEMATIAN
+									KOMENTAR_KEMATIAN, 
+									PENJUALAN_JANTAN, 
+									AFKIR_JANTAN, 
+									PINDAH_JANTAN, 
+									PENJUALAN_BETINA, 
+									AFKIR_BETINA, 
+									PINDAH_BETINA
 									)
 						);
 			}
@@ -901,22 +912,26 @@ public class Data {
 		return lists;
 	} 
 	
-	
-	
 	public void insertCatatanHarianDetail(CatatanHarianDetail catatanhariandetail) {
 	    String query = String.format("INSERT INTO catatanhariandetail VALUES ("
-	    		+ " '%s', '%s', %d, %d, '%s', %d, '%s', %d, %d, %d, '%s')",
+	    		+ " '%s', '%s', %d, %d, '%s', %d, '%s', %d, %d, %d, '%s', %d, %d, %d, %d, %d, %d)",
 	    		catatanhariandetail.getKodeCatatan(),
 	    		catatanhariandetail.getTanggalCatatan().toString(),
 	    		catatanhariandetail.getKematianJantan(),
-	    		catatanhariandetail.getKematianBetina(),
+	    		catatanhariandetail.getKematianBetina(), 
 	    		catatanhariandetail.getKodePakan(),
 	    		Integer.parseInt(catatanhariandetail.getJumlahPakan()),
 	    		catatanhariandetail.getKodeObat(),
 	    		Integer.parseInt(catatanhariandetail.getJumlahObat()),
 	    		Integer.parseInt(catatanhariandetail.getProduksiTelur()),
 	    		Integer.parseInt(catatanhariandetail.getBiayaVariabel()),
-	    		catatanhariandetail.getKomentarKematian()
+	    		catatanhariandetail.getKomentarKematian(), 
+	    		catatanhariandetail.getPenjualanJantan(), 
+	    		catatanhariandetail.getAfkirJantan(), 
+	    		catatanhariandetail.getPindahJantan(), 
+	    		catatanhariandetail.getPenjualanBetina(), 
+	    		catatanhariandetail.getAfkirBetina(), 
+	    		catatanhariandetail.getPindahBetina()
 	    		);
 		connect.execUpdate(query);	
 		reusableMethod.showAlert(AlertType.INFORMATION, "Catatan Harian Detail", "New Data Detail Added Succesfully!");
@@ -924,13 +939,18 @@ public class Data {
 	
 	public void updateCatatanHarianDetail(CatatanHarianDetail CHD) { 
 		String query = String.format("UPDATE catatanhariandetail" 
-				+ " SET KEMATIAN_JANTAN = %d, KEMATIAN_BETINA = %d," 
+				+ " SET KEMATIAN_JANTAN = %d, PENJUALAN_JANTAN = %d," 
+				+ " AFKIR_JANTAN = %d, PINDAH_JANTAN = %d, " 
+				+ " KEMATIAN_BETINA = %d, PENJUALAN_BETINA = %d,"  
+				+ " AFKIR_BETINA = %d, PINDAH_BETINA = %d, "
 				+ " KODE_PAKAN = '%s', JUMLAH_PAKAN = %d," 
 				+ " KODE_OBAT = '%s', JUMLAH_OBAT =%d," 
 				+ " PRODUKSI_TELUR = %d, BIAYA_VARIABEL = %d," 
 				+ " KOMENTAR_KEMATIAN = '%s' WHERE KODE_CATATAN = '%s'"
-				+ " AND TANGGAL_CATATAN = '%s'", CHD.getKematianJantan() 
-				, CHD.getKematianBetina(), 
+				+ " AND TANGGAL_CATATAN = '%s'", CHD.getKematianJantan(), CHD.getPenjualanJantan(), 
+				CHD.getAfkirJantan(), CHD.getPindahJantan(),
+				CHD.getKematianBetina(), CHD.getPenjualanBetina(), 
+				CHD.getAfkirBetina(), CHD.getPindahBetina(),
 				CHD.getKodePakan(), 
 				Integer.parseInt(CHD.getJumlahPakan()), 
 				CHD.getKodeObat(), 
@@ -949,7 +969,6 @@ public class Data {
 		
 		connect.execUpdate(query);
 	}
-	
 	
 	public void refreshTableCatatanHarianDetail(TableView<CatatanHarianDetail> table, String KodeCatatan) {
 		ObservableList<CatatanHarianDetail> items = getSpecificCatatanHarianDetail(KodeCatatan); 
@@ -981,9 +1000,14 @@ public class Data {
 	            detail.getTanggalCatatan().toString().toLowerCase().contains(searchKey) || // Date to String
 	            detail.getUmur().toLowerCase().contains(searchKey) ||
 	            detail.getMinggu().toString().toLowerCase().contains(searchKey) ||
-	            detail.getKematianJantan().toString().toLowerCase().contains(searchKey) ||
+	            detail.getKematianJantan().toString().toLowerCase().contains(searchKey) || 
+	            detail.getPenjualanJantan().toString().toLowerCase().contains(searchKey) || 
+	            detail.getAfkirJantan().toString().toLowerCase().contains(searchKey) || 
+	            detail.getPindahJantan().toString().toLowerCase().contains(searchKey) || 
 	            detail.getSisaJantan().toString().toLowerCase().contains(searchKey) ||
 	            detail.getKematianBetina().toString().toLowerCase().contains(searchKey) ||
+	            detail.getAfkirBetina().toString().toLowerCase().contains(searchKey) || 
+	            detail.getPindahBetina().toString().toLowerCase().contains(searchKey) ||
 	            detail.getSisaBetina().toString().toLowerCase().contains(searchKey) ||
 	            detail.getTotalSisa().toString().toLowerCase().contains(searchKey) ||
 	            detail.getPerbandinganJantan().toString().toLowerCase().contains(searchKey) ||

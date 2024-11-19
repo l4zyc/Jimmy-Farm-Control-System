@@ -28,10 +28,16 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 	BorderPane bp = new BorderPane(); 
 	GridPane form1 = new GridPane(); 
 
-	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
+	Scene scene = new Scene(bp, width * 0.7, height * 0.7);
 
-	Label KematianJantanLbl, KematianBetinaLbl, KodePakanLbl, JumlahPakanLbl, JumlahObatLbl, KodeObatLbl, JumlahProduksiTelurLbl, BiayaVariabelLbl, KomentarKematianLbl;
-	TextField KematianJantanTF, KematianBetinaTF, JumlahPakanTF, JumlahObatTF, JumlahProduksiTelurTF, BiayaVariabelTF; 
+	Label KematianJantanLbl, PenjualanJantanLbl, AfkirJantanLbl, PindahJantanLbl,  
+	KematianBetinaLbl, PenjualanBetinaLbl, AfkirBetinaLbl, PindahBetinaLbl,  
+	KodePakanLbl, JumlahPakanLbl, JumlahObatLbl, 
+	KodeObatLbl, JumlahProduksiTelurLbl, BiayaVariabelLbl, KomentarKematianLbl;
+	TextField KematianJantanTF, PenjualanJantanTF, AfkirJantanTF, PindahJantanTF,
+	KematianBetinaTF, PenjualanBetinaTF, AfkirBetinaTF, PindahBetinaTF,
+	JumlahPakanTF, JumlahObatTF, 
+	JumlahProduksiTelurTF, BiayaVariabelTF; 
 	Button Save;
 	
 	ComboBox KodePakanCB, KodeObatCB, Komentar; 
@@ -62,12 +68,34 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 		KematianJantanLbl = new Label("Kematian Jantan*"); 
 		KematianJantanTF = new TextField();  
 		KematianJantanTF.setText(catatan.getKematianJantan().toString());
-		
+		//Penjualan Jantan
+		PenjualanJantanLbl = new Label("Penjualan Jantan*");
+		PenjualanJantanTF = new TextField();  
+		PenjualanJantanTF.setText(catatan.getPenjualanJantan().toString()); 
+		//Afkir Jantan 
+		AfkirJantanLbl = new Label("Afkir Jantan*"); 
+		AfkirJantanTF = new TextField();   
+		AfkirJantanTF.setText(catatan.getAfkirJantan().toString()); 
+		//Pindah Jantan 
+		PindahJantanLbl = new Label("Pindah Jantan*"); 
+		PindahJantanTF = new TextField(); 
+		PindahJantanTF.setText(catatan.getPindahJantan().toString());
 		//Kematian Betina
 		KematianBetinaLbl = new Label("Kematian Betina*"); 
 		KematianBetinaTF = new TextField();   
 		KematianBetinaTF.setText(catatan.getKematianBetina().toString());
-		
+		//Penjualan Betina
+		PenjualanBetinaLbl = new Label("Penjualan Betina*");
+		PenjualanBetinaTF = new TextField();  
+		PenjualanBetinaTF.setText(catatan.getPenjualanBetina().toString());
+		//Afkir Betina 
+		AfkirBetinaLbl = new Label("Afkir Betina*"); 
+		AfkirBetinaTF = new TextField();    
+		AfkirBetinaTF.setText(catatan.getAfkirBetina().toString());
+		//Pindah Betina 
+		PindahBetinaLbl = new Label("Pindah Betina*"); 
+		PindahBetinaTF = new TextField(); 
+		PindahBetinaTF.setText(catatan.getPindahBetina().toString());
 		//Kode Pakan
 		KodePakanLbl = new Label("Kode Pakan*"); 
 		KodePakanCB = new ComboBox(data.getKodePakanData());
@@ -115,23 +143,35 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 		form1.setHgap(10); 
 		form1.setVgap(10);  
 		form1.add(KematianJantanLbl, 1, 1); 
-		form1.add(KematianJantanTF, 2, 1); 
-		form1.add(KematianBetinaLbl, 1, 2);
-		form1.add(KematianBetinaTF, 2, 2);  
-		form1.add(KodePakanLbl , 1, 3); 
-		form1.add(KodePakanCB , 2, 3);
-		form1.add(JumlahPakanLbl, 1, 4); 
-		form1.add(JumlahPakanTF, 2, 4);  
-		form1.add(KodeObatLbl, 1, 5); 
-		form1.add(KodeObatCB, 2, 5);
-		form1.add(JumlahObatLbl, 1, 6); 
-		form1.add(JumlahObatTF, 2, 6); 
-		form1.add(JumlahProduksiTelurLbl, 1, 7); 
-		form1.add(JumlahProduksiTelurTF, 2, 7); 
-		form1.add(BiayaVariabelLbl, 1, 8); 
-		form1.add(BiayaVariabelTF , 2, 8);  
-		form1.add(KomentarKematianLbl, 1, 9); 
-		form1.add(Komentar, 2, 9); 
+		form1.add(KematianJantanTF, 2, 1);  
+		form1.add(PenjualanJantanLbl, 1, 2); 
+		form1.add(PenjualanJantanTF, 2, 2);  
+		form1.add(AfkirJantanLbl, 1, 3); 
+		form1.add(AfkirJantanTF, 2, 3);  
+		form1.add(PindahJantanLbl, 1, 4); 
+		form1.add(PindahJantanTF, 2, 4);  
+		form1.add(KematianBetinaLbl, 1, 5);
+		form1.add(KematianBetinaTF, 2, 5);  
+		form1.add(PenjualanBetinaLbl, 1, 6);
+		form1.add(PenjualanBetinaTF, 2, 6); 
+		form1.add(AfkirBetinaLbl, 1, 7);
+		form1.add(AfkirBetinaTF, 2, 7); 
+		form1.add(PindahBetinaLbl, 1, 8);
+		form1.add(PindahBetinaTF, 2, 8); 
+		form1.add(KodePakanLbl , 1, 9); 
+		form1.add(KodePakanCB , 2, 9);
+		form1.add(JumlahPakanLbl, 1, 10); 
+		form1.add(JumlahPakanTF, 2, 10);  
+		form1.add(KodeObatLbl, 1, 11); 
+		form1.add(KodeObatCB, 2, 11);
+		form1.add(JumlahObatLbl, 1, 12); 
+		form1.add(JumlahObatTF, 2, 12); 
+		form1.add(JumlahProduksiTelurLbl, 1, 13); 
+		form1.add(JumlahProduksiTelurTF, 2, 13); 
+		form1.add(BiayaVariabelLbl, 1, 14); 
+		form1.add(BiayaVariabelTF , 2, 14);  
+		form1.add(KomentarKematianLbl, 1, 15); 
+		form1.add(Komentar, 2, 15); 
 	
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
@@ -352,6 +392,102 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 
 	public void setCatatan(CatatanHarianDetail catatan) {
 		this.catatan = catatan;
+	}
+
+	public Label getPenjualanJantanLbl() {
+		return PenjualanJantanLbl;
+	}
+
+	public Label getAfkirJantanLbl() {
+		return AfkirJantanLbl;
+	}
+
+	public Label getPindahJantanLbl() {
+		return PindahJantanLbl;
+	}
+
+	public Label getPenjualanBetinaLbl() {
+		return PenjualanBetinaLbl;
+	}
+
+	public Label getAfkirBetinaLbl() {
+		return AfkirBetinaLbl;
+	}
+
+	public Label getPindahBetinaLbl() {
+		return PindahBetinaLbl;
+	}
+
+	public TextField getPenjualanJantanTF() {
+		return PenjualanJantanTF;
+	}
+
+	public TextField getAfkirJantanTF() {
+		return AfkirJantanTF;
+	}
+
+	public TextField getPindahJantanTF() {
+		return PindahJantanTF;
+	}
+
+	public TextField getPenjualanBetinaTF() {
+		return PenjualanBetinaTF;
+	}
+
+	public TextField getAfkirBetinaTF() {
+		return AfkirBetinaTF;
+	}
+
+	public TextField getPindahBetinaTF() {
+		return PindahBetinaTF;
+	}
+
+	public void setPenjualanJantanLbl(Label penjualanJantanLbl) {
+		PenjualanJantanLbl = penjualanJantanLbl;
+	}
+
+	public void setAfkirJantanLbl(Label afkirJantanLbl) {
+		AfkirJantanLbl = afkirJantanLbl;
+	}
+
+	public void setPindahJantanLbl(Label pindahJantanLbl) {
+		PindahJantanLbl = pindahJantanLbl;
+	}
+
+	public void setPenjualanBetinaLbl(Label penjualanBetinaLbl) {
+		PenjualanBetinaLbl = penjualanBetinaLbl;
+	}
+
+	public void setAfkirBetinaLbl(Label afkirBetinaLbl) {
+		AfkirBetinaLbl = afkirBetinaLbl;
+	}
+
+	public void setPindahBetinaLbl(Label pindahBetinaLbl) {
+		PindahBetinaLbl = pindahBetinaLbl;
+	}
+
+	public void setPenjualanJantanTF(TextField penjualanJantanTF) {
+		PenjualanJantanTF = penjualanJantanTF;
+	}
+
+	public void setAfkirJantanTF(TextField afkirJantanTF) {
+		AfkirJantanTF = afkirJantanTF;
+	}
+
+	public void setPindahJantanTF(TextField pindahJantanTF) {
+		PindahJantanTF = pindahJantanTF;
+	}
+
+	public void setPenjualanBetinaTF(TextField penjualanBetinaTF) {
+		PenjualanBetinaTF = penjualanBetinaTF;
+	}
+
+	public void setAfkirBetinaTF(TextField afkirBetinaTF) {
+		AfkirBetinaTF = afkirBetinaTF;
+	}
+
+	public void setPindahBetinaTF(TextField pindahBetinaTF) {
+		PindahBetinaTF = pindahBetinaTF;
 	}
 	
 	

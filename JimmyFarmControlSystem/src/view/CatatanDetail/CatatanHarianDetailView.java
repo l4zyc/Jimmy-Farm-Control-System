@@ -69,23 +69,41 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 
 		// Nested Columns for "Jantan"
 		TableColumn<CatatanHarianDetail, Integer> kematianJantanTC = new TableColumn<>("Kematian");
-		kematianJantanTC.setCellValueFactory(new PropertyValueFactory<>("kematianJantan"));
+		kematianJantanTC.setCellValueFactory(new PropertyValueFactory<>("kematianJantan")); 
+		
+		TableColumn<CatatanHarianDetail, Integer> penjualanJantanTC = new TableColumn<>("Penjualan");
+		penjualanJantanTC.setCellValueFactory(new PropertyValueFactory<>("penjualanJantan"));
+		
+		TableColumn<CatatanHarianDetail, Integer> afkirJantanTC = new TableColumn<>("Afkir");
+		afkirJantanTC.setCellValueFactory(new PropertyValueFactory<>("afkirJantan")); 
+		
+		TableColumn<CatatanHarianDetail, Integer> pindahJantanTC = new TableColumn<>("Pindah");
+		pindahJantanTC.setCellValueFactory(new PropertyValueFactory<>("PindahJantan"));
 
 		TableColumn<CatatanHarianDetail, Integer> sisaJantanTC = new TableColumn<>("Sisa");
 		sisaJantanTC.setCellValueFactory(new PropertyValueFactory<>("sisaJantan"));
 
 		TableColumn<CatatanHarianDetail, Integer> jantanTC = new TableColumn<>("Jantan");
-		jantanTC.getColumns().addAll(kematianJantanTC, sisaJantanTC);
+		jantanTC.getColumns().addAll(kematianJantanTC, penjualanJantanTC, afkirJantanTC, pindahJantanTC, sisaJantanTC);
 
 		// Nested Columns for "Betina"
 		TableColumn<CatatanHarianDetail, Integer> kematianBetinaTC = new TableColumn<>("Kematian");
 		kematianBetinaTC.setCellValueFactory(new PropertyValueFactory<>("kematianBetina"));
-
+		
+		TableColumn<CatatanHarianDetail, Integer> penjualanBetinaTC = new TableColumn<>("Penjualan");
+		penjualanBetinaTC.setCellValueFactory(new PropertyValueFactory<>("penjualanBetina"));
+		
+		TableColumn<CatatanHarianDetail, Integer> afkirBetinaTC = new TableColumn<>("Afkir");
+		afkirBetinaTC.setCellValueFactory(new PropertyValueFactory<>("afkirBetina")); 
+		
+		TableColumn<CatatanHarianDetail, Integer> pindahBetinaTC = new TableColumn<>("Pindah");
+		pindahBetinaTC.setCellValueFactory(new PropertyValueFactory<>("PindahBetina"));
+		
 		TableColumn<CatatanHarianDetail, Integer> sisaBetinaTC = new TableColumn<>("Sisa");
 		sisaBetinaTC.setCellValueFactory(new PropertyValueFactory<>("sisaBetina"));
 
 		TableColumn<CatatanHarianDetail, Integer> betinaTC = new TableColumn<>("Betina");
-		betinaTC.getColumns().addAll(kematianBetinaTC, sisaBetinaTC);
+		betinaTC.getColumns().addAll(kematianBetinaTC, penjualanBetinaTC, afkirBetinaTC, pindahBetinaTC, sisaBetinaTC);
 
 		// Additional Main Columns
 		TableColumn<CatatanHarianDetail, Integer> totalSisaTC = new TableColumn<>("Total Sisa");
@@ -169,11 +187,20 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		// Main Columns
 		tanggalTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
 		umurTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
-		mingguTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
-		kematianJantanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
+		mingguTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested)); 
+		//=================
+		kematianJantanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested)); 
+		penjualanJantanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
+		afkirJantanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested)); 
+		pindahJantanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested)); 
 		sisaJantanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
-		kematianBetinaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
-		sisaBetinaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
+		//=================
+		kematianBetinaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested)); 
+		penjualanBetinaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
+		afkirBetinaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested)); 
+		pindahBetinaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
+		sisaBetinaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth)); 
+		//=================
 		totalSisaTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
 		perbandinganJantanBetinaNestedTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidthNested));
 		kodePakanTC.prefWidthProperty().bind(table.widthProperty().multiply(columnWidth));
@@ -193,11 +220,20 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		
 		tanggalTC.setStyle(alignmentStyle);
 		umurTC.setStyle(alignmentStyle);
-		mingguTC.setStyle(alignmentStyle);
-		kematianJantanTC.setStyle(alignmentStyle);
+		mingguTC.setStyle(alignmentStyle); 
+		//============
+		kematianJantanTC.setStyle(alignmentStyle); 
+		penjualanJantanTC.setStyle(alignmentStyle); 
+		afkirJantanTC.setStyle(alignmentStyle);  
+		pindahJantanTC.setStyle(alignmentStyle); 
 		sisaJantanTC.setStyle(alignmentStyle);
-		kematianBetinaTC.setStyle(alignmentStyle);
-		sisaBetinaTC.setStyle(alignmentStyle);
+		//============
+		kematianBetinaTC.setStyle(alignmentStyle); 
+		penjualanBetinaTC.setStyle(alignmentStyle); 
+		afkirBetinaTC.setStyle(alignmentStyle);  
+		pindahBetinaTC.setStyle(alignmentStyle); 
+		sisaBetinaTC.setStyle(alignmentStyle); 
+		//============
 		totalSisaTC.setStyle(alignmentStyle);
 		perbandinganJantanBetinaNestedTC.setStyle(alignmentStyle);
 		kodePakanTC.setStyle(alignmentStyle);
@@ -207,7 +243,8 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		produksiTelurTC.setStyle(alignmentStyle);
 		persentaseProduksiTC.setStyle(alignmentStyle);
 		biayaVariabelTC.setStyle(alignmentStyle);
-		komentarTC.setStyle(alignmentStyle);
+		komentarTC.setStyle(alignmentStyle); 
+		
 		TableLayout.setCenter(table);
 		TableLayout.setTop(titleLbl);
 		TableLayout.setBottom(ButtonContainer);
@@ -221,7 +258,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	public void arrangeComponent() {
 		// TODO Auto-generated method stub
 		
-		TableLayout.setPadding(new Insets(50));
+		TableLayout.setPadding(new Insets(20));
 		BorderPane.setMargin(table, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(titleLbl, Pos.CENTER);
 		titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
@@ -326,6 +363,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	public void setSearch2(TextField search2) {
 		Search2 = search2;
 	}
+	
 	
 	
 	

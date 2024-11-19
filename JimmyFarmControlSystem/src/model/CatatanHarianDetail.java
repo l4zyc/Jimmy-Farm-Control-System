@@ -9,10 +9,13 @@ public class CatatanHarianDetail {
 	private Date TanggalCatatan;
 	private String Umur;
 	private Integer Minggu;
-	private Integer KematianJantan; 
-	private Integer SisaJantan;
-	private Integer KematianBetina; 
-	private Integer SisaBetina;
+	//============
+	private Integer KematianJantan;  
+	private Integer SisaJantan; 
+	//============
+	private Integer KematianBetina;  
+	private Integer SisaBetina; 
+	//============
 	private Integer TotalSisa;
 	private Double perbandinganJantan;
 	private Double perbandinganBetina;
@@ -24,22 +27,36 @@ public class CatatanHarianDetail {
 	private String ProduksiTelur; 
 	private String PersentaseProduksi;
 	private String BiayaVariabel; 
-	private String KomentarKematian;
-	
-	public CatatanHarianDetail(String kodeCatatan, Date tanggalCatatan, String umur, Integer minggu,
-			Integer kematianJantan, Integer sisaJantan, Integer kematianBetina, Integer sisaBetina, Integer totalSisa,
+	private String KomentarKematian;  
+	//============
+	private Integer PenjualanJantan; 
+	private Integer AfkirJantan; 
+	private Integer PindahJantan;
+	//============ 
+	private Integer PenjualanBetina; 
+	private Integer AfkirBetina; 
+	private Integer PindahBetina;
+	//============
+	public CatatanHarianDetail( String kodeCatatan, Date tanggalCatatan, String umur, Integer minggu,
+			Integer kematianJantan, Integer sisaJantan, 
+			Integer kematianBetina, Integer sisaBetina, Integer totalSisa,
 			Double perbandinganJantan, Double perbandinganBetina, String kodePakan, String jumlahPakan,
 			String pakanPerEkor, String kodeObat, String jumlahObat, String produksiTelur, String persentaseProduksi,
-			String biayaVariabel, String komentarKematian) {
+			String biayaVariabel, String komentarKematian, 
+			Integer penjualanJantan, Integer afkirJantan, Integer pindahJantan, 
+			Integer penjualanBetina, Integer afkirBetina, Integer pindahBetina ) {
 		super();
 		KodeCatatan = kodeCatatan;
 		TanggalCatatan = tanggalCatatan;
 		Umur = umur;
 		Minggu = minggu;
-		KematianJantan = kematianJantan;
-		SisaJantan = sisaJantan;
-		KematianBetina = kematianBetina;
-		SisaBetina = sisaBetina;
+		//=======
+		KematianJantan = kematianJantan; 
+		SisaJantan = sisaJantan; 
+		//=======
+		KematianBetina = kematianBetina; 
+		SisaBetina = sisaBetina; 
+		//=======
 		TotalSisa = totalSisa;
 		this.perbandinganJantan = perbandinganJantan;
 		this.perbandinganBetina = perbandinganBetina;
@@ -51,7 +68,13 @@ public class CatatanHarianDetail {
 		ProduksiTelur = produksiTelur;
 		PersentaseProduksi = persentaseProduksi;
 		BiayaVariabel = biayaVariabel;
-		KomentarKematian = komentarKematian;
+		KomentarKematian = komentarKematian; 
+		PenjualanJantan = penjualanJantan; 
+		AfkirJantan = afkirJantan; 
+		PindahJantan = pindahJantan; 
+		PenjualanBetina = penjualanBetina; 
+		AfkirBetina = afkirBetina; 
+		PindahBetina = pindahBetina;
 	} 
 	//====================================
 
@@ -66,11 +89,23 @@ public class CatatanHarianDetail {
             String jumlahObat, 
             String produksiTelur, 
             String biayaVariabel, 
-            String komentarKematian) {
+            String komentarKematian, 
+            Integer penjualanJantan, 
+            Integer afkirJantan, 
+            Integer pindahJantan,
+            Integer penjualanBetina, 
+            Integer afkirBetina, 
+            Integer pindahBetina) {
 			this.KodeCatatan = kodeCatatan;
 			this.TanggalCatatan = tanggalCatatan;
-			this.KematianJantan = kematianJantan;
-			this.KematianBetina = kematianBetina;
+			this.KematianJantan = kematianJantan; 
+			this.PenjualanJantan = penjualanJantan; 
+			this.AfkirJantan = afkirJantan; 
+			this.PindahJantan = pindahJantan;
+			this.KematianBetina = kematianBetina; 
+			this.PenjualanBetina = penjualanBetina; 
+			this.AfkirBetina = afkirBetina; 
+			this.PindahBetina = pindahBetina;
 			this.KodePakan = kodePakan;
 			this.JumlahPakan = jumlahPakan;
 			this.KodeObat = kodeObat;
@@ -206,6 +241,66 @@ public class CatatanHarianDetail {
 	public void setTanggalCatatan(LocalDate now) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public Integer getPenjualanJantan() {
+		return PenjualanJantan;
+	}
+
+
+	public Integer getAfkirJantan() {
+		return AfkirJantan;
+	}
+
+
+	public Integer getPindahJantan() {
+		return PindahJantan;
+	}
+
+
+	public Integer getPenjualanBetina() {
+		return PenjualanBetina;
+	}
+
+
+	public Integer getAfkirBetina() {
+		return AfkirBetina;
+	}
+
+
+	public Integer getPindahBetina() {
+		return PindahBetina;
+	}
+
+
+	public void setPenjualanJantan(Integer penjualanJantan) {
+		PenjualanJantan = penjualanJantan;
+	}
+
+
+	public void setAfkirJantan(Integer afkirJantan) {
+		AfkirJantan = afkirJantan;
+	}
+
+
+	public void setPindahJantan(Integer pindahJantan) {
+		PindahJantan = pindahJantan;
+	}
+
+
+	public void setPenjualanBetina(Integer penjualanBetina) {
+		PenjualanBetina = penjualanBetina;
+	}
+
+
+	public void setAfkirBetina(Integer afkirBetina) {
+		AfkirBetina = afkirBetina;
+	}
+
+
+	public void setPindahBetina(Integer pindahBetina) {
+		PindahBetina = pindahBetina;
 	}
 	
 	

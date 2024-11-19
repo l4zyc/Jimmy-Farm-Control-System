@@ -50,6 +50,47 @@ public class DetailCatatanInputController extends ControllerData{
 					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Kematian Betina and Jantan must be whole numbers.");
 					 return;
 				}
+				
+				Integer PenjualanJantan, PenjualanBetina;
+				try {
+					PenjualanJantan = Integer.parseInt(view.getPenjualanJantanTF().getText().trim()); 
+					PenjualanBetina = Integer.parseInt(view.getPenjualanBetinaTF().getText().trim());  
+					if(PenjualanJantan < 0 || PenjualanBetina < 0) { 
+						reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Penjualan Betina and Jantan must be non-negative numbers.");
+				        return;
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Penjualan Betina and Jantan must be whole numbers.");
+					 return;
+				}
+				
+				Integer AfkirJantan, AfkirBetina;
+				try {
+					AfkirJantan = Integer.parseInt(view.getAfkirJantanTF().getText().trim()); 
+					AfkirBetina = Integer.parseInt(view.getAfkirBetinaTF().getText().trim());  
+					if(AfkirJantan < 0 || AfkirBetina < 0) { 
+						reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Afkir Betina and Jantan must be non-negative numbers.");
+				        return;
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Afkir Betina and Jantan must be whole numbers.");
+					 return;
+				}
+				
+				Integer PindahJantan, PindahBetina;
+				try {
+					PindahJantan = Integer.parseInt(view.getPindahJantanTF().getText().trim()); 
+					PindahBetina = Integer.parseInt(view.getPindahBetinaTF().getText().trim());  
+					}catch (Exception e) {
+					// TODO: handle exception 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Pindah Betina and Jantan must be whole numbers.");
+					 return;
+				}
+				
 				String KodePakan = view.getKodePakanCB().getValue().toString(); 
 				Integer JumlahPakan;  
 				try {
@@ -121,15 +162,21 @@ public class DetailCatatanInputController extends ControllerData{
 				CatatanHarianDetail CHD = new CatatanHarianDetail(
 							baseData.getKodeCatatan(),
 							date,
-							KematianJantan,
-							KematianBetina,
+							KematianJantan, 
+							KematianBetina, 
 							KodePakan,
 							JumlahPakan.toString(),
 							KodeObat,
 							JumlahObat.toString(),
 							JumlahProduksiTelur.toString(),
 							BiayaVariable.toString(),
-							KomentarKematian
+							KomentarKematian, 
+							PenjualanJantan, 
+							AfkirJantan, 
+							PindahJantan, 
+							PenjualanBetina, 
+							AfkirBetina, 
+							PindahBetina
 						); 
 				
 				data.insertCatatanHarianDetail(CHD); 

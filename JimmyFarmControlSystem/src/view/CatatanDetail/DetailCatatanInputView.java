@@ -28,10 +28,16 @@ public class DetailCatatanInputView extends ViewTemplate{
 	BorderPane bp = new BorderPane(); 
 	GridPane form1 = new GridPane(); 
 
-	Scene scene = new Scene(bp, width * 0.5, height * 0.5);
+	Scene scene = new Scene(bp, width * 0.8, height * 0.8);
 
-	Label TanggalLbl, KematianJantanLbl, KematianBetinaLbl, KodePakanLbl, JumlahPakanLbl, JumlahObatLbl, KodeObatLbl, JumlahProduksiTelurLbl, BiayaVariabelLbl, KomentarKematianLbl;
-	TextField KematianJantanTF, KematianBetinaTF, JumlahPakanTF, JumlahObatTF, JumlahProduksiTelurTF, BiayaVariabelTF; 
+	Label TanggalLbl, KematianJantanLbl, PenjualanJantanLbl, AfkirJantanLbl, PindahJantanLbl,  
+	KematianBetinaLbl, PenjualanBetinaLbl, AfkirBetinaLbl, PindahBetinaLbl,
+	KodePakanLbl, JumlahPakanLbl, JumlahObatLbl, 
+	KodeObatLbl, JumlahProduksiTelurLbl, BiayaVariabelLbl, 
+	KomentarKematianLbl;
+	TextField KematianJantanTF, PenjualanJantanTF, AfkirJantanTF, PindahJantanTF,
+	KematianBetinaTF, PenjualanBetinaTF, AfkirBetinaTF, PindahBetinaTF, 
+	JumlahPakanTF, JumlahObatTF, JumlahProduksiTelurTF, BiayaVariabelTF; 
 	Button Save;
 	
 	ComboBox KodePakanCB, KodeObatCB, Komentar;
@@ -66,10 +72,28 @@ public class DetailCatatanInputView extends ViewTemplate{
 		Tanggal = new DatePicker();
 		//Kematian Jantan
 		KematianJantanLbl = new Label("Kematian Jantan*"); 
-		KematianJantanTF = new TextField();  
+		KematianJantanTF = new TextField();   
+		//Penjualan Jantan
+		PenjualanJantanLbl = new Label("Penjualan Jantan*");
+		PenjualanJantanTF = new TextField(); 
+		//Afkir Jantan 
+		AfkirJantanLbl = new Label("Afkir Jantan*"); 
+		AfkirJantanTF = new TextField();   
+		//Pindah Jantan 
+		PindahJantanLbl = new Label("Pindah Jantan*"); 
+		PindahJantanTF = new TextField();
 		//Kematian Betina
 		KematianBetinaLbl = new Label("Kematian Betina*"); 
 		KematianBetinaTF = new TextField();   
+		//Penjualan Betina
+		PenjualanBetinaLbl = new Label("Penjualan Betina*");
+		PenjualanBetinaTF = new TextField(); 
+		//Afkir Betina 
+		AfkirBetinaLbl = new Label("Afkir Betina*"); 
+		AfkirBetinaTF = new TextField();    
+		//Pindah Betina 
+		PindahBetinaLbl = new Label("Pindah Betina*"); 
+		PindahBetinaTF = new TextField();
 		//Kode Pakan
 		KodePakanLbl = new Label("Kode Pakan*"); 
 		KodePakanCB = new ComboBox(data.getKodePakanData());
@@ -106,23 +130,35 @@ public class DetailCatatanInputView extends ViewTemplate{
 		form1.add(TanggalLbl, 1, 1);  
 		form1.add(Tanggal, 2, 1); 
 		form1.add(KematianJantanLbl, 1, 2); 
-		form1.add(KematianJantanTF, 2, 2); 
-		form1.add(KematianBetinaLbl, 1, 3);
-		form1.add(KematianBetinaTF, 2, 3);  
-		form1.add(KodePakanLbl , 1, 4); 
-		form1.add(KodePakanCB , 2, 4);
-		form1.add(JumlahPakanLbl, 1, 5); 
-		form1.add(JumlahPakanTF, 2, 5);  
-		form1.add(KodeObatLbl, 1, 6); 
-		form1.add(KodeObatCB, 2, 6);
-		form1.add(JumlahObatLbl, 1, 7); 
-		form1.add(JumlahObatTF, 2, 7); 
-		form1.add(JumlahProduksiTelurLbl, 1, 8); 
-		form1.add(JumlahProduksiTelurTF, 2, 8); 
-		form1.add(BiayaVariabelLbl, 1, 9); 
-		form1.add(BiayaVariabelTF , 2, 9);  
-		form1.add(KomentarKematianLbl, 1, 10); 
-		form1.add(Komentar, 2, 10); 
+		form1.add(KematianJantanTF, 2, 2);  
+		form1.add(PenjualanJantanLbl, 1, 3); 
+		form1.add(PenjualanJantanTF, 2, 3);  
+		form1.add(AfkirJantanLbl, 1, 4); 
+		form1.add(AfkirJantanTF, 2, 4);  
+		form1.add(PindahJantanLbl, 1, 5); 
+		form1.add(PindahJantanTF, 2, 5);  
+		form1.add(KematianBetinaLbl, 1, 6);
+		form1.add(KematianBetinaTF, 2, 6);  
+		form1.add(PenjualanBetinaLbl, 1, 7);
+		form1.add(PenjualanBetinaTF, 2, 7); 
+		form1.add(AfkirBetinaLbl, 1, 8);
+		form1.add(AfkirBetinaTF, 2, 8); 
+		form1.add(PindahBetinaLbl, 1, 9);
+		form1.add(PindahBetinaTF, 2, 9); 
+		form1.add(KodePakanLbl , 1, 10); 
+		form1.add(KodePakanCB , 2, 10);
+		form1.add(JumlahPakanLbl, 1, 11); 
+		form1.add(JumlahPakanTF, 2, 11);  
+		form1.add(KodeObatLbl, 1, 12); 
+		form1.add(KodeObatCB, 2, 12);
+		form1.add(JumlahObatLbl, 1, 13); 
+		form1.add(JumlahObatTF, 2, 13); 
+		form1.add(JumlahProduksiTelurLbl, 1, 14); 
+		form1.add(JumlahProduksiTelurTF, 2, 14); 
+		form1.add(BiayaVariabelLbl, 1, 15); 
+		form1.add(BiayaVariabelTF , 2, 15);  
+		form1.add(KomentarKematianLbl, 1, 16); 
+		form1.add(Komentar, 2, 16); 
 	
 		bp.setBottom(Save); 
 		bp.setCenter(form1);
@@ -355,6 +391,102 @@ public class DetailCatatanInputView extends ViewTemplate{
 
 	public void setTanggal(DatePicker tanggal) {
 		Tanggal = tanggal;
+	}
+
+	public Label getPenjualanJantanLbl() {
+		return PenjualanJantanLbl;
+	}
+
+	public Label getAfkirJantanLbl() {
+		return AfkirJantanLbl;
+	}
+
+	public Label getPindahJantanLbl() {
+		return PindahJantanLbl;
+	}
+
+	public Label getPenjualanBetinaLbl() {
+		return PenjualanBetinaLbl;
+	}
+
+	public Label getAfkirBetinaLbl() {
+		return AfkirBetinaLbl;
+	}
+
+	public Label getPindahBetinaLbl() {
+		return PindahBetinaLbl;
+	}
+
+	public TextField getPenjualanJantanTF() {
+		return PenjualanJantanTF;
+	}
+
+	public TextField getAfkirJantanTF() {
+		return AfkirJantanTF;
+	}
+
+	public TextField getPindahJantanTF() {
+		return PindahJantanTF;
+	}
+
+	public TextField getPenjualanBetinaTF() {
+		return PenjualanBetinaTF;
+	}
+
+	public TextField getAfkirBetinaTF() {
+		return AfkirBetinaTF;
+	}
+
+	public TextField getPindahBetinaTF() {
+		return PindahBetinaTF;
+	}
+
+	public void setPenjualanJantanLbl(Label penjualanJantanLbl) {
+		PenjualanJantanLbl = penjualanJantanLbl;
+	}
+
+	public void setAfkirJantanLbl(Label afkirJantanLbl) {
+		AfkirJantanLbl = afkirJantanLbl;
+	}
+
+	public void setPindahJantanLbl(Label pindahJantanLbl) {
+		PindahJantanLbl = pindahJantanLbl;
+	}
+
+	public void setPenjualanBetinaLbl(Label penjualanBetinaLbl) {
+		PenjualanBetinaLbl = penjualanBetinaLbl;
+	}
+
+	public void setAfkirBetinaLbl(Label afkirBetinaLbl) {
+		AfkirBetinaLbl = afkirBetinaLbl;
+	}
+
+	public void setPindahBetinaLbl(Label pindahBetinaLbl) {
+		PindahBetinaLbl = pindahBetinaLbl;
+	}
+
+	public void setPenjualanJantanTF(TextField penjualanJantanTF) {
+		PenjualanJantanTF = penjualanJantanTF;
+	}
+
+	public void setAfkirJantanTF(TextField afkirJantanTF) {
+		AfkirJantanTF = afkirJantanTF;
+	}
+
+	public void setPindahJantanTF(TextField pindahJantanTF) {
+		PindahJantanTF = pindahJantanTF;
+	}
+
+	public void setPenjualanBetinaTF(TextField penjualanBetinaTF) {
+		PenjualanBetinaTF = penjualanBetinaTF;
+	}
+
+	public void setAfkirBetinaTF(TextField afkirBetinaTF) {
+		AfkirBetinaTF = afkirBetinaTF;
+	}
+
+	public void setPindahBetinaTF(TextField pindahBetinaTF) {
+		PindahBetinaTF = pindahBetinaTF;
 	}
 
 	
