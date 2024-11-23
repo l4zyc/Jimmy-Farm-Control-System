@@ -36,6 +36,7 @@ public class DetailCatatanInputController extends ControllerData{
 				// TODO Auto-generated method stub 
 				LocalDate dateConv = view.getTanggal().getValue();
 				Date date = Date.valueOf(dateConv);  
+				
 				Integer KematianJantan, KematianBetina;
 				try {
 					KematianJantan = Integer.parseInt(view.getKematianJantanTF().getText().trim()); 
@@ -92,6 +93,7 @@ public class DetailCatatanInputController extends ControllerData{
 				}
 				
 				String KodePakan = view.getKodePakanCB().getValue().toString(); 
+				
 				Integer JumlahPakan;  
 				try {
 					JumlahPakan = Integer.parseInt(view.getJumlahPakanTF().getText().trim());  
@@ -105,7 +107,9 @@ public class DetailCatatanInputController extends ControllerData{
 					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Pakan must be whole numbers.");
 					 return;
 				}
+				
 				String KodeObat = view.getKodeObatCB().getValue().toString(); 
+				
 				Integer JumlahObat;
 				try {
 					JumlahObat = Integer.parseInt(view.getJumlahObatTF().getText().trim());  
@@ -119,6 +123,7 @@ public class DetailCatatanInputController extends ControllerData{
 					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Obat must be whole numbers.");
 					 return;
 				}
+				
 				Integer JumlahProduksiTelur; 
 				try {
 					JumlahProduksiTelur = Integer.parseInt(view.getJumlahProduksiTelurTF().getText().trim()); 
@@ -132,6 +137,7 @@ public class DetailCatatanInputController extends ControllerData{
 					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Produksi Telur must be whole numbers.");
 					 return;
 				}
+				
 				Integer BiayaVariable;  
 				try {
 					BiayaVariable = Integer.parseInt(view.getBiayaVariabelTF().getText().trim());
@@ -145,8 +151,8 @@ public class DetailCatatanInputController extends ControllerData{
 					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Biaya Variable must be whole numbers.");
 					 return;
 				}
-				String KomentarKematian = view.getKomentar().getValue().toString();
 				
+				String KomentarKematian = view.getKomentar().getValue().toString();
 				if(KodePakan.isEmpty()) { 
 					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Kode Pakan must not be empty");
 					return;

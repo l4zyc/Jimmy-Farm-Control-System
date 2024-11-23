@@ -33,11 +33,13 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 	Label KematianJantanLbl, PenjualanJantanLbl, AfkirJantanLbl, PindahJantanLbl,  
 	KematianBetinaLbl, PenjualanBetinaLbl, AfkirBetinaLbl, PindahBetinaLbl,  
 	KodePakanLbl, JumlahPakanLbl, JumlahObatLbl, 
-	KodeObatLbl, JumlahProduksiTelurLbl, BiayaVariabelLbl, KomentarKematianLbl;
+	KodeObatLbl, JumlahProduksiTelurLbl, BiayaVariabelLbl, KomentarKematianLbl, DateLbl;
 	TextField KematianJantanTF, PenjualanJantanTF, AfkirJantanTF, PindahJantanTF,
 	KematianBetinaTF, PenjualanBetinaTF, AfkirBetinaTF, PindahBetinaTF,
 	JumlahPakanTF, JumlahObatTF, 
-	JumlahProduksiTelurTF, BiayaVariabelTF; 
+	JumlahProduksiTelurTF, BiayaVariabelTF;  
+	DatePicker Date;
+	
 	Button Save;
 	
 	ComboBox KodePakanCB, KodeObatCB, Komentar; 
@@ -63,7 +65,10 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub 
+		// TODO Auto-generated method stub  
+		//Date
+		DateLbl = new Label("Tanggal"); 
+		Date = new DatePicker(catatan.getTanggalCatatan().toLocalDate());
 		//Kematian Jantan
 		KematianJantanLbl = new Label("Kematian Jantan*"); 
 		KematianJantanTF = new TextField();  
@@ -488,6 +493,22 @@ public class DetailCatatanUpdateView extends ViewTemplate{
 
 	public void setPindahBetinaTF(TextField pindahBetinaTF) {
 		PindahBetinaTF = pindahBetinaTF;
+	}
+
+	public Label getDateLbl() {
+		return DateLbl;
+	}
+
+	public DatePicker getDate() {
+		return Date;
+	}
+
+	public void setDateLbl(Label dateLbl) {
+		DateLbl = dateLbl;
+	}
+
+	public void setDate(DatePicker date) {
+		Date = date;
 	}
 	
 	

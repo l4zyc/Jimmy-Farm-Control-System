@@ -305,6 +305,8 @@ public class MainPageUpdateView extends ViewTemplate{
 		return KodeCatatanTF;
 	}
 
+	
+	
 	public void setKodeCatatanTF(TextField kodeCatatanTF) {
 		KodeCatatanTF = kodeCatatanTF;
 	}	

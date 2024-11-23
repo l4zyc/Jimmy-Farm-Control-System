@@ -1,5 +1,8 @@
 package controller.detailCatatan;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import controller.ControllerData;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -136,6 +139,9 @@ public class DetailCatatanUpdateController extends ControllerData{
 			String KomentarKematian = view.getKomentar().getValue().toString();
 			String KODE_CATATAN = view.getView().getKode(); 
 			
+			LocalDate dateConv = view.getDate().getValue();
+			Date date = Date.valueOf(dateConv);  
+			
 			if(KodePakan.isEmpty()) { 
 				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Kode Pakan must not be empty");
 				return;
@@ -146,10 +152,10 @@ public class DetailCatatanUpdateController extends ControllerData{
 				return;
 			}
 			
-			CatatanHarianUtama baseData = data.getSpecificCatatanHarian(KODE_CATATAN);
+			CatatanHarianDetail basisData = data.getSpecificCatatanHarianDetail(KODE_CATATAN, date);
 			data.updateCatatanHarianDetail(new CatatanHarianDetail(
-						baseData.getKodeCatatan(),
-						baseData.getTanggalMasuk(),
+						basisData.getKodeCatatan(),
+						basisData.getTanggalCatatan(),
 						KematianJantan, 
 						KematianBetina, 
 						KodePakan,

@@ -160,6 +160,80 @@ public class Data {
 		return catatan;
 	}
 	
+	//=================================
+	public CatatanHarianDetail getSpecificCatatanHarianDetail(String KODE_CATATAN, Date TANGGAL_CATATAN) {
+	    // Query SQL untuk mendapatkan data spesifik
+	    String query = String.format(
+	        "SELECT * FROM CatatanHarianDetail WHERE KODE_CATATAN = '%s' AND TANGGAL_CATATAN = '%s'",
+	        KODE_CATATAN, TANGGAL_CATATAN.toString()
+	    );
+	    connect.rs = connect.execQuery(query);
+
+	    // Objek CatatanHarianDetail yang akan dikembalikan
+	    CatatanHarianDetail catatanDetail = null;
+
+	    try {
+	        // Jika ada hasil query
+	        if (connect.rs.next()) {
+	            // Ambil data dari ResultSet
+	            String kodeCatatan = connect.rs.getString("KODE_CATATAN");
+	            Date tanggalCatatan = connect.rs.getDate("TANGGAL_CATATAN");
+	            Integer kematianJantan = connect.rs.getInt("KEMATIAN_JANTAN");
+	            Integer kematianBetina = connect.rs.getInt("KEMATIAN_BETINA");
+	            String kodePakan = connect.rs.getString("KODE_PAKAN");
+	            Integer jumlahPakan = connect.rs.getInt("JUMLAH_PAKAN");
+	            String kodeObat = connect.rs.getString("KODE_OBAT");
+	            Integer jumlahObat = connect.rs.getInt("JUMLAH_OBAT");
+	            Integer produksiTelur = connect.rs.getInt("PRODUKSI_TELUR");
+	            Integer biayaVariabel = connect.rs.getInt("BIAYA_VARIABEL");
+	            String komentarKematian = connect.rs.getString("KOMENTAR_KEMATIAN");
+	            Integer penjualanJantan = connect.rs.getInt("PENJUALAN_JANTAN");
+	            Integer afkirJantan = connect.rs.getInt("AFKIR_JANTAN");
+	            Integer pindahJantan = connect.rs.getInt("PINDAH_JANTAN");
+	            Integer penjualanBetina = connect.rs.getInt("PENJUALAN_BETINA");
+	            Integer afkirBetina = connect.rs.getInt("AFKIR_BETINA");
+	            Integer pindahBetina = connect.rs.getInt("PINDAH_BETINA");
+
+	            // Buat objek CatatanHarianDetail dengan data yang diperoleh
+	            catatanDetail = new CatatanHarianDetail(
+	                kodeCatatan,
+	                tanggalCatatan,
+	                kematianJantan,
+	                kematianBetina,
+	                kodePakan,
+	                jumlahPakan.toString(),
+	                kodeObat,
+	                jumlahObat.toString(),
+	                produksiTelur.toString(),
+	                biayaVariabel.toString(),
+	                komentarKematian,
+	                penjualanJantan,
+	                afkirJantan,
+	                pindahJantan,
+	                penjualanBetina,
+	                afkirBetina,
+	                pindahBetina
+	            );
+	        }
+	    } catch (SQLException e) {
+	        // Tangani kesalahan SQL
+	        System.err.println("Error fetching data for KODE_CATATAN: " + KODE_CATATAN + " and TANGGAL_CATATAN: " + TANGGAL_CATATAN);
+	        e.printStackTrace();
+	    } finally {
+	        // Pastikan ResultSet ditutup untuk menghindari kebocoran sumber daya
+	        try {
+	            if (connect.rs != null) {
+	                connect.rs.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return catatanDetail;
+	}
+	//=================================
+	
 	public void updateCatatanHarianData(CatatanHarianUtama catatan) {
 		
 		String query = String.format("UPDATE CatatanHarianUtama "
@@ -946,8 +1020,8 @@ public class Data {
 				+ " KODE_PAKAN = '%s', JUMLAH_PAKAN = %d," 
 				+ " KODE_OBAT = '%s', JUMLAH_OBAT =%d," 
 				+ " PRODUKSI_TELUR = %d, BIAYA_VARIABEL = %d," 
-				+ " KOMENTAR_KEMATIAN = '%s' WHERE KODE_CATATAN = '%s'"
-				+ " AND TANGGAL_CATATAN = '%s'", CHD.getKematianJantan(), CHD.getPenjualanJantan(), 
+				+ " KOMENTAR_KEMATIAN = '%s' WHERE KODE_CATATAN = '%s' AND TANGGAL_CATATAN = '%s'"
+				,  CHD.getKematianJantan(), CHD.getPenjualanJantan(), 
 				CHD.getAfkirJantan(), CHD.getPindahJantan(),
 				CHD.getKematianBetina(), CHD.getPenjualanBetina(), 
 				CHD.getAfkirBetina(), CHD.getPindahBetina(),
