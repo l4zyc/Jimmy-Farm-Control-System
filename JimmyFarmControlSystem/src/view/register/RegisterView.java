@@ -2,6 +2,7 @@ package view.register;
 
 import javafx.scene.control.Label;
 import controller.register.RegisterController;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import view.ViewTemplate;
 import view.MainPage.MainPageView;
 
@@ -52,6 +54,15 @@ public class RegisterView extends ViewTemplate{
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.initOwner(MainPageView.mainStage);
 		stage.show(); 
+		
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				// TODO Auto-generated method stub
+				event.consume();
+			}
+		});
 		
 		new RegisterController(this);
 	}
