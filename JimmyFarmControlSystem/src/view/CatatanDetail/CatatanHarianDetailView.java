@@ -156,7 +156,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 
 		table.getItems().addAll(data.getSpecificCatatanHarianDetail(kode));
 
-		titleLbl = new Label("Detail Catatan Harian" + kode);
+		titleLbl = new Label("Detail Catatan Harian " + kode);
 		
 		// Button configuration
 		Update = new Button("Update");
