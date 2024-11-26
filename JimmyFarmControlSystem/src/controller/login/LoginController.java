@@ -55,6 +55,16 @@ public class LoginController extends ControllerData{
 
 		boolean listCheck = checkList(data.getUserData(), username, password);
 		
+		if(username.isEmpty()) { 
+			reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Input Username");
+			return;
+		}
+		
+		if(password.isEmpty()) { 
+			reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Input Password");
+			return;
+		}
+		
 		if(!listCheck) {
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Invalid Username or Password");
 			return;

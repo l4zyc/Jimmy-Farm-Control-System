@@ -38,9 +38,33 @@ public class MainPageInputDataController extends ControllerData{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				LocalDate dateConv = view.getTanggalMasuk().getValue();//perlu validasi di bagian date
-				Date date = Date.valueOf(dateConv);
+				
 				String KodeKandang = view.getKodeKandangCB().getValue().toString();
+				
+				if(KodeKandang.isEmpty()) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Insert Kode Kandang");
+					return;
+				}
+				
+				if(!kodeKandanginList(KodeKandang)) {//it have to exist 
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "Kode Kandang Does Not Exist");
+					return;
+				}  
+				
+				if(!kodeKandangUnique(KodeKandang)) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "Kode Kandang Already been used");
+					return; 
+				}
+				
+				LocalDate dateConv = view.getTanggalMasuk().getValue();//perlu validasi di bagian date
+				
+				if(dateConv == null) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Please input a date please");
+			        return;
+				}
+				
+				Date date = Date.valueOf(dateConv); 
+				
 				String KeteranganJenis = view.getKeteranganJenis().getText();   
 				Integer JumlahAwalBetina, JumlahAwalJantan;
 				try {
@@ -70,20 +94,7 @@ public class MainPageInputDataController extends ControllerData{
 					return;
 				}
 				
-				if(KodeKandang.isEmpty()) { 
-					reusableMethod.showAlert(AlertType.ERROR, "Error", "Please Insert Kode Kandang");
-					return;
-				}
 				
-				if(!kodeKandanginList(KodeKandang)) {//it have to exist 
-					reusableMethod.showAlert(AlertType.ERROR, "Error", "Kode Kandang Does Not Exist");
-					return;
-				}  
-				
-				if(!kodeKandangUnique(KodeKandang)) { 
-					reusableMethod.showAlert(AlertType.ERROR, "Error", "Kode Kandang Already been used");
-					return; 
-				}
 				
 				CatatanHarianUtama chu = new CatatanHarianUtama(kodeCatatan, date, KodeKandang, KeteranganJenis, JumlahAwalJantan, JumlahAwalBetina, Komentar);
 				

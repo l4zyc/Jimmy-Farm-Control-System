@@ -34,7 +34,13 @@ public class DetailCatatanInputController extends ControllerData{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub 
-				LocalDate dateConv = view.getTanggal().getValue();
+				LocalDate dateConv = view.getTanggal().getValue(); 
+				
+				if(dateConv == null) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Please input a date please");
+			        return;
+				}
+				
 				Date date = Date.valueOf(dateConv);  
 				
 				Integer KematianJantan, KematianBetina;
