@@ -12,6 +12,7 @@ import javafx.scene.control.ButtonBase;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -53,6 +54,10 @@ public class RegisterView extends ViewTemplate{
 		stage.setResizable(false);
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.initOwner(MainPageView.mainStage);
+		
+		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
+		stage.getIcons().add(icon);		
+		
 		stage.show(); 
 		
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -71,6 +76,7 @@ public class RegisterView extends ViewTemplate{
 	public void init() {
 		// TODO Auto-generated method stub
 				scene = new Scene(bp, width * 0.65, height * 0.65);
+
 				//Name and Username 
 				RegisterLbl = new Label("Sign Up");
 				RegisterLbl.setFont(new Font(35));

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -46,6 +47,10 @@ public class LoginView extends ViewTemplate{
 		stage.initModality(Modality.WINDOW_MODAL);
 		stage.initOwner(MainPageView.mainStage);
 		stage.setTitle("Login");
+		
+		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
+		stage.getIcons().add(icon);		
+		
 		stage.setFullScreen(false);
 		stage.show();
 		
@@ -63,6 +68,7 @@ public class LoginView extends ViewTemplate{
 	
 	@Override
 	public void init() { 
+		
 		//bagian username dan password
 		loginLbl = new Label("Login"); 
 		usernameLbl = new Label("Username");

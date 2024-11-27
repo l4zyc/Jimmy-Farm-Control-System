@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -27,6 +28,10 @@ public class MasterKandangView extends TableViewTemplate{
 		
 		KandangStage.setMaximized(true);
 		KandangStage.setScene(scene);
+		
+		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
+		KandangStage.getIcons().add(icon);		
+		
 		KandangStage.setTitle("Jimmy Farm Control System");
 		KandangStage.show();
 		
@@ -37,7 +42,7 @@ public class MasterKandangView extends TableViewTemplate{
 	TableView<MsKandang> TableKandang;
 	TableColumn<MsKandang, String> KodeKandangTC, LokasiTC;
 	Button Update, Delete, InputData; //button
-	HBox ButtonContainer;
+	BorderPane ButtonContainer;
 	
 	TextField Search;
 	
@@ -51,6 +56,7 @@ public class MasterKandangView extends TableViewTemplate{
 		mainLayout = new BorderPane();
 		TableLayout = new BorderPane();
 		scene = new Scene(mainLayout);  
+
 		
 		//Column Kode Kandang
 		TableKandang = new TableView<MsKandang>();
@@ -66,22 +72,29 @@ public class MasterKandangView extends TableViewTemplate{
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
-		Update.setFont(Font.font("Inter", 20)); 
+		Update.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		Update.setPadding(new Insets(10, 20, 10, 20));
 		Update.setMinWidth(50); 
-										
+		Update.setStyle("-fx-background-color: #227B94; -fx-text-fill: white;");
+		
 		//Bagian button Delete 
 		Delete = new Button("Delete"); 
-		Delete.setFont(Font.font("Inter", 20)); 
+		Delete.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		Delete.setPadding(new Insets(10, 20, 10, 20));
 		Delete.setMinWidth(50); 
-										
+		Delete.setStyle("-fx-background-color: #AF1740; -fx-text-fill: white;");
+
+		
 		//Bagian button Input Data 
 		InputData = new Button("Input Data"); 
-		InputData.setFont(Font.font("Inter", 20));
-		InputData.setMinWidth(50);
+		InputData.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		InputData.setPadding(new Insets(10, 20, 10, 20));
+		InputData.setStyle("-fx-background-color: #000B58; -fx-text-fill: white;");
+		InputData.setMinWidth(100);
 										
 		//Bagian Menubar
 										
-		ButtonContainer = new HBox();
+		ButtonContainer = new BorderPane();
 						
 		//Bagian Menubar
 		mb = new MenuBar();  
@@ -91,6 +104,8 @@ public class MasterKandangView extends TableViewTemplate{
 		
 		Search = new TextField(); 
 		Search.setPromptText("Search...");
+		Search.setPadding(new Insets(12));
+
 		
 		JFCS = new Label("Jimmy Farm Control System"); 
 		
@@ -108,12 +123,21 @@ public class MasterKandangView extends TableViewTemplate{
 		mb.getMenus().add(action); 
 		action.getItems().addAll(Home, LogOut);
 		
+		ButtonContainer = new BorderPane();
 		HBox leftBtnContainer = new HBox();
-		leftBtnContainer.getChildren().addAll(InputData, Update);
+		leftBtnContainer.getChildren().addAll(Update, Delete);
+		leftBtnContainer.setSpacing(15);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, Search);
+		HBox rightBtnContainer = new HBox();
+		rightBtnContainer.getChildren().addAll(Search, InputData);
+		rightBtnContainer.setSpacing(15);
+		
+		ButtonContainer.setLeft(leftBtnContainer);
+		ButtonContainer.setRight(rightBtnContainer);
+		ButtonContainer.setPadding(new Insets(10));
 		
 		CatatanHarianLbl = new Label("Master Kandang");
+		CatatanHarianLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
 		
 		TableLayout.setTop(CatatanHarianLbl);
 		TableLayout.setCenter(TableKandang);
@@ -121,12 +145,10 @@ public class MasterKandangView extends TableViewTemplate{
 		
 		BorderPane.setMargin(TableKandang, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
-		CatatanHarianLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 		
-		ButtonContainer.setSpacing(10);
 		
 		TableLayout.setPadding(new Insets(80));
-		getMasterKandangLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		getMasterKandangLbl().setFont(Font.font("Inter", FontWeight.BOLD, 16));
 		
 		mainLayout.setTop(getMb());
 		mainLayout.setCenter(TableLayout);
@@ -186,7 +208,7 @@ public class MasterKandangView extends TableViewTemplate{
 		return InputData;
 	}
 
-	public HBox getButtonContainer() {
+	public BorderPane getButtonContainer() {
 		return ButtonContainer;
 	}
 
@@ -235,7 +257,7 @@ public class MasterKandangView extends TableViewTemplate{
 		InputData = inputData;
 	}
 
-	public void setButtonContainer(HBox buttonContainer) {
+	public void setButtonContainer(BorderPane buttonContainer) {
 		ButtonContainer = buttonContainer;
 	}
 

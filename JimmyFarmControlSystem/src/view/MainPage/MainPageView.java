@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -26,12 +27,17 @@ public class MainPageView extends TableViewTemplate{
 	
 	public MainPageView() {
 		
+
 		init();
 		arrangeComponent();
 		mainStage = new Stage();
 		
 		mainStage.setMaximized(true);
 		mainStage.setScene(scene);
+		
+		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
+		mainStage.getIcons().add(icon);		
+		
 		mainStage.setTitle("Jimmy Farm Control System");
 		mainStage.show();
 
@@ -50,12 +56,13 @@ public class MainPageView extends TableViewTemplate{
 	
 	//Daftar tabel samping
 	Label DaftarTabel, CatatanHarianLbl2, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
-	HBox ButtonContainer;
+	BorderPane ButtonContainer;
 	@Override
 	public void init() {
 		mainLayout = new BorderPane();
 		TableLayout = new BorderPane();
 		scene = new Scene(mainLayout); 
+
 		
 		//column Lokasi
 		Table = new TableView<CatatanHarianUtama>();
@@ -93,25 +100,34 @@ public class MainPageView extends TableViewTemplate{
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
-		Update.setFont(Font.font("Inter", 20)); 
+		Update.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		Update.setPadding(new Insets(10, 20, 10, 20));
 		Update.setMinWidth(50); 
+		Update.setStyle("-fx-background-color: #227B94; -fx-text-fill: white;");
 		
 		//Bagian button Delete 
 		Delete = new Button("Delete"); 
-		Delete.setFont(Font.font("Inter", 20)); 
+		Delete.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		Delete.setPadding(new Insets(10, 20, 10, 20));
 		Delete.setMinWidth(50); 
+		Delete.setStyle("-fx-background-color: #AF1740; -fx-text-fill: white;");
+
 		
 		//Bagian button Input Data 
 		InputData = new Button("Input Data"); 
-		InputData.setFont(Font.font("Inter", 20));
+		InputData.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		InputData.setPadding(new Insets(10, 20, 10, 20));
+		InputData.setStyle("-fx-background-color: #000B58; -fx-text-fill: white;");
+		InputData.setMinWidth(100);
 		
 		
 		//Bagian catatan Harian Detail
 		CatatanHarianDetail = new Button("Catatan Harian Detail"); 
-		CatatanHarianDetail.setFont(Font.font("Inter", 20)); 
-		InputData.setMinWidth(100);
+		CatatanHarianDetail.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		CatatanHarianDetail.setPadding(new Insets(10, 20, 10, 20));
+		CatatanHarianDetail.setStyle("-fx-background-color: #006A67; -fx-text-fill: white;");
 		
-		ButtonContainer = new HBox();
+		ButtonContainer = new BorderPane();
 		
 		
 		KodeCatatanTC.prefWidthProperty().bind(Table.widthProperty().multiply(0.15));
@@ -142,12 +158,21 @@ public class MainPageView extends TableViewTemplate{
 		// TODO Auto-generated method stub
 		
 		HBox leftBtnContainer = new HBox();
-		leftBtnContainer.getChildren().addAll(InputData, Update);
+		HBox rightBtnContainer = new HBox();
+		leftBtnContainer.getChildren().addAll(Update, Delete);
+		leftBtnContainer.setSpacing(15);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, CatatanHarianDetail);
+		rightBtnContainer.getChildren().addAll(CatatanHarianDetail, InputData);
+		rightBtnContainer.setSpacing(15);
+		
+		
+		ButtonContainer.setLeft(leftBtnContainer);
+		ButtonContainer.setRight(rightBtnContainer);
+		
 		
 		CatatanHarianLbl = new Label("Catatan Harian");
-	
+		CatatanHarianLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
+		
 		TableLayout.setTop(CatatanHarianLbl);
 		TableLayout.setCenter(Table);
 		TableLayout.setBottom(ButtonContainer);
@@ -155,8 +180,7 @@ public class MainPageView extends TableViewTemplate{
 		
 		BorderPane.setMargin(Table, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
-		CatatanHarianLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-		getSideBarCatatanHarianLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		getSideBarCatatanHarianLbl().setFont(Font.font("Inter", FontWeight.BOLD, 16));
 	
 		
 		TableLayout.setPadding(new Insets(80));
@@ -175,7 +199,7 @@ public class MainPageView extends TableViewTemplate{
 	}
 
 
-	public HBox getButtonContainer() {
+	public BorderPane getButtonContainer() {
 		return ButtonContainer;
 	}
 	
@@ -200,7 +224,7 @@ public class MainPageView extends TableViewTemplate{
 	}
 
 
-	public void setButtonContainer(HBox buttonContainer) {
+	public void setButtonContainer(BorderPane buttonContainer) {
 		ButtonContainer = buttonContainer;
 	}
 

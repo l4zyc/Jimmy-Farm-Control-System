@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -31,6 +32,9 @@ public class MasterPakanView extends TableViewTemplate{
 		arrangeComponent();
 		PakanStage = new Stage();
 		
+		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
+		PakanStage.getIcons().add(icon);		
+		
 		PakanStage.setMaximized(true);
 		PakanStage.setScene(scene);
 		PakanStage.setTitle("Jimmy Farm Control System");
@@ -47,7 +51,7 @@ public class MasterPakanView extends TableViewTemplate{
 	 
 	TextField Search;
 	
-	HBox ButtonContainer;
+	BorderPane ButtonContainer;
 	
 	MenuBar mb;  //menubar
 	MenuItem Home, LogOut; //isi menu bar 
@@ -59,6 +63,7 @@ public class MasterPakanView extends TableViewTemplate{
 		mainLayout = new BorderPane();
 		TableLayout = new BorderPane();
 		scene = new Scene(mainLayout); 
+
 		
 		//Column Kode Pakan
 		TablePakan = new TableView<DaftarPakan>();
@@ -90,23 +95,33 @@ public class MasterPakanView extends TableViewTemplate{
 		
 		//Bagian button update 
 		Update = new Button("Update"); 
-		Update.setFont(Font.font("Inter", 20)); 
+		Update.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		Update.setPadding(new Insets(10, 20, 10, 20));
 		Update.setMinWidth(50); 
-						
+		Update.setStyle("-fx-background-color: #227B94; -fx-text-fill: white;");
+		
 		//Bagian button Delete 
 		Delete = new Button("Delete"); 
-		Delete.setFont(Font.font("Inter", 20)); 
+		Delete.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		Delete.setPadding(new Insets(10, 20, 10, 20));
 		Delete.setMinWidth(50); 
-						
+		Delete.setStyle("-fx-background-color: #AF1740; -fx-text-fill: white;");
+
+		
 		//Bagian button Input Data 
 		InputData = new Button("Input Data"); 
-		InputData.setFont(Font.font("Inter", 20));
-		InputData.setMinWidth(50);
+		InputData.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		InputData.setPadding(new Insets(10, 20, 10, 20));
+		InputData.setStyle("-fx-background-color: #000B58; -fx-text-fill: white;");
+		InputData.setMinWidth(100);
+
 			
 		Search = new TextField(); 
 		Search.setPromptText("Search...");
+		Search.setPadding(new Insets(12));
+		
 						
-		ButtonContainer = new HBox();
+		ButtonContainer = new BorderPane();
 		
 		mb = new MenuBar();  
 		action = new Menu("Action"); 
@@ -138,11 +153,20 @@ public class MasterPakanView extends TableViewTemplate{
 		action.getItems().addAll(Home, LogOut); 
 		
 		HBox leftBtnContainer = new HBox();
-		leftBtnContainer.getChildren().addAll(InputData, Update);
+		HBox rightBtnContainer = new HBox();
+		leftBtnContainer.getChildren().addAll(Update, Delete);
+		leftBtnContainer.setSpacing(15);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, Search);
+		rightBtnContainer.getChildren().addAll(Search, InputData);
+		rightBtnContainer.setSpacing(15);
+		
+		
+		ButtonContainer.setLeft(leftBtnContainer);
+		ButtonContainer.setRight(rightBtnContainer);
+
 		
 		CatatanHarianLbl = new Label("Master Pakan");
+		CatatanHarianLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
 		
 		TableLayout.setTop(CatatanHarianLbl);
 		TableLayout.setCenter(TablePakan);
@@ -150,12 +174,10 @@ public class MasterPakanView extends TableViewTemplate{
 		
 		BorderPane.setMargin(TablePakan, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
-		CatatanHarianLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 	
-		ButtonContainer.setSpacing(10);
 		
 		TableLayout.setPadding(new Insets(80));
-		getMasterPakanLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		getMasterPakanLbl().setFont(Font.font("Inter", FontWeight.BOLD, 16));
 		
 		mainLayout.setTop(mb);
 		mainLayout.setCenter(TableLayout);
@@ -304,12 +326,12 @@ public class MasterPakanView extends TableViewTemplate{
 	}
 
 
-	public HBox getButtonContainer() {
+	public BorderPane getButtonContainer() {
 		return ButtonContainer;
 	}
 
 
-	public void setButtonContainer(HBox buttonContainer) {
+	public void setButtonContainer(BorderPane buttonContainer) {
 		ButtonContainer = buttonContainer;
 	}
 

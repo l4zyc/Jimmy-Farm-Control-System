@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -32,7 +33,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	
 	TableColumn<CatatanHarianDetail, Integer> jantanTC, betinaTC;
 	Button Update, Delete, InputData;
-	HBox ButtonContainer;
+	BorderPane ButtonContainer;
 	String kode;
 	TextField Search2;
 	public CatatanHarianDetailView(String kodeCatatan) {
@@ -43,7 +44,11 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		
 		stage.setMaximized(true);
 		stage.setScene(scene);
-		stage.setTitle("Jimmy Farm Control System Detail");
+		
+		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
+		stage.getIcons().add(icon);		
+		
+		stage.setTitle("Jimmy Farm Control System");
 		stage.show();
 		
 		new DetailCatatanController(this, kodeCatatan);
@@ -54,6 +59,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		mainLayout = new BorderPane();
 		TableLayout = new BorderPane();
 		scene = new Scene(mainLayout); 
+
 		
 		table = new TableView<>();
 
@@ -158,27 +164,45 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 
 		titleLbl = new Label("Detail Catatan Harian " + kode);
 		
-		// Button configuration
-		Update = new Button("Update");
-		Update.setFont(Font.font("Inter", 20));
-		Update.setMinWidth(50);
+		//Bagian button update 
+		Update = new Button("Update"); 
+		Update.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		Update.setPadding(new Insets(10, 20, 10, 20));
+		Update.setMinWidth(50); 
+		Update.setStyle("-fx-background-color: #227B94; -fx-text-fill: white;");
+		
+		//Bagian button Delete 
+		Delete = new Button("Delete"); 
+		Delete.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		Delete.setPadding(new Insets(10, 20, 10, 20));
+		Delete.setMinWidth(50); 
+		Delete.setStyle("-fx-background-color: #AF1740; -fx-text-fill: white;");
 
-		Delete = new Button("Delete");
-		Delete.setFont(Font.font("Inter", 20));
-		Delete.setMinWidth(50);
+		
+		//Bagian button Input Data 
+		InputData = new Button("Input Data"); 
+		InputData.setFont(Font.font("Inter", FontWeight.BOLD, 16));
+		InputData.setPadding(new Insets(10, 20, 10, 20));
+		InputData.setStyle("-fx-background-color: #000B58; -fx-text-fill: white;");
+		InputData.setMinWidth(100);
 
-		InputData = new Button("Input Data");
-		InputData.setFont(Font.font("Inter", 20));
-		InputData.setMinWidth(50);
 
 		Search2 = new TextField(); 
 		Search2.setPromptText("Search...");
+		Search2.setPadding(new Insets(12));
 		
-		ButtonContainer = new HBox();
+		ButtonContainer = new BorderPane();
 		HBox leftBtnContainer = new HBox();
-		leftBtnContainer.getChildren().addAll(InputData, Update);
+		leftBtnContainer.getChildren().addAll(Update, Delete);
+		leftBtnContainer.setSpacing(15);
 		
-		ButtonContainer.getChildren().addAll(leftBtnContainer, Delete, Search2);
+		HBox rightBtnContainer = new HBox();
+		rightBtnContainer.getChildren().addAll(Search2, InputData);
+		rightBtnContainer.setSpacing(15);
+		
+		ButtonContainer.setLeft(leftBtnContainer);
+		ButtonContainer.setRight(rightBtnContainer);
+		ButtonContainer.setPadding(new Insets(10));
 		
 		// Set widths of table columns dynamically based on Table width
 		double columnWidth = 0.15;
@@ -261,11 +285,10 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		TableLayout.setPadding(new Insets(20));
 		BorderPane.setMargin(table, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(titleLbl, Pos.CENTER);
-		titleLbl.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+		titleLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
 		
-		ButtonContainer.setSpacing(20);
 		
-		getSideBarCatatanHarianLbl().setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		getSideBarCatatanHarianLbl().setFont(Font.font("Inter", FontWeight.BOLD, 16));
 	}
 
 	public TableView<CatatanHarianDetail> getTable() {
@@ -328,7 +351,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		return betinaTC;
 	}
 
-	public HBox getButtonContainer() {
+	public BorderPane getButtonContainer() {
 		return ButtonContainer;
 	}
 
@@ -356,7 +379,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		this.betinaTC = betinaTC;
 	}
 
-	public void setButtonContainer(HBox buttonContainer) {
+	public void setButtonContainer(BorderPane buttonContainer) {
 		ButtonContainer = buttonContainer;
 	}
 

@@ -3,6 +3,7 @@ package view;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -10,9 +11,16 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public abstract class TableViewTemplate extends ViewTemplate{
 	protected BorderPane mainLayout, TableLayout;
@@ -38,8 +46,11 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		mb.getMenus().add(action);
 		action.getItems().addAll(Home, LogOut); 
 	}
-	Image image; 
-	ImageView image1;
+	Image logoImage, bgImage; 
+	ImageView logoImageView;
+	
+	BackgroundSize bgSize;
+	Background bg;
 	
 	public void setSideBar() {
 		sideBar = new GridPane();
@@ -49,41 +60,57 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		sideBar.add(sideBarTop, 0, 0);
 		sideBar.add(sideBarBottom, 0, 1);
 		sideBar.setVgap(10);
-		FileInputStream inputstream;
-		try {
-		    inputstream = new FileInputStream("D:\\Kuliah\\Business Application Development (BAD)\\Coding\\CustomLogoJimmyFarm.png");
-		    image = new Image(inputstream);
-		    image1 = new ImageView(image); // Set the image to the ImageView
-		    image1.setFitWidth(100); // Optional: Adjust size if needed
-		    image1.setPreserveRatio(true); // Preserve the aspect ratio
-		} catch (FileNotFoundException e) {
-		    e.printStackTrace();
-		}
+//		FileInputStream inputstream;
+//		try {
+//		    inputstream = new FileInputStream("C:\\Users\\chand\\git\\Jimmy-Farm-Control-System\\JimmyFarmControlSystem\\src\\CustomLogoJimmyFarm.png");
+			logoImage = new Image("CustomLogoJimmyFarm.png");
+			bgImage = new Image("Background1.png");
+			
+			logoImageView = new ImageView(logoImage); // Set the image to the ImageView
+			logoImageView.setFitWidth(100); // Optional: Adjust size if needed
+			logoImageView.setPreserveRatio(true); // Preserve the aspect ratio
+			
+			bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, false, true);
+			bg = new Background(new BackgroundImage(bgImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize));
+			
+//		} catch (FileNotFoundException e) {
+//		    e.printStackTrace();
+//		}
+		JFCS = new Label("Jimmy Farm Control System");
+		JFCS.setFont(Font.font("Inter", FontWeight.BLACK, 28));
+		JFCS.setWrapText(true);
+		JFCS.setMaxWidth(215);
 		
 		DaftarTabel = new Label("Daftar Tabel");  
+		DaftarTabel.setFont(Font.font("Inter", FontWeight.BOLD, 22));
+		
 		CatatanHarian = new HBox(); //Bagian Catatan Harian 
 		SideBarCatatanHarianLbl = new Label("Catatan Harian");
+		SideBarCatatanHarianLbl.setFont(Font.font("Inter", FontWeight.NORMAL, 13));
 		CatatanHarian.getChildren().addAll(SideBarCatatanHarianLbl);  
 		
 		MasterPakan = new HBox(); //Bagian Master Pakan 
 		MasterPakanLbl = new Label("Master Pakan");
+		MasterPakanLbl.setFont(Font.font("Inter", FontWeight.NORMAL, 13));
 		MasterPakan.getChildren().addAll(MasterPakanLbl);  
 		
 		MasterObat = new HBox(); //Bagian Master Obat
 		MasterObatLbl = new Label("Master Obat");
+		MasterObatLbl.setFont(Font.font("Inter", FontWeight.NORMAL, 13));
 		MasterObat.getChildren().addAll(MasterObatLbl);  
 		
 		MasterSupplier = new HBox(); //Bagian Master Supplier
 		MasterSupplierLbl = new Label("Master Supplier"); 
+		MasterSupplierLbl.setFont(Font.font("Inter", FontWeight.NORMAL, 13));
 		MasterSupplier.getChildren().addAll(MasterSupplierLbl);
 		
 		MasterKandang = new HBox(); // Bagian Master Kandang
 		MasterKandangLbl = new Label("Master Kandang");  
+		MasterKandangLbl.setFont(Font.font("Inter", FontWeight.NORMAL, 13));
 		MasterKandang.getChildren().addAll(MasterKandangLbl); 
 		
-		JFCS = new Label("Jimmy Farm Control System");
 		
-		sideBarTop.add(image1, 0, 1);
+		sideBarTop.add(logoImageView, 0, 1);
 		sideBarTop.add(JFCS , 0, 2);
 		sideBarBottom.add(DaftarTabel, 0, 0);		
 		sideBarBottom.add(CatatanHarian, 0, 1);		
@@ -92,15 +119,18 @@ public abstract class TableViewTemplate extends ViewTemplate{
 		sideBarBottom.add(MasterSupplier, 0, 4);
 		sideBarBottom.add(MasterKandang, 0, 5); 
 		
+		sideBarTop.setPadding(new Insets(10, 15, 10, 10));
+		sideBarTop.setBackground(bg);
+		sideBarBottom.setPadding(new Insets(10, 15, 10, 10));
 		sideBarBottom.setVgap(10);
 		
-		sideBar.setStyle("-fx-border-width: 2px 2px 0px 0px;"
-				+ "-fx-border-color: BLACK");
-		sideBarBottom.setStyle("-fx-border-width: 2px 0px 0px 0px;"
-				+ "-fx-border-color: BLACK");
+		sideBar.setStyle("-fx-border-width: 0px 1.5px 0px 0px;"
+				+ "-fx-border-color: GREY");
+//		sideBarBottom.setStyle("-fx-border-width: 0px 0px 0px 0px;"
+//				+ "-fx-border-color: GREY");
 		
-		sideBarBottom.setMinWidth(200);
-		sideBar.setMinWidth(200);
+		sideBarBottom.setMinWidth(250);
+		sideBar.setMinWidth(250);
 	}
 
 	
