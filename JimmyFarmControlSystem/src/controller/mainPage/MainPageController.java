@@ -106,7 +106,7 @@ public class MainPageController extends MainTemplateController{
 				if (catatan != null) {
 				    new MainPageUpdateView(((MainPageView) view), catatan);
 				} else {
-				    reusableMethod.showAlert(AlertType.ERROR, "Item Select", "No Item was Selected");
+				    reusableMethod.showAlert(AlertType.ERROR, "Update Data", "No Selected Item");
 				}
 			}
 		});
@@ -127,7 +127,7 @@ public class MainPageController extends MainTemplateController{
 						data.refreshCatatanHarianUtamaTable(((MainPageView) view).getTable());		
 					}
 				} else {
-					reusableMethod.showAlert(AlertType.ERROR, "Empty Item", "Catatan is Null");
+					reusableMethod.showAlert(AlertType.ERROR, "Delete Data", "No Selected Data");
 				}
 			}
 		});

@@ -63,7 +63,7 @@ public class MasterKandangController extends MainTemplateController{
 				if(kandang != null) {
 					new KandangUpdateView(((MasterKandangView) view), kandang);
 				} else {
-					reusableMethod.showAlert(AlertType.ERROR, "Select Item", "No Item was Selected");
+					reusableMethod.showAlert(AlertType.ERROR, "Update Data", "No Selected Item");
 				}
 			}
 		});
@@ -80,7 +80,7 @@ public class MasterKandangController extends MainTemplateController{
 					reusableMethod.showAlert(AlertType.CONFIRMATION, "Delete", "Data Deleted");
 					data.refreshMasterKandang(((MasterKandangView) view).getTableKandang());
 				} else {
-					reusableMethod.showAlert(AlertType.ERROR, "Delete Data", "Data is Null");
+					reusableMethod.showAlert(AlertType.ERROR, "Delete Data", "No Selected Data");
 				}
 			}
 		});

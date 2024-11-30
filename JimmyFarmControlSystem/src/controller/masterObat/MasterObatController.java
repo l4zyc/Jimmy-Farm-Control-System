@@ -76,7 +76,7 @@ public class MasterObatController extends MainTemplateController{
 				if (obat != null) {
 				    new ObatUpdateView(((MasterObatView) view), obat); // 
 				} else {
-				    reusableMethod.showAlert(AlertType.ERROR, "Item Select", "No Item was Selected");
+				    reusableMethod.showAlert(AlertType.ERROR, "Update Data", "No Selected Item");
 				}
 			}
 		});

@@ -58,7 +58,7 @@ public class MasterPakanController extends MainTemplateController{
 				if(getSelectedPakan() != null) {
 					new PakanUpdateView(((MasterPakanView) view), getSelectedPakan());
 				} else {
-					reusableMethod.showAlert(AlertType.ERROR, "Select item", "No Item was selected");
+					reusableMethod.showAlert(AlertType.ERROR, "Update Data", "No Selected Item");
 				}
 			}
 		});

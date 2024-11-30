@@ -61,7 +61,7 @@ public class MasterSupplierController extends MainTemplateController{
 				if (supplier != null) {
 				    new SupplierUpdateView((MasterSupplierView) view, supplier); // 
 				} else {
-				    reusableMethod.showAlert(AlertType.ERROR, "Item Select", "No Item was Selected");
+				    reusableMethod.showAlert(AlertType.ERROR, "Update Data", "No Selected Item");
 				}
 			}
 		});
@@ -79,7 +79,7 @@ public class MasterSupplierController extends MainTemplateController{
 						data.refreshMasterSupplier(((MasterSupplierView)view).getTableSupplier());
 					}
 				} else {
-					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "No Selected Data");
+					reusableMethod.showAlert(AlertType.ERROR, "Delete", "No Selected Data");
 				}
 			}
 		});

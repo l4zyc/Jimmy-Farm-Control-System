@@ -80,7 +80,7 @@ public class DetailCatatanController extends MainTemplateController{
 						data.refreshTableCatatanHarianDetail(detailView.getTable(), catatan.getKodeCatatan());	
 					}
 				} else {
-					reusableMethod.showAlert(AlertType.ERROR, "Delete Data", "Catatan Harian Detail is Null");
+					reusableMethod.showAlert(AlertType.ERROR, "Delete Data", "No Selected Data");
 				}
 			}
 		});
