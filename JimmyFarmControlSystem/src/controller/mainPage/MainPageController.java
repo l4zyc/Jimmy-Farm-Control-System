@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import controller.MainTemplateController;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 import main.Main;
 import model.CatatanHarianDetail;
 import model.CatatanHarianUtama;
+import model.DaftarPakan;
 import util.Data;
 import util.reusableMethod;
 import view.TableViewTemplate;
@@ -38,10 +40,12 @@ public class MainPageController extends MainTemplateController{
 	public MainPageController(MainPageView view) { 
 		super(view);
 		setOnMouseClicked();
+//		setOnMouseDoubleClick();
 		setOnActionEventUpdate();
 		setOnActionEventInputData();
 		setOnActionEventDelete();
-		setOnLogOut(); 
+		setOnLogOut();  
+		setOnSearch();
 		setOnCatatanHarianDetail();
 	}
 	
@@ -63,7 +67,7 @@ public class MainPageController extends MainTemplateController{
 	                new CatatanHarianDetailView(KodeCatatan); 
 	                
 	            } else {
-	                reusableMethod.showAlert(AlertType.WARNING, "Item Select", "No item selected. Please select an item to view details.");
+	                reusableMethod.showAlert(AlertType.ERROR, "Item Select", "No item selected. Please select an item to view details.");
 	            }
 			} 
 			
@@ -75,9 +79,24 @@ public class MainPageController extends MainTemplateController{
 	    ((MainPageView) view).getTable().setOnMouseClicked(event -> {
 	        TableSelectionModel<CatatanHarianUtama> selectionModel = ((MainPageView) view).getTable().getSelectionModel();
 	        selectionModel.setSelectionMode(SelectionMode.SINGLE);
-	        this.catatan = selectionModel.getSelectedItem();
+	        catatan = selectionModel.getSelectedItem();
 	    });
 	}
+	
+//	public void setOnMouseDoubleClick() {
+//		((MainPageView) view).getTable().setRowFactory(tv -> {
+//			TableRow<CatatanHarianUtama> row = new TableRow<CatatanHarianUtama>();
+//			
+//			row.setOnMouseClicked(event -> {
+//				if(event.getClickCount() == 2) {
+//					CatatanHarianUtama _catatan = row.getItem();
+//					new CatatanHarianDetailView(_catatan.getKodeCatatan());
+//				}
+//			});
+//			
+//			return row;
+//		});
+//	}
 	
 	//Open update view if an item is selected
 	public void setOnActionEventUpdate() {
@@ -101,14 +120,14 @@ public class MainPageController extends MainTemplateController{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				
-				if(reusableMethod.confirmationAlert().get().equals(ButtonType.OK)) {
-					if(catatan != null) {
+				if(catatan != null) {
+					if(reusableMethod.confirmationAlert("Delete", "Are you sure you want to delete this data ?").get().equals(ButtonType.OK)) {
 						data.deleteCatatanHarianData(catatan);
 						reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
-						data.refreshCatatanHarianUtamaTable(((MainPageView) view).getTable());	
-					} else {
-						reusableMethod.showAlert(AlertType.WARNING, "Empty Item", "Catatan is Null");
+						data.refreshCatatanHarianUtamaTable(((MainPageView) view).getTable());		
 					}
+				} else {
+					reusableMethod.showAlert(AlertType.ERROR, "Empty Item", "Catatan is Null");
 				}
 			}
 		});
@@ -122,6 +141,33 @@ public class MainPageController extends MainTemplateController{
 				new MainPageInputDataView(((MainPageView) view));
 			} 
 		}); 
-	}  
+	}   
+	public void setOnLogOut() {
+		view.getLogOut().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				window.close(); 
+				new LoginView();
+			}
+		});
+	}
+	
+	public void setOnSearch() { 
+		((MainPageView) view).getSearch().textProperty().addListener((observable, oldValue, newValue) -> {
+	        // Check if 'data' is not null and 'searchMasterKandangData' method exists
+	        if (data != null) {
+	            ObservableList<CatatanHarianUtama> searchResults = data.searchCatatanHarianUtama(newValue, null);
+	            // Ensure the TableView is being updated with the search results
+	            ((MainPageView) view).getTable().setItems(searchResults);
+	            // Optionally refresh the TableView to force the UI update
+	            ((MainPageView) view).getTable().refresh();
+	        } else {
+	            System.err.println("Data instance is null or method not found.");
+	        }
+	    });;
+	}
+	
 }
 

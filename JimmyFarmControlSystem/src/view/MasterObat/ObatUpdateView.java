@@ -24,6 +24,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.DaftarObat;
@@ -66,7 +67,8 @@ public class ObatUpdateView extends ViewTemplate{
 		arrangeComponent(); 
 		stage = new Stage();
 		stage.setTitle("Update Obat");
-		
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.initOwner(view.getObatStage());
 		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
 		stage.getIcons().add(icon);		
 		

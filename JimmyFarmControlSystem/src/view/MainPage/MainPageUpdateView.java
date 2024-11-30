@@ -22,6 +22,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.CatatanHarianUtama;
@@ -61,7 +62,8 @@ public class MainPageUpdateView extends ViewTemplate{
 		arrangeComponent(); 
 		stage = new Stage();
 		stage.setTitle("Update Catatan Harian");
-		
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.initOwner(MainPageView.mainStage);
 		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
 		stage.getIcons().add(icon);		
 		

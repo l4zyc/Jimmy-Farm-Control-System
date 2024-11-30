@@ -24,44 +24,48 @@ public class MainPageUpdateController extends ControllerData{
 	
 	public void setOnActionEvent() {
 		view.getSave().setOnAction(e -> { 
-			String KODE_CATATAN = view.getKodeCatatanTF().getText(); 
-			String KODE_KANDANG = view.getKodeKandang().getValue().toString(); 
-			String KETERANGAN = view.getKeteranganJenisTF().getText();  
-			LocalDate DATE_ = view.getTanggalMasuk().getValue();
-			Date DATE = Date.valueOf(DATE_); 
-			Integer JumlahJantan, JumlahBetina; 
-			try {
-				JumlahBetina = Integer.parseInt(view.getJumlahAwalBetina().getText().trim()); 
-				JumlahJantan = Integer.parseInt(view.getJumlahAwalJantan().getText().trim());  
-									
-				if(JumlahBetina < 0 || JumlahJantan < 0) { 
-					reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Awal Betina and Jantan must be non-negative numbers.");
-			        return;
+			try { 
+				String KODE_CATATAN = view.getKodeCatatanTF().getText(); 
+				String KODE_KANDANG = view.getKodeKandang().getValue().toString(); 
+				String KETERANGAN = view.getKeteranganJenisTF().getText();  
+				LocalDate DATE_ = view.getTanggalMasuk().getValue();
+				Date DATE = Date.valueOf(DATE_); 
+				Integer JumlahJantan, JumlahBetina; 
+				try {
+					JumlahBetina = Integer.parseInt(view.getJumlahAwalBetina().getText().trim()); 
+					JumlahJantan = Integer.parseInt(view.getJumlahAwalJantan().getText().trim());  
+										
+					if(JumlahBetina < 0 || JumlahJantan < 0) { 
+						reusableMethod.showAlert(AlertType.ERROR, "Error", "Jumlah Awal Betina and Jantan must be non-negative numbers.");
+				        return;
+					}
+				} catch (Exception e1) {
+					// TODO: handle exception 
+					 reusableMethod.showAlert(AlertType.ERROR, "Error", "Input All Data!");
+					 return;
 				}
-			} catch (Exception e1) {
-				// TODO: handle exception 
-				 reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Awal Betina and Jantan must be whole numbers.");
-				 return;
+				
+				if(KETERANGAN.isEmpty()) { 
+					 reusableMethod.showAlert(AlertType.ERROR, "Error", "Please input keterangan jenis.");
+					 return;
+				}
+				
+				String KOMENTAR = view.getKomentar().getText(); 
+				
+				if(KOMENTAR.isEmpty()) { 
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "Please input komentar.");
+					 return;
+				}
+				
+				data.updateCatatanHarianData(new CatatanHarianUtama(KODE_CATATAN, DATE, KODE_KANDANG, KETERANGAN, JumlahJantan, JumlahBetina, KOMENTAR));
+				reusableMethod.showAlert(AlertType.INFORMATION, "Update", "Value Updated!");
+				data.refreshCatatanHarianUtamaTable(view.getView().getTable());
+				
+				Stage stage = view.getStage();
+				stage.close();	
+			} catch (Exception ex) {
+				reusableMethod.showAlert(AlertType.ERROR, "Error", "Input All Data!");
 			}
-			
-			if(KETERANGAN.isEmpty()) { 
-				 reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Please input keterangan jenis.");
-				 return;
-			}
-			
-			String KOMENTAR = view.getKomentar().getText(); 
-			
-			if(KOMENTAR.isEmpty()) { 
-				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Please input komentar.");
-				 return;
-			}
-			
-			data.updateCatatanHarianData(new CatatanHarianUtama(KODE_CATATAN, DATE, KODE_KANDANG, KETERANGAN, JumlahJantan, JumlahBetina, KOMENTAR));
-			reusableMethod.showAlert(AlertType.INFORMATION, "Update", "Value Updated!");
-			data.refreshCatatanHarianUtamaTable(view.getView().getTable());
-			
-			Stage stage = view.getStage();
-			stage.close();
 		});
 	}
 	

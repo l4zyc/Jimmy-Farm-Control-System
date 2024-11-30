@@ -46,7 +46,7 @@ public class RegisterController extends ControllerData{
 		String userID = data.getNewUserID();
 
 		if(name.isEmpty()) { //validasi  name tersebut empty
-			reusableMethod.showAlert(AlertType.ERROR, "Error", "Name");
+			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input Name! (Required)");
 			return;
 		}else if(isNameUnique(name)) { //validasi name harus unique
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "Name Exist");
@@ -54,7 +54,7 @@ public class RegisterController extends ControllerData{
 		}
 	
 		if(username.isEmpty()) { //validasi username tersebut empty
-			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input userName");
+			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input Username! (Required)");
 			return;
 		}else if(isUserNameUnique(username)) { //validasi username harus unique
 			reusableMethod.showAlert(AlertType.ERROR, "Error", "User name Exist");
@@ -62,23 +62,19 @@ public class RegisterController extends ControllerData{
 		}
 		
 		if(password.isEmpty()) { //validasi password tersebut empty
-			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input password");
+			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input password! (Required)");
 			return;
 		}
 		
 		if(confirmpassword.isEmpty()) {// validasi harus memasukan confirm password
-			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input confirm password");
+			reusableMethod.showAlert(AlertType.ERROR, "Error", "Input confirm password !");
 			return;
 		}else if(!confirmpassword.equals(password)) { //validasi memasukan password sama dengan confirm password
-			reusableMethod.showAlert(AlertType.INFORMATION, "Error", "Input the same password");
+			reusableMethod.showAlert(AlertType.INFORMATION, "Error", "Input the same password !");
 			return;
 		}
 		
 		data.insertUser(new User(userID, name, username, password,confirmpassword));
-		view.getNameTF().setText(null);
-		view.getUsernameTF().setText(null);
-		view.getPasswordPF().setText(null);
-		view.getConfirmpasswordPF().setText(null);
 		
 		Stage stage = (Stage) view.getBp().getScene().getWindow();
 		stage.close();

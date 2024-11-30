@@ -13,6 +13,7 @@ import main.Main;
 import model.User;
 import util.Data;
 import util.reusableMethod;
+import view.MainPage.MainPageView;
 import view.login.LoginView;
 import view.register.RegisterView;
 
@@ -74,6 +75,7 @@ public class LoginController extends ControllerData{
 		
 		Stage window = (Stage) view.getSignIn().getScene().getWindow();
 		window.close();
+		new MainPageView();
 		
 	}
 	

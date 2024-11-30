@@ -26,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import util.Data;
@@ -65,7 +66,8 @@ public class MainPageInputDataView extends ViewTemplate{
 		arrangeComponent(); 
 		stage = new Stage();
 		stage.setTitle("Input Catatan Harian");
-		
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.initOwner(MainPageView.mainStage);
 		
 		new MainPageInputDataController(this);
 		

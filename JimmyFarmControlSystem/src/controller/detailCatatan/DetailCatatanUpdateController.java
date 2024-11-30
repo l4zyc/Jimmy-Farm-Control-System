@@ -23,9 +23,69 @@ public class DetailCatatanUpdateController extends ControllerData{
 	} 
 	
 	public void setOnAction() {
+		
 		view.getSave().setOnAction(e -> {
+			Integer KematianJantan = 0,  
+					KematianBetina = 0, 
+					PenjualanJantan = 0, 
+					PenjualanBetina = 0, 
+					AfkirJantan = 0,  
+					AfkirBetina = 0, 
+					PindahJantan = 0,  
+					PindahBetina = 0, 
+					JumlahPakan = 0, 
+					JumlahObat = 0, 
+					JumlahProduksiTelur = 0, 
+					BiayaVariable = 0; 
+			String KodePakan = null;
+			String KodeObat = null;  
+			String KomentarKematian = null;
 			
-			Integer KematianJantan, KematianBetina;
+			try {
+				if(view.getKematianJantanTF().getText().trim().isEmpty() &&
+						view.getKematianBetinaTF().getText().trim().isEmpty() &&
+						view.getPenjualanJantanTF().getText().trim().isEmpty() && 
+						view.getPenjualanBetinaTF().getText().trim().isEmpty() && 
+						view.getAfkirJantanTF().getText().trim().isEmpty() && 
+						view.getAfkirBetinaTF().getText().trim().isEmpty() && 
+						view.getPindahJantanTF().getText().trim().isEmpty() && 
+						view.getPindahBetinaTF().getText().trim().isEmpty() && 
+						view.getKodePakanCB().getValue().toString().isEmpty() && 
+						view.getJumlahPakanTF().getText().trim().isEmpty() && 
+						view.getKodeObatCB().getValue().toString().isEmpty() && 
+						view.getJumlahObatTF().getText().trim().isEmpty() && 
+						view.getJumlahProduksiTelurTF().getText().trim().isEmpty() && 
+						view.getBiayaVariabelTF().getText().trim().isEmpty() && 
+						view.getKomentar().getValue().toString().isEmpty()) {  
+						
+					reusableMethod.showAlert(AlertType.ERROR, "Please Input Data", "You have to input all data");
+			        return;
+				}
+			} catch(Exception ex) {
+				reusableMethod.showAlert(AlertType.ERROR, "Error", "");
+			}
+			
+			
+			if(KematianJantan == null || KematianBetina == null) { 
+				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Kematian Betina and Jantan please input data");
+		        return;
+			} 
+			
+			if(PenjualanJantan == null || PenjualanBetina == null) { 
+				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Penjualan Betina and Jantan please input data");
+		        return;
+			}
+			
+			if(AfkirJantan == null || AfkirBetina == null) { 
+				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Afkir Betina and Jantan please input data");
+		        return;
+			} 
+			
+			if(PindahJantan == null || PindahBetina == null) { 
+				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Pindah Betina and Jantan please input data");
+		        return;
+			}
+			
 			try {
 				KematianJantan = Integer.parseInt(view.getKematianJantanTF().getText().trim()); 
 				KematianBetina = Integer.parseInt(view.getKematianBetinaTF().getText().trim());  
@@ -40,7 +100,7 @@ public class DetailCatatanUpdateController extends ControllerData{
 				 return;
 			}
 			
-			Integer PenjualanJantan, PenjualanBetina;
+		
 			try {
 				PenjualanJantan = Integer.parseInt(view.getPenjualanJantanTF().getText().trim()); 
 				PenjualanBetina = Integer.parseInt(view.getPenjualanBetinaTF().getText().trim());  
@@ -55,7 +115,7 @@ public class DetailCatatanUpdateController extends ControllerData{
 				 return;
 			}
 			
-			Integer AfkirJantan, AfkirBetina;
+		
 			try {
 				AfkirJantan = Integer.parseInt(view.getAfkirJantanTF().getText().trim()); 
 				AfkirBetina = Integer.parseInt(view.getAfkirBetinaTF().getText().trim());  
@@ -70,7 +130,7 @@ public class DetailCatatanUpdateController extends ControllerData{
 				 return;
 			} 
 			
-			Integer PindahJantan, PindahBetina;
+			
 			try {
 				PindahJantan = Integer.parseInt(view.getPindahJantanTF().getText().trim()); 
 				PindahBetina = Integer.parseInt(view.getPindahBetinaTF().getText().trim());  
@@ -80,9 +140,9 @@ public class DetailCatatanUpdateController extends ControllerData{
 				 return;
 			}
 			 
-			String KodePakan = view.getKodePakanCB().getValue().toString(); 
+			KodePakan = view.getKodePakanCB().getValue().toString();
 			
-			Integer JumlahPakan;  
+			 
 			try {
 				JumlahPakan = Integer.parseInt(view.getJumlahPakanTF().getText().trim());  
 				if(JumlahPakan < 0) { 
@@ -95,8 +155,8 @@ public class DetailCatatanUpdateController extends ControllerData{
 				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Pakan must be whole numbers.");
 				 return;
 			}
-			String KodeObat = view.getKodeObatCB().getValue().toString();  
-			Integer JumlahObat;
+			KodeObat = view.getKodeObatCB().getValue().toString();  
+		
 			try {
 				JumlahObat = Integer.parseInt(view.getJumlahObatTF().getText().trim());  
 				if(JumlahObat < 0) { 
@@ -109,7 +169,7 @@ public class DetailCatatanUpdateController extends ControllerData{
 				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Jumlah Obat must be whole numbers.");
 				 return;
 			} 
-			Integer JumlahProduksiTelur; 
+			
 			try {
 				JumlahProduksiTelur = Integer.parseInt(view.getJumlahProduksiTelurTF().getText().trim()); 
 				if(JumlahProduksiTelur < 0) { 
@@ -123,7 +183,7 @@ public class DetailCatatanUpdateController extends ControllerData{
 				 return;
 			}
 			
-			Integer BiayaVariable;  
+			  
 			try {
 				BiayaVariable = Integer.parseInt(view.getBiayaVariabelTF().getText().trim());
 				if(BiayaVariable < 0) { 
@@ -136,7 +196,7 @@ public class DetailCatatanUpdateController extends ControllerData{
 				reusableMethod.showAlert(AlertType.ERROR, "Invalid Input", "Biaya Variable must be whole numbers.");
 				 return;
 			}
-			String KomentarKematian = view.getKomentar().getValue().toString();
+			KomentarKematian = view.getKomentar().getValue().toString();
 			String KODE_CATATAN = view.getView().getKode(); 
 			
 			LocalDate dateConv = view.getDate().getValue();

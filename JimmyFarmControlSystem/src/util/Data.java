@@ -302,7 +302,35 @@ public class Data {
 	        return dataList;
 	    }
 	
-	
+		public ObservableList<CatatanHarianUtama> searchCatatanHarianUtama(String keyword, Integer keywordN) {
+		    ObservableList<CatatanHarianUtama> searchResults = FXCollections.observableArrayList();
+
+		    // Assuming you have a method to get the complete list of kandang data
+		    ObservableList<CatatanHarianUtama> allCatatanHarianUtama = getCatatanHarian();
+
+		    for (CatatanHarianUtama CHU : allCatatanHarianUtama) {
+		    	if (keyword != null && !keyword.isEmpty()) {
+		            if (CHU.getKodeCatatan().toLowerCase().contains(keyword.toLowerCase()) ||
+		            	CHU.getKodeKandang().toLowerCase().contains(keyword.toLowerCase()) ||  
+		                CHU.getTanggalMasuk().toString().contains(keyword.toLowerCase()) || 
+		                CHU.getKeteranganJenis().toLowerCase().contains(keyword.toLowerCase()) || 
+		                CHU.getKomentar().toLowerCase().contains(keyword.toLowerCase())) {
+		                searchResults.add(CHU);
+		                continue; // Skip integer checks if already matched
+		            }
+		        }
+
+		        // Check integer fields
+		        if (keywordN != null) {
+		            if (CHU.getJumlahAwalJantan() == keywordN || 
+		                CHU.getJumlahAwalBetina() == keywordN ) {
+		                searchResults.add(CHU);
+		            }
+		        }
+		    }
+
+		    return searchResults; 
+		}
 	
 //===================================================================================================== 
 

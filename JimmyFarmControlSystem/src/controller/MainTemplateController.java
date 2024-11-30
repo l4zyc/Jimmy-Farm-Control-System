@@ -29,15 +29,15 @@ public class MainTemplateController extends ControllerData{
 		setOnMouseClickedMasterKandang();
 	}
 	
-	public void setOnLogOut() {
-		view.getLogOut().setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				new LoginView();
-			}
-		});
-	}
+//	public void setOnLogOut() {
+//		view.getLogOut().setOnAction(new EventHandler<ActionEvent>() {
+//			
+//			@Override
+//			public void handle(ActionEvent event) {
+//				new LoginView();
+//			}
+//		});
+//	}
 	
 	public void setOnHome() { 
 		view.getHome().setOnAction(new EventHandler<ActionEvent>() {

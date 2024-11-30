@@ -60,7 +60,9 @@ public class MasterObatController extends MainTemplateController{
 		((MasterObatView) view).getLogOut().setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
-			public void handle(ActionEvent event) {
+			public void handle(ActionEvent event) { 
+				Stage window = (Stage) view.getMasterObat().getScene().getWindow();
+				window.close(); 
 				new LoginView();
 			}
 		});
@@ -87,15 +89,15 @@ public class MasterObatController extends MainTemplateController{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Delete Data");
-				alert.setTitle("Are you sure you want to delete the data?");
-				Optional<ButtonType> op = alert.showAndWait();
 				
-				if(op.get().equals(ButtonType.OK)) {
-					data.deleteMasterObat(obat);
-					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
-					data.refreshMasterObat(((MasterObatView) view).getTableObat());
+				if(obat != null) {
+					if(reusableMethod.confirmationAlert("Delete Data", "Do you want to delete this data ?").get().equals(ButtonType.OK)) {
+						data.deleteMasterObat(obat);
+						reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
+						data.refreshMasterObat(((MasterObatView) view).getTableObat());
+					}
+				} else {
+					reusableMethod.showAlert(AlertType.ERROR, "Delete Data", "No Selected Data");
 				}
 			}
 		});

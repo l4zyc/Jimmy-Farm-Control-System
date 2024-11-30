@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.sql.Date;
 
 import controller.masterSupplier.MasterSupplierController;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,10 +17,12 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.CatatanHarianUtama;
 import model.DaftarPakan;
 import model.DaftarSupplier;
 import util.Data;
+import util.reusableMethod;
 import view.TableViewTemplate;
 
 public class MasterSupplierView extends TableViewTemplate{
@@ -37,6 +40,17 @@ public class MasterSupplierView extends TableViewTemplate{
 		SupplierStage.setMaximized(true);
 		SupplierStage.setScene(scene);
 		
+		SupplierStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				// TODO Auto-generated method stub
+				if (reusableMethod.confirmationAlert("Exit", "Are you sure you want to quit ?").get().equals(ButtonType.CANCEL)) {
+					event.consume();
+				}
+			}
+		});
+		
 		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
 		SupplierStage.getIcons().add(icon);		
 		
@@ -45,6 +59,7 @@ public class MasterSupplierView extends TableViewTemplate{
 		
 		new MasterSupplierController(this);
 	}
+	
 	Image image; 
 	ImageView image1;
 	Label titleLbl, JFCS; 
@@ -112,7 +127,7 @@ public class MasterSupplierView extends TableViewTemplate{
 		
 		Search1 = new TextField(); 
 		Search1.setPromptText("Search...");
-		Search1.setPadding(new Insets(12));
+		Search1.setPadding(new Insets(5));
 		
 		KodeSupplierTC.prefWidthProperty().bind(TableSupplier.widthProperty().multiply(0.15));
 		NamaSupplierTC.prefWidthProperty().bind(TableSupplier.widthProperty().multiply(0.15));
@@ -136,7 +151,7 @@ public class MasterSupplierView extends TableViewTemplate{
 		leftBtnContainer.getChildren().addAll(Update, Delete);
 		leftBtnContainer.setSpacing(15);
 		
-		rightBtnContainer.getChildren().addAll(Search1, InputData);
+		rightBtnContainer.getChildren().addAll(InputData);
 		rightBtnContainer.setSpacing(15);
 		
 		
@@ -146,7 +161,13 @@ public class MasterSupplierView extends TableViewTemplate{
 		
 		titleLbl = new Label("Master Supplier");
 		titleLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
-		TableLayout.setTop(titleLbl);
+		
+		HBox TitleContainer = new HBox(); 
+		TitleContainer.getChildren().addAll(titleLbl, Search1);
+		TitleContainer.setAlignment(Pos.TOP_RIGHT); 
+		TitleContainer.setSpacing(350);
+		
+		TableLayout.setTop(TitleContainer);
 		TableLayout.setCenter(TableSupplier);
 		TableLayout.setBottom(ButtonContainer);
 		

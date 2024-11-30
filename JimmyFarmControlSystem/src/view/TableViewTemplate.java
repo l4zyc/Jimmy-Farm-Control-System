@@ -28,10 +28,12 @@ public abstract class TableViewTemplate extends ViewTemplate{
 	private Label JFCS; 
 	private HBox CatatanHarian, MasterPakan, MasterObat, MasterSupplier, MasterKandang;
 	private Label DaftarTabel, SideBarCatatanHarianLbl, MasterPakanLbl, MasterObatLbl, MasterSupplierLbl, MasterKandangLbl; 
-	
+			
 	private MenuBar mb;
 	private MenuItem Home, LogOut; //isi menu bar 
 	private Menu action;//Buat action menu bar 
+		
+	
 	
 	public TableViewTemplate() {
 		setSideBar();

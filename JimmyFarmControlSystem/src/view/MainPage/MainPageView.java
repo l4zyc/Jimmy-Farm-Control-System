@@ -3,11 +3,10 @@ package view.MainPage;
 import java.sql.Date;
 
 import controller.mainPage.MainPageController;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
@@ -15,8 +14,10 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.CatatanHarianUtama;
 import util.Data;
+import util.reusableMethod;
 import view.TableViewTemplate;
 import view.login.LoginView;
 public class MainPageView extends TableViewTemplate{
@@ -38,6 +39,17 @@ public class MainPageView extends TableViewTemplate{
 		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
 		mainStage.getIcons().add(icon);		
 		
+		mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				// TODO Auto-generated method stub
+				if (reusableMethod.confirmationAlert("Exit", "Are you sure you want to quit ?").get().equals(ButtonType.CANCEL)) {
+					event.consume();
+				}
+			}
+		});
+		
 		mainStage.setTitle("Jimmy Farm Control System");
 		mainStage.show();
 
@@ -47,7 +59,8 @@ public class MainPageView extends TableViewTemplate{
 	//CatatanHarianLbl = judul yang diatas tabel 
 	//JFCSLbl = Jimmy Farm Control System
 	
-	Label CatatanHarianLbl;
+	Label CatatanHarianLbl; 
+	TextField Search;
 	TableView<CatatanHarianUtama> Table;
 	TableColumn<CatatanHarianUtama, String> KodeCatatanTC, KodeKandangTC, KeteranganJenisTC, KomentarTC;
 	TableColumn<CatatanHarianUtama, Date> TanggalMasukTC;
@@ -120,6 +133,9 @@ public class MainPageView extends TableViewTemplate{
 		InputData.setStyle("-fx-background-color: #000B58; -fx-text-fill: white;");
 		InputData.setMinWidth(100);
 		
+		Search = new TextField(); 
+		Search.setPromptText("Search...");
+		Search.setPadding(new Insets(5));
 		
 		//Bagian catatan Harian Detail
 		CatatanHarianDetail = new Button("Catatan Harian Detail"); 
@@ -155,35 +171,38 @@ public class MainPageView extends TableViewTemplate{
 
 	@Override
 	public void arrangeComponent() {
-		// TODO Auto-generated method stub
-		
 		HBox leftBtnContainer = new HBox();
 		HBox rightBtnContainer = new HBox();
+		HBox TitleContainer = new HBox();
 		leftBtnContainer.getChildren().addAll(Update, Delete);
 		leftBtnContainer.setSpacing(15);
 		
 		rightBtnContainer.getChildren().addAll(CatatanHarianDetail, InputData);
 		rightBtnContainer.setSpacing(15);
 		
+		CatatanHarianLbl = new Label("Catatan Harian");
+		CatatanHarianLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
+		
+		TitleContainer.getChildren().addAll(CatatanHarianLbl, Search); 
+		TitleContainer.setAlignment(Pos.TOP_RIGHT);
+		TitleContainer.setSpacing(375);
 		
 		ButtonContainer.setLeft(leftBtnContainer);
 		ButtonContainer.setRight(rightBtnContainer);
 		
-		
-		CatatanHarianLbl = new Label("Catatan Harian");
-		CatatanHarianLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
-		
-		TableLayout.setTop(CatatanHarianLbl);
+		TableLayout.setTop(TitleContainer);
 		TableLayout.setCenter(Table);
 		TableLayout.setBottom(ButtonContainer);
 		
 		
 		BorderPane.setMargin(Table, new Insets(15, 0, 15, 0));
+		BorderPane.setAlignment(TitleContainer, Pos.CENTER); 
 		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
 		getSideBarCatatanHarianLbl().setFont(Font.font("Inter", FontWeight.BOLD, 16));
 	
 		
 		TableLayout.setPadding(new Insets(80));
+
 	}
 
 	public Data getData() {
@@ -192,6 +211,16 @@ public class MainPageView extends TableViewTemplate{
 
 	public TableColumn<CatatanHarianUtama, String> getKodeCatatanTC() {
 		return KodeCatatanTC;
+	}
+	
+	
+	
+	public TextField getSearch() {
+		return Search;
+	}
+
+	public void setSearch(TextField search) {
+		Search = search;
 	}
 
 	public Label getMasterKandangLbl() {

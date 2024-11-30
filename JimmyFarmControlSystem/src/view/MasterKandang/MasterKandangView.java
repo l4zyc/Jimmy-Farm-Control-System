@@ -1,6 +1,7 @@
 package view.MasterKandang;
 
 import controller.masterKandang.MasterKandangController;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,8 +12,10 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.MsKandang;
 import util.Data;
+import util.reusableMethod;
 import view.TableViewTemplate;
 
 public class MasterKandangView extends TableViewTemplate{
@@ -31,6 +34,17 @@ public class MasterKandangView extends TableViewTemplate{
 		
 		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
 		KandangStage.getIcons().add(icon);		
+		
+		KandangStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				// TODO Auto-generated method stub
+				if (reusableMethod.confirmationAlert("Exit", "Are you sure you want to quit ?").get().equals(ButtonType.CANCEL)) {
+					event.consume();
+				}
+			}
+		});
 		
 		KandangStage.setTitle("Jimmy Farm Control System");
 		KandangStage.show();
@@ -104,9 +118,8 @@ public class MasterKandangView extends TableViewTemplate{
 		
 		Search = new TextField(); 
 		Search.setPromptText("Search...");
-		Search.setPadding(new Insets(12));
+		Search.setPadding(new Insets(5));
 
-		
 		JFCS = new Label("Jimmy Farm Control System"); 
 		
 		TableKandang.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); 
@@ -128,18 +141,22 @@ public class MasterKandangView extends TableViewTemplate{
 		leftBtnContainer.getChildren().addAll(Update, Delete);
 		leftBtnContainer.setSpacing(15);
 		
+		CatatanHarianLbl = new Label("Master Kandang");
+		CatatanHarianLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
+		
 		HBox rightBtnContainer = new HBox();
 		rightBtnContainer.getChildren().addAll(Search, InputData);
 		rightBtnContainer.setSpacing(15);
 		
+		HBox TitleContainer = new HBox(); 
+		TitleContainer.getChildren().addAll(CatatanHarianLbl, Search);
+		TitleContainer.setAlignment(Pos.TOP_RIGHT); 
+		TitleContainer.setSpacing(350);
 		ButtonContainer.setLeft(leftBtnContainer);
 		ButtonContainer.setRight(rightBtnContainer);
 		ButtonContainer.setPadding(new Insets(10));
 		
-		CatatanHarianLbl = new Label("Master Kandang");
-		CatatanHarianLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
-		
-		TableLayout.setTop(CatatanHarianLbl);
+		TableLayout.setTop(TitleContainer);
 		TableLayout.setCenter(TableKandang);
 		TableLayout.setBottom(ButtonContainer);
 		

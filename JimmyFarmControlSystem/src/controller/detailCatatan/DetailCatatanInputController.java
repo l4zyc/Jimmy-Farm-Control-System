@@ -33,7 +33,32 @@ public class DetailCatatanInputController extends ControllerData{
 
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub 
+				// TODO Auto-generated method stub  
+				try {
+					if(view.getTanggal().getValue().toString().isEmpty() &&
+							view.getKematianJantanTF().getText().trim().isEmpty() &&
+							view.getKematianBetinaTF().getText().trim().isEmpty() &&
+							view.getPenjualanJantanTF().getText().trim().isEmpty() && 
+							view.getPenjualanBetinaTF().getText().trim().isEmpty() && 
+							view.getAfkirJantanTF().getText().trim().isEmpty() && 
+							view.getAfkirBetinaTF().getText().trim().isEmpty() && 
+							view.getPindahJantanTF().getText().trim().isEmpty() && 
+							view.getPindahBetinaTF().getText().trim().isEmpty() && 
+							view.getKodePakanCB().getValue().toString().trim().isEmpty() && 
+							view.getJumlahPakanTF().getText().trim().isEmpty() && 
+							view.getKodeObatCB().getValue().toString().trim().isEmpty() && 
+							view.getJumlahObatTF().getText().trim().isEmpty() && 
+							view.getJumlahProduksiTelurTF().getText().trim().isEmpty() && 
+							view.getBiayaVariabelTF().getText().trim().isEmpty() && 
+							view.getKomentar().getValue().toString().trim().isEmpty()
+							&& view.getTanggal().getValue() == null) {  
+							
+					}
+				} catch(Exception ex) {
+					reusableMethod.showAlert(AlertType.ERROR, "Error", "You have to input all data");
+					return;
+				}
+
 				LocalDate dateConv = view.getTanggal().getValue(); 
 				
 				if(dateConv == null) { 

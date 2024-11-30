@@ -23,6 +23,7 @@ import view.MasterKandang.MasterKandangView;
 import view.MasterPakan.MasterPakanView;
 import view.MasterPakan.PakanInputView;
 import view.MasterPakan.PakanUpdateView;
+import view.login.LoginView;
 
 public class MasterPakanController extends MainTemplateController{
 	
@@ -67,15 +68,14 @@ public class MasterPakanController extends MainTemplateController{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Delete Data");
-				alert.setContentText("Do you want to delete this data ?");
-				Optional<ButtonType> optional = alert.showAndWait();
-				
-				if(optional.get().equals(ButtonType.OK)) {
-					data.deleteMasterPakan(getSelectedPakan());
-					reusableMethod.showAlert(AlertType.INFORMATION, "Delete Data", "Data Deleted!");
-					data.refreshTablePakan(((MasterPakanView) view).getTablePakan());
+				if(getSelectedPakan() != null) {
+					if(reusableMethod.confirmationAlert("Delete Data", "Do you want to delete this Data ?").get().equals(ButtonType.OK)) {
+						data.deleteMasterPakan(getSelectedPakan());
+						reusableMethod.showAlert(AlertType.INFORMATION, "Delete Data", "Data Deleted!");
+						data.refreshTablePakan(((MasterPakanView) view).getTablePakan());
+					}	
+				} else {
+					reusableMethod.showAlert(AlertType.ERROR, "Delete Data", "No Selected Data");
 				}
 			}
 		});
@@ -106,6 +106,18 @@ public class MasterPakanController extends MainTemplateController{
 	            System.err.println("Data instance is null or method not found.");
 	        }
 	    });;
+	}
+	
+	public void setOnLogOut() {
+		view.getLogOut().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				Stage window = (Stage) view.getMasterPakan().getScene().getWindow();
+				window.close(); 
+				new LoginView();
+			}
+		});
 	}
 	
 }

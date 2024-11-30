@@ -11,10 +11,10 @@ import model.DaftarObat;
 
 public interface reusableMethod {
 	
-	public static Optional<ButtonType> confirmationAlert() {
+	public static Optional<ButtonType> confirmationAlert(String title, String text) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Delete Data");
-		alert.setContentText("Do you want to delete this data ?");
+		alert.setTitle(title);
+		alert.setContentText(text);
 		Optional<ButtonType> optional = alert.showAndWait();
 		
 		return optional;
@@ -26,5 +26,5 @@ public interface reusableMethod {
 		alert.setTitle(title);
 		
 		alert.showAndWait();
-	}
+	} 
 }

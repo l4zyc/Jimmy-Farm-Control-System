@@ -35,7 +35,9 @@ public class MasterKandangController extends MainTemplateController{
 	((MasterKandangView) view).getLogOut().setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
-			public void handle(ActionEvent event) {
+			public void handle(ActionEvent event) { 
+				Stage window = (Stage) view.getMasterObat().getScene().getWindow();
+				window.close(); 
 				new LoginView();
 			}
 		});
@@ -70,10 +72,15 @@ public class MasterKandangController extends MainTemplateController{
 			
 			@Override
 			public void handle(ActionEvent event) {	
-				if(reusableMethod.confirmationAlert().get().equals(ButtonType.OK)) {
+				MsKandang kandang = getMasterKandang();
+				
+				if(kandang != null) {
+					if(reusableMethod.confirmationAlert("Delete", "Are you sure you want to delete this data ?").get().equals(ButtonType.OK))
 					data.deleteMasterKandang(getMasterKandang());
 					reusableMethod.showAlert(AlertType.CONFIRMATION, "Delete", "Data Deleted");
 					data.refreshMasterKandang(((MasterKandangView) view).getTableKandang());
+				} else {
+					reusableMethod.showAlert(AlertType.ERROR, "Delete Data", "Data is Null");
 				}
 			}
 		});

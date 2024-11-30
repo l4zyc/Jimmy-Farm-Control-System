@@ -36,7 +36,9 @@ public class MasterSupplierController extends MainTemplateController{
 		((MasterSupplierView)view).getLogOut().setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
-			public void handle(ActionEvent event) {
+			public void handle(ActionEvent event) { 
+				Stage window = (Stage) view.getMasterSupplier().getScene().getWindow();
+				window.close(); 
 				new LoginView();
 			}
 		});
@@ -69,15 +71,15 @@ public class MasterSupplierController extends MainTemplateController{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Delete Data");
-				alert.setContentText("Are you sure you want to delete the data?");
-				Optional<ButtonType> op = alert.showAndWait();
 				
-				if(op.get().equals(ButtonType.OK)) {
-					data.deleteMasterSupplier(getSupplierItem());
-					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "Data Deleted");
-					data.refreshMasterSupplier(((MasterSupplierView)view).getTableSupplier());
+				if(getSupplierItem() != null) {
+					if(reusableMethod.confirmationAlert("Delete Data", "Do you want to delete this Data ?").get().equals(ButtonType.OK)) {
+						data.deleteMasterSupplier(getSupplierItem());
+						reusableMethod.showAlert(AlertType.INFORMATION, "Delete Data", "Data Deleted");
+						data.refreshMasterSupplier(((MasterSupplierView)view).getTableSupplier());
+					}
+				} else {
+					reusableMethod.showAlert(AlertType.INFORMATION, "Delete", "No Selected Data");
 				}
 			}
 		});

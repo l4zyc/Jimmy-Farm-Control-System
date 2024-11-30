@@ -24,9 +24,9 @@ public class PakanInputController extends ControllerData{
 		view.getSave().setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
-			public void handle(ActionEvent event) { 
+			public void handle(ActionEvent event) {
 				
-				String KODE_PAKAN = view.getKodePakanTF().getText();  
+				String KODE_PAKAN = view.getKodePakanTF().getText(); 
 				
 				if(KODE_PAKAN.isEmpty()) { 
 					reusableMethod.showAlert(AlertType.ERROR, "Error", "Please insert kode pakan");

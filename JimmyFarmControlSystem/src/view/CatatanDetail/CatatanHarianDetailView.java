@@ -4,11 +4,10 @@ import view.TableViewTemplate;
 import java.sql.Date;
 
 import controller.detailCatatan.DetailCatatanController;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
@@ -16,9 +15,11 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.CatatanHarianDetail;
 import model.CatatanHarianUtama;
 import util.Data;
+import util.reusableMethod;
 import view.TableViewTemplate;
 import view.login.LoginView;
 
@@ -28,7 +29,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 	private Scene scene;
 	public Stage stage;
 	
-	Label titleLbl;
+	Label titleLbl, Back;
 	TableView<CatatanHarianDetail> table;
 	
 	TableColumn<CatatanHarianDetail, Integer> jantanTC, betinaTC;
@@ -44,6 +45,17 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		
 		stage.setMaximized(true);
 		stage.setScene(scene);
+		
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				// TODO Auto-generated method stub
+				if (reusableMethod.confirmationAlert("Exit", "Are you sure you want to quit ?").get().equals(ButtonType.CANCEL)) {
+					event.consume();
+				}
+			}
+		});
 		
 		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
 		stage.getIcons().add(icon);		
@@ -186,10 +198,14 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		InputData.setStyle("-fx-background-color: #000B58; -fx-text-fill: white;");
 		InputData.setMinWidth(100);
 
-
+		
+		//Label Back 
+		Back = new Label("< Back"); 
+		Back.setFont(Font.font("Inter", FontWeight.BOLD, 20)); 
+		
 		Search2 = new TextField(); 
 		Search2.setPromptText("Search...");
-		Search2.setPadding(new Insets(12));
+		Search2.setPadding(new Insets(5));
 		
 		ButtonContainer = new BorderPane();
 		HBox leftBtnContainer = new HBox();
@@ -197,13 +213,17 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		leftBtnContainer.setSpacing(15);
 		
 		HBox rightBtnContainer = new HBox();
-		rightBtnContainer.getChildren().addAll(Search2, InputData);
+		rightBtnContainer.getChildren().addAll(InputData);
 		rightBtnContainer.setSpacing(15);
 		
 		ButtonContainer.setLeft(leftBtnContainer);
 		ButtonContainer.setRight(rightBtnContainer);
 		ButtonContainer.setPadding(new Insets(10));
 		
+		HBox TitleContainer = new HBox(); 
+		TitleContainer.getChildren().addAll(Back, titleLbl, Search2);
+		TitleContainer.setSpacing(310);
+		TitleContainer.setAlignment(Pos.CENTER);
 		// Set widths of table columns dynamically based on Table width
 		double columnWidth = 0.15;
 		double columnWidthNested = 0.12;
@@ -270,7 +290,7 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 		komentarTC.setStyle(alignmentStyle); 
 		
 		TableLayout.setCenter(table);
-		TableLayout.setTop(titleLbl);
+		TableLayout.setTop(TitleContainer);
 		TableLayout.setBottom(ButtonContainer);
 		
 		mainLayout.setTop(getMb()); 
@@ -341,6 +361,16 @@ public class CatatanHarianDetailView extends TableViewTemplate{
 
 	public Label getTitleLbl() {
 		return titleLbl;
+	}
+
+	
+	
+	public Label getBack() {
+		return Back;
+	}
+
+	public void setBack(Label back) {
+		Back = back;
 	}
 
 	public TableColumn<CatatanHarianDetail, Integer> getJantanTC() {

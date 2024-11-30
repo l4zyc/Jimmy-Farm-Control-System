@@ -3,6 +3,7 @@ package view.MasterObat;
 import java.sql.Date;
 
 import controller.masterObat.MasterObatController;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,9 +14,11 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.CatatanHarianUtama;
 import model.DaftarObat;
 import util.Data;
+import util.reusableMethod;
 import view.TableViewTemplate;
 
 public class MasterObatView extends TableViewTemplate{
@@ -36,6 +39,17 @@ public class MasterObatView extends TableViewTemplate{
 		
 		Image icon = new Image("SmallCustomLogoJimmyFarm.png");
 		ObatStage.getIcons().add(icon);		
+
+		ObatStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				// TODO Auto-generated method stub
+				if (reusableMethod.confirmationAlert("Exit", "Are you sure you want to quit ?").get().equals(ButtonType.CANCEL)) {
+					event.consume();
+				}
+			}
+		});
 		
 		ObatStage.setTitle("Jimmy Farm Control System");
 		ObatStage.show();
@@ -151,7 +165,7 @@ public class MasterObatView extends TableViewTemplate{
 				
 		Search = new TextField(); 
 		Search.setPromptText("Search...");
-		Search.setPadding(new Insets(12));
+		Search.setPadding(new Insets(5));
 		
 		JFCS = new Label("Jimmy Farm Control System");
 		
@@ -181,26 +195,30 @@ public class MasterObatView extends TableViewTemplate{
 		
 
 		HBox leftBtnContainer = new HBox();
-		HBox rightBtnContainer = new HBox();
+		HBox rightBtnContainer = new HBox(); 
 		leftBtnContainer.getChildren().addAll(Update, Delete);
 		leftBtnContainer.setSpacing(15);
 		
-		rightBtnContainer.getChildren().addAll(Search, InputData);
+		rightBtnContainer.getChildren().addAll(InputData);
 		rightBtnContainer.setSpacing(15);
 		
 		
 		ButtonContainer.setLeft(leftBtnContainer);
 		ButtonContainer.setRight(rightBtnContainer);
-
 		
 		CatatanHarianLbl = new Label("Master Obat");
 		CatatanHarianLbl.setFont(Font.font("Inter", FontWeight.BOLD, 35));
 	
-		TableLayout.setTop(CatatanHarianLbl);
+		HBox TitleContainer = new HBox(); 
+		TitleContainer.getChildren().addAll(CatatanHarianLbl, Search);
+		TitleContainer.setAlignment(Pos.TOP_RIGHT); 
+		TitleContainer.setSpacing(350);
+		
+		TableLayout.setTop(TitleContainer);
 		TableLayout.setCenter(TableObat);
 		TableLayout.setBottom(ButtonContainer);
-
-		
+				
+				
 		BorderPane.setMargin(TableObat, new Insets(15, 0, 15, 0));
 		BorderPane.setAlignment(CatatanHarianLbl, Pos.CENTER);
 		

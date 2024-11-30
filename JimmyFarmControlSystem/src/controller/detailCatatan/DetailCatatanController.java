@@ -6,8 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableSelectionModel;
+import javafx.scene.input.MouseEvent;
 import model.CatatanHarianDetail;
 import model.DaftarPakan;
 import util.reusableMethod;
@@ -17,6 +19,7 @@ import view.CatatanDetail.DetailCatatanInputView;
 import view.CatatanDetail.DetailCatatanUpdateView;
 import view.MainPage.MainPageView;
 import view.MasterPakan.MasterPakanView;
+import view.login.LoginView;
 
 public class DetailCatatanController extends MainTemplateController{
 
@@ -29,7 +32,8 @@ public class DetailCatatanController extends MainTemplateController{
 		setOnMouseClick();
 		setOnAction();
 		setOnLogOut(); 
-		setOnHome();  
+		setOnHome();   
+		SetOnBack();
 		setOnSearch(kodeCatatan);
 	} 
 	
@@ -58,6 +62,8 @@ public class DetailCatatanController extends MainTemplateController{
 				// TODO Auto-generated method stub
 				if(catatan != null) {
 					new DetailCatatanUpdateView(detailView, catatan);	
+				} else {
+					reusableMethod.showAlert(AlertType.ERROR, "Update Data", "No Selected Item");
 				}
 			}
 		});
@@ -68,10 +74,13 @@ public class DetailCatatanController extends MainTemplateController{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				if(catatan != null) {
-					reusableMethod.confirmationAlert();
-					data.deleteCatatanHarianDetail(catatan);
-					reusableMethod.showAlert(AlertType.INFORMATION, "Delete Data", "Data Deleted");
-					data.refreshTableCatatanHarianDetail(detailView.getTable(), catatan.getKodeCatatan());
+					if(reusableMethod.confirmationAlert("Delete", "Are you sure you want to delete this data ?").get().equals(ButtonType.OK)) {
+						data.deleteCatatanHarianDetail(catatan);
+						reusableMethod.showAlert(AlertType.INFORMATION, "Delete Data", "Data Deleted");
+						data.refreshTableCatatanHarianDetail(detailView.getTable(), catatan.getKodeCatatan());	
+					}
+				} else {
+					reusableMethod.showAlert(AlertType.ERROR, "Delete Data", "Catatan Harian Detail is Null");
 				}
 			}
 		});
@@ -88,6 +97,19 @@ public class DetailCatatanController extends MainTemplateController{
 			}
 		});
 	} 
+	
+	public void SetOnBack() { 
+		((CatatanHarianDetailView) view).getBack().setOnMouseClicked(new EventHandler<MouseEvent>() { 
+			
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Stage window = (Stage) view.getMasterKandang().getScene().getWindow(); 
+				window.close();
+				new MainPageView();
+			}
+		});
+	}
 	
 	public void setOnSearch(String kodeCatatan) { 
 	    ((CatatanHarianDetailView) view).getSearch2().textProperty().addListener((observable, oldValue, newValue) -> {
@@ -107,4 +129,15 @@ public class DetailCatatanController extends MainTemplateController{
 	    });
 	}
 
+	public void setOnLogOut() {
+		view.getLogOut().setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				
+				new LoginView();
+			}
+		});
+	}
+	
 }
